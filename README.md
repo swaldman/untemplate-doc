@@ -42,10 +42,6 @@ end Helper_ceci_nest_pas_md
 def ceci_nest_pas_md(input : immutable.Map[String,Any]) : String =
   import Helper_ceci_nest_pas_md.*
 
-  extension (s : mutable.Map[String,Any])
-    def as[T](key: String): T = s(key).asInstanceOf[T]
-    def check[T](key: String): Option[T] = s.get(key).map(_.asInstanceOf[T])
-
   val scratchpad : mutable.Map[String,Any] = mutable.Map.empty[String,Any]
   val writer = new StringWriter(131072) //XXX: Hardcoded initial capacity
 
@@ -71,7 +67,7 @@ function.
 Now, the [generated scala](example/scalagen/untemplatedoc/untemplate_ceci_nest_pas2_md.scala) would _transform_ the markdown, like this:
 
 ```markdown
-# Ceci n'est pas... 0.03275529064033755
+# Ceci n'est pas... 0.26618930700872356
 
 Well, this is just a regular markdown file, with no
 special untemplate constructs. But if we wish, we can treat

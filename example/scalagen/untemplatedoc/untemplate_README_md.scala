@@ -36,10 +36,6 @@ end Helper_README_md
 def README_md(input : immutable.Map[String,Any]) : String =
   import Helper_README_md.*
 
-  extension (s : mutable.Map[String,Any])
-    def as[T](key: String): T = s(key).asInstanceOf[T]
-    def check[T](key: String): Option[T] = s.get(key).map(_.asInstanceOf[T])
-
   val scratchpad : mutable.Map[String,Any] = mutable.Map.empty[String,Any]
   val writer = new StringWriter(131072) //XXX: Hardcoded initial capacity
 
