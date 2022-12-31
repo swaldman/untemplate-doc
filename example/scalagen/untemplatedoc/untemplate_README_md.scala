@@ -17,7 +17,9 @@ def README_md(input : immutable.Map[String,Any]) : String =
   val ceciScala    = sgenDir.resolve("untemplatedoc/untemplate_ceci_nest_pas_md.scala")
   val ceci2Src     = usrcDir.resolve("untemplatedoc/ceci-nest-pas2.md.untemplate")
   val loopySrc     = usrcDir.resolve("untemplatedoc/loopy.md.untemplate")
-  val loopy2badSrc = usrcDir.resolve("untemplatedoc/loopy.md.untemplate")
+  val loopy2badSrc = usrcDir.resolve("untemplatedoc/loopy2-bad.md.untemplate-off")
+  val loopy2Src    = usrcDir.resolve("untemplatedoc/loopy2.md.untemplate")
+
 
 
   // scratchpad += Tuple2("sgenDir",sgenDir)
@@ -67,8 +69,26 @@ def README_md(input : immutable.Map[String,Any]) : String =
   writer.writeln(untemplatedoc.loopy_md(immutable.Map.empty))
     val block7 = new Function1[immutable.Map[String,Any],String]:
       def apply( input : immutable.Map[String,Any] ) : String =
-        "```\n\n### Blocks as functions\n\nMaybe we want to use our expression-enriched text blocks in more than one place on our page.\nWe can name our blocks, and then they become functions. To do that, instead of beginning our\nblocks with `()>`, we embed a valid identifier in the parenthesis, like `(loopy)>`.\n\nHowever, that carries with it a few complications. If we just try that in our loopy markdown\nfile as it was, we'll get compilation errors.\n"
+        "```\n\n### Named blocks as functions\n\nMaybe we want to use our expression-enriched text blocks in more than one place on our page.\nWe can name our blocks, and then they become functions. To do that, instead of beginning our\nblocks with `()>`, we embed a valid identifier in the parenthesis, like `(loopy)>`.\n\nHowever, that carries with it a few complications. If we just try that in our loopy markdown\nfile as it was, we'll get compilation errors.\n\nThe file...\n```scala\n"
     writer.write(block7( input ))
+    
+  writer.writeln(Files.readString(loopy2badSrc).trim)
+    val block8 = new Function1[immutable.Map[String,Any],String]:
+      def apply( input : immutable.Map[String,Any] ) : String =
+        "```\nAnd the ickies...\n```\n[info] compiling 1 Scala source to /Users/swaldman/Dropbox/BaseFolders/development-why/gitproj/untemplate-doc/target/scala-3.2.1/classes ...\n[error] -- [E018] Syntax Error: /Users/swaldman/Dropbox/BaseFolders/development-why/gitproj/untemplate-doc/target/scala-3.2.1/src_managed/main/untemplate/untemplatedoc/untemplate_loopy2_bad_md.scala:11:24\n[error] 11 |  for (i <- 0 until num)\n[error]    |                        ^\n[error]    |                        expression expected but val found\n[error]    |\n[error]    | longer explanation available when compiling with `-explain`\n[error] -- [E006] Not Found Error: /Users/swaldman/Dropbox/BaseFolders/development-why/gitproj/untemplate-doc/target/scala-3.2.1/src_managed/main/untemplate/untemplatedoc/untemplate_loopy2_bad_md.scala:15:57\n[error] 15 |  def loopy( arg : immutable.Map[String,Any] = input ) = block0( arg )\n[error]    |                                                         ^^^^^^\n[error]    |                                                       Not found: block0\n[error]    |\n[error]    | longer explanation available when compiling with `-explain`\n[error] two errors found\n```\n\nBefore things worked, because when we're just printing an expression to output, we indent the call to write in\nthe generated code so that it falls inside of any loops, if expressions, or other language constructs that the\nprior code block has set up.\n\nIf we are going to want to treat the block as a reusable function, we do not wish to enclose its declaration\nin a very narrow scope. So, the declaration of named blocks is not indented, and named blocks do not print by default.\nIf you want to use a named block, define it before you get to branches in your code flow,\nthen call your named function, which returns a `String` you can write. Let's fix our _Loopy_.\n\n```scala\n"
+    writer.write(block8( input ))
+    
+  writer.writeln(Files.readString(loopy2Src).trim)
+    val block9 = new Function1[immutable.Map[String,Any],String]:
+      def apply( input : immutable.Map[String,Any] ) : String =
+        "```\n\nNot the loveliest file. But educational.\nHere is the output...\n\n```markdown\n"
+    writer.write(block9( input ))
+    
+  writer.writeln(untemplatedoc.loopy_md(immutable.Map.empty))
+    val block10 = new Function1[immutable.Map[String,Any],String]:
+      def apply( input : immutable.Map[String,Any] ) : String =
+        "```\n"
+    writer.write(block10( input ))
     
   writer.toString
   

@@ -57,7 +57,7 @@ function.
 Now, the [generated scala](example/scalagen/untemplatedoc/untemplate_ceci_nest_pas2_md.scala) _would_ transform the markdown, like this:
 
 ```markdown
-# Ceci n'est pas... 0.5229387330238046
+# Ceci n'est pas... 0.14299592795498695
 
 Well, this is _almost_ just a regular markdown file, with no
 special untemplate constructs. But if we wish, we can treat
@@ -103,8 +103,14 @@ It sucks to be us. (num = <(num)>)
 
 Let's get a look at what it produces:
 ```markdown
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
 
-It sucks to be us. (num = 0)
+And we're a winner! (num = 6)
 
 ```
 
@@ -117,12 +123,13 @@ And again!
 # Loopy
 # Loopy
 # Loopy
+# Loopy
 
-And we're a winner! (num = 7)
+And we're a winner! (num = 8)
 
 ```
 
-### Blocks as functions
+### Named blocks as functions
 
 Maybe we want to use our expression-enriched text blocks in more than one place on our page.
 We can name our blocks, and then they become functions. To do that, instead of beginning our
@@ -130,3 +137,95 @@ blocks with `()>`, we embed a valid identifier in the parenthesis, like `(loopy)
 
 However, that carries with it a few complications. If we just try that in our loopy markdown
 file as it was, we'll get compilation errors.
+
+The file...
+```scala
+val num = math.round(math.random * 10).toInt
+
+for (i <- 0 until num)
+(loopy)>
+# Loopy
+<()
+
+if (num >= 5)
+()>
+
+And we're a winner! (num = <(num)>)
+<()
+else
+()>
+
+It sucks to be us. (num = <(num)>)
+```
+And the ickies...
+```
+[info] compiling 1 Scala source to /Users/swaldman/Dropbox/BaseFolders/development-why/gitproj/untemplate-doc/target/scala-3.2.1/classes ...
+[error] -- [E018] Syntax Error: /Users/swaldman/Dropbox/BaseFolders/development-why/gitproj/untemplate-doc/target/scala-3.2.1/src_managed/main/untemplate/untemplatedoc/untemplate_loopy2_bad_md.scala:11:24
+[error] 11 |  for (i <- 0 until num)
+[error]    |                        ^
+[error]    |                        expression expected but val found
+[error]    |
+[error]    | longer explanation available when compiling with `-explain`
+[error] -- [E006] Not Found Error: /Users/swaldman/Dropbox/BaseFolders/development-why/gitproj/untemplate-doc/target/scala-3.2.1/src_managed/main/untemplate/untemplatedoc/untemplate_loopy2_bad_md.scala:15:57
+[error] 15 |  def loopy( arg : immutable.Map[String,Any] = input ) = block0( arg )
+[error]    |                                                         ^^^^^^
+[error]    |                                                       Not found: block0
+[error]    |
+[error]    | longer explanation available when compiling with `-explain`
+[error] two errors found
+```
+
+Before things worked, because when we're just printing an expression to output, we indent the call to write in
+the generated code so that it falls inside of any loops, if expressions, or other language constructs that the
+prior code block has set up.
+
+If we are going to want to treat the block as a reusable function, we do not wish to enclose its declaration
+in a very narrow scope. So, the declaration of named blocks is not indented, and named blocks do not print by default.
+If you want to use a named block, define it before you get to branches in your code flow,
+then call your named function, which returns a `String` you can write. Let's fix our _Loopy_.
+
+```scala
+val num = math.round(math.random * 10).toInt
+
+// comments in code blocks are fine!
+// here is one way to turn text blocks into functions
+(loopy)>
+# Loopy
+<()
+for (i <- 0 until num) loopy()
+
+// below is another, perhaps even simpler way to turn blocks into functions
+//
+// the indent of the if and else clauses must be lined up,
+// the statement that prints becomes indented from that level!
+def reportCard() : Unit =
+  if (num >= 5)
+()>
+
+And we're a winner! (num = <(num)>)
+<()
+  else
+()>
+
+It sucks to be us. (num = <(num)>)
+<()
+reportCard()
+```
+
+Not the loveliest file. But educational.
+Here is the output...
+
+```markdown
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+
+And we're a winner! (num = 9)
+
+```

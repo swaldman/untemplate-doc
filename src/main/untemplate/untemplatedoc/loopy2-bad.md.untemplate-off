@@ -1,7 +1,7 @@
 val num = math.round(math.random * 10).toInt
 
 for (i <- 0 until num)
-()>
+(loopy)>
 # Loopy
 <()
 

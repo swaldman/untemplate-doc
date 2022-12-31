@@ -1,0 +1,25 @@
+val num = math.round(math.random * 10).toInt
+
+// comments in code blocks are fine!
+// here is one way to turn text blocks into functions
+(loopy)>
+# Loopy
+<()
+for (i <- 0 until num) loopy()
+
+// below is another, perhaps even simpler way to turn blocks into functions
+//
+// the indent of the if and else clauses must be lined up,
+// the statement that prints becomes indented from that level!
+def reportCard() : Unit =
+  if (num >= 5)
+()>
+
+And we're a winner! (num = <(num)>)
+<()
+  else
+()>
+
+It sucks to be us. (num = <(num)>)
+<()
+reportCard()
