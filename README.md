@@ -5,9 +5,82 @@ _This project documents the `untemplate` project. For the code, please see [swal
 
 ## Introduction
 
-TBD!
+Every once in a while, I find I need to build a little website for something.
+I've become a fan of static site generators for that. I've worked with [hugo](https://gohugo.io/) and
+[hexo](https://hexo.io/) and (paradox)[https://developer.lightbend.com/docs/paradox/current/index.html],
+and they've all been great in their way.
 
-## Untemplate Basics
+But each time, I find myself spending a lot of time in their docs, figuring out each
+SSG's specific DSLs, their tricks for doing things, what variables are exposed in
+templates, etc.
+
+I found myself yearning for simplicity. Why can't I just specify my static sites in my language
+of choice? (For me, that's Scala these days.)
+
+Static (and dynamic) site generation is in practice largely about templates. No one enjoys
+embedding tons of HTML or Markdown or CSS in programming-language string literals, even
+in modern languages that support multiline literals and interpolated strings.
+
+But templates are a step along the slippery path to DSLs with clever, powerful features
+that become the idiosyncracies and quirks I'm trying to escape. As much as possible, I
+want my specification language to be straightforward Scala.
+
+_Untemplate_ is my attempt to create the thinnest possible template veneer over vanilla Scala.
+An untemplate is just a text file that optionally includes any of precisely four special delimeters:
+
+1. `<(expression)>` breaks out of plain text and inserts the result into the text
+2. `()>` alone, at the beginning of a line, divides the file into a Scala code region, and a
+text region. The region above is a Scala code region.
+3. `<()` alone, at the beginning of a line, is the inverse of the prior delimeter. It divides the
+file into a text region and a Scala code region, with text in the region above, and code in the
+region beneath.
+4. `()[]~>` is a special header delimiter. Like `()>`, it divides the file into a Scala code
+region above and a text region below. However, import statements in the code region above become
+top-level imports in the generated file.
+
+---
+
+**Mnemonic:** _For every construct, whatever an "arrow", `<` or `>`, is pointing at is a text region,
+whatever a parenthesis is adjacent to is code._
+
+---
+
+### Functional templates
+
+Every untemplate is a Scala function that returns a simple `String`.
+
+Every text block within an untemplate can be a function. Ordinarily, text blocks just print themselves
+automatically into the generated String. However, if you embed a name in the `()>` delimeter that begins
+the block, like `(entry)>`, nothing is automatically printed into the String, but you will have a function
+`entry()` to work with in code blocks. `writer.write(entry)` will generate text into untemplate output.
+
+You control the input type and name of the larger function that the full untemplate becomes by
+specifying them in the header delimeter. Untemplate-generated functions always return a simple
+`String`, and accept a single parameter. By default, that parameter is `input: immutable.Map[String,Any]`,
+but if you choose a header delimeter like `(users)[List[String]]~()>` then the input parameter will be
+`users : List[String]`. By default the name of the generated function is determined by the untemplate
+file name. The file you are reading is is `[README.md.untemplate](src/main/untemplate/untemplatedoc/README.md.untemplate)`, and generates a
+function
+
+```scala
+def README_md( input: immutable.Map[String,Any] ) : String = ???
+```
+
+Not yet implemented, but you should soon be able to override the generated function name in
+the same way block function names are defined. `()[]~(userList)>` would become
+
+```scala
+def userList( input: immutable.Map[String,Any] ) : String = ???
+```
+`(users)[List[String]]~(userList)>` would become
+
+```scala
+def userList( input: immutable.Map[String,Any] ) : String = ???
+```
+
+The easiest way to make sense of all this is by example.
+
+## A Tour of Untemplate
 
 Let's look at an untemplate so simple it seems not to be an untemplate at all.
 
@@ -57,7 +130,7 @@ function.
 Now, the [generated scala](example/scalagen/untemplatedoc/untemplate_ceci_nest_pas2_md.scala) _would_ transform the markdown, like this:
 
 ```markdown
-# Ceci n'est pas... 0.6635564586589067
+# Ceci n'est pas... 0.1965213745225407
 
 Well, this is _almost_ just a regular markdown file, with no
 special untemplate constructs. But if we wish, we can treat
@@ -107,8 +180,13 @@ Let's get a look at what it produces:
 # Loopy
 # Loopy
 # Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
 
-It sucks to be us. (num = 4)
+And we're a winner! (num = 9)
 
 ```
 
@@ -121,8 +199,9 @@ And again!
 # Loopy
 # Loopy
 # Loopy
+# Loopy
 
-And we're a winner! (num = 7)
+And we're a winner! (num = 8)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/untemplate_loopy_md.scala))
