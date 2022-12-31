@@ -36,7 +36,7 @@ def loopy_md(input : immutable.Map[String,Any]) : String =
     writer.write(BlockPrinters(0)( input, scratchpad ))
     
 
-  if (num > 5)
+  if (num >= 5)
     writer.write(BlockPrinters(1)( input, scratchpad ))
     
   else

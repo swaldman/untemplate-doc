@@ -5,7 +5,7 @@ for (i <- 0 until num)
 # Loopy
 <()
 
-if (num > 5)
+if (num >= 5)
 ()>
 
 And we're a winner!
