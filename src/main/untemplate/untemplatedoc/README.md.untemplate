@@ -11,7 +11,6 @@ val loopySrc     = usrcDir.resolve("untemplatedoc/loopy.md.untemplate")
 val loopy2badSrc = usrcDir.resolve("untemplatedoc/loopy2-bad.md.untemplate-off")
 val loopy2Src    = usrcDir.resolve("untemplatedoc/loopy2.md.untemplate")
 
-
 ()[]~()>
 
 # Untemplate Docs
@@ -92,6 +91,7 @@ And again!
 writer.writeln(untemplatedoc.loopy_md(immutable.Map.empty))
 ()>
 ```
+([generated scala](<(sgenDir)>/untemplatedoc/untemplate_loopy_md.scala))
 
 ### Named blocks as functions
 
@@ -149,3 +149,4 @@ Here is the output...
 writer.writeln(untemplatedoc.loopy2_md(immutable.Map.empty))
 ()>
 ```
+([generated scala](<(sgenDir)>/untemplatedoc/untemplate_loopy2_md.scala))
