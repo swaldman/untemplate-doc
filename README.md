@@ -28,13 +28,20 @@ want my specification language to be straightforward Scala.
 _Untemplate_ is my attempt to create the thinnest possible template veneer over vanilla Scala.
 An untemplate is just a text file that optionally includes any of precisely four special delimeters:
 
-1. `<(expression)>` breaks out of plain text and inserts the result into the text
-2. `()>` alone, at the beginning of a line, divides the file into a Scala code region, and a
+| Delimeter | Description |
+| --- | --- |
+| `<(expression)>` | Text-embedded Scala expression |
+| `()>` | Code / text boundary |
+| `<()` | Text / code boundary |
+| `\()[]~>` | Header delimeter |
+
+* `<(expression)>` breaks out of plain text and inserts the result into the text
+* `()>` alone, at the beginning of a line, divides the file into a Scala code region, and a
 text region. The region above is a Scala code region.
-3. `<()` alone, at the beginning of a line, is the inverse of the prior delimeter. It divides the
+*  `<()` alone, at the beginning of a line, is the inverse of the prior delimeter. It divides the
 file into a text region and a Scala code region, with text in the region above, and code in the
 region beneath.
-4. `()[]~>` is a special header delimiter. Like `()>`, it divides the file into a Scala code
+*  `()[]~>` is a special header delimiter. Like `()>`, it divides the file into a Scala code
 region above and a text region below. However, import statements in the code region above become
 top-level imports in the generated file.
 
@@ -130,7 +137,7 @@ function.
 Now, the [generated scala](example/scalagen/untemplatedoc/untemplate_ceci_nest_pas2_md.scala) _would_ transform the markdown, like this:
 
 ```markdown
-# Ceci n'est pas... 0.1965213745225407
+# Ceci n'est pas... 0.726726174885314
 
 Well, this is _almost_ just a regular markdown file, with no
 special untemplate constructs. But if we wish, we can treat
@@ -178,15 +185,8 @@ Let's get a look at what it produces:
 ```markdown
 # Loopy
 # Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
 
-And we're a winner! (num = 9)
+It sucks to be us. (num = 2)
 
 ```
 
@@ -199,9 +199,8 @@ And again!
 # Loopy
 # Loopy
 # Loopy
-# Loopy
 
-And we're a winner! (num = 8)
+And we're a winner! (num = 7)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/untemplate_loopy_md.scala))
@@ -295,11 +294,8 @@ Here is the output...
 
 ```markdown
 # Loopy
-# Loopy
-# Loopy
-# Loopy
 
-It sucks to be us. (num = 4)
+It sucks to be us. (num = 1)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/untemplate_loopy2_md.scala))

@@ -43,13 +43,20 @@ want my specification language to be straightforward Scala.
 _Untemplate_ is my attempt to create the thinnest possible template veneer over vanilla Scala.
 An untemplate is just a text file that optionally includes any of precisely four special delimeters:
 
-1. `\<(expression)>` breaks out of plain text and inserts the result into the text
-2. `\()>` alone, at the beginning of a line, divides the file into a Scala code region, and a
+| Delimeter | Description |
+| --- | --- |
+| `\<(expression)>` | Text-embedded Scala expression |
+| `\()>` | Code / text boundary |
+| `\<()` | Text / code boundary |
+| `\()[]~>` | Header delimeter |
+
+* `\<(expression)>` breaks out of plain text and inserts the result into the text
+* `\()>` alone, at the beginning of a line, divides the file into a Scala code region, and a
 text region. The region above is a Scala code region.
-3. `\<()` alone, at the beginning of a line, is the inverse of the prior delimeter. It divides the
+*  `\<()` alone, at the beginning of a line, is the inverse of the prior delimeter. It divides the
 file into a text region and a Scala code region, with text in the region above, and code in the
 region beneath.
-4. `\()[]~>` is a special header delimiter. Like `\()>`, it divides the file into a Scala code
+*  `\()[]~>` is a special header delimiter. Like `\()>`, it divides the file into a Scala code
 region above and a text region below. However, import statements in the code region above become
 top-level imports in the generated file.
 
