@@ -15,7 +15,7 @@ def loopy2_md(input : immutable.Map[String,Any]) : String =
       "# Loopy\n"
   def loopy( arg : immutable.Map[String,Any] = input ) = block0( arg )
   for (i <- 0 until num)
-    writer.write(loopy() + "\n") // you have a java.io.Writer, called writer, to send output to
+    writer.write(loopy()) // you have a java.io.Writer, called writer, to send output to
 
   // below is another, perhaps even simpler way to turn blocks into functions
   //

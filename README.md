@@ -57,7 +57,7 @@ function.
 Now, the [generated scala](example/scalagen/untemplatedoc/untemplate_ceci_nest_pas2_md.scala) _would_ transform the markdown, like this:
 
 ```markdown
-# Ceci n'est pas... 0.35944713101867887
+# Ceci n'est pas... 0.4341617057314504
 
 Well, this is _almost_ just a regular markdown file, with no
 special untemplate constructs. But if we wish, we can treat
@@ -111,16 +111,23 @@ Let's get a look at what it produces:
 # Loopy
 # Loopy
 # Loopy
+# Loopy
 
-And we're a winner! (num = 8)
+And we're a winner! (num = 9)
 
 ```
 
 And again!
 ```markdown
 # Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
 
-It sucks to be us. (num = 1)
+And we're a winner! (num = 7)
 
 ```
 
@@ -188,7 +195,7 @@ val num = math.round(math.random * 10).toInt
 # Loopy
 <()
 for (i <- 0 until num)
-  writer.write(loopy() + "\n") // you have a java.io.Writer, called writer, to send output to
+  writer.write(loopy()) // you have a java.io.Writer, called writer, to send output to
 
 // below is another, perhaps even simpler way to turn blocks into functions
 //
@@ -213,14 +220,16 @@ Here is the output...
 
 ```markdown
 # Loopy
-
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
 # Loopy
 
-# Loopy
-
-# Loopy
-
-
-It sucks to be us. (num = 4)
+And we're a winner! (num = 10)
 
 ```
