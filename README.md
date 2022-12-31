@@ -5,7 +5,7 @@ This project documents the `untemplate` project. For the code repository, please
 
 ---
 
-Let's look at a very simple untemplate, an untemplate so simple it seems not to be an untemplate at all!
+Let's look at an untemplate so simple it seems not to be an untemplate at all.
 
 ```markdown
 # Ceci n'est pas...
@@ -13,7 +13,7 @@ Let's look at a very simple untemplate, an untemplate so simple it seems not to 
 Well, this is just a regular markdown file, with no
 special untemplate constructs. But if we wish, we can treat
 it as an unemplate, and it will be immortalized as a scala
-functiion.
+function.
 ```
 It's just a markdown file! But it's stored in an untemplate source directory as `ceci-nest-pas.md.untemplate`, so it gets
 compiled to a simple scala function.
@@ -33,7 +33,7 @@ import scala.collection.*
 private object Helper_ceci_nest_pas_md:
   private val BP0 = new Function2[immutable.Map[String,Any],mutable.Map[String,Any],String]:
     def apply( input : immutable.Map[String,Any], scratchpad : mutable.Map[String,Any]) : String =
-      "# Ceci n'est pas...\n\nWell, this is just a regular markdown file, with no\nspecial untemplate constructs. But if we wish, we can treat\nit as an unemplate, and it will be immortalized as a scala\nfunctiion.\n\n"
+      "# Ceci n'est pas...\n\nWell, this is just a regular markdown file, with no\nspecial untemplate constructs. But if we wish, we can treat\nit as an unemplate, and it will be immortalized as a scala\nfunction.\n\n"
 
   val BlockPrinters = Vector( BP0 )
 
@@ -54,4 +54,29 @@ def ceci_nest_pas_md(input : immutable.Map[String,Any]) : String =
   writer.toString
   
 end ceci_nest_pas_md
+```
+
+We'd like, of course, for our (un)template library to do a bit more than just spit out unmodified
+text files though. Let's modify our example just a bit:
+
+```markdown
+# Ceci n'est pas... <(math.random)>
+
+Well, this is just a regular markdown file, with no
+special untemplate constructs. But if we wish, we can treat
+it as an unemplate, and it will be immortalized as a scala
+function.
+```
+
+Now, the [generated scala](example/scalagen/untemplatedoc/untemplate_ceci_nest_pas2_md.scala) would _transform_ the markdown, like this:
+
+```markdown
+# Ceci n'est pas... 0.03275529064033755
+
+Well, this is just a regular markdown file, with no
+special untemplate constructs. But if we wish, we can treat
+it as an unemplate, and it will be immortalized as a scala
+function.
+
+
 ```

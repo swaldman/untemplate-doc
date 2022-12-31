@@ -3,5 +3,5 @@
 Well, this is just a regular markdown file, with no
 special untemplate constructs. But if we wish, we can treat
 it as an unemplate, and it will be immortalized as a scala
-functiion.
+function.
 

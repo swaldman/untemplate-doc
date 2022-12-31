@@ -6,6 +6,9 @@ val egenDir   = Path.of("example/untemplate")
 val sgenDir   = Path.of("example/scalagen")
 val ceciSrc   = usrcDir.resolve("untemplatedoc/ceci-nest-pas.md.untemplate")
 val ceciScala = sgenDir.resolve("untemplatedoc/untemplate_ceci_nest_pas_md.scala")
+val ceci2Src   = usrcDir.resolve("untemplatedoc/ceci-nest-pas2.md.untemplate")
+
+scratchpad += Tuple2("sgenDir",sgenDir)
 
 ()[]~()>
 
@@ -15,7 +18,7 @@ This project documents the `untemplate` project. For the code repository, please
 
 ---
 
-Let's look at a very simple untemplate, an untemplate so simple it seems not to be an untemplate at all!
+Let's look at an untemplate so simple it seems not to be an untemplate at all.
 
 ```markdown
 <()
@@ -28,5 +31,22 @@ compiled to a simple scala function.
 ```scala
 <()
 writer.writeln(Files.readString(ceciScala).trim)
+()>
+```
+
+We'd like, of course, for our (un)template library to do a bit more than just spit out unmodified
+text files though. Let's modify our example just a bit:
+
+```markdown
+<()
+writer.writeln(Files.readString(ceci2Src).trim)
+()>
+```
+
+Now, the [generated scala](<(scratchpad("sgenDir"))>/untemplatedoc/untemplate_ceci_nest_pas2_md.scala) would _transform_ the markdown, like this:
+
+```markdown
+<()
+writer.writeln(untemplatedoc.ceci_nest_pas2_md(immutable.Map.empty))
 ()>
 ```
