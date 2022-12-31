@@ -19,7 +19,7 @@ val loopy2Src    = usrcDir.resolve("untemplatedoc/loopy2.md.untemplate")
 
 # Untemplate Docs
 
-_This project documents the `untemplate` project. For the code repository, please see [swaldman/untemplate](https://github.com/swaldman/untemplate)._
+_This project documents the `untemplate` project. For the code, please see [swaldman/untemplate](https://github.com/swaldman/untemplate)._
 
 ## Introduction
 
