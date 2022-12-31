@@ -58,21 +58,21 @@ text files though. Let's modify our example just a bit:
 ```markdown
 # Ceci n'est pas... <(math.random)>
 
-Well, this is just a regular markdown file, with no
+<s>Well, this is just a regular markdown file, with no
 special untemplate constructs. But if we wish, we can treat
 it as an unemplate, and it will be immortalized as a scala
-function.
+function.</s>
 ```
 
 Now, the [generated scala](example/scalagen/untemplatedoc/untemplate_ceci_nest_pas2_md.scala) _would_ transform the markdown, like this:
 
 ```markdown
-# Ceci n'est pas... 0.0084152213210964
+# Ceci n'est pas... 0.4389026082664137
 
-Well, this is just a regular markdown file, with no
+<s>Well, this is just a regular markdown file, with no
 special untemplate constructs. But if we wish, we can treat
 it as an unemplate, and it will be immortalized as a scala
-function.
+function.</s>
 
 
 ```
