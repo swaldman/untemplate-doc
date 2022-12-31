@@ -1,0 +1,16 @@
+val num = math.round(math.random * 10).toInt
+
+for (i <- 0 until num)
+()>
+# Loopy
+<()
+
+if (num > 5)
+()>
+
+And we're a winner!
+<()
+else
+()>
+
+It sucks to be us.

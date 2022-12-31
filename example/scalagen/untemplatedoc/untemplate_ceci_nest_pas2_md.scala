@@ -13,7 +13,7 @@ private object Helper_ceci_nest_pas2_md:
   private val BP0 = new Function2[immutable.Map[String,Any],mutable.Map[String,Any],String]:
     def apply( input : immutable.Map[String,Any], scratchpad : mutable.Map[String,Any]) : String =
       "# Ceci n'est pas... " + math.random +
-      "\n\n<s>Well, this is just a regular markdown file, with no\nspecial untemplate constructs. But if we wish, we can treat\nit as an unemplate, and it will be immortalized as a scala\nfunction.</s>\n\n"
+      "\n\nWell, this is _almost_ just a regular markdown file, with no\nspecial untemplate constructs. But if we wish, we can treat\nit as an unemplate, and it will be immortalized as a scala\nfunction.\n\n"
 
   val BlockPrinters = Vector( BP0 )
 
