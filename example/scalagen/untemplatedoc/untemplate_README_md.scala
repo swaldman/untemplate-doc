@@ -12,21 +12,21 @@ import com.mchange.codegenutil.*
 // end author-defined imports
 
 private object Helper_README_md:
-  private val BP0 = new Function2[Unit,mutable.Map[String,Any],String]:
-    def apply( input : Unit, scratchpad : mutable.Map[String,Any]) : String =
-      "\n# Untemplate Docs\n\nThis project documents the `untemplate` project. For the code repository, please see [swaldman/untemplate](https://github.com/swaldman/untemplate)!\n\n---\n\nLet's look at a very simple untemplate, an untemplate so simple it seems not to be an untemplate at all!\n\n```markdown\n"
-  private val BP1 = new Function2[Unit,mutable.Map[String,Any],String]:
-    def apply( input : Unit, scratchpad : mutable.Map[String,Any]) : String =
+  private val BP0 = new Function2[immutable.Map[String,Any],mutable.Map[String,Any],String]:
+    def apply( input : immutable.Map[String,Any], scratchpad : mutable.Map[String,Any]) : String =
+      "\n# Untemplate Docs\n\nThis project documents the `untemplate` project. For the code repository, please see [swaldman/untemplate](https://github.com/swaldman/untemplate).\n\n---\n\nLet's look at a very simple untemplate, an untemplate so simple it seems not to be an untemplate at all!\n\n```markdown\n"
+  private val BP1 = new Function2[immutable.Map[String,Any],mutable.Map[String,Any],String]:
+    def apply( input : immutable.Map[String,Any], scratchpad : mutable.Map[String,Any]) : String =
       "```\nIt's just a markdown file! But it's stored in an untemplate source directory as `ceci-nest-pas.md.untemplate`, so it gets\ncompiled to a simple scala function.\n\n```scala\n"
-  private val BP2 = new Function2[Unit,mutable.Map[String,Any],String]:
-    def apply( input : Unit, scratchpad : mutable.Map[String,Any]) : String =
+  private val BP2 = new Function2[immutable.Map[String,Any],mutable.Map[String,Any],String]:
+    def apply( input : immutable.Map[String,Any], scratchpad : mutable.Map[String,Any]) : String =
       "```\n"
 
   val BlockPrinters = Vector( BP0, BP1, BP2 )
 
 end Helper_README_md
 
-def README_md(input : Unit) : String =
+def README_md(input : immutable.Map[String,Any]) : String =
   import Helper_README_md.*
 
   extension (s : mutable.Map[String,Any])
@@ -34,7 +34,7 @@ def README_md(input : Unit) : String =
     def check[T](key: String): Option[T] = s.get(key).map(_.asInstanceOf[T])
 
   val scratchpad : mutable.Map[String,Any] = mutable.Map.empty[String,Any]
-  val writer = new StringWriter(102400) //XXX: Hardcoded initial capacity
+  val writer = new StringWriter(131072) //XXX: Hardcoded initial capacity
 
 
   val usrcDir   = Path.of("src/main/untemplate")

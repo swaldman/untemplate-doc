@@ -1,5 +1,6 @@
 package untemplatedoc
 
+import scala.collection.*
 import java.nio.file.{Files,Path}
 
 object Main:
@@ -8,6 +9,6 @@ object Main:
   def main(args : Array[String]) : Unit =
     println(s"""cwd: ${new java.io.File(".").getAbsolutePath}""")
     Files.createDirectories(IckyHardcoded.getParent())
-    Files.writeString(IckyHardcoded, untemplatedoc.README_md( () ))
+    Files.writeString(IckyHardcoded, untemplatedoc.README_md( immutable.Map.empty ))
 
 

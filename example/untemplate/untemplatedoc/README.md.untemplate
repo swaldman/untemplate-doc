@@ -11,7 +11,7 @@ val ceciScala = sgenDir.resolve("untemplatedoc/untemplate_ceci_nest_pas_md.scala
 
 # Untemplate Docs
 
-This project documents the `untemplate` project. For the code repository, please see [swaldman/untemplate](https://github.com/swaldman/untemplate)!
+This project documents the `untemplate` project. For the code repository, please see [swaldman/untemplate](https://github.com/swaldman/untemplate).
 
 ---
 
