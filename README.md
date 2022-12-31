@@ -28,12 +28,6 @@ package untemplatedoc
 import java.io.{Writer,StringWriter}
 import scala.collection.*
 
-// start generator-extras imports
-// end generator-extras imports
-
-// start author-defined imports
-// end author-defined imports
-
 private object Helper_ceci_nest_pas_md:
   private val BP0 = new Function2[immutable.Map[String,Any],mutable.Map[String,Any],String]:
     def apply( input : immutable.Map[String,Any], scratchpad : mutable.Map[String,Any]) : String =
@@ -72,7 +66,7 @@ function.
 Now, the [generated scala](example/scalagen/untemplatedoc/untemplate_ceci_nest_pas2_md.scala) _would_ transform the markdown, like this:
 
 ```markdown
-# Ceci n'est pas... 0.36813010952495295
+# Ceci n'est pas... 0.37363044016522073
 
 Well, this is _almost_ just a regular markdown file, with no
 special untemplate constructs. But if we wish, we can treat
@@ -122,8 +116,12 @@ Let's get a look at what it produces:
 # Loopy
 # Loopy
 # Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
 
-It sucks to be us.
+And we're a winner!
 
 ```
 
@@ -132,10 +130,8 @@ And again!
 # Loopy
 # Loopy
 # Loopy
-# Loopy
-# Loopy
 
-And we're a winner!
+It sucks to be us.
 
 ```
 

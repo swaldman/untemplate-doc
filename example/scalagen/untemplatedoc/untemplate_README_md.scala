@@ -3,13 +3,8 @@ package untemplatedoc
 import java.io.{Writer,StringWriter}
 import scala.collection.*
 
-// start generator-extras imports
-// end generator-extras imports
-
-// start author-defined imports
 import java.nio.file.{Path, Files}
 import com.mchange.codegenutil.*
-// end author-defined imports
 
 private object Helper_README_md:
   private val BP0 = new Function2[immutable.Map[String,Any],mutable.Map[String,Any],String]:

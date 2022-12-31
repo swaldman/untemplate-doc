@@ -3,12 +3,6 @@ package untemplatedoc
 import java.io.{Writer,StringWriter}
 import scala.collection.*
 
-// start generator-extras imports
-// end generator-extras imports
-
-// start author-defined imports
-// end author-defined imports
-
 private object Helper_ceci_nest_pas2_md:
   private val BP0 = new Function2[immutable.Map[String,Any],mutable.Map[String,Any],String]:
     def apply( input : immutable.Map[String,Any], scratchpad : mutable.Map[String,Any]) : String =
