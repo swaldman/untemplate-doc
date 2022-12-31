@@ -7,7 +7,7 @@ _This project documents the `untemplate` project. For the code, please see [swal
 
 Every once in a while, I find I need to build a little website for something.
 I've become a fan of static site generators for that. I've worked with [hugo](https://gohugo.io/) and
-[hexo](https://hexo.io/) and (paradox)[https://developer.lightbend.com/docs/paradox/current/index.html],
+[hexo](https://hexo.io/) and [paradox](https://developer.lightbend.com/docs/paradox/current/index.html),
 and they've all been great in their way.
 
 But each time, I find myself spending a lot of time in their docs, figuring out each
@@ -66,7 +66,7 @@ specifying them in the header delimeter. Untemplate-generated functions always r
 `String`, and accept a single parameter. By default, that parameter is `input: immutable.Map[String,Any]`,
 but if you choose a header delimeter like `(users)[List[String]]~()>` then the input parameter will be
 `users : List[String]`. By default the name of the generated function is determined by the untemplate
-file name. The file you are reading is is `[README.md.untemplate](src/main/untemplate/untemplatedoc/README.md.untemplate)`, and generates a
+file name. The file you are reading is is [`README.md.untemplate`](src/main/untemplate/untemplatedoc/README.md.untemplate), and generates a
 function
 
 ```scala
@@ -137,7 +137,7 @@ function.
 Now, the [generated scala](example/scalagen/untemplatedoc/untemplate_ceci_nest_pas2_md.scala) _would_ transform the markdown, like this:
 
 ```markdown
-# Ceci n'est pas... 0.726726174885314
+# Ceci n'est pas... 0.2701119053774448
 
 Well, this is _almost_ just a regular markdown file, with no
 special untemplate constructs. But if we wish, we can treat
@@ -185,15 +185,6 @@ Let's get a look at what it produces:
 ```markdown
 # Loopy
 # Loopy
-
-It sucks to be us. (num = 2)
-
-```
-
-And again!
-```markdown
-# Loopy
-# Loopy
 # Loopy
 # Loopy
 # Loopy
@@ -201,6 +192,14 @@ And again!
 # Loopy
 
 And we're a winner! (num = 7)
+
+```
+
+And again!
+```markdown
+# Loopy
+
+It sucks to be us. (num = 1)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/untemplate_loopy_md.scala))
@@ -294,8 +293,12 @@ Here is the output...
 
 ```markdown
 # Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
 
-It sucks to be us. (num = 1)
+And we're a winner! (num = 5)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/untemplate_loopy2_md.scala))
