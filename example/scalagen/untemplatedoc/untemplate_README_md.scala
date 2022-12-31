@@ -19,10 +19,9 @@ def README_md(input : immutable.Map[String,Any]) : String =
   val loopySrc     = usrcDir.resolve("untemplatedoc/loopy.md.untemplate")
   val loopy2badSrc = usrcDir.resolve("untemplatedoc/loopy2-bad.md.untemplate-off")
   val loopy2Src    = usrcDir.resolve("untemplatedoc/loopy2.md.untemplate")
-
     val block0 = new Function1[immutable.Map[String,Any],String]:
       def apply( input : immutable.Map[String,Any] ) : String =
-        "\n# Untemplate Docs\n\n_This project documents the `untemplate` project. For the code, please see [swaldman/untemplate](https://github.com/swaldman/untemplate)._\n\n## Introduction\n\nTBD!\n\n## Untemplate Basics\n\nLet's look at an untemplate so simple it seems not to be an untemplate at all.\n\n```markdown\n"
+        "\n# Untemplate Documentation\n\n_This project documents the `untemplate` project. For the code, please see [swaldman/untemplate](https://github.com/swaldman/untemplate)._\n\n## Introduction\n\nTBD!\n\n## Untemplate Basics\n\nLet's look at an untemplate so simple it seems not to be an untemplate at all.\n\n```markdown\n"
     writer.write(block0( input ))
     
   writer.writeln(Files.readString(ceciSrc).trim)
@@ -66,7 +65,8 @@ def README_md(input : immutable.Map[String,Any]) : String =
   writer.writeln(untemplatedoc.loopy_md(immutable.Map.empty))
     val block7 = new Function1[immutable.Map[String,Any],String]:
       def apply( input : immutable.Map[String,Any] ) : String =
-        "```\n\n### Named blocks as functions\n\nMaybe we want to use our expression-enriched text blocks in more than one place on our page.\nWe can name our blocks, and then they become functions. To do that, instead of beginning our\nblocks with `()>`, we embed a valid identifier in the parenthesis, like `(loopy)>`.\n\nHowever, that carries with it a few complications. If we just try that in our loopy markdown\nfile as it was, we'll get compilation errors.\n\nThe file...\n```scala\n"
+        "```\n([generated scala](" + sgenDir +
+        "/untemplatedoc/untemplate_loopy_md.scala))\n\n### Named blocks as functions\n\nMaybe we want to use our expression-enriched text blocks in more than one place on our page.\nWe can name our blocks, and then they become functions. To do that, instead of beginning our\nblocks with `()>`, we embed a valid identifier in the parenthesis, like `(loopy)>`.\n\nHowever, that carries with it a few complications. If we just try that in our loopy markdown\nfile as it was, we'll get compilation errors.\n\nThe file...\n```scala\n"
     writer.write(block7( input ))
     
   writer.writeln(Files.readString(loopy2badSrc).trim)
@@ -84,7 +84,8 @@ def README_md(input : immutable.Map[String,Any]) : String =
   writer.writeln(untemplatedoc.loopy2_md(immutable.Map.empty))
     val block10 = new Function1[immutable.Map[String,Any],String]:
       def apply( input : immutable.Map[String,Any] ) : String =
-        "```\n"
+        "```\n([generated scala](" + sgenDir +
+        "/untemplatedoc/untemplate_loopy2_md.scala))\n"
     writer.write(block10( input ))
     
   writer.toString
