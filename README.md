@@ -1,9 +1,13 @@
 
 # Untemplate Docs
 
-This project documents the `untemplate` project. For the code repository, please see [swaldman/untemplate](https://github.com/swaldman/untemplate).
+_This project documents the `untemplate` project. For the code repository, please see [swaldman/untemplate](https://github.com/swaldman/untemplate)._
 
----
+## Introduction
+
+TBD!
+
+## Untemplate Basics
 
 Let's look at an untemplate so simple it seems not to be an untemplate at all.
 
@@ -51,6 +55,7 @@ def ceci_nest_pas_md(input : immutable.Map[String,Any]) : String =
   
 end ceci_nest_pas_md
 ```
+### Embedded expressions
 
 We'd like, of course, for our (un)template library to do a bit more than just spit out unmodified
 text files though. Let's modify our example just a bit:
@@ -67,7 +72,7 @@ function.
 Now, the [generated scala](example/scalagen/untemplatedoc/untemplate_ceci_nest_pas2_md.scala) _would_ transform the markdown, like this:
 
 ```markdown
-# Ceci n'est pas... 0.08127982226325225
+# Ceci n'est pas... 0.36813010952495295
 
 Well, this is _almost_ just a regular markdown file, with no
 special untemplate constructs. But if we wish, we can treat
@@ -86,7 +91,7 @@ So how did I slip that delimiter in? Any
 of the untemplate delimeters &mdash; there are only four! &mdash; can be escaped with a `\` character
 just prior to them. The `\` will be stripped, then the delimeter included in the text unmodified.</i>
 
----
+### Reapeatable, omitable, blocks
 
 Often you'd like to do more than just embed a few very simple expressions in some text.
 So, you can break up your text into code blocks and text blocks. Let's do that, and repeat
@@ -129,13 +134,12 @@ And again!
 # Loopy
 # Loopy
 # Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
 
 And we're a winner!
 
 ```
 
+### Blocks are (isolated?) functions?
+
+I think I'm going to experiment with this a bit more before "documenting" it.
 

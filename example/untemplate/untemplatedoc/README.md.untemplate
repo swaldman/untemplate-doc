@@ -15,9 +15,13 @@ scratchpad += Tuple2("sgenDir",sgenDir)
 
 # Untemplate Docs
 
-This project documents the `untemplate` project. For the code repository, please see [swaldman/untemplate](https://github.com/swaldman/untemplate).
+_This project documents the `untemplate` project. For the code repository, please see [swaldman/untemplate](https://github.com/swaldman/untemplate)._
 
----
+## Introduction
+
+TBD!
+
+## Untemplate Basics
 
 Let's look at an untemplate so simple it seems not to be an untemplate at all.
 
@@ -34,6 +38,7 @@ compiled to a simple scala function.
 writer.writeln(Files.readString(ceciScala).trim)
 ()>
 ```
+### Embedded expressions
 
 We'd like, of course, for our (un)template library to do a bit more than just spit out unmodified
 text files though. Let's modify our example just a bit:
@@ -61,7 +66,7 @@ So how did I slip that delimiter in? Any
 of the untemplate delimeters &mdash; there are only four! &mdash; can be escaped with a `\` character
 just prior to them. The `\` will be stripped, then the delimeter included in the text unmodified.</i>
 
----
+### Reapeatable, omitable, blocks
 
 Often you'd like to do more than just embed a few very simple expressions in some text.
 So, you can break up your text into code blocks and text blocks. Let's do that, and repeat
@@ -87,4 +92,7 @@ writer.writeln(untemplatedoc.loopy_md(immutable.Map.empty))
 ()>
 ```
 
+### Blocks are (isolated?) functions?
+
+I think I'm going to experiment with this a bit more before "documenting" it.
 
