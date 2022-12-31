@@ -10,13 +10,15 @@ def README_md(input : immutable.Map[String,Any]) : String =
   val writer = new StringWriter(131072) //XXX: Hardcoded initial capacity
 
 
-  val usrcDir   = Path.of("src/main/untemplate")
-  val egenDir   = Path.of("example/untemplate")
-  val sgenDir   = Path.of("example/scalagen")
-  val ceciSrc   = usrcDir.resolve("untemplatedoc/ceci-nest-pas.md.untemplate")
-  val ceciScala = sgenDir.resolve("untemplatedoc/untemplate_ceci_nest_pas_md.scala")
-  val ceci2Src  = usrcDir.resolve("untemplatedoc/ceci-nest-pas2.md.untemplate")
-  val loopySrc  = usrcDir.resolve("untemplatedoc/loopy.md.untemplate")
+  val usrcDir      = Path.of("src/main/untemplate")
+  val egenDir      = Path.of("example/untemplate")
+  val sgenDir      = Path.of("example/scalagen")
+  val ceciSrc      = usrcDir.resolve("untemplatedoc/ceci-nest-pas.md.untemplate")
+  val ceciScala    = sgenDir.resolve("untemplatedoc/untemplate_ceci_nest_pas_md.scala")
+  val ceci2Src     = usrcDir.resolve("untemplatedoc/ceci-nest-pas2.md.untemplate")
+  val loopySrc     = usrcDir.resolve("untemplatedoc/loopy.md.untemplate")
+  val loopy2badSrc = usrcDir.resolve("untemplatedoc/loopy.md.untemplate")
+
 
   // scratchpad += Tuple2("sgenDir",sgenDir)
     val block0 = new Function1[immutable.Map[String,Any],String]:
@@ -65,7 +67,7 @@ def README_md(input : immutable.Map[String,Any]) : String =
   writer.writeln(untemplatedoc.loopy_md(immutable.Map.empty))
     val block7 = new Function1[immutable.Map[String,Any],String]:
       def apply( input : immutable.Map[String,Any] ) : String =
-        "```\n\n### Blocks as functions?\n\nI think I'm going to experiment with this a bit more before \"documenting\" it.\n\n"
+        "```\n\n### Blocks as functions\n\nMaybe we want to use our expression-enriched text blocks in more than one place on our page.\nWe can name our blocks, and then they become functions. To do that, instead of beginning our\nblocks with `()>`, we embed a valid identifier in the parenthesis, like `(loopy)>`.\n\nHowever, that carries with it a few complications. If we just try that in our loopy markdown\nfile as it was, we'll get compilation errors.\n"
     writer.write(block7( input ))
     
   writer.toString

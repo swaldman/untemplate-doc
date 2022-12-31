@@ -57,7 +57,7 @@ function.
 Now, the [generated scala](example/scalagen/untemplatedoc/untemplate_ceci_nest_pas2_md.scala) _would_ transform the markdown, like this:
 
 ```markdown
-# Ceci n'est pas... 0.32318347470793796
+# Ceci n'est pas... 0.5229387330238046
 
 Well, this is _almost_ just a regular markdown file, with no
 special untemplate constructs. But if we wish, we can treat
@@ -103,12 +103,8 @@ It sucks to be us. (num = <(num)>)
 
 Let's get a look at what it produces:
 ```markdown
-# Loopy
-# Loopy
-# Loopy
-# Loopy
 
-It sucks to be us. (num = 4)
+It sucks to be us. (num = 0)
 
 ```
 
@@ -120,12 +116,17 @@ And again!
 # Loopy
 # Loopy
 # Loopy
+# Loopy
 
-And we're a winner! (num = 6)
+And we're a winner! (num = 7)
 
 ```
 
-### Blocks as functions?
+### Blocks as functions
 
-I think I'm going to experiment with this a bit more before "documenting" it.
+Maybe we want to use our expression-enriched text blocks in more than one place on our page.
+We can name our blocks, and then they become functions. To do that, instead of beginning our
+blocks with `()>`, we embed a valid identifier in the parenthesis, like `(loopy)>`.
 
+However, that carries with it a few complications. If we just try that in our loopy markdown
+file as it was, we'll get compilation errors.

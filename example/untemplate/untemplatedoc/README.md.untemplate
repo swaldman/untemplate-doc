@@ -1,13 +1,15 @@
 import java.nio.file.{Path, Files}
 import com.mchange.codegenutil.*
 
-val usrcDir   = Path.of("src/main/untemplate")
-val egenDir   = Path.of("example/untemplate")
-val sgenDir   = Path.of("example/scalagen")
-val ceciSrc   = usrcDir.resolve("untemplatedoc/ceci-nest-pas.md.untemplate")
-val ceciScala = sgenDir.resolve("untemplatedoc/untemplate_ceci_nest_pas_md.scala")
-val ceci2Src  = usrcDir.resolve("untemplatedoc/ceci-nest-pas2.md.untemplate")
-val loopySrc  = usrcDir.resolve("untemplatedoc/loopy.md.untemplate")
+val usrcDir      = Path.of("src/main/untemplate")
+val egenDir      = Path.of("example/untemplate")
+val sgenDir      = Path.of("example/scalagen")
+val ceciSrc      = usrcDir.resolve("untemplatedoc/ceci-nest-pas.md.untemplate")
+val ceciScala    = sgenDir.resolve("untemplatedoc/untemplate_ceci_nest_pas_md.scala")
+val ceci2Src     = usrcDir.resolve("untemplatedoc/ceci-nest-pas2.md.untemplate")
+val loopySrc     = usrcDir.resolve("untemplatedoc/loopy.md.untemplate")
+val loopy2badSrc = usrcDir.resolve("untemplatedoc/loopy.md.untemplate")
+
 
 // scratchpad += Tuple2("sgenDir",sgenDir)
 
@@ -92,7 +94,11 @@ writer.writeln(untemplatedoc.loopy_md(immutable.Map.empty))
 ()>
 ```
 
-### Blocks as functions?
+### Blocks as functions
 
-I think I'm going to experiment with this a bit more before "documenting" it.
+Maybe we want to use our expression-enriched text blocks in more than one place on our page.
+We can name our blocks, and then they become functions. To do that, instead of beginning our
+blocks with `\()>`, we embed a valid identifier in the parenthesis, like `\(loopy)>`.
 
+However, that carries with it a few complications. If we just try that in our loopy markdown
+file as it was, we'll get compilation errors.
