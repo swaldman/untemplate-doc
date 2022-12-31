@@ -8,9 +8,9 @@ for (i <- 0 until num)
 if (num >= 5)
 ()>
 
-And we're a winner!
+And we're a winner! (num = <(num)>)
 <()
 else
 ()>
 
-It sucks to be us.
+It sucks to be us. (num = <(num)>)

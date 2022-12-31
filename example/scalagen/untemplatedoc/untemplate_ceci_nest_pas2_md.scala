@@ -3,23 +3,15 @@ package untemplatedoc
 import java.io.{Writer,StringWriter}
 import scala.collection.*
 
-private object Helper_ceci_nest_pas2_md:
-  private val BP0 = new Function2[immutable.Map[String,Any],mutable.Map[String,Any],String]:
-    def apply( input : immutable.Map[String,Any], scratchpad : mutable.Map[String,Any]) : String =
-      "# Ceci n'est pas... " + math.random +
-      "\n\nWell, this is _almost_ just a regular markdown file, with no\nspecial untemplate constructs. But if we wish, we can treat\nit as an unemplate, and it will be immortalized as a scala\nfunction.\n\n"
-
-  val BlockPrinters = Vector( BP0 )
-
-end Helper_ceci_nest_pas2_md
-
 def ceci_nest_pas2_md(input : immutable.Map[String,Any]) : String =
-  import Helper_ceci_nest_pas2_md.*
-
   val scratchpad : mutable.Map[String,Any] = mutable.Map.empty[String,Any]
   val writer = new StringWriter(131072) //XXX: Hardcoded initial capacity
 
-    writer.write(BlockPrinters(0)( input, scratchpad ))
+    val block0 = new Function2[immutable.Map[String,Any],mutable.Map[String,Any],String]:
+      def apply( input : immutable.Map[String,Any], scratchpad : mutable.Map[String,Any]) : String =
+        "# Ceci n'est pas... " + math.random +
+        "\n\nWell, this is _almost_ just a regular markdown file, with no\nspecial untemplate constructs. But if we wish, we can treat\nit as an unemplate, and it will be immortalized as a scala\nfunction.\n\n"
+    writer.write(block0( input, scratchpad ))
     
   writer.toString
   

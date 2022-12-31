@@ -28,22 +28,14 @@ package untemplatedoc
 import java.io.{Writer,StringWriter}
 import scala.collection.*
 
-private object Helper_ceci_nest_pas_md:
-  private val BP0 = new Function2[immutable.Map[String,Any],mutable.Map[String,Any],String]:
-    def apply( input : immutable.Map[String,Any], scratchpad : mutable.Map[String,Any]) : String =
-      "# Ceci n'est pas...\n\nWell, this is just a regular markdown file, with no\nspecial untemplate constructs. But if we wish, we can treat\nit as an unemplate, and it will be immortalized as a scala\nfunction.\n\n"
-
-  val BlockPrinters = Vector( BP0 )
-
-end Helper_ceci_nest_pas_md
-
 def ceci_nest_pas_md(input : immutable.Map[String,Any]) : String =
-  import Helper_ceci_nest_pas_md.*
-
   val scratchpad : mutable.Map[String,Any] = mutable.Map.empty[String,Any]
   val writer = new StringWriter(131072) //XXX: Hardcoded initial capacity
 
-    writer.write(BlockPrinters(0)( input, scratchpad ))
+    val block0 = new Function2[immutable.Map[String,Any],mutable.Map[String,Any],String]:
+      def apply( input : immutable.Map[String,Any], scratchpad : mutable.Map[String,Any]) : String =
+        "# Ceci n'est pas...\n\nWell, this is just a regular markdown file, with no\nspecial untemplate constructs. But if we wish, we can treat\nit as an unemplate, and it will be immortalized as a scala\nfunction.\n\n"
+    writer.write(block0( input, scratchpad ))
     
   writer.toString
   
@@ -66,7 +58,7 @@ function.
 Now, the [generated scala](example/scalagen/untemplatedoc/untemplate_ceci_nest_pas2_md.scala) _would_ transform the markdown, like this:
 
 ```markdown
-# Ceci n'est pas... 0.37363044016522073
+# Ceci n'est pas... 0.6392298201933292
 
 Well, this is _almost_ just a regular markdown file, with no
 special untemplate constructs. But if we wish, we can treat
@@ -102,26 +94,20 @@ for (i <- 0 until num)
 if (num >= 5)
 ()>
 
-And we're a winner!
+And we're a winner! (num = <(num)>)
 <()
 else
 ()>
 
-It sucks to be us.
+It sucks to be us. (num = <(num)>)
 ```
 
 Let's get a look at what it produces:
 ```markdown
 # Loopy
 # Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
 
-And we're a winner!
+It sucks to be us. (num = 2)
 
 ```
 
@@ -130,8 +116,13 @@ And again!
 # Loopy
 # Loopy
 # Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
 
-It sucks to be us.
+And we're a winner! (num = 8)
 
 ```
 
