@@ -1,0 +1,32 @@
+import java.nio.file.{Path, Files}
+import com.mchange.codegenutil.*
+
+val usrcDir   = Path.of("src/main/untemplate")
+val egenDir   = Path.of("example/untemplate")
+val sgenDir   = Path.of("example/scalagen")
+val ceciSrc   = usrcDir.resolve("untemplatedoc/ceci-nest-pas.md.untemplate")
+val ceciScala = sgenDir.resolve("untemplatedoc/untemplate_ceci_nest_pas_md.scala")
+
+()[]~()>
+
+# Untemplate Docs
+
+This project documents the `untemplate` project. For the code repository, please see [swaldman/untemplate](https://github.com/swaldman/untemplate)!
+
+---
+
+Let's look at a very simple untemplate, an untemplate so simple it seems not to be an untemplate at all!
+
+```markdown
+<()
+writer.writeln(Files.readString(ceciSrc).trim)
+()>
+```
+It's just a markdown file! But it's stored in an untemplate source directory as `ceci-nest-pas.md.untemplate`, so it gets
+compiled to a simple scala function.
+
+```scala
+<()
+writer.writeln(Files.readString(ceciScala).trim)
+()>
+```
