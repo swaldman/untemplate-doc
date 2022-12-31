@@ -5,7 +5,8 @@ val num = math.round(math.random * 10).toInt
 (loopy)>
 # Loopy
 <()
-for (i <- 0 until num) loopy()
+for (i <- 0 until num)
+  writer.write(loopy() + "\n") // you have a java.io.Writer, called writer, to send output to
 
 // below is another, perhaps even simpler way to turn blocks into functions
 //

@@ -33,7 +33,7 @@ lazy val root = project
       val scalagens = untemplateScala.value
       val untemplateDest = exampleUntemplate.value
       val scalagenDest = exampleScalagen.value
-      log.info("Lifting sources...")
+      // log.info("Lifting sources...")
       untemplateDest.mkdirs()
       scalagenDest.mkdirs()
       recursiveCopyBySuffix(untemplates,untemplateDest,".untemplate", log)
@@ -57,7 +57,7 @@ def recursiveCopyBySuffix( srcBase : File, destBase : File, suffix : String, log
   allSrcPaths.filter(p => Files.isDirectory(p)).map(rebase).foreach(p => Files.createDirectories(p))
   allSrcPaths.filter(p => Files.isRegularFile(p)).filter( _.toString.endsWith(suffix) ).foreach { srcFile =>
     val destFile = rebase(srcFile)
-    log.info( s"${srcFile} -> ${destFile}" )
+    // log.info( s"${srcFile} -> ${destFile}" )
     Files.copy(srcFile, destFile, StandardCopyOption.REPLACE_EXISTING)
   }
 }

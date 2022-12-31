@@ -53,7 +53,7 @@ writer.writeln(Files.readString(ceci2Src).trim)
 ()>
 ```
 
-Now, the [generated scala](<(sgenDir)>/untemplatedoc/untemplate_ceci_nest_pas2_md.scala) _would_ transform the markdown, like this:
+Now, the [generated scala](<(sgenDir.toString)>/untemplatedoc/untemplate_ceci_nest_pas2_md.scala) _would_ transform the markdown, like this:
 
 ```markdown
 <()
@@ -149,6 +149,6 @@ Here is the output...
 
 ```markdown
 <()
-writer.writeln(untemplatedoc.loopy_md(immutable.Map.empty))
+writer.writeln(untemplatedoc.loopy2_md(immutable.Map.empty))
 ()>
 ```

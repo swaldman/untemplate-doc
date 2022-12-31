@@ -43,7 +43,7 @@ def README_md(input : immutable.Map[String,Any]) : String =
   writer.writeln(Files.readString(ceci2Src).trim)
     val block3 = new Function1[immutable.Map[String,Any],String]:
       def apply( input : immutable.Map[String,Any] ) : String =
-        "```\n\nNow, the [generated scala](" + sgenDir +
+        "```\n\nNow, the [generated scala](" + sgenDir.toString +
         "/untemplatedoc/untemplate_ceci_nest_pas2_md.scala) _would_ transform the markdown, like this:\n\n```markdown\n"
     writer.write(block3( input ))
     
@@ -84,7 +84,7 @@ def README_md(input : immutable.Map[String,Any]) : String =
         "```\n\nNot the loveliest file. But educational.\nHere is the output...\n\n```markdown\n"
     writer.write(block9( input ))
     
-  writer.writeln(untemplatedoc.loopy_md(immutable.Map.empty))
+  writer.writeln(untemplatedoc.loopy2_md(immutable.Map.empty))
     val block10 = new Function1[immutable.Map[String,Any],String]:
       def apply( input : immutable.Map[String,Any] ) : String =
         "```\n"
