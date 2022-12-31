@@ -25,7 +25,7 @@ def README_md(input : immutable.Map[String,Any]) : String =
   // scratchpad += Tuple2("sgenDir",sgenDir)
     val block0 = new Function1[immutable.Map[String,Any],String]:
       def apply( input : immutable.Map[String,Any] ) : String =
-        "\n# Untemplate Docs\n\n_This project documents the `untemplate` project. For the code repository, please see [swaldman/untemplate](https://github.com/swaldman/untemplate)._\n\n## Introduction\n\nTBD!\n\n## Untemplate Basics\n\nLet's look at an untemplate so simple it seems not to be an untemplate at all.\n\n```markdown\n"
+        "\n# Untemplate Docs\n\n_This project documents the `untemplate` project. For the code, please see [swaldman/untemplate](https://github.com/swaldman/untemplate)._\n\n## Introduction\n\nTBD!\n\n## Untemplate Basics\n\nLet's look at an untemplate so simple it seems not to be an untemplate at all.\n\n```markdown\n"
     writer.write(block0( input ))
     
   writer.writeln(Files.readString(ceciSrc).trim)
