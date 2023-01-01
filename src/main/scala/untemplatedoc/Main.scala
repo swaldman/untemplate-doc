@@ -9,6 +9,6 @@ object Main:
   def main(args : Array[String]) : Unit =
     // println(s"""cwd: ${new java.io.File(".").getAbsolutePath}""")
     Files.createDirectories(IckyHardcoded.getParent())
-    Files.writeString(IckyHardcoded, untemplatedoc.README_md( immutable.Map.empty ))
+    Files.writeString(IckyHardcoded, untemplatedoc.README_md( immutable.Map.empty ).text )
 
 

@@ -22,6 +22,7 @@ lazy val root = project
     scalaVersion := "3.2.1",
     resolvers += Resolver.mavenLocal,
     libraryDependencies += "com.mchange" %% "codegenutil" % "0.0.1-SNAPSHOT",
+    libraryDependencies += "com.mchange" %% "untemplate" % "0.0.1-SNAPSHOT",
     exampleDir := file(".") / "example",
     exampleUntemplate := exampleDir.value / "untemplate",
     exampleScalagen := exampleDir.value / "scalagen",

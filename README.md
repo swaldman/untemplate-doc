@@ -75,7 +75,7 @@ function](example/scalagen/untemplatedoc/untemplate_README_md.scala).
 def README_md( input: immutable.Map[String,Any] ) : String = ???
 ```
 
-Not yet implemented, but you should soon be able to override the generated function name in
+You can override the generated function name in
 the same way block function names are defined. Header `()[]~(userList)>` would generate
 
 ```scala
@@ -114,25 +114,28 @@ package untemplatedoc
 import java.io.{Writer,StringWriter}
 import scala.collection.*
 
-val Function_ceci_nest_pas_md = new Function1[immutable.Map[String,Any],String]:
-  val UntemplateFunction : Function1[immutable.Map[String,Any],String] = this
-  val UntemplateName      = "ceci_nest_pas_md"
-  val UntemplateInputType = "immutable.Map[String,Any]"
+val Function_ceci_nest_pas_md = new Function1[immutable.Map[String,Any],untemplate.Result[Nothing]]:
+  val UntemplateFunction : Function1[immutable.Map[String,Any],untemplate.Result[Nothing]] = this
+  val UntemplateName               = "ceci_nest_pas_md"
+  val UntemplateInputName          = "input"
+  val UntemplateInputType          = "immutable.Map[String,Any]"
+  val UntemplateOutputMetadataType = "Nothing"
 
-  def apply(input : immutable.Map[String,Any]) =
+  def apply(input : immutable.Map[String,Any]) : untemplate.Result[Nothing] =
     val writer = new StringWriter(131072) //XXX: Hardcoded initial capacity
 
+    var mbMetadata : Option[Nothing] = None
       val block0 = new Function1[immutable.Map[String,Any],String]:
         def apply( input : immutable.Map[String,Any] ) : String =
           "# Ceci n'est pas...\n\nWell, this is just a regular markdown file, with no\nspecial untemplate constructs. But if we wish, we can treat\nit as an unemplate, and it will be immortalized as a scala\nfunction.\n\n"
       writer.write(block0( input ))
       
-    writer.toString
+    untemplate.Result( mbMetadata, writer.toString )
     
   end apply
 end Function_ceci_nest_pas_md
 
-def ceci_nest_pas_md(input : immutable.Map[String,Any]) : String = Function_ceci_nest_pas_md( input )
+def ceci_nest_pas_md(input : immutable.Map[String,Any]) : untemplate.Result[Nothing] = Function_ceci_nest_pas_md( input )
 ```
 ### Embedded expressions
 
@@ -151,7 +154,7 @@ function.
 Now, the [generated scala](example/scalagen/untemplatedoc/untemplate_ceci_nest_pas2_md.scala) _would_ transform the markdown, like this:
 
 ```markdown
-# Ceci n'est pas... 0.8333316810405739
+# Ceci n'est pas... 0.5536211689299261
 
 Well, this is _almost_ just a regular markdown file, with no
 special untemplate constructs. But if we wish, we can treat
@@ -200,14 +203,8 @@ Let's get a look at what it produces:
 # Loopy
 # Loopy
 # Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
 
-And we're a winner! (num = 9)
+It sucks to be us. (num = 3)
 
 ```
 
@@ -321,8 +318,13 @@ Here is the output...
 # Loopy
 # Loopy
 # Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
 
-And we're a winner! (num = 5)
+And we're a winner! (num = 10)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/untemplate_loopy2_md.scala))

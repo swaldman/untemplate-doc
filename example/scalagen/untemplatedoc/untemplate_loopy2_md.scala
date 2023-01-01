@@ -3,14 +3,17 @@ package untemplatedoc
 import java.io.{Writer,StringWriter}
 import scala.collection.*
 
-val Function_loopy2_md = new Function1[immutable.Map[String,Any],String]:
-  val UntemplateFunction : Function1[immutable.Map[String,Any],String] = this
-  val UntemplateName      = "loopy2_md"
-  val UntemplateInputType = "immutable.Map[String,Any]"
+val Function_loopy2_md = new Function1[immutable.Map[String,Any],untemplate.Result[Nothing]]:
+  val UntemplateFunction : Function1[immutable.Map[String,Any],untemplate.Result[Nothing]] = this
+  val UntemplateName               = "loopy2_md"
+  val UntemplateInputName          = "input"
+  val UntemplateInputType          = "immutable.Map[String,Any]"
+  val UntemplateOutputMetadataType = "Nothing"
 
-  def apply(input : immutable.Map[String,Any]) =
+  def apply(input : immutable.Map[String,Any]) : untemplate.Result[Nothing] =
     val writer = new StringWriter(131072) //XXX: Hardcoded initial capacity
 
+    var mbMetadata : Option[Nothing] = None
     val num = math.round(math.random * 10).toInt
 
     // comments in code blocks are fine!
@@ -42,9 +45,9 @@ val Function_loopy2_md = new Function1[immutable.Map[String,Any],String]:
         writer.write(block2( input ))
         
     reportCard()
-    writer.toString
+    untemplate.Result( mbMetadata, writer.toString )
     
   end apply
 end Function_loopy2_md
 
-def loopy2_md(input : immutable.Map[String,Any]) : String = Function_loopy2_md( input )
+def loopy2_md(input : immutable.Map[String,Any]) : untemplate.Result[Nothing] = Function_loopy2_md( input )

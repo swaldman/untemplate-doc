@@ -6,14 +6,17 @@ import scala.collection.*
 import java.nio.file.{Path, Files}
 import com.mchange.codegenutil.*
 
-val Function_README_md = new Function1[immutable.Map[String,Any],String]:
-  val UntemplateFunction : Function1[immutable.Map[String,Any],String] = this
-  val UntemplateName      = "README_md"
-  val UntemplateInputType = "immutable.Map[String,Any]"
+val Function_README_md = new Function1[immutable.Map[String,Any],untemplate.Result[Nothing]]:
+  val UntemplateFunction : Function1[immutable.Map[String,Any],untemplate.Result[Nothing]] = this
+  val UntemplateName               = "README_md"
+  val UntemplateInputName          = "input"
+  val UntemplateInputType          = "immutable.Map[String,Any]"
+  val UntemplateOutputMetadataType = "Nothing"
 
-  def apply(input : immutable.Map[String,Any]) =
+  def apply(input : immutable.Map[String,Any]) : untemplate.Result[Nothing] =
     val writer = new StringWriter(131072) //XXX: Hardcoded initial capacity
 
+    var mbMetadata : Option[Nothing] = None
 
     val usrcDir      = Path.of("src/main/untemplate")
     val egenDir      = Path.of("example/untemplate")
@@ -35,7 +38,7 @@ val Function_README_md = new Function1[immutable.Map[String,Any],String]:
         def apply( input : immutable.Map[String,Any] ) : String =
           "\n# Untemplate Documentation\n\n_This project only documents the `untemplate` project. For the code, please see [swaldman/untemplate](https://github.com/swaldman/untemplate)._\n\n## Introduction\n\nEvery once in a while, I find I need to build a little website for something.\nI've become a fan of static site generators for that. I've worked with [hugo](https://gohugo.io/) and\n[hexo](https://hexo.io/) and [paradox](https://developer.lightbend.com/docs/paradox/current/index.html),\nand they've all been great in their way.\n\nBut each time, I find myself spending a lot of time in their docs, figuring out each\nSSG's specific DSLs, their tricks for doing things, what variables are exposed in\ntemplates, etc.\n\nI found myself yearning for simplicity. Why can't I just specify my static sites in my language\nof choice? (For me, Scala.)\n\nStatic (and dynamic) site generation is in practice largely about templates. No one enjoys\nembedding tons of HTML or Markdown or CSS in programming-language string literals, even\nin modern languages that support multiline literals and interpolated strings.\n\nBut templates are a step along the slippery path to DSLs with clever, powerful features\nthat become the idiosyncracies and quirks I'm trying to escape. As much as possible, I\nwant my specification language to be straightforward Scala.\n\n_Untemplate_ is my attempt to create the thinnest possible template veneer over vanilla Scala.\nAn untemplate is just a text file that optionally includes any of precisely four special delimeters:\n\n| Delimeter | Description |\n| --- | --- |\n| `<(expression)>` | Text-embedded Scala expression |\n| `()>` | Code / text boundary |\n| `<()` | Text / code boundary |\n| `()[]~()>` | Header delimeter |\n\nThese have the follwing effects:\n\n* `<(expression)>` breaks out of plain text and inserts the result into the text\n* `()>` alone, at the beginning of a line, divides the file into a Scala code region, and a\ntext region. The region above is a Scala code region.\n*  `<()` alone, at the beginning of a line, is the inverse of the prior delimeter. It divides the\nfile into a text region and a Scala code region, with text in the region above, and code in the\nregion beneath.\n*  `()[]~()>` is a special header delimiter. Like `()>`, it divides the file into a Scala code\nregion above and a text region below. However, import statements in the code region above become\ntop-level imports in the generated file.\n\n---\n\n**Mnemonic:** _For every construct, whatever an \"arrow\", `<` or `>`, points at is a text region.\nWhatever a parenthesis is adjacent to is code._\n\n---\n\n### Functional templates\n\nEvery untemplate is a Scala function that returns a simple `String`.\n\nEvery text block within an untemplate can be a function. Ordinarily, text blocks just print themselves\nautomatically into the generated String. However, if you embed a name in the `()>` delimeter that begins\nthe block, like `(entry)>`, nothing is automatically printed into the String, but you will have a function\n`entry()` to work with in code blocks. `writer.write(entry)` will generate text into untemplate output.\n\nYou control the input type and name of the larger function that the full untemplate becomes by\nspecifying them in the header delimeter. Untemplate-generated functions always return a simple\n`String`, and accept a single parameter. By default, that parameter is `input: immutable.Map[String,Any]`,\nbut if you choose a header delimeter like `(users)[List[String]]~()>` then the input parameter will be\n`users : List[String]`. By default the name of the generated function is determined by the untemplate\nfile name. The file you are reading is is [`README.md.untemplate`](" + thisFileSrc +
           "), and [generates a\nfunction](" +  sgenFor("README_md")  +
-          ").\n\n```scala\ndef README_md( input: immutable.Map[String,Any] ) : String = ???\n```\n\nNot yet implemented, but you should soon be able to override the generated function name in\nthe same way block function names are defined. Header `()[]~(userList)>` would generate\n\n```scala\ndef userList( input: immutable.Map[String,Any] ) : String = ???\n```\nHeader `(users)[List[String]]~(userList)>` would generate\n\n```scala\ndef userList( input: immutable.Map[String,Any] ) : String = ???\n```\n\nThe easiest way to make sense of all this is by example.\n\nMy name is `" + UntemplateName +
+          ").\n\n```scala\ndef README_md( input: immutable.Map[String,Any] ) : String = ???\n```\n\nYou can override the generated function name in\nthe same way block function names are defined. Header `()[]~(userList)>` would generate\n\n```scala\ndef userList( input: immutable.Map[String,Any] ) : String = ???\n```\nHeader `(users)[List[String]]~(userList)>` would generate\n\n```scala\ndef userList( input: immutable.Map[String,Any] ) : String = ???\n```\n\nThe easiest way to make sense of all this is by example.\n\nMy name is `" + UntemplateName +
           "`.\n\nMy input type is `" + UntemplateInputType +
           "`.\n\n## A Tour of untemplates\n\nLet's look at an untemplate so simple it seems not to be an untemplate at all.\n\n```markdown\n"
       writer.write(block0( input ))
@@ -59,7 +62,7 @@ val Function_README_md = new Function1[immutable.Map[String,Any],String]:
           ") _would_ transform the markdown, like this:\n\n```markdown\n"
       writer.write(block3( input ))
       
-    writer.writeln(untemplatedoc.ceci_nest_pas2_md(immutable.Map.empty))
+    writer.writeln(untemplatedoc.ceci_nest_pas2_md(immutable.Map.empty).text)
       val block4 = new Function1[immutable.Map[String,Any],String]:
         def apply( input : immutable.Map[String,Any] ) : String =
           "```\n\nThe delimeter `<( expression )>` causes the `expression` to be evaluated into the text.\n\n---\n\n<i>Note: This `README.md` is [generated by](" +  sgenFor("README_md")  +
@@ -72,13 +75,13 @@ val Function_README_md = new Function1[immutable.Map[String,Any],String]:
           "```\n\nLet's get a look at what it produces:\n```markdown\n"
       writer.write(block5( input ))
       
-    writer.writeln(untemplatedoc.loopy_md(immutable.Map.empty))
+    writer.writeln(untemplatedoc.loopy_md(immutable.Map.empty).text)
       val block6 = new Function1[immutable.Map[String,Any],String]:
         def apply( input : immutable.Map[String,Any] ) : String =
           "```\n\nAnd again!\n```markdown\n"
       writer.write(block6( input ))
       
-    writer.writeln(untemplatedoc.loopy_md(immutable.Map.empty))
+    writer.writeln(untemplatedoc.loopy_md(immutable.Map.empty).text)
       val block7 = new Function1[immutable.Map[String,Any],String]:
         def apply( input : immutable.Map[String,Any] ) : String =
           "```\n([generated scala](" +  sgenFor("loopy_md.scala")  +
@@ -97,16 +100,16 @@ val Function_README_md = new Function1[immutable.Map[String,Any],String]:
           "```\n\nNot the loveliest file. But educational.\nHere is the output...\n\n```markdown\n"
       writer.write(block9( input ))
       
-    writer.writeln(untemplatedoc.loopy2_md(immutable.Map.empty))
+    writer.writeln(untemplatedoc.loopy2_md(immutable.Map.empty).text)
       val block10 = new Function1[immutable.Map[String,Any],String]:
         def apply( input : immutable.Map[String,Any] ) : String =
           "```\n([generated scala](" +  sgenFor("loopy2_md")  +
           "))\n"
       writer.write(block10( input ))
       
-    writer.toString
+    untemplate.Result( mbMetadata, writer.toString )
     
   end apply
 end Function_README_md
 
-def README_md(input : immutable.Map[String,Any]) : String = Function_README_md( input )
+def README_md(input : immutable.Map[String,Any]) : untemplate.Result[Nothing] = Function_README_md( input )
