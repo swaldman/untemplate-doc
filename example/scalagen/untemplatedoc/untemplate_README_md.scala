@@ -14,7 +14,7 @@ val Function_README_md = new Function1[immutable.Map[String,Any],untemplate.Resu
   val UntemplateOutputMetadataType = "Nothing"
 
   def apply(input : immutable.Map[String,Any]) : untemplate.Result[Nothing] =
-    val writer     : java.io.StringWriter = new StringWriter(19500)
+    val writer     : StringWriter = new StringWriter(19500)
     var mbMetadata : Option[Nothing] = None
 
 

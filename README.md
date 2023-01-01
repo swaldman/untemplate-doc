@@ -122,7 +122,7 @@ val Function_ceci_nest_pas_md = new Function1[immutable.Map[String,Any],untempla
   val UntemplateOutputMetadataType = "Nothing"
 
   def apply(input : immutable.Map[String,Any]) : untemplate.Result[Nothing] =
-    val writer     : java.io.StringWriter = new StringWriter(406)
+    val writer     : StringWriter = new StringWriter(406)
     var mbMetadata : Option[Nothing] = None
 
       val block0 = new Function1[immutable.Map[String,Any],String]:
@@ -154,7 +154,7 @@ function.
 Now, the [generated scala](example/scalagen/untemplatedoc/untemplate_ceci_nest_pas2_md.scala) _would_ transform the markdown, like this:
 
 ```markdown
-# Ceci n'est pas... 0.9749827900672413
+# Ceci n'est pas... 0.21172148825558568
 
 Well, this is _almost_ just a regular markdown file, with no
 special untemplate constructs. But if we wish, we can treat
@@ -207,11 +207,8 @@ Let's get a look at what it produces:
 # Loopy
 # Loopy
 # Loopy
-# Loopy
-# Loopy
-# Loopy
 
-And we're a winner! (num = 10)
+And we're a winner! (num = 7)
 
 ```
 
@@ -222,11 +219,8 @@ And again!
 # Loopy
 # Loopy
 # Loopy
-# Loopy
-# Loopy
-# Loopy
 
-And we're a winner! (num = 8)
+And we're a winner! (num = 5)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/untemplate_loopy_md.scala.scala))
@@ -321,8 +315,12 @@ Here is the output...
 ```markdown
 # Loopy
 # Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
 
-It sucks to be us. (num = 2)
+And we're a winner! (num = 6)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/untemplate_loopy2_md.scala))
