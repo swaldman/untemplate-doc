@@ -1,7 +1,7 @@
 
 # Untemplate Documentation
 
-_This project documents the `untemplate` project. For the code, please see [swaldman/untemplate](https://github.com/swaldman/untemplate)._
+_This project only documents the `untemplate` project. For the code, please see [swaldman/untemplate](https://github.com/swaldman/untemplate)._
 
 ## Introduction
 
@@ -35,6 +35,8 @@ An untemplate is just a text file that optionally includes any of precisely four
 | `<()` | Text / code boundary |
 | `\()[]~>` | Header delimeter |
 
+These have the follwing effects:
+
 * `<(expression)>` breaks out of plain text and inserts the result into the text
 * `()>` alone, at the beginning of a line, divides the file into a Scala code region, and a
 text region. The region above is a Scala code region.
@@ -47,8 +49,8 @@ top-level imports in the generated file.
 
 ---
 
-**Mnemonic:** _For every construct, whatever an "arrow", `<` or `>`, is pointing at is a text region,
-whatever a parenthesis is adjacent to is code._
+**Mnemonic:** _For every construct, whatever an "arrow", `<` or `>`, points at is a text region.
+Whatever a parenthesis is adjacent to is code._
 
 ---
 
@@ -66,8 +68,8 @@ specifying them in the header delimeter. Untemplate-generated functions always r
 `String`, and accept a single parameter. By default, that parameter is `input: immutable.Map[String,Any]`,
 but if you choose a header delimeter like `(users)[List[String]]~()>` then the input parameter will be
 `users : List[String]`. By default the name of the generated function is determined by the untemplate
-file name. The file you are reading is is [`README.md.untemplate`](src/main/untemplate/untemplatedoc/README.md.untemplate), and generates a
-function
+file name. The file you are reading is is [`README.md.untemplate`](src/main/untemplate/untemplatedoc/README.md.untemplate), and [generates a
+function](example/scalagen/untemplatedoc/untemplate_README_md.scala).
 
 ```scala
 def README_md( input: immutable.Map[String,Any] ) : String = ???
@@ -137,7 +139,7 @@ function.
 Now, the [generated scala](example/scalagen/untemplatedoc/untemplate_ceci_nest_pas2_md.scala) _would_ transform the markdown, like this:
 
 ```markdown
-# Ceci n'est pas... 0.2701119053774448
+# Ceci n'est pas... 0.3611153953336106
 
 Well, this is _almost_ just a regular markdown file, with no
 special untemplate constructs. But if we wish, we can treat
@@ -190,8 +192,10 @@ Let's get a look at what it produces:
 # Loopy
 # Loopy
 # Loopy
+# Loopy
+# Loopy
 
-And we're a winner! (num = 7)
+And we're a winner! (num = 9)
 
 ```
 
@@ -202,7 +206,7 @@ And again!
 It sucks to be us. (num = 1)
 
 ```
-([generated scala](example/scalagen/untemplatedoc/untemplate_loopy_md.scala))
+([generated scala](example/scalagen/untemplatedoc/untemplate_loopy_md.scala.scala))
 
 ### Named blocks as functions
 
@@ -293,12 +297,8 @@ Here is the output...
 
 ```markdown
 # Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
 
-And we're a winner! (num = 5)
+It sucks to be us. (num = 1)
 
 ```
-([generated scala](example/scalagen/untemplatedoc/untemplate_loopy2_md.scala))
+([generated scala](example/scalagen/untemplatedoc/untemplate_loopy2_md.scala)
