@@ -108,6 +108,9 @@ def userList( input: immutable.Map[String,Any] ) : String = ???
 
 The easiest way to make sense of all this is by example.
 
+My name is ${UntemplateName}.
+My input type is ${UntemplateInputType}.
+
 ## A Tour of untemplates
 
 Let's look at an untemplate so simple it seems not to be an untemplate at all.

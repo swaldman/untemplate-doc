@@ -4,8 +4,11 @@ import java.io.{Writer,StringWriter}
 import scala.collection.*
 
 val Function_loopy_md = new Function1[immutable.Map[String,Any],String]:
+  val UntemplateFunction : Function1[immutable.Map[String,Any],String] = this
+  val UntemplateName      = "loopy_md"
+  val UntemplateInputType = "immutable.Map[String,Any]"
+
   def apply(input : immutable.Map[String,Any]) =
-    val ThisFunction : Function1[immutable.Map[String,Any],String] = this
     val writer = new StringWriter(131072) //XXX: Hardcoded initial capacity
 
     val num = math.round(math.random * 10).toInt

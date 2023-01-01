@@ -89,6 +89,9 @@ def userList( input: immutable.Map[String,Any] ) : String = ???
 
 The easiest way to make sense of all this is by example.
 
+My name is ${UntemplateName}.
+My input type is ${UntemplateInputType}.
+
 ## A Tour of untemplates
 
 Let's look at an untemplate so simple it seems not to be an untemplate at all.
@@ -111,8 +114,11 @@ import java.io.{Writer,StringWriter}
 import scala.collection.*
 
 val Function_ceci_nest_pas_md = new Function1[immutable.Map[String,Any],String]:
+  val UntemplateFunction : Function1[immutable.Map[String,Any],String] = this
+  val UntemplateName      = "ceci_nest_pas_md"
+  val UntemplateInputType = "immutable.Map[String,Any]"
+
   def apply(input : immutable.Map[String,Any]) =
-    val ThisFunction : Function1[immutable.Map[String,Any],String] = this
     val writer = new StringWriter(131072) //XXX: Hardcoded initial capacity
 
       val block0 = new Function1[immutable.Map[String,Any],String]:
@@ -144,7 +150,7 @@ function.
 Now, the [generated scala](example/scalagen/untemplatedoc/untemplate_ceci_nest_pas2_md.scala) _would_ transform the markdown, like this:
 
 ```markdown
-# Ceci n'est pas... 0.4917569336880129
+# Ceci n'est pas... 0.4307303739651247
 
 Well, this is _almost_ just a regular markdown file, with no
 special untemplate constructs. But if we wish, we can treat
@@ -190,8 +196,17 @@ It sucks to be us. (num = <(num)>)
 
 Let's get a look at what it produces:
 ```markdown
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
 
-It sucks to be us. (num = 0)
+And we're a winner! (num = 9)
 
 ```
 
@@ -200,8 +215,13 @@ And again!
 # Loopy
 # Loopy
 # Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
 
-It sucks to be us. (num = 3)
+And we're a winner! (num = 8)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/untemplate_loopy_md.scala.scala))
@@ -298,8 +318,9 @@ Here is the output...
 # Loopy
 # Loopy
 # Loopy
+# Loopy
 
-It sucks to be us. (num = 4)
+And we're a winner! (num = 5)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/untemplate_loopy2_md.scala))

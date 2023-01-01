@@ -4,8 +4,11 @@ import java.io.{Writer,StringWriter}
 import scala.collection.*
 
 val Function_ceci_nest_pas2_md = new Function1[immutable.Map[String,Any],String]:
+  val UntemplateFunction : Function1[immutable.Map[String,Any],String] = this
+  val UntemplateName      = "ceci_nest_pas2_md"
+  val UntemplateInputType = "immutable.Map[String,Any]"
+
   def apply(input : immutable.Map[String,Any]) =
-    val ThisFunction : Function1[immutable.Map[String,Any],String] = this
     val writer = new StringWriter(131072) //XXX: Hardcoded initial capacity
 
       val block0 = new Function1[immutable.Map[String,Any],String]:
