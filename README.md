@@ -33,7 +33,7 @@ An untemplate is just a text file that optionally includes any of precisely four
 | `<(expression)>` | Text-embedded Scala expression |
 | `()>` | Code / text boundary |
 | `<()` | Text / code boundary |
-| `\()[]~>` | Header delimeter |
+| `()[]~()>` | Header delimeter |
 
 These have the follwing effects:
 
@@ -43,7 +43,7 @@ text region. The region above is a Scala code region.
 *  `<()` alone, at the beginning of a line, is the inverse of the prior delimeter. It divides the
 file into a text region and a Scala code region, with text in the region above, and code in the
 region beneath.
-*  `()[]~>` is a special header delimiter. Like `()>`, it divides the file into a Scala code
+*  `()[]~()>` is a special header delimiter. Like `()>`, it divides the file into a Scala code
 region above and a text region below. However, import statements in the code region above become
 top-level imports in the generated file.
 
@@ -144,7 +144,7 @@ function.
 Now, the [generated scala](example/scalagen/untemplatedoc/untemplate_ceci_nest_pas2_md.scala) _would_ transform the markdown, like this:
 
 ```markdown
-# Ceci n'est pas... 0.5809428430806701
+# Ceci n'est pas... 0.4917569336880129
 
 Well, this is _almost_ just a regular markdown file, with no
 special untemplate constructs. But if we wish, we can treat
@@ -190,11 +190,8 @@ It sucks to be us. (num = <(num)>)
 
 Let's get a look at what it produces:
 ```markdown
-# Loopy
-# Loopy
-# Loopy
 
-It sucks to be us. (num = 3)
+It sucks to be us. (num = 0)
 
 ```
 
@@ -203,14 +200,8 @@ And again!
 # Loopy
 # Loopy
 # Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
 
-And we're a winner! (num = 9)
+It sucks to be us. (num = 3)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/untemplate_loopy_md.scala.scala))
@@ -306,8 +297,9 @@ Here is the output...
 # Loopy
 # Loopy
 # Loopy
+# Loopy
 
-It sucks to be us. (num = 3)
+It sucks to be us. (num = 4)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/untemplate_loopy2_md.scala))

@@ -52,7 +52,7 @@ An untemplate is just a text file that optionally includes any of precisely four
 | `\<(expression)>` | Text-embedded Scala expression |
 | `\()>` | Code / text boundary |
 | `\<()` | Text / code boundary |
-| `\()[]~>` | Header delimeter |
+| `\()[]~()>` | Header delimeter |
 
 These have the follwing effects:
 
@@ -62,7 +62,7 @@ text region. The region above is a Scala code region.
 *  `\<()` alone, at the beginning of a line, is the inverse of the prior delimeter. It divides the
 file into a text region and a Scala code region, with text in the region above, and code in the
 region beneath.
-*  `\()[]~>` is a special header delimiter. Like `\()>`, it divides the file into a Scala code
+*  `\()[]~()>` is a special header delimiter. Like `\()>`, it divides the file into a Scala code
 region above and a text region below. However, import statements in the code region above become
 top-level imports in the generated file.
 
