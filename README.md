@@ -52,7 +52,7 @@ top-level imports in the generated file.
 **Mnemonic:** _For every construct, whatever an "arrow", `<` or `>`, points at is a text region.
 Whatever a parenthesis is adjacent to is code._
 
-<div>
+</div>
 
 ### Functional templates
 
@@ -154,7 +154,7 @@ function.
 Now, the [generated scala](example/scalagen/untemplatedoc/untemplate_ceci_nest_pas2_md.scala) _would_ transform the markdown, like this:
 
 ```markdown
-# Ceci n'est pas... 0.6925828299608476
+# Ceci n'est pas... 0.07129668800052891
 
 Well, this is _almost_ just a regular markdown file, with no
 special untemplate constructs. But if we wish, we can treat
@@ -201,21 +201,19 @@ It sucks to be us. (num = <(num)>)
 Let's get a look at what it produces:
 ```markdown
 # Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
 
-And we're a winner! (num = 6)
+It sucks to be us. (num = 1)
 
 ```
 
 And again!
 ```markdown
 # Loopy
+# Loopy
+# Loopy
+# Loopy
 
-It sucks to be us. (num = 1)
+It sucks to be us. (num = 4)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/untemplate_loopy_md.scala.scala))
