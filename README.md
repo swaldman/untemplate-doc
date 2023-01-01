@@ -89,7 +89,7 @@ def userList( input: immutable.Map[String,Any] ) : String = ???
 
 The easiest way to make sense of all this is by example.
 
-## A Tour of Untemplate
+## A Tour of untemplates
 
 Let's look at an untemplate so simple it seems not to be an untemplate at all.
 
@@ -110,17 +110,22 @@ package untemplatedoc
 import java.io.{Writer,StringWriter}
 import scala.collection.*
 
-def ceci_nest_pas_md(input : immutable.Map[String,Any]) : String =
-  val writer = new StringWriter(131072) //XXX: Hardcoded initial capacity
+val Function_ceci_nest_pas_md = new Function1[immutable.Map[String,Any],String]:
+  def apply(input : immutable.Map[String,Any]) =
+    val ThisFunction : Function1[immutable.Map[String,Any],String] = this
+    val writer = new StringWriter(131072) //XXX: Hardcoded initial capacity
 
-    val block0 = new Function1[immutable.Map[String,Any],String]:
-      def apply( input : immutable.Map[String,Any] ) : String =
-        "# Ceci n'est pas...\n\nWell, this is just a regular markdown file, with no\nspecial untemplate constructs. But if we wish, we can treat\nit as an unemplate, and it will be immortalized as a scala\nfunction.\n\n"
-    writer.write(block0( input ))
+      val block0 = new Function1[immutable.Map[String,Any],String]:
+        def apply( input : immutable.Map[String,Any] ) : String =
+          "# Ceci n'est pas...\n\nWell, this is just a regular markdown file, with no\nspecial untemplate constructs. But if we wish, we can treat\nit as an unemplate, and it will be immortalized as a scala\nfunction.\n\n"
+      writer.write(block0( input ))
+      
+    writer.toString
     
-  writer.toString
-  
-end ceci_nest_pas_md
+  end apply
+end Function_ceci_nest_pas_md
+
+def ceci_nest_pas_md(input : immutable.Map[String,Any]) : String = Function_ceci_nest_pas_md( input )
 ```
 ### Embedded expressions
 
@@ -139,7 +144,7 @@ function.
 Now, the [generated scala](example/scalagen/untemplatedoc/untemplate_ceci_nest_pas2_md.scala) _would_ transform the markdown, like this:
 
 ```markdown
-# Ceci n'est pas... 0.9801360368341713
+# Ceci n'est pas... 0.5809428430806701
 
 Well, this is _almost_ just a regular markdown file, with no
 special untemplate constructs. But if we wish, we can treat
@@ -187,8 +192,9 @@ Let's get a look at what it produces:
 ```markdown
 # Loopy
 # Loopy
+# Loopy
 
-It sucks to be us. (num = 2)
+It sucks to be us. (num = 3)
 
 ```
 
@@ -197,8 +203,14 @@ And again!
 # Loopy
 # Loopy
 # Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
 
-It sucks to be us. (num = 3)
+And we're a winner! (num = 9)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/untemplate_loopy_md.scala.scala))
@@ -292,8 +304,10 @@ Here is the output...
 
 ```markdown
 # Loopy
+# Loopy
+# Loopy
 
-It sucks to be us. (num = 1)
+It sucks to be us. (num = 3)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/untemplate_loopy2_md.scala))
