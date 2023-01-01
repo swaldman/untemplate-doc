@@ -11,7 +11,7 @@ val Function_loopy2_md = new Function1[immutable.Map[String,Any],untemplate.Resu
   val UntemplateOutputMetadataType = "Nothing"
 
   def apply(input : immutable.Map[String,Any]) : untemplate.Result[Nothing] =
-    val writer     : java.io.StringWriter          = new StringWriter(1242)
+    val writer     : java.io.StringWriter = new StringWriter(1242)
     var mbMetadata : Option[Nothing] = None
 
     val num = math.round(math.random * 10).toInt

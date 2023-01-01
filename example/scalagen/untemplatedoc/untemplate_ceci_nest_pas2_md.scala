@@ -11,7 +11,7 @@ val Function_ceci_nest_pas2_md = new Function1[immutable.Map[String,Any],untempl
   val UntemplateOutputMetadataType = "Nothing"
 
   def apply(input : immutable.Map[String,Any]) : untemplate.Result[Nothing] =
-    val writer     : java.io.StringWriter          = new StringWriter(456)
+    val writer     : java.io.StringWriter = new StringWriter(456)
     var mbMetadata : Option[Nothing] = None
 
       val block0 = new Function1[immutable.Map[String,Any],String]:
