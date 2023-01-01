@@ -15,7 +15,7 @@ SSG's specific DSLs, their tricks for doing things, what variables are exposed i
 templates, etc.
 
 I found myself yearning for simplicity. Why can't I just specify my static sites in my language
-of choice? (For me, that's Scala these days.)
+of choice? (For me, Scala.)
 
 Static (and dynamic) site generation is in practice largely about templates. No one enjoys
 embedding tons of HTML or Markdown or CSS in programming-language string literals, even
@@ -76,12 +76,12 @@ def README_md( input: immutable.Map[String,Any] ) : String = ???
 ```
 
 Not yet implemented, but you should soon be able to override the generated function name in
-the same way block function names are defined. `()[]~(userList)>` would become
+the same way block function names are defined. Header `()[]~(userList)>` would generate
 
 ```scala
 def userList( input: immutable.Map[String,Any] ) : String = ???
 ```
-`(users)[List[String]]~(userList)>` would become
+Header `(users)[List[String]]~(userList)>` would generate
 
 ```scala
 def userList( input: immutable.Map[String,Any] ) : String = ???
@@ -139,7 +139,7 @@ function.
 Now, the [generated scala](example/scalagen/untemplatedoc/untemplate_ceci_nest_pas2_md.scala) _would_ transform the markdown, like this:
 
 ```markdown
-# Ceci n'est pas... 0.3611153953336106
+# Ceci n'est pas... 0.12480061242357776
 
 Well, this is _almost_ just a regular markdown file, with no
 special untemplate constructs. But if we wish, we can treat
@@ -185,25 +185,25 @@ It sucks to be us. (num = <(num)>)
 
 Let's get a look at what it produces:
 ```markdown
-# Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
 
-And we're a winner! (num = 9)
+It sucks to be us. (num = 0)
 
 ```
 
 And again!
 ```markdown
 # Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
 
-It sucks to be us. (num = 1)
+And we're a winner! (num = 10)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/untemplate_loopy_md.scala.scala))
@@ -297,8 +297,14 @@ Here is the output...
 
 ```markdown
 # Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
 
-It sucks to be us. (num = 1)
+And we're a winner! (num = 7)
 
 ```
-([generated scala](example/scalagen/untemplatedoc/untemplate_loopy2_md.scala)
+([generated scala](example/scalagen/untemplatedoc/untemplate_loopy2_md.scala))

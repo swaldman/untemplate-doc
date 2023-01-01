@@ -34,7 +34,7 @@ SSG's specific DSLs, their tricks for doing things, what variables are exposed i
 templates, etc.
 
 I found myself yearning for simplicity. Why can't I just specify my static sites in my language
-of choice? (For me, that's Scala these days.)
+of choice? (For me, Scala.)
 
 Static (and dynamic) site generation is in practice largely about templates. No one enjoys
 embedding tons of HTML or Markdown or CSS in programming-language string literals, even
@@ -95,12 +95,12 @@ def README_md( input: immutable.Map[String,Any] ) : String = ???
 ```
 
 Not yet implemented, but you should soon be able to override the generated function name in
-the same way block function names are defined. `\()[]~(userList)>` would become
+the same way block function names are defined. Header `\()[]~(userList)>` would generate
 
 ```scala
 def userList( input: immutable.Map[String,Any] ) : String = ???
 ```
-`\(users)[List[String]]~(userList)>` would become
+Header `\(users)[List[String]]~(userList)>` would generate
 
 ```scala
 def userList( input: immutable.Map[String,Any] ) : String = ???
@@ -236,4 +236,4 @@ Here is the output...
 writer.writeln(untemplatedoc.loopy2_md(immutable.Map.empty))
 ()>
 ```
-([generated scala](<( sgenFor("loopy2_md") )>)
+([generated scala](<( sgenFor("loopy2_md") )>))
