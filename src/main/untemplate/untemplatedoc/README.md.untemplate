@@ -66,7 +66,7 @@ region beneath.
 region above and a text region below. However, import statements in the code region above become
 top-level imports in the generated file.
 
-> ** Note **
+> **Note**
 > For every construct, whatever an "arrow", `<` or `>`, points at is a text region. Whatever a parenthesis is adjacent to is code.
 
 ### Functional templates
