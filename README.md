@@ -89,8 +89,8 @@ def userList( input: immutable.Map[String,Any] ) : String = ???
 
 The easiest way to make sense of all this is by example.
 
-My name is ${UntemplateName}.
-My input type is ${UntemplateInputType}.
+My name is README_md.
+My input type is immutable.Map[String,Any].
 
 ## A Tour of untemplates
 
@@ -150,7 +150,7 @@ function.
 Now, the [generated scala](example/scalagen/untemplatedoc/untemplate_ceci_nest_pas2_md.scala) _would_ transform the markdown, like this:
 
 ```markdown
-# Ceci n'est pas... 0.4307303739651247
+# Ceci n'est pas... 0.26439872158906175
 
 Well, this is _almost_ just a regular markdown file, with no
 special untemplate constructs. But if we wish, we can treat
@@ -198,15 +198,8 @@ Let's get a look at what it produces:
 ```markdown
 # Loopy
 # Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
 
-And we're a winner! (num = 9)
+It sucks to be us. (num = 2)
 
 ```
 
@@ -317,10 +310,8 @@ Here is the output...
 # Loopy
 # Loopy
 # Loopy
-# Loopy
-# Loopy
 
-And we're a winner! (num = 5)
+It sucks to be us. (num = 3)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/untemplate_loopy2_md.scala))
