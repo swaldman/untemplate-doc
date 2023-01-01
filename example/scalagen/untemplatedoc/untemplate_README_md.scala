@@ -14,9 +14,9 @@ val Function_README_md = new Function1[immutable.Map[String,Any],untemplate.Resu
   val UntemplateOutputMetadataType = "Nothing"
 
   def apply(input : immutable.Map[String,Any]) : untemplate.Result[Nothing] =
-    val writer = new StringWriter(131072) //XXX: Hardcoded initial capacity
-
+    val writer     : java.io.StringWriter          = new StringWriter(19500)
     var mbMetadata : Option[Nothing] = None
+
 
     val usrcDir      = Path.of("src/main/untemplate")
     val egenDir      = Path.of("example/untemplate")

@@ -11,9 +11,9 @@ val Function_ceci_nest_pas_md = new Function1[immutable.Map[String,Any],untempla
   val UntemplateOutputMetadataType = "Nothing"
 
   def apply(input : immutable.Map[String,Any]) : untemplate.Result[Nothing] =
-    val writer = new StringWriter(131072) //XXX: Hardcoded initial capacity
-
+    val writer     : java.io.StringWriter          = new StringWriter(406)
     var mbMetadata : Option[Nothing] = None
+
       val block0 = new Function1[immutable.Map[String,Any],String]:
         def apply( input : immutable.Map[String,Any] ) : String =
           "# Ceci n'est pas...\n\nWell, this is just a regular markdown file, with no\nspecial untemplate constructs. But if we wish, we can treat\nit as an unemplate, and it will be immortalized as a scala\nfunction.\n\n"
