@@ -129,7 +129,7 @@ function.
 Now, the [generated scala](example/scalagen/untemplatedoc/untemplate_ceci_nest_pas2_md.scala) _would_ transform the markdown, like this:
 
 ```markdown
-# Ceci n'est pas... 0.5313735918537935
+# Ceci n'est pas... 0.8352692653759933
 
 Well, this is _almost_ just a regular markdown file, with no
 special untemplate constructs. But if we wish, we can treat
@@ -177,8 +177,15 @@ Let's get a look at what it produces:
 # Loopy
 # Loopy
 # Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
 
-It sucks to be us. (num = 3)
+And we're a winner! (num = 10)
 
 ```
 
@@ -189,8 +196,12 @@ And again!
 # Loopy
 # Loopy
 # Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
 
-And we're a winner! (num = 5)
+And we're a winner! (num = 9)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/untemplate_loopy_md.scala))
@@ -346,16 +357,8 @@ Not the loveliest file. But educational.
 Here is the output...
 
 ```markdown
-# Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
 
-And we're a winner! (num = 8)
+It sucks to be us. (num = 0)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/untemplate_loopy2_md.scala))
@@ -415,7 +418,7 @@ Which generates...
 
 Happy Birthday to me!
 
-_I was published on Mon, 2 Jan 2023 15:52:10 -0500._
+_I was published on Mon, 2 Jan 2023 15:55:49 -0500._
 
 
 ```
@@ -477,7 +480,7 @@ The types are just `String`s, and names _may not be fully qualified_.
 
 `UntemplateFunction` is a reference to the `Function1` object that implements your untemplate.
 
-<a href="#table-of-contents">Back to top &#x21a9;&#xfe0e;</a>
+<a href="#table-of-contents">Back to top &#x21ba;</a>
 
 
 
