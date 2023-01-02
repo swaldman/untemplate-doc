@@ -15,7 +15,7 @@ val loopy2badSrc                 = usrcDir.resolve("untemplatedoc/loopy2-bad.md.
 val loopy2Src                    = usrcDir.resolve("untemplatedoc/loopy2.md.untemplate")
 val someOverridesSrc             = usrcDir.resolve("untemplatedoc/some_overrides.md.untemplate")
 val readmeTopSrc                 = usrcDir.resolve("untemplatedoc/README.md.untemplate")
-val readmeSomeSimpleTemplatesSrc = usrcDir.resolve("untemplatedoc/README.md.untemplate")
+val readmeSomeSimpleTemplatesSrc = usrcDir.resolve("untemplatedoc/README_some_simple_untemplates.md.untemplate")
 
 
 def sgenFor( underscoredName : String ) : Path =
