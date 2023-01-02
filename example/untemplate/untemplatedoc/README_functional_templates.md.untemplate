@@ -128,7 +128,7 @@ writer.writeln(untemplatedoc.loopy2_md(immutable.Map.empty).text)
 ```
 ([generated scala](<( sgenFor("loopy2_md") )>))
 
-### Naming the top-level untemplate function
+<( hashHeader(level+1) )> <( subsections(1).title )>
 
 The `untemplate` app and file-system based tooling in the library will derive a default name for the
 top-level generated function by transforming its filename. Untemplate are expected to have the suffix
@@ -200,17 +200,17 @@ directory, you can set the option `flatten` to `true`.
 Any package declarations or import statements in a header section go at the top-level, outside of
 the untemplate-generated function.
 
-**All other code in the header section gets placed inside the generated function.**
+All other code in the header section gets placed inside the generated function.
 
-This means that whatever input your header accepts is already in scope in the header section,
+**This means that whatever input your header accepts is already in scope in the header section,
 even though its name and type may be declared at the end of the header section, inside the header
-delimeter.
+delimeter.**
 
 When generating untemplates, applications may specify a set of default imports that will be inserted into
 all generated untemplates. So, if a static site generator makes use of a common set of types and utilities,
 these can be made automatically available to all templates.
 
-<( hashHeader(level+1) )> <( subsections(2).title )>
+<( hashHeader(level+1) )> <( subsections(3).title )>
 
 Within an untemplate, you have access to variables containing metainformation about the generated function:
 

@@ -129,7 +129,7 @@ function.
 Now, the [generated scala](example/scalagen/untemplatedoc/untemplate_ceci_nest_pas2_md.scala) _would_ transform the markdown, like this:
 
 ```markdown
-# Ceci n'est pas... 0.9856854132284504
+# Ceci n'est pas... 0.3008335443697453
 
 Well, this is _almost_ just a regular markdown file, with no
 special untemplate constructs. But if we wish, we can treat
@@ -176,10 +176,8 @@ Let's get a look at what it produces:
 # Loopy
 # Loopy
 # Loopy
-# Loopy
-# Loopy
 
-And we're a winner! (num = 5)
+It sucks to be us. (num = 3)
 
 ```
 
@@ -187,8 +185,9 @@ And again!
 ```markdown
 # Loopy
 # Loopy
+# Loopy
 
-It sucks to be us. (num = 2)
+It sucks to be us. (num = 3)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/untemplate_loopy_md.scala.scala))
@@ -405,7 +404,7 @@ Which generates...
 
 Happy Birthday to me!
 
-_I was published on Mon, 2 Jan 2023 14:05:22 -0500._
+_I was published on Mon, 2 Jan 2023 14:09:58 -0500._
 
 
 ```
@@ -440,17 +439,17 @@ directory, you can set the option `flatten` to `true`.
 Any package declarations or import statements in a header section go at the top-level, outside of
 the untemplate-generated function.
 
-**All other code in the header section gets placed inside the generated function.**
+All other code in the header section gets placed inside the generated function.
 
-This means that whatever input your header accepts is already in scope in the header section,
+**This means that whatever input your header accepts is already in scope in the header section,
 even though its name and type may be declared at the end of the header section, inside the header
-delimeter.
+delimeter.**
 
 When generating untemplates, applications may specify a set of default imports that will be inserted into
 all generated untemplates. So, if a static site generator makes use of a common set of types and utilities,
 these can be made automatically available to all templates.
 
-### Untemplates, packages, and imports
+### Reflection
 
 Within an untemplate, you have access to variables containing metainformation about the generated function:
 
