@@ -13,6 +13,7 @@ _This project only documents the `untemplate` project. For the code, please see 
     * <a href="#repeatable-omittable-blocks">Repeatable, omittable, blocks</a>
   * <a href="#functional-templates">Functional templates</a>
     * <a href="#untemplates-are-functions">Untemplates are functions</a>
+    * <a href="#text-blocks-can-be-nested-functions">Text blocks can be nested functions</a>
     * <a href="#naming-the-top-level-untemplate-function">Naming the top-level untemplate function</a>
     * <a href="#untemplates-packages-and-imports">Untemplates, packages, and imports</a>
     * <a href="#reflection">Reflection</a>
@@ -65,6 +66,9 @@ top-level imports in the generated file.
 > :bulb: **Mnemonic**<br/>
 > For every construct, whatever an "arrow", `<` or `>`, points at is a text region. Whatever a parenthesis is adjacent to is code.
 
+<a href="#table-of-contents">Back to top &#x21ba;</a>
+
+
 
 
 ## Some simple untemplates
@@ -111,6 +115,7 @@ end Function_ceci_nest_pas_md
 
 def ceci_nest_pas_md(input : immutable.Map[String,Any]) : untemplate.Result[Nothing] = Function_ceci_nest_pas_md( input )
 ```
+<a href="#table-of-contents">Back to top &#x21ba;</a>
 
 ### Embedded expressions
 
@@ -129,7 +134,7 @@ function.
 Now, the [generated scala](example/scalagen/untemplatedoc/untemplate_ceci_nest_pas2_md.scala) _would_ transform the markdown, like this:
 
 ```markdown
-# Ceci n'est pas... 0.8352692653759933
+# Ceci n'est pas... 0.7354829344890041
 
 Well, this is _almost_ just a regular markdown file, with no
 special untemplate constructs. But if we wish, we can treat
@@ -146,6 +151,8 @@ The delimeter `<( expression )>` causes the `expression` to be evaluated into th
 > So how did I slip that delimiter in? Any
 > of the untemplate delimeters &mdash; there are only four! &mdash; can be escaped with a `\` character
 > just prior to them. The `\` will be stripped, then the delimeter included in the text unmodified.
+
+<a href="#table-of-contents">Back to top &#x21ba;</a>
 
 ### Repeatable, omittable, blocks
 
@@ -179,13 +186,8 @@ Let's get a look at what it produces:
 # Loopy
 # Loopy
 # Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
 
-And we're a winner! (num = 10)
+And we're a winner! (num = 5)
 
 ```
 
@@ -205,6 +207,9 @@ And we're a winner! (num = 9)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/untemplate_loopy_md.scala))
+
+<a href="#table-of-contents">Back to top &#x21ba;</a>
+
 
 
 
@@ -254,7 +259,9 @@ By default, this returned metadata will be `None`, but the template can provide 
 > call. Your function will remain very functional as long as the input type and output metadata types that you specify
 > are immutable.
 
-### Naming the top-level untemplate function
+<a href="#table-of-contents">Back to top &#x21ba;</a>
+
+### Text blocks can be nested functions
 
 Every text block within an untemplate can be a function.
 
@@ -357,11 +364,19 @@ Not the loveliest file. But educational.
 Here is the output...
 
 ```markdown
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
 
-It sucks to be us. (num = 0)
+And we're a winner! (num = 6)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/untemplate_loopy2_md.scala))
+
+<a href="#table-of-contents">Back to top &#x21ba;</a>
 
 ### Naming the top-level untemplate function
 
@@ -418,7 +433,7 @@ Which generates...
 
 Happy Birthday to me!
 
-_I was published on Mon, 2 Jan 2023 15:55:49 -0500._
+_I was published on Mon, 2 Jan 2023 16:03:03 -0500._
 
 
 ```
@@ -433,6 +448,8 @@ _I was published on Mon, 2 Jan 2023 15:55:49 -0500._
 >
 > The header `()[]~(.startText)>` would turn the first text block into a function
 > called `startText()`, but leave the top-level function name alone.
+
+<a href="#table-of-contents">Back to top &#x21ba;</a>
 
 ### Untemplates, packages, and imports
 
@@ -463,6 +480,8 @@ delimeter.**
 When generating untemplates, applications may specify a set of default imports that will be inserted into
 all generated untemplates. So, if a static site generator makes use of a common set of types and utilities,
 these can be made automatically available to all templates.
+
+<a href="#table-of-contents">Back to top &#x21ba;</a>
 
 ### Reflection
 

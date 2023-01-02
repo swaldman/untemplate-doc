@@ -5,6 +5,7 @@ val title = "Functional templates"
 
 val subsections = Vector (
   Subsection("Untemplates are functions"),
+  Subsection("Text blocks can be nested functions"),
   Subsection("Naming the top-level untemplate function"),
   Subsection("Untemplates, packages, and imports"),
   Subsection("Reflection"),
@@ -55,6 +56,8 @@ By default, this returned metadata will be `None`, but the template can provide 
 > Ick, it's a `var`! It's okay. `mbMetadata` is a strictly local variable, in the single-threaded context of a function
 > call. Your function will remain very functional as long as the input type and output metadata types that you specify
 > are immutable.
+
+<( BackToToc )>
 
 <( hashHeader(level+1) )> <( subsections(1).title )>
 
@@ -129,7 +132,9 @@ writer.writeln(untemplatedoc.loopy2_md(immutable.Map.empty).text)
 ```
 ([generated scala](<( sgenFor("loopy2_md") )>))
 
-<( hashHeader(level+1) )> <( subsections(1).title )>
+<( BackToToc )>
+
+<( hashHeader(level+1) )> <( subsections(2).title )>
 
 The `untemplate` app and file-system based tooling in the library will derive a default name for the
 top-level generated function by transforming its filename. Untemplate are expected to have the suffix
@@ -183,7 +188,9 @@ writer.writeln(untemplatedoc.untemplateDoc( java.time.Instant.now() ).text)
 > The header `\()[]~(.startText)>` would turn the first text block into a function
 > called `startText()`, but leave the top-level function name alone.
 
-<( hashHeader(level+1) )> <( subsections(2).title )>
+<( BackToToc )>
+
+<( hashHeader(level+1) )> <( subsections(3).title )>
 
 Top-level untemplates are top-level functions, declared directly in a Scala package.
 They are paired with implementations in the form of `Function0` objects, which are defined
@@ -213,7 +220,9 @@ When generating untemplates, applications may specify a set of default imports t
 all generated untemplates. So, if a static site generator makes use of a common set of types and utilities,
 these can be made automatically available to all templates.
 
-<( hashHeader(level+1) )> <( subsections(3).title )>
+<( BackToToc )>
+
+<( hashHeader(level+1) )> <( subsections(4).title )>
 
 Within an untemplate, you have access to variables containing metainformation about the generated function.
 For the [untemplate you are reading](<( readmeFunctionalTemplatesSrc )>):

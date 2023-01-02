@@ -29,6 +29,7 @@ compiled to a simple scala function.
 writer.writeln(Files.readString(ceciScala).trim)
 ()>
 ```
+<( BackToToc )>
 
 <( hashHeader(level+1) )> <( subsections(0).title )>
 
@@ -57,6 +58,8 @@ The delimeter `\<( expression )>` causes the `expression` to be evaluated into t
 > of the untemplate delimeters &mdash; there are only four! &mdash; can be escaped with a `\` character
 > just prior to them. The `\` will be stripped, then the delimeter included in the text unmodified.
 
+<( BackToToc )>
+
 <( hashHeader(level+1) )> <( subsections(1).title )>
 
 Often you'd like to do more than just embed a few very simple expressions in some text.
@@ -83,6 +86,9 @@ writer.writeln(untemplatedoc.loopy_md(immutable.Map.empty).text)
 ()>
 ```
 ([generated scala](<( sgenFor("loopy_md") )>))
+
+<( BackToToc )>
+
 
 
 
