@@ -51,7 +51,7 @@ The function will return whatever text it generates, along with an `Option[immut
 
 By default, this returned metadata will be `None`, but the template can provide `Some(metadata)` by overwriting the `var` called `mbMetadata`.
 
-> :blush: **It's okay!**
+> :blush: **It's okay!** <br/>
 > Ick, it's a `var`! It's okay. `mbMetadata` is a strictly local variable, in the single-threaded context of a function
 > call. Your function will remain very functional as long as the input type and output metadata types that you specify
 > are immutable.
