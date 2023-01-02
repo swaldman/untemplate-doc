@@ -5,8 +5,19 @@ val childLevel = 2
 val intro : untemplate.Result[Subsection]                 = README_introduction_md( childLevel )
 val someSimpleUntemplates : untemplate.Result[Subsection] = README_some_simple_untemplates_md( childLevel )
 val functionalTemplates   : untemplate.Result[Subsection] = README_functional_templates_md( childLevel )
+val acknowledgments       : untemplate.Result[Subsection] = README_acknowledgments_md( childLevel )
 
-val topSubsection = Subsection( title, Subsection(tocTitle) :: intro.mbMetadata.toList ::: someSimpleUntemplates.mbMetadata.toList ::: functionalTemplates.mbMetadata.toList ::: Nil )
+val topSubsection =
+    Subsection(
+        title,
+        Subsection(tocTitle) ::
+        intro.mbMetadata.toList :::
+        someSimpleUntemplates.mbMetadata.toList :::
+        functionalTemplates.mbMetadata.toList :::
+        acknowledgments.mbMetadata.toList :::
+        Nil
+    )
+end topSubsection
 
 ()[]~()>
 
@@ -23,6 +34,9 @@ _This project only documents the `untemplate` project. For the code, please see 
 <( someSimpleUntemplates.text )>
 
 <( functionalTemplates.text )>
+
+<( acknowledgments.text )>
+
 
 
 

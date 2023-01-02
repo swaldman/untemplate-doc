@@ -17,6 +17,7 @@ _This project only documents the `untemplate` project. For the code, please see 
     * <a href="#naming-the-top-level-untemplate-function">Naming the top-level untemplate function</a>
     * <a href="#untemplates-packages-and-imports">Untemplates, packages, and imports</a>
     * <a href="#reflection">Reflection</a>
+  * <a href="#acknowledgments">Acknowledgments</a>
 
 
 ## Introduction
@@ -134,7 +135,7 @@ function.
 Now, the [generated scala](example/scalagen/untemplatedoc/untemplate_ceci_nest_pas2_md.scala) _would_ transform the markdown, like this:
 
 ```markdown
-# Ceci n'est pas... 0.6399212396302904
+# Ceci n'est pas... 0.9846131006000844
 
 Well, this is _almost_ just a regular markdown file, with no
 special untemplate constructs. But if we wish, we can treat
@@ -183,8 +184,13 @@ Let's get a look at what it produces:
 ```markdown
 # Loopy
 # Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
 
-It sucks to be us. (num = 2)
+And we're a winner! (num = 7)
 
 ```
 
@@ -197,8 +203,11 @@ And again!
 # Loopy
 # Loopy
 # Loopy
+# Loopy
+# Loopy
+# Loopy
 
-And we're a winner! (num = 7)
+And we're a winner! (num = 10)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/untemplate_loopy_md.scala))
@@ -362,8 +371,11 @@ Here is the output...
 # Loopy
 # Loopy
 # Loopy
+# Loopy
+# Loopy
+# Loopy
 
-It sucks to be us. (num = 3)
+And we're a winner! (num = 6)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/untemplate_loopy2_md.scala))
@@ -425,7 +437,7 @@ Which generates...
 
 Happy Birthday to me!
 
-_I was published on Mon, 2 Jan 2023 16:07:59 -0500._
+_I was published on Mon, 2 Jan 2023 18:55:14 -0500._
 
 
 ```
@@ -492,6 +504,17 @@ The types are just `String`s, and names _may not be fully qualified_.
 `UntemplateFunction` is a reference to the `Function1` object that implements your untemplate.
 
 <a href="#table-of-contents">Back to top &#x21ba;</a>
+
+
+
+## Acknowledgments
+
+This project owes a debt to Java Server Pages (JSPs), and the special place they will always have in my heart.
+
+The mill plugin I am currently working on owes a debt to
+[Twirl](https://github.com/playframework/twirl)'s [plugin](https://github.com/com-lihaoyi/mill/blob/8e2fef20886650882e49ba1aed0f719ddbf72365/contrib/playlib/src/mill/playlib/Twirl.scala),
+from which I am gently (and much less sophisticatedly) cribbing.
+
 
 
 

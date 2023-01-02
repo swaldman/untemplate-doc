@@ -14,7 +14,7 @@ val Function_README_md = new Function1[immutable.Map[String,Any],untemplate.Resu
   val UntemplateOutputMetadataType = "Nothing"
 
   def apply(input : immutable.Map[String,Any]) : untemplate.Result[Nothing] =
-    val writer     : StringWriter = new StringWriter(1788)
+    val writer     : StringWriter = new StringWriter(2286)
     var mbMetadata : Option[Nothing] = None
 
     val title = "Untemplate documentation"
@@ -24,8 +24,19 @@ val Function_README_md = new Function1[immutable.Map[String,Any],untemplate.Resu
     val intro : untemplate.Result[Subsection]                 = README_introduction_md( childLevel )
     val someSimpleUntemplates : untemplate.Result[Subsection] = README_some_simple_untemplates_md( childLevel )
     val functionalTemplates   : untemplate.Result[Subsection] = README_functional_templates_md( childLevel )
+    val acknowledgments       : untemplate.Result[Subsection] = README_acknowledgments_md( childLevel )
 
-    val topSubsection = Subsection( title, Subsection(tocTitle) :: intro.mbMetadata.toList ::: someSimpleUntemplates.mbMetadata.toList ::: functionalTemplates.mbMetadata.toList ::: Nil )
+    val topSubsection =
+        Subsection(
+            title,
+            Subsection(tocTitle) ::
+            intro.mbMetadata.toList :::
+            someSimpleUntemplates.mbMetadata.toList :::
+            functionalTemplates.mbMetadata.toList :::
+            acknowledgments.mbMetadata.toList :::
+            Nil
+        )
+    end topSubsection
 
 
       val block0 = new Function0[String]:
@@ -36,7 +47,8 @@ val Function_README_md = new Function1[immutable.Map[String,Any],untemplate.Resu
           "\n\n" +  intro.text  +
           "\n\n" +  someSimpleUntemplates.text  +
           "\n\n" +  functionalTemplates.text  +
-          "\n\n\n\n\n\n\n\n"
+          "\n\n" +  acknowledgments.text  +
+          "\n\n\n\n\n\n\n\n\n"
       writer.write(block0())
       
     untemplate.Result( mbMetadata, writer.toString )
