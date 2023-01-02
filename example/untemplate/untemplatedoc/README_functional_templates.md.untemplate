@@ -139,7 +139,8 @@ function](<( sgenFor("README_md") )>) like...
 def README_md( input: immutable.Map[String,Any] ) : untemplate.Result[Nothing] = ???
 ```
 
-> :point_right: Return type `untemplate.Result[Nothing]` looks intimidating, but it's just a
+> :point_right: **Note** <br/>
+> Return type `untemplate.Result[Nothing]` looks intimidating, but it's just a
 > fancy wrapper for a `String`, as a field called `text`.
 > The `[Nothing]` part just means there cannot be metadata attached to this result.
 
@@ -170,7 +171,8 @@ writer.writeln(untemplatedoc.untemplateDoc( java.time.Instant.now() ).text)
 ()>
 ```
 
-> :question: What if you want to override the name of the top level function _and_ use
+> :question: **Question** <br/>
+> What if you want to override the name of the top level function _and_ use
 > the first text block as a function? You can!
 >
 > The header `\()[]~(mamaFunction.startText)>`
