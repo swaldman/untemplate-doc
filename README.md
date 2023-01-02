@@ -111,7 +111,7 @@ function.
 Now, the [generated scala](example/scalagen/untemplatedoc/untemplate_ceci_nest_pas2_md.scala) _would_ transform the markdown, like this:
 
 ```markdown
-# Ceci n'est pas... 0.5885127000679287
+# Ceci n'est pas... 0.6445255570925466
 
 Well, this is _almost_ just a regular markdown file, with no
 special untemplate constructs. But if we wish, we can treat
@@ -156,25 +156,16 @@ It sucks to be us. (num = <(num)>)
 Let's get a look at what it produces:
 ```markdown
 # Loopy
-# Loopy
-# Loopy
-# Loopy
 
-It sucks to be us. (num = 4)
+It sucks to be us. (num = 1)
 
 ```
 
 And again!
 ```markdown
 # Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
 
-And we're a winner! (num = 7)
+It sucks to be us. (num = 1)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/untemplate_loopy_md.scala.scala))
@@ -316,10 +307,8 @@ Here is the output...
 # Loopy
 # Loopy
 # Loopy
-# Loopy
-# Loopy
 
-And we're a winner! (num = 8)
+And we're a winner! (num = 6)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/untemplate_loopy2_md.scala))
@@ -335,8 +324,8 @@ function](example/scalagen/untemplatedoc/untemplate_README_md.scala) like...
 def README_md( input: immutable.Map[String,Any] ) : untemplate.Result[Nothing] = ???
 ```
 
-> :point_right: `untemplate.Result[Nothing]` looks intimidating, but it's just a
-> fancy wrapper for a `String`. The result has a `text` field &mdash; that `String`.
+> :point_right: Return type `untemplate.Result[Nothing]` looks intimidating, but it's just a
+> fancy wrapper for a `String`, as a field called `text`.
 > The `[Nothing]` part just means there cannot be metadata attached to this result.
 
 You can override the generated function name in
@@ -352,9 +341,13 @@ def untemplateDoc( pubDate: Instant ) : untemplate.Result[Nothing] = ???
 ```
 
 > :question: What if you want to override the name of the top level function _and_ use
-> the first text block as a function? You can! The header `()[]~(mamaFunction.startText)>`
+> the first text block as a function? You can!
+>
+> The header `()[]~(mamaFunction.startText)>`
 > would override the outer function name with `mamaFunction`, and turn the first text block into
-> a function `startText()`. `()[]~(.startText)>` would turn the first text block into a function
+> a function `startText()`.
+>
+> The header `()[]~(.startText)>` would turn the first text block into a function
 > called `startText()`, but leave the top-level function name alone.
 
 ### untemplates, packages, and imports.

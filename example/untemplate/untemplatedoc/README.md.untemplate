@@ -251,8 +251,8 @@ function](<( sgenFor("README_md") )>) like...
 def README_md( input: immutable.Map[String,Any] ) : untemplate.Result[Nothing] = ???
 ```
 
-> :point_right: `untemplate.Result[Nothing]` looks intimidating, but it's just a
-> fancy wrapper for a `String`. The result has a `text` field &mdash; that `String`.
+> :point_right: Return type `untemplate.Result[Nothing]` looks intimidating, but it's just a
+> fancy wrapper for a `String`, as a field called `text`.
 > The `[Nothing]` part just means there cannot be metadata attached to this result.
 
 You can override the generated function name in
@@ -268,9 +268,13 @@ def untemplateDoc( pubDate: Instant ) : untemplate.Result[Nothing] = ???
 ```
 
 > :question: What if you want to override the name of the top level function _and_ use
-> the first text block as a function? You can! The header `\()[]~(mamaFunction.startText)>`
+> the first text block as a function? You can!
+>
+> The header `\()[]~(mamaFunction.startText)>`
 > would override the outer function name with `mamaFunction`, and turn the first text block into
-> a function `startText()`. `\()[]~(.startText)>` would turn the first text block into a function
+> a function `startText()`.
+>
+> The header `\()[]~(.startText)>` would turn the first text block into a function
 > called `startText()`, but leave the top-level function name alone.
 
 ### untemplates, packages, and imports.
