@@ -15,7 +15,7 @@ val Function_README_acknowledgments_md = new Function1[Int,untemplate.Result[Sub
   val UntemplateOutputMetadataType = "Subsection"
 
   def apply(level : Int) : untemplate.Result[Subsection] =
-    val writer     : StringWriter = new StringWriter(1248)
+    val writer     : StringWriter = new StringWriter(1360)
     var mbMetadata : Option[Subsection] = None
 
 
@@ -28,7 +28,8 @@ val Function_README_acknowledgments_md = new Function1[Int,untemplate.Result[Sub
         def apply() : String =
           "\n" +  hashHeader(level)  +
           " " +  title  +
-          "\n\nThis project owes a debt to Java Server Pages (JSPs), and the special place they will always have in my heart.\n\nThe mill plugin I am currently working on owes a debt to\n[Twirl](https://github.com/playframework/twirl)'s [plugin](https://github.com/com-lihaoyi/mill/blob/8e2fef20886650882e49ba1aed0f719ddbf72365/contrib/playlib/src/mill/playlib/Twirl.scala),\nfrom which I am gently (and much less sophisticatedly) cribbing.\n"
+          "\n\nThis project owes a debt to Java Server Pages (JSPs), and the special place they will always have in my heart.\n\nThe [mill](https://github.com/com-lihaoyi/mill) plugin I am currently working on owes a debt to\n[Twirl](https://github.com/playframework/twirl)'s [plugin](https://github.com/com-lihaoyi/mill/blob/8e2fef20886650882e49ba1aed0f719ddbf72365/contrib/playlib/src/mill/playlib/Twirl.scala),\nfrom which I am gently (and much less sophisticatedly) cribbing.\n\n" +  BackToToc  +
+          "\n"
       writer.write(block0())
       
     untemplate.Result( mbMetadata, writer.toString )

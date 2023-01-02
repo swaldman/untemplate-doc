@@ -135,7 +135,7 @@ function.
 Now, the [generated scala](example/scalagen/untemplatedoc/untemplate_ceci_nest_pas2_md.scala) _would_ transform the markdown, like this:
 
 ```markdown
-# Ceci n'est pas... 0.9846131006000844
+# Ceci n'est pas... 0.08149666290667112
 
 Well, this is _almost_ just a regular markdown file, with no
 special untemplate constructs. But if we wish, we can treat
@@ -183,31 +183,16 @@ It sucks to be us. (num = <(num)>)
 Let's get a look at what it produces:
 ```markdown
 # Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
 
-And we're a winner! (num = 7)
+It sucks to be us. (num = 1)
 
 ```
 
 And again!
 ```markdown
 # Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
 
-And we're a winner! (num = 10)
+It sucks to be us. (num = 1)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/untemplate_loopy_md.scala))
@@ -372,10 +357,8 @@ Here is the output...
 # Loopy
 # Loopy
 # Loopy
-# Loopy
-# Loopy
 
-And we're a winner! (num = 6)
+It sucks to be us. (num = 4)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/untemplate_loopy2_md.scala))
@@ -437,7 +420,7 @@ Which generates...
 
 Happy Birthday to me!
 
-_I was published on Mon, 2 Jan 2023 18:55:14 -0500._
+_I was published on Mon, 2 Jan 2023 18:59:16 -0500._
 
 
 ```
@@ -511,9 +494,11 @@ The types are just `String`s, and names _may not be fully qualified_.
 
 This project owes a debt to Java Server Pages (JSPs), and the special place they will always have in my heart.
 
-The mill plugin I am currently working on owes a debt to
+The [mill](https://github.com/com-lihaoyi/mill) plugin I am currently working on owes a debt to
 [Twirl](https://github.com/playframework/twirl)'s [plugin](https://github.com/com-lihaoyi/mill/blob/8e2fef20886650882e49ba1aed0f719ddbf72365/contrib/playlib/src/mill/playlib/Twirl.scala),
 from which I am gently (and much less sophisticatedly) cribbing.
+
+<a href="#table-of-contents">Back to top &#x21ba;</a>
 
 
 
