@@ -45,6 +45,6 @@ def toc( subsection : Subsection ) = tocLines(0, subsection).mkString(LineSep)
 val TableOfContentsTitle  = "Table of contents"
 val TableOfContentsAnchor = toAnchor(TableOfContentsTitle)
 
-val BackToToc = s"""<a href="${TableOfContentsAnchor}">Back to top &#x21ba;</a>"""
+val BackToToc = s"""<hr/><a href="${TableOfContentsAnchor}">Back to top &#x21ba;</a>"""
 
 
