@@ -4,7 +4,7 @@ import java.io.{Writer,StringWriter}
 import scala.collection.*
 
 val Function_loopy2_md = new Function1[immutable.Map[String,Any],untemplate.Result[Nothing]]:
-  val UntemplateFunction : Function1[immutable.Map[String,Any],untemplate.Result[Nothing]] = this
+  val UntemplateFunction           = this
   val UntemplateName               = "loopy2_md"
   val UntemplateInputName          = "input"
   val UntemplateInputType          = "immutable.Map[String,Any]"
@@ -18,10 +18,10 @@ val Function_loopy2_md = new Function1[immutable.Map[String,Any],untemplate.Resu
 
     // comments in code blocks are fine!
     // here is one way to turn text blocks into functions
-    val block0 = new Function1[immutable.Map[String,Any],String]:
-      def apply( input : immutable.Map[String,Any] ) : String =
+    val block0 = new Function0[String]:
+      def apply() : String =
         "# Loopy\n"
-    def loopy( arg : immutable.Map[String,Any] = input ) = block0( arg )
+    def loopy() = block0()
     for (i <- 0 until num)
       writer.write(loopy()) // you have a java.io.Writer, called writer, to send output to
 
@@ -31,18 +31,18 @@ val Function_loopy2_md = new Function1[immutable.Map[String,Any],untemplate.Resu
     // the statement that prints becomes indented from that level!
     def reportCard() : Unit =
       if (num >= 5)
-        val block1 = new Function1[immutable.Map[String,Any],String]:
-          def apply( input : immutable.Map[String,Any] ) : String =
+        val block1 = new Function0[String]:
+          def apply() : String =
             "\nAnd we're a winner! (num = " + num +
             ")\n"
-        writer.write(block1( input ))
+        writer.write(block1())
         
       else
-        val block2 = new Function1[immutable.Map[String,Any],String]:
-          def apply( input : immutable.Map[String,Any] ) : String =
+        val block2 = new Function0[String]:
+          def apply() : String =
             "\nIt sucks to be us. (num = " + num +
             ")\n"
-        writer.write(block2( input ))
+        writer.write(block2())
         
     reportCard()
     untemplate.Result( mbMetadata, writer.toString )

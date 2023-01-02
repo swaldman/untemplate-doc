@@ -203,10 +203,10 @@ And the ickies...
 [error]    |                          expression expected but val found
 [error]    |
 [error]    | longer explanation available when compiling with `-explain`
-[error] -- [E006] Not Found Error: /Users/swaldman/Dropbox/BaseFolders/development-why/gitproj/untemplate-doc/target/scala-3.2.1/src_managed/main/untemplate/untemplatedoc/untemplate_loopy2_bad_md.scala:23:59
-[error] 23 |    def loopy( arg : immutable.Map[String,Any] = input ) = block0( arg )
-[error]    |                                                           ^^^^^^
-[error]    |                                                       Not found: block0
+[error] -- [E006] Not Found Error: /Users/swaldman/Dropbox/BaseFolders/development-why/gitproj/untemplate-doc/target/scala-3.2.1/src_managed/main/untemplate/untemplatedoc/untemplate_loopy2_bad_md.scala:23:18
+[error] 23 |    def loopy() = block0()
+[error]    |                  ^^^^^^
+[error]    |                  Not found: block0
 [error]    |
 [error]    | longer explanation available when compiling with `-explain`
 [error] two errors found
@@ -268,9 +268,9 @@ def untemplateDoc( pubDate: Instant ) : untemplate.Result[Nothing] = ???
 ```
 
 > :question: What if you want to override the name of the top level function _and_ use
-> the first text block as a function? You can! The header `\()[]~(mamaFunction.startText())>`
+> the first text block as a function? You can! The header `\()[]~(mamaFunction.startText)>`
 > would override the outer function name with `mamaFunction`, and turn the first text block into
-> a function `startText()`. `\()[]~(.startText())>` would turn the first text block into a function
+> a function `startText()`. `\()[]~(.startText)>` would turn the first text block into a function
 > called `startText()`, but leave the top-level function name alone.
 
 ### untemplates, packages, and imports.

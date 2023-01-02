@@ -4,7 +4,7 @@ import java.io.{Writer,StringWriter}
 import scala.collection.*
 
 val Function_ceci_nest_pas_md = new Function1[immutable.Map[String,Any],untemplate.Result[Nothing]]:
-  val UntemplateFunction : Function1[immutable.Map[String,Any],untemplate.Result[Nothing]] = this
+  val UntemplateFunction           = this
   val UntemplateName               = "ceci_nest_pas_md"
   val UntemplateInputName          = "input"
   val UntemplateInputType          = "immutable.Map[String,Any]"
@@ -14,10 +14,10 @@ val Function_ceci_nest_pas_md = new Function1[immutable.Map[String,Any],untempla
     val writer     : StringWriter = new StringWriter(406)
     var mbMetadata : Option[Nothing] = None
 
-      val block0 = new Function1[immutable.Map[String,Any],String]:
-        def apply( input : immutable.Map[String,Any] ) : String =
+      val block0 = new Function0[String]:
+        def apply() : String =
           "# Ceci n'est pas...\n\nWell, this is just a regular markdown file, with no\nspecial untemplate constructs. But if we wish, we can treat\nit as an unemplate, and it will be immortalized as a scala\nfunction.\n\n"
-      writer.write(block0( input ))
+      writer.write(block0())
       
     untemplate.Result( mbMetadata, writer.toString )
     

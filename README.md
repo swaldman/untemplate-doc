@@ -72,7 +72,7 @@ import java.io.{Writer,StringWriter}
 import scala.collection.*
 
 val Function_ceci_nest_pas_md = new Function1[immutable.Map[String,Any],untemplate.Result[Nothing]]:
-  val UntemplateFunction : Function1[immutable.Map[String,Any],untemplate.Result[Nothing]] = this
+  val UntemplateFunction           = this
   val UntemplateName               = "ceci_nest_pas_md"
   val UntemplateInputName          = "input"
   val UntemplateInputType          = "immutable.Map[String,Any]"
@@ -82,10 +82,10 @@ val Function_ceci_nest_pas_md = new Function1[immutable.Map[String,Any],untempla
     val writer     : StringWriter = new StringWriter(406)
     var mbMetadata : Option[Nothing] = None
 
-      val block0 = new Function1[immutable.Map[String,Any],String]:
-        def apply( input : immutable.Map[String,Any] ) : String =
+      val block0 = new Function0[String]:
+        def apply() : String =
           "# Ceci n'est pas...\n\nWell, this is just a regular markdown file, with no\nspecial untemplate constructs. But if we wish, we can treat\nit as an unemplate, and it will be immortalized as a scala\nfunction.\n\n"
-      writer.write(block0( input ))
+      writer.write(block0())
       
     untemplate.Result( mbMetadata, writer.toString )
     
@@ -111,7 +111,7 @@ function.
 Now, the [generated scala](example/scalagen/untemplatedoc/untemplate_ceci_nest_pas2_md.scala) _would_ transform the markdown, like this:
 
 ```markdown
-# Ceci n'est pas... 0.022648460043493523
+# Ceci n'est pas... 0.5885127000679287
 
 Well, this is _almost_ just a regular markdown file, with no
 special untemplate constructs. But if we wish, we can treat
@@ -159,9 +159,8 @@ Let's get a look at what it produces:
 # Loopy
 # Loopy
 # Loopy
-# Loopy
 
-And we're a winner! (num = 5)
+It sucks to be us. (num = 4)
 
 ```
 
@@ -174,9 +173,8 @@ And again!
 # Loopy
 # Loopy
 # Loopy
-# Loopy
 
-And we're a winner! (num = 8)
+And we're a winner! (num = 7)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/untemplate_loopy_md.scala.scala))
@@ -258,10 +256,10 @@ And the ickies...
 [error]    |                          expression expected but val found
 [error]    |
 [error]    | longer explanation available when compiling with `-explain`
-[error] -- [E006] Not Found Error: /Users/swaldman/Dropbox/BaseFolders/development-why/gitproj/untemplate-doc/target/scala-3.2.1/src_managed/main/untemplate/untemplatedoc/untemplate_loopy2_bad_md.scala:23:59
-[error] 23 |    def loopy( arg : immutable.Map[String,Any] = input ) = block0( arg )
-[error]    |                                                           ^^^^^^
-[error]    |                                                       Not found: block0
+[error] -- [E006] Not Found Error: /Users/swaldman/Dropbox/BaseFolders/development-why/gitproj/untemplate-doc/target/scala-3.2.1/src_managed/main/untemplate/untemplatedoc/untemplate_loopy2_bad_md.scala:23:18
+[error] 23 |    def loopy() = block0()
+[error]    |                  ^^^^^^
+[error]    |                  Not found: block0
 [error]    |
 [error]    | longer explanation available when compiling with `-explain`
 [error] two errors found
@@ -319,8 +317,9 @@ Here is the output...
 # Loopy
 # Loopy
 # Loopy
+# Loopy
 
-And we're a winner! (num = 7)
+And we're a winner! (num = 8)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/untemplate_loopy2_md.scala))
@@ -353,9 +352,9 @@ def untemplateDoc( pubDate: Instant ) : untemplate.Result[Nothing] = ???
 ```
 
 > :question: What if you want to override the name of the top level function _and_ use
-> the first text block as a function? You can! The header `()[]~(mamaFunction.startText())>`
+> the first text block as a function? You can! The header `()[]~(mamaFunction.startText)>`
 > would override the outer function name with `mamaFunction`, and turn the first text block into
-> a function `startText()`. `()[]~(.startText())>` would turn the first text block into a function
+> a function `startText()`. `()[]~(.startText)>` would turn the first text block into a function
 > called `startText()`, but leave the top-level function name alone.
 
 ### untemplates, packages, and imports.
