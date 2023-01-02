@@ -111,7 +111,7 @@ function.
 Now, the [generated scala](example/scalagen/untemplatedoc/untemplate_ceci_nest_pas2_md.scala) _would_ transform the markdown, like this:
 
 ```markdown
-# Ceci n'est pas... 0.6445255570925466
+# Ceci n'est pas... 0.8869196195348432
 
 Well, this is _almost_ just a regular markdown file, with no
 special untemplate constructs. But if we wish, we can treat
@@ -156,16 +156,26 @@ It sucks to be us. (num = <(num)>)
 Let's get a look at what it produces:
 ```markdown
 # Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
 
-It sucks to be us. (num = 1)
+And we're a winner! (num = 8)
 
 ```
 
 And again!
 ```markdown
 # Loopy
+# Loopy
+# Loopy
+# Loopy
 
-It sucks to be us. (num = 1)
+It sucks to be us. (num = 4)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/untemplate_loopy_md.scala.scala))
@@ -181,7 +191,7 @@ the template output as a simple `String`, along with any metadata that untemplat
 
 More specifically, each template returns a `untemplate.Result[+A]( mbMetadata : Option[A], text : String)`.
 
-Untemplate authors (optionally!) specify the input name and type of the untemplate function, and output metadata type,
+Untemplate authors may (optionally!) specify the input name and type of the untemplate function, and output metadata type,
 in the header delimiter:
 
 ```scala
@@ -307,8 +317,11 @@ Here is the output...
 # Loopy
 # Loopy
 # Loopy
+# Loopy
+# Loopy
+# Loopy
 
-And we're a winner! (num = 6)
+And we're a winner! (num = 9)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/untemplate_loopy2_md.scala))
@@ -338,6 +351,38 @@ Header `(pubDate: Instant)[]~(untemplateDoc)>` would generate
 
 ```scala
 def untemplateDoc( pubDate: Instant ) : untemplate.Result[Nothing] = ???
+```
+
+Here's an example. Check out the [generated Scala](example/scalagen/untemplatedoc/untemplate_untemplateDoc.scala) code.
+
+```scala
+import java.time.{Instant, ZoneId}
+import java.time.format.DateTimeFormatter
+
+// note that all non-import (and non-package) lines in the header get 
+// generated WITHIN the untemplate function, so pubDate is in scope!
+
+val formatted = DateTimeFormatter.RFC_1123_DATE_TIME.format( pubDate.atZone( ZoneId.systemDefault() ) )
+
+(pubDate: Instant)[]~(untemplateDoc)>
+
+# Birthday Post
+
+Happy Birthday to me!
+
+_I was published on <(formatted)>._
+```
+Which generates...
+
+```markdown
+
+# Birthday Post
+
+Happy Birthday to me!
+
+_I was published on Mon, 2 Jan 2023 10:12:00 -0500._
+
+
 ```
 
 > :question: What if you want to override the name of the top level function _and_ use

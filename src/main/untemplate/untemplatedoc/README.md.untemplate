@@ -1,16 +1,17 @@
 import java.nio.file.{Path, Files}
 import com.mchange.codegenutil.*
 
-val usrcDir      = Path.of("src/main/untemplate")
-val egenDir      = Path.of("example/untemplate")
-val sgenDir      = Path.of("example/scalagen")
-val ceciSrc      = usrcDir.resolve("untemplatedoc/ceci-nest-pas.md.untemplate")
-val ceciScala    = sgenDir.resolve("untemplatedoc/untemplate_ceci_nest_pas_md.scala")
-val ceci2Src     = usrcDir.resolve("untemplatedoc/ceci-nest-pas2.md.untemplate")
-val loopySrc     = usrcDir.resolve("untemplatedoc/loopy.md.untemplate")
-val loopy2badSrc = usrcDir.resolve("untemplatedoc/loopy2-bad.md.untemplate-off")
-val loopy2Src    = usrcDir.resolve("untemplatedoc/loopy2.md.untemplate")
-val thisFileSrc  = usrcDir.resolve("untemplatedoc/README.md.untemplate")
+val usrcDir          = Path.of("src/main/untemplate")
+val egenDir          = Path.of("example/untemplate")
+val sgenDir          = Path.of("example/scalagen")
+val ceciSrc          = usrcDir.resolve("untemplatedoc/ceci-nest-pas.md.untemplate")
+val ceciScala        = sgenDir.resolve("untemplatedoc/untemplate_ceci_nest_pas_md.scala")
+val ceci2Src         = usrcDir.resolve("untemplatedoc/ceci-nest-pas2.md.untemplate")
+val loopySrc         = usrcDir.resolve("untemplatedoc/loopy.md.untemplate")
+val loopy2badSrc     = usrcDir.resolve("untemplatedoc/loopy2-bad.md.untemplate-off")
+val loopy2Src        = usrcDir.resolve("untemplatedoc/loopy2.md.untemplate")
+val someOverridesSrc = usrcDir.resolve("untemplatedoc/some_overrides.md.untemplate")
+val thisFileSrc      = usrcDir.resolve("untemplatedoc/README.md.untemplate")
 
 def sgenFor( underscoredName : String ) : Path =
   sgenDir.resolve( s"untemplatedoc/untemplate_${underscoredName}.scala" )
@@ -150,7 +151,7 @@ the template output as a simple `String`, along with any metadata that untemplat
 
 More specifically, each template returns a `untemplate.Result[+A]( mbMetadata : Option[A], text : String)`.
 
-Untemplate authors (optionally!) specify the input name and type of the untemplate function, and output metadata type,
+Untemplate authors may (optionally!) specify the input name and type of the untemplate function, and output metadata type,
 in the header delimiter:
 
 ```scala
@@ -265,6 +266,21 @@ Header `\(pubDate: Instant)[]~(untemplateDoc)>` would generate
 
 ```scala
 def untemplateDoc( pubDate: Instant ) : untemplate.Result[Nothing] = ???
+```
+
+Here's an example. Check out the [generated Scala](<( sgenFor("untemplateDoc") )>) code.
+
+```scala
+<()
+writer.writeln(Files.readString(someOverridesSrc).trim)
+()>
+```
+Which generates...
+
+```markdown
+<()
+writer.writeln(untemplatedoc.untemplateDoc( java.time.Instant.now() ).text)
+()>
 ```
 
 > :question: What if you want to override the name of the top level function _and_ use
