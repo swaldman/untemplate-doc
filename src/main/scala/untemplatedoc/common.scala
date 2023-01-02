@@ -4,17 +4,19 @@ import scala.collection.*
 import java.nio.file.{Path, Files}
 import com.mchange.codegenutil.*
 
-val usrcDir          = Path.of("src/main/untemplate")
-val egenDir          = Path.of("example/untemplate")
-val sgenDir          = Path.of("example/scalagen")
-val ceciSrc          = usrcDir.resolve("untemplatedoc/ceci-nest-pas.md.untemplate")
-val ceciScala        = sgenDir.resolve("untemplatedoc/untemplate_ceci_nest_pas_md.scala")
-val ceci2Src         = usrcDir.resolve("untemplatedoc/ceci-nest-pas2.md.untemplate")
-val loopySrc         = usrcDir.resolve("untemplatedoc/loopy.md.untemplate")
-val loopy2badSrc     = usrcDir.resolve("untemplatedoc/loopy2-bad.md.untemplate-off")
-val loopy2Src        = usrcDir.resolve("untemplatedoc/loopy2.md.untemplate")
-val someOverridesSrc = usrcDir.resolve("untemplatedoc/some_overrides.md.untemplate")
-val thisFileSrc      = usrcDir.resolve("untemplatedoc/README.md.untemplate")
+val usrcDir                      = Path.of("src/main/untemplate")
+val egenDir                      = Path.of("example/untemplate")
+val sgenDir                      = Path.of("example/scalagen")
+val ceciSrc                      = usrcDir.resolve("untemplatedoc/ceci-nest-pas.md.untemplate")
+val ceciScala                    = sgenDir.resolve("untemplatedoc/untemplate_ceci_nest_pas_md.scala")
+val ceci2Src                     = usrcDir.resolve("untemplatedoc/ceci-nest-pas2.md.untemplate")
+val loopySrc                     = usrcDir.resolve("untemplatedoc/loopy.md.untemplate")
+val loopy2badSrc                 = usrcDir.resolve("untemplatedoc/loopy2-bad.md.untemplate-off")
+val loopy2Src                    = usrcDir.resolve("untemplatedoc/loopy2.md.untemplate")
+val someOverridesSrc             = usrcDir.resolve("untemplatedoc/some_overrides.md.untemplate")
+val readmeTopSrc                 = usrcDir.resolve("untemplatedoc/README.md.untemplate")
+val readmeSomeSimpleTemplatesSrc = usrcDir.resolve("untemplatedoc/README.md.untemplate")
+
 
 def sgenFor( underscoredName : String ) : Path =
   sgenDir.resolve( s"untemplatedoc/untemplate_${underscoredName}.scala" )

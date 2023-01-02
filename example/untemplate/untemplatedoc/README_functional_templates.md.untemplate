@@ -51,7 +51,8 @@ The function will return whatever text it generates, along with an `Option[immut
 
 By default, this returned metadata will be `None`, but the template can provide `Some(metadata)` by overwriting the `var` called `mbMetadata`.
 
-> :point_right: Ick, a `var`! `mbMetadata` is a strictly local variable, in the single-threaded context of a function
+> :blush: **It's okay!**
+> Ick, it's a `var`! It's okay. `mbMetadata` is a strictly local variable, in the single-threaded context of a function
 > call. Your function will remain very functional as long as the input type and output metadata types that you specify
 > are immutable.
 
@@ -132,14 +133,14 @@ writer.writeln(untemplatedoc.loopy2_md(immutable.Map.empty).text)
 
 The `untemplate` app and file-system based tooling in the library will derive a default name for the
 top-level generated function by transforming its filename. Untemplate are expected to have the suffix
-`.untemplate`. The file you are reading is is [`README.md.untemplate`](<(thisFileSrc)>), and [generates a
+`.untemplate`. The file you are reading is is [`README.md.untemplate`](<(readmeTopSrc)>), and [generates a
 function](<( sgenFor("README_md") )>) like...
 
 ```scala
 def README_md( input: immutable.Map[String,Any] ) : untemplate.Result[Nothing] = ???
 ```
 
-> :point_right: **Note** <br/>
+> **Note** <br/>
 > Return type `untemplate.Result[Nothing]` looks intimidating, but it's just a
 > fancy wrapper for a `String`, as a field called `text`.
 > The `[Nothing]` part just means there cannot be metadata attached to this result.
