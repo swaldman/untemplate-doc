@@ -7,6 +7,8 @@ val subsections = Vector (
   Subsection("Untemplates are functions"),
   Subsection("Naming the top-level untemplate function"),
   Subsection("Untemplates, packages, and imports"),
+  Subsection("Reflection"),
+
 )
 
 mbMetadata = Some( Subsection( title, subsections.toList ) )
@@ -17,12 +19,24 @@ mbMetadata = Some( Subsection( title, subsections.toList ) )
 
 <( hashHeader(level+1) )> <( subsections(0).title )>
 
-Every untemplate defines a Scala function, and every text block defines a nested function.
+Every untemplate defines a Scala function. By default, from a file called `awesomeness.md.untemplate`, this
+function would look like...
 
-The top-level function accepts a single, author-specifiable input. It returns
-the template output as a simple `String`, along with any metadata that untemplate chooses to provide.
+```scala
+def awesomeness_md( input : immutable.Map[String,Any] ) : untemplate.Result[Nothing]
+```
 
-More specifically, each template returns a `untemplate.Result[+A]( mbMetadata : Option[A], text : String)`.
+The top-level function accepts a single, author-specifiable input. (`immutable.Map[String,Any]` is just a default.)
+
+It returns the template output as a simple `String`, along with any metadata that untemplate chooses to provide.
+
+More specifically, each template returns a
+
+```scala
+package untemplate
+
+case class Result[+A]( mbMetadata : Option[A], text : String)`.
+```
 
 Untemplate authors may (optionally!) specify the input name and type of the untemplate function, and output metadata type,
 in the header delimiter:
@@ -168,11 +182,48 @@ writer.writeln(untemplatedoc.untemplateDoc( java.time.Instant.now() ).text)
 
 <( hashHeader(level+1) )> <( subsections(2).title )>
 
-The easiest way to make sense of all this is by example.
+Top-level untemplates are top-level functions, declared directly in a Scala package.
+They are paired with implementations in the form of `Function0` objects, which are defined
+as `Function_` prepended to the untemplate function name.
 
-My name is `<(UntemplateName)>`.
+Untemplates are usually generated from a source directory, and the default behavior
+is for packages to be inferred by the old-school Java convention. The directory hierarchy
+beneath specified source directory, to the untemplate source file, will be mapped to a package
+name (or dot-separated path of package names). Untemplate source
+files placed in the top directory belong to the unnamed "default" package.
 
-My input type is `<(UntemplateInputType)>`.
+However, you can override this default by making an explicit package declaration in the header section of your
+untemplate (that is, the section before a [header delimeter](#introduction)). If you wish all untemplates
+to be generated into a single flat directory, regardless of where or how deeply they were found beneath the source
+directory, you can set the option `flatten` to `true`.
+
+Any package declarations or import statements in a header section go at the top-level, outside of
+the untemplate-generated function.
+
+**All other code in the header section gets placed inside the generated function.**
+
+This means that whatever input your header accepts is already in scope in the header section,
+even though its name and type may be declared at the end of the header section, inside the header
+delimeter.
+
+When generating untemplates, applications may specify a set of default imports that will be inserted into
+all generated untemplates. So, if a static site generator makes use of a common set of types and utilities,
+these can be made automatically available to all templates.
+
+<( hashHeader(level+1) )> <( subsections(2).title )>
+
+Within an untemplate, you have access to variables containing metainformation about the generated function:
+
+```
+UntemplateFunction:           `<(UntemplateFunction)>`
+UntemplateName:               `<(UntemplateName)>`.
+UntemplateInputType:          `<(UntemplateInputType)>`
+UntemplateOutputMetadataType: `<(UntemplateOutputMetadataType)>`
+```
+
+The types are just Strings, and names _may not be fully qualified_.
+
+`UntemplateFunction` is a reference to the `Function1` object that implements your untemplate.
 
 
 

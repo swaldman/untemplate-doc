@@ -15,6 +15,7 @@ _This project only documents the `untemplate` project. For the code, please see 
     * <a href="#untemplates-are-functions">Untemplates are functions</a>
     * <a href="#naming-the-top-level-untemplate-function">Naming the top-level untemplate function</a>
     * <a href="#untemplates-packages-and-imports">Untemplates, packages, and imports</a>
+    * <a href="#reflection">Reflection</a>
 
 
 ## Introduction
@@ -128,7 +129,7 @@ function.
 Now, the [generated scala](example/scalagen/untemplatedoc/untemplate_ceci_nest_pas2_md.scala) _would_ transform the markdown, like this:
 
 ```markdown
-# Ceci n'est pas... 0.569562771984115
+# Ceci n'est pas... 0.9856854132284504
 
 Well, this is _almost_ just a regular markdown file, with no
 special untemplate constructs. But if we wish, we can treat
@@ -177,10 +178,8 @@ Let's get a look at what it produces:
 # Loopy
 # Loopy
 # Loopy
-# Loopy
-# Loopy
 
-And we're a winner! (num = 7)
+And we're a winner! (num = 5)
 
 ```
 
@@ -188,10 +187,8 @@ And again!
 ```markdown
 # Loopy
 # Loopy
-# Loopy
-# Loopy
 
-It sucks to be us. (num = 4)
+It sucks to be us. (num = 2)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/untemplate_loopy_md.scala.scala))
@@ -207,12 +204,24 @@ It sucks to be us. (num = 4)
 
 ### Untemplates are functions
 
-Every untemplate defines a Scala function, and every text block defines a nested function.
+Every untemplate defines a Scala function. By default, from a file called `awesomeness.md.untemplate`, this
+function would look like...
 
-The top-level function accepts a single, author-specifiable input. It returns
-the template output as a simple `String`, along with any metadata that untemplate chooses to provide.
+```scala
+def awesomeness_md( input : immutable.Map[String,Any] ) : untemplate.Result[Nothing]
+```
 
-More specifically, each template returns a `untemplate.Result[+A]( mbMetadata : Option[A], text : String)`.
+The top-level function accepts a single, author-specifiable input. (`immutable.Map[String,Any]` is just a default.)
+
+It returns the template output as a simple `String`, along with any metadata that untemplate chooses to provide.
+
+More specifically, each template returns a
+
+```scala
+package untemplate
+
+case class Result[+A]( mbMetadata : Option[A], text : String)`.
+```
 
 Untemplate authors may (optionally!) specify the input name and type of the untemplate function, and output metadata type,
 in the header delimiter:
@@ -336,10 +345,8 @@ Here is the output...
 ```markdown
 # Loopy
 # Loopy
-# Loopy
-# Loopy
 
-It sucks to be us. (num = 4)
+It sucks to be us. (num = 2)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/untemplate_loopy2_md.scala))
@@ -398,7 +405,7 @@ Which generates...
 
 Happy Birthday to me!
 
-_I was published on Mon, 2 Jan 2023 13:30:23 -0500._
+_I was published on Mon, 2 Jan 2023 14:05:22 -0500._
 
 
 ```
@@ -415,11 +422,48 @@ _I was published on Mon, 2 Jan 2023 13:30:23 -0500._
 
 ### Untemplates, packages, and imports
 
-The easiest way to make sense of all this is by example.
+Top-level untemplates are top-level functions, declared directly in a Scala package.
+They are paired with implementations in the form of `Function0` objects, which are defined
+as `Function_` prepended to the untemplate function name.
 
-My name is `README_functional_templates_md`.
+Untemplates are usually generated from a source directory, and the default behavior
+is for packages to be inferred by the old-school Java convention. The directory hierarchy
+beneath specified source directory, to the untemplate source file, will be mapped to a package
+name (or dot-separated path of package names). Untemplate source
+files placed in the top directory belong to the unnamed "default" package.
 
-My input type is `Int`.
+However, you can override this default by making an explicit package declaration in the header section of your
+untemplate (that is, the section before a [header delimeter](#introduction)). If you wish all untemplates
+to be generated into a single flat directory, regardless of where or how deeply they were found beneath the source
+directory, you can set the option `flatten` to `true`.
+
+Any package declarations or import statements in a header section go at the top-level, outside of
+the untemplate-generated function.
+
+**All other code in the header section gets placed inside the generated function.**
+
+This means that whatever input your header accepts is already in scope in the header section,
+even though its name and type may be declared at the end of the header section, inside the header
+delimeter.
+
+When generating untemplates, applications may specify a set of default imports that will be inserted into
+all generated untemplates. So, if a static site generator makes use of a common set of types and utilities,
+these can be made automatically available to all templates.
+
+### Untemplates, packages, and imports
+
+Within an untemplate, you have access to variables containing metainformation about the generated function:
+
+```
+UntemplateFunction:           `<function1>`
+UntemplateName:               `README_functional_templates_md`.
+UntemplateInputType:          `Int`
+UntemplateOutputMetadataType: `Subsection`
+```
+
+The types are just Strings, and names _may not be fully qualified_.
+
+`UntemplateFunction` is a reference to the `Function1` object that implements your untemplate.
 
 
 
