@@ -129,7 +129,7 @@ function.
 Now, the [generated scala](example/scalagen/untemplatedoc/untemplate_ceci_nest_pas2_md.scala) _would_ transform the markdown, like this:
 
 ```markdown
-# Ceci n'est pas... 0.0820712541539158
+# Ceci n'est pas... 0.5313735918537935
 
 Well, this is _almost_ just a regular markdown file, with no
 special untemplate constructs. But if we wish, we can treat
@@ -177,17 +177,20 @@ Let's get a look at what it produces:
 # Loopy
 # Loopy
 # Loopy
-# Loopy
 
-It sucks to be us. (num = 4)
+It sucks to be us. (num = 3)
 
 ```
 
 And again!
 ```markdown
 # Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
 
-It sucks to be us. (num = 1)
+And we're a winner! (num = 5)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/untemplate_loopy_md.scala))
@@ -345,8 +348,14 @@ Here is the output...
 ```markdown
 # Loopy
 # Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
 
-It sucks to be us. (num = 2)
+And we're a winner! (num = 8)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/untemplate_loopy2_md.scala))
@@ -406,7 +415,7 @@ Which generates...
 
 Happy Birthday to me!
 
-_I was published on Mon, 2 Jan 2023 14:39:42 -0500._
+_I was published on Mon, 2 Jan 2023 15:52:10 -0500._
 
 
 ```
@@ -455,7 +464,7 @@ these can be made automatically available to all templates.
 ### Reflection
 
 Within an untemplate, you have access to variables containing metainformation about the generated function.
-For the [untemplate you are reading](src/main/untemplate/untemplatedoc/README_functional_templates.md.untemplate)
+For the [untemplate you are reading](src/main/untemplate/untemplatedoc/README_functional_templates.md.untemplate):
 
 ```
 UntemplateFunction:           `<function1>`
@@ -464,13 +473,11 @@ UntemplateInputType:          `Int`
 UntemplateOutputMetadataType: `Subsection`
 ```
 
-The types are just Strings, and names _may not be fully qualified_.
+The types are just `String`s, and names _may not be fully qualified_.
 
 `UntemplateFunction` is a reference to the `Function1` object that implements your untemplate.
 
-
-
-
+<a href="#table-of-contents">Back to top &#x21a9;&#xfe0e;</a>
 
 
 

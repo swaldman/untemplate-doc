@@ -19,7 +19,6 @@ val readmeSomeSimpleTemplatesSrc = usrcDir.resolve("untemplatedoc/README_some_si
 val readmeFunctionalTemplatesSrc = usrcDir.resolve("untemplatedoc/README_functional_templates.md.untemplate")
 
 
-
 def sgenFor( underscoredName : String ) : Path =
   sgenDir.resolve( s"untemplatedoc/untemplate_${underscoredName}.scala" )
 end sgenFor
@@ -42,5 +41,10 @@ def tocLines( indentLevel : Int, subsection : Subsection ) : List[String] =
     subsection.subsections.flatMap(ss => tocLines(indentLevel+1, ss))
 
 def toc( subsection : Subsection ) = tocLines(0, subsection).mkString(LineSep)
+
+val TableOfContentsTitle  = "Table of contents"
+val TableOfContentsAnchor = toAnchor(TableOfContentsTitle)
+
+val BackToToc = s"""<a href="${TableOfContentsAnchor}">Back to top &#x21a9;&#xfe0e;</a>"""
 
 

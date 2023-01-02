@@ -15,7 +15,7 @@ val Function_README_functional_templates_md = new Function1[Int,untemplate.Resul
   val UntemplateOutputMetadataType = "Subsection"
 
   def apply(level : Int) : untemplate.Result[Subsection] =
-    val writer     : StringWriter = new StringWriter(18944)
+    val writer     : StringWriter = new StringWriter(18976)
     var mbMetadata : Option[Subsection] = None
 
 
@@ -81,11 +81,12 @@ val Function_README_functional_templates_md = new Function1[Int,untemplate.Resul
           "\n\nTop-level untemplates are top-level functions, declared directly in a Scala package.\nThey are paired with implementations in the form of `Function0` objects, which are defined\nas `Function_` prepended to the untemplate function name.\n\nUntemplates are usually generated from a source directory, and the default behavior\nis for packages to be inferred by the old-school Java convention. The directory hierarchy\nbeneath specified source directory, to the untemplate source file, will be mapped to a package\nname (or dot-separated path of package names). Untemplate source\nfiles placed in the top directory belong to the unnamed \"default\" package.\n\nHowever, you can override this default by making an explicit package declaration in the header section of your\nuntemplate (that is, the section before a [header delimeter](#introduction)). If you wish all untemplates\nto be generated into a single flat directory, regardless of where or how deeply they were found beneath the source\ndirectory, you can set the option `flatten` to `true`.\n\nAny package declarations or import statements in a header section go at the top-level, outside of\nthe untemplate-generated function.\n\nAll other code in the header section gets placed inside the generated function.\n\n**This means that whatever input your header accepts is already in scope in the header section,\neven though its name and type may be declared at the end of the header section, inside the header\ndelimeter.**\n\nWhen generating untemplates, applications may specify a set of default imports that will be inserted into\nall generated untemplates. So, if a static site generator makes use of a common set of types and utilities,\nthese can be made automatically available to all templates.\n\n" +  hashHeader(level+1)  +
           " " +  subsections(3).title  +
           "\n\nWithin an untemplate, you have access to variables containing metainformation about the generated function.\nFor the [untemplate you are reading](" +  readmeFunctionalTemplatesSrc  +
-          ")\n\n```\nUntemplateFunction:           `" + UntemplateFunction +
+          "):\n\n```\nUntemplateFunction:           `" + UntemplateFunction +
           "`\nUntemplateName:               `" + UntemplateName +
           "`.\nUntemplateInputType:          `" + UntemplateInputType +
           "`\nUntemplateOutputMetadataType: `" + UntemplateOutputMetadataType +
-          "`\n```\n\nThe types are just Strings, and names _may not be fully qualified_.\n\n`UntemplateFunction` is a reference to the `Function1` object that implements your untemplate.\n\n\n\n\n"
+          "`\n```\n\nThe types are just `String`s, and names _may not be fully qualified_.\n\n`UntemplateFunction` is a reference to the `Function1` object that implements your untemplate.\n\n" +  BackToToc  +
+          "\n"
       writer.write(block5())
       
     untemplate.Result( mbMetadata, writer.toString )
