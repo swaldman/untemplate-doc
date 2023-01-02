@@ -35,7 +35,7 @@ An untemplate is just a text file that optionally includes any of precisely four
 | `<()` | Text / code boundary |
 | `()[]~()>` | Header delimeter |
 
-These have the follwing effects:
+These have the following effects:
 
 * `<(expression)>` breaks out of plain text and inserts the result into the text
 * `()>` alone, at the beginning of a line, divides the file into a Scala code region, and a
@@ -62,7 +62,7 @@ special untemplate constructs. But if we wish, we can treat
 it as an unemplate, and it will be immortalized as a scala
 function.
 ```
-It's just a markdown file! But it's stored in an untemplate source directory as `ceci-nest-pas.md.untemplate`, so it gets
+It's just a markdown file! But if it's stored in an untemplate source directory as `ceci-nest-pas.md.untemplate`, it gets
 compiled to a simple scala function.
 
 ```scala
@@ -111,7 +111,7 @@ function.
 Now, the [generated scala](example/scalagen/untemplatedoc/untemplate_ceci_nest_pas2_md.scala) _would_ transform the markdown, like this:
 
 ```markdown
-# Ceci n'est pas... 0.8877409729042913
+# Ceci n'est pas... 0.022648460043493523
 
 Well, this is _almost_ just a regular markdown file, with no
 special untemplate constructs. But if we wish, we can treat
@@ -128,7 +128,7 @@ The delimeter `<( expression )>` causes the `expression` to be evaluated into th
 > of the untemplate delimeters &mdash; there are only four! &mdash; can be escaped with a `\` character
 > just prior to them. The `\` will be stripped, then the delimeter included in the text unmodified.
 
-### Reapeatable, omitable, blocks
+### Repeatable, omittable, blocks
 
 Often you'd like to do more than just embed a few very simple expressions in some text.
 So, you can break up your text into code blocks and text blocks. Let's do that, and repeat
@@ -158,8 +158,10 @@ Let's get a look at what it produces:
 # Loopy
 # Loopy
 # Loopy
+# Loopy
+# Loopy
 
-It sucks to be us. (num = 3)
+And we're a winner! (num = 5)
 
 ```
 
@@ -169,8 +171,12 @@ And again!
 # Loopy
 # Loopy
 # Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
 
-It sucks to be us. (num = 4)
+And we're a winner! (num = 8)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/untemplate_loopy_md.scala.scala))
@@ -192,9 +198,12 @@ in the header delimiter:
 ```scala
 (sourceMarkdown : String)[immutable.Map[String,String]]~()>
 ```
-This header causes the generated untemplate function to require a String input, which the template author can work with in the
-template as `sourceMarkdown`. The function will return whatever text it generates, along with an `Option[immutable.Map[String,String]]`.
-By default, the metadata will be `None`, but the template can provide `Some(metadata)` by setting the `var` called `mbMetadata`.
+This header causes the generated untemplate function to require a `String` input, which the template author can work with in the
+template as `sourceMarkdown`.
+
+The function will return whatever text it generates, along with an `Option[immutable.Map[String,String]]`.
+
+By default, this returned metadata will be `None`, but the template can provide `Some(metadata)` by overwriting the `var` called `mbMetadata`.
 
 > :point_right: Ick, a `var`! `mbMetadata` is a strictly local variable, in the single-threaded context of a function
 > call. Your function will remain very functional as long as the input type and output metadata types that you specify
@@ -202,13 +211,19 @@ By default, the metadata will be `None`, but the template can provide `Some(meta
 
 ### Text blocks can be nested functions
 
-Every text block within an untemplate can be a function. Ordinarily, text blocks just print themselves
-automatically into the generated String. However, if you embed a name in the `()>` delimeter that begins
-the block, like `(entry)>`, then nothing is automatically printed into the String. Instead you will have a function
-`entry()` to work with in code blocks. It will return a simple `String`.
-`writer.write(entry)` will generate text into untemplate output.
+Every text block within an untemplate can be a function.
 
-Let's try to redo out "Loopy" template making the text block that prints `# Loopy` into a function.
+Ordinarily, text blocks just print themselves
+automatically into the generated `String`. However, if you embed a name in the `()>` delimeter that begins
+the block, like `(entry)>`, then nothing is automatically printed into the `String`. Instead you will have a function
+`entry()` to work with in code blocks.
+
+The block function will return a simple `String`.
+
+Use `writer.write(entry())` to generate text into untemplate output.
+
+Let's try to redo our ["Loopy" template](#repeatable-omittable-blocks) making the text block that prints `# Loopy` into a function.
+
 Instead of beginning our blocks with `()>`, we embed a valid scala identifier into the parenthesis,
 like `(loopy)>`.
 
@@ -236,20 +251,21 @@ It sucks to be us. (num = <(num)>)
 ```
 And the ickies...
 ```
-[info] compiling 1 Scala source to /Users/swaldman/Dropbox/BaseFolders/development-why/gitproj/untemplate-doc/target/scala-3.2.1/classes ...
-[error] -- [E018] Syntax Error: /Users/swaldman/Dropbox/BaseFolders/development-why/gitproj/untemplate-doc/target/scala-3.2.1/src_managed/main/untemplate/untemplatedoc/untemplate_loopy2_bad_md.scala:11:24
-[error] 11 |  for (i <- 0 until num)
-[error]    |                        ^
-[error]    |                        expression expected but val found
+[info] compiling 7 Scala sources to /Users/swaldman/Dropbox/BaseFolders/development-why/gitproj/untemplate-doc/target/scala-3.2.1/classes ...
+[error] -- [E018] Syntax Error: /Users/swaldman/Dropbox/BaseFolders/development-why/gitproj/untemplate-doc/target/scala-3.2.1/src_managed/main/untemplate/untemplatedoc/untemplate_loopy2_bad_md.scala:19:26
+[error] 19 |    for (i <- 0 until num)
+[error]    |                          ^
+[error]    |                          expression expected but val found
 [error]    |
 [error]    | longer explanation available when compiling with `-explain`
-[error] -- [E006] Not Found Error: /Users/swaldman/Dropbox/BaseFolders/development-why/gitproj/untemplate-doc/target/scala-3.2.1/src_managed/main/untemplate/untemplatedoc/untemplate_loopy2_bad_md.scala:15:57
-[error] 15 |  def loopy( arg : immutable.Map[String,Any] = input ) = block0( arg )
-[error]    |                                                         ^^^^^^
+[error] -- [E006] Not Found Error: /Users/swaldman/Dropbox/BaseFolders/development-why/gitproj/untemplate-doc/target/scala-3.2.1/src_managed/main/untemplate/untemplatedoc/untemplate_loopy2_bad_md.scala:23:59
+[error] 23 |    def loopy( arg : immutable.Map[String,Any] = input ) = block0( arg )
+[error]    |                                                           ^^^^^^
 [error]    |                                                       Not found: block0
 [error]    |
 [error]    | longer explanation available when compiling with `-explain`
 [error] two errors found
+[error] (Compile / compileIncremental) Compilation failed
 ```
 
 Before things worked, because when we're just printing an expression to output, we indent the call to write in
@@ -302,8 +318,9 @@ Here is the output...
 # Loopy
 # Loopy
 # Loopy
+# Loopy
 
-And we're a winner! (num = 6)
+And we're a winner! (num = 7)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/untemplate_loopy2_md.scala))
