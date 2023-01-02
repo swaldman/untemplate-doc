@@ -62,7 +62,7 @@ region beneath.
 region above and a text region below. However, import statements in the code region above become
 top-level imports in the generated file.
 
-> :bulb:
+> :bulb: <br/>
 > For every construct, whatever an "arrow", `<` or `>`, points at is a text region. Whatever a parenthesis is adjacent to is code.
 
 
@@ -129,7 +129,7 @@ function.
 Now, the [generated scala](example/scalagen/untemplatedoc/untemplate_ceci_nest_pas2_md.scala) _would_ transform the markdown, like this:
 
 ```markdown
-# Ceci n'est pas... 0.3008335443697453
+# Ceci n'est pas... 0.747335976677796
 
 Well, this is _almost_ just a regular markdown file, with no
 special untemplate constructs. But if we wish, we can treat
@@ -175,9 +175,8 @@ Let's get a look at what it produces:
 ```markdown
 # Loopy
 # Loopy
-# Loopy
 
-It sucks to be us. (num = 3)
+It sucks to be us. (num = 2)
 
 ```
 
@@ -186,8 +185,12 @@ And again!
 # Loopy
 # Loopy
 # Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
 
-It sucks to be us. (num = 3)
+And we're a winner! (num = 7)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/untemplate_loopy_md.scala.scala))
@@ -344,8 +347,11 @@ Here is the output...
 ```markdown
 # Loopy
 # Loopy
+# Loopy
+# Loopy
+# Loopy
 
-It sucks to be us. (num = 2)
+And we're a winner! (num = 5)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/untemplate_loopy2_md.scala))
@@ -404,7 +410,7 @@ Which generates...
 
 Happy Birthday to me!
 
-_I was published on Mon, 2 Jan 2023 14:09:58 -0500._
+_I was published on Mon, 2 Jan 2023 14:12:54 -0500._
 
 
 ```
