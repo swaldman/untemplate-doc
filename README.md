@@ -129,7 +129,7 @@ function.
 Now, the [generated scala](example/scalagen/untemplatedoc/untemplate_ceci_nest_pas2_md.scala) _would_ transform the markdown, like this:
 
 ```markdown
-# Ceci n'est pas... 0.6810165306446438
+# Ceci n'est pas... 0.0820712541539158
 
 Well, this is _almost_ just a regular markdown file, with no
 special untemplate constructs. But if we wish, we can treat
@@ -186,13 +186,8 @@ It sucks to be us. (num = 4)
 And again!
 ```markdown
 # Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
 
-And we're a winner! (num = 6)
+It sucks to be us. (num = 1)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/untemplate_loopy_md.scala))
@@ -350,12 +345,8 @@ Here is the output...
 ```markdown
 # Loopy
 # Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
 
-And we're a winner! (num = 6)
+It sucks to be us. (num = 2)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/untemplate_loopy2_md.scala))
@@ -415,7 +406,7 @@ Which generates...
 
 Happy Birthday to me!
 
-_I was published on Mon, 2 Jan 2023 14:37:18 -0500._
+_I was published on Mon, 2 Jan 2023 14:39:42 -0500._
 
 
 ```
@@ -463,7 +454,8 @@ these can be made automatically available to all templates.
 
 ### Reflection
 
-Within an untemplate, you have access to variables containing metainformation about the generated function:
+Within an untemplate, you have access to variables containing metainformation about the generated function.
+For the [untemplate you are reading](src/main/untemplate/untemplatedoc/README_functional_templates.md.untemplate)
 
 ```
 UntemplateFunction:           `<function1>`

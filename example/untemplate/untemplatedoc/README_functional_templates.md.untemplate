@@ -215,7 +215,8 @@ these can be made automatically available to all templates.
 
 <( hashHeader(level+1) )> <( subsections(3).title )>
 
-Within an untemplate, you have access to variables containing metainformation about the generated function:
+Within an untemplate, you have access to variables containing metainformation about the generated function.
+For the [untemplate you are reading](<( readmeFunctionalTemplatesSrc )>)
 
 ```
 UntemplateFunction:           `<(UntemplateFunction)>`
