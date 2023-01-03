@@ -8,11 +8,12 @@ import com.mchange.codegenutil.*
 
 
 val Function_README_acknowledgments_md = new Function1[Int,untemplate.Result[Subsection]]:
-  val UntemplateFunction           = this
-  val UntemplateName               = "README_acknowledgments_md"
-  val UntemplateInputName          = "level"
-  val UntemplateInputType          = "Int"
-  val UntemplateOutputMetadataType = "Subsection"
+  val UntemplateFunction             = this
+  val UntemplateName                 = "README_acknowledgments_md"
+  val UntemplateInputName            = "level"
+  val UntemplateInputType            = "Int"
+  val UntemplateInputDefaultArgument = (None : Option[String])
+  val UntemplateOutputMetadataType   = "Subsection"
 
   def apply(level : Int) : untemplate.Result[Subsection] =
     val writer     : StringWriter = new StringWriter(1360)

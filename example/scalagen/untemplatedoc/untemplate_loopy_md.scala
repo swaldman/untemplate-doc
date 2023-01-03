@@ -4,11 +4,12 @@ import java.io.{Writer,StringWriter}
 import scala.collection.*
 
 val Function_loopy_md = new Function1[immutable.Map[String,Any],untemplate.Result[Nothing]]:
-  val UntemplateFunction           = this
-  val UntemplateName               = "loopy_md"
-  val UntemplateInputName          = "input"
-  val UntemplateInputType          = "immutable.Map[String,Any]"
-  val UntemplateOutputMetadataType = "Nothing"
+  val UntemplateFunction             = this
+  val UntemplateName                 = "loopy_md"
+  val UntemplateInputName            = "input"
+  val UntemplateInputType            = "immutable.Map[String,Any]"
+  val UntemplateInputDefaultArgument = Some("immutable.Map.empty")
+  val UntemplateOutputMetadataType   = "Nothing"
 
   def apply(input : immutable.Map[String,Any] = immutable.Map.empty) : untemplate.Result[Nothing] =
     val writer     : StringWriter = new StringWriter(380)

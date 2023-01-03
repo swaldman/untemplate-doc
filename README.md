@@ -94,11 +94,12 @@ import java.io.{Writer,StringWriter}
 import scala.collection.*
 
 val Function_ceci_nest_pas_md = new Function1[immutable.Map[String,Any],untemplate.Result[Nothing]]:
-  val UntemplateFunction           = this
-  val UntemplateName               = "ceci_nest_pas_md"
-  val UntemplateInputName          = "input"
-  val UntemplateInputType          = "immutable.Map[String,Any]"
-  val UntemplateOutputMetadataType = "Nothing"
+  val UntemplateFunction             = this
+  val UntemplateName                 = "ceci_nest_pas_md"
+  val UntemplateInputName            = "input"
+  val UntemplateInputType            = "immutable.Map[String,Any]"
+  val UntemplateInputDefaultArgument = Some("immutable.Map.empty")
+  val UntemplateOutputMetadataType   = "Nothing"
 
   def apply(input : immutable.Map[String,Any] = immutable.Map.empty) : untemplate.Result[Nothing] =
     val writer     : StringWriter = new StringWriter(406)
@@ -135,7 +136,7 @@ function.
 Now, the [generated scala](example/scalagen/untemplatedoc/untemplate_ceci_nest_pas2_md.scala) _would_ transform the markdown, like this:
 
 ```markdown
-# Ceci n'est pas... 0.20533873154880333
+# Ceci n'est pas... 0.7568733675074344
 
 Well, this is _almost_ just a regular markdown file, with no
 special untemplate constructs. But if we wish, we can treat
@@ -190,9 +191,8 @@ Let's get a look at what it produces:
 # Loopy
 # Loopy
 # Loopy
-# Loopy
 
-And we're a winner! (num = 9)
+And we're a winner! (num = 8)
 
 ```
 
@@ -202,12 +202,8 @@ And again!
 # Loopy
 # Loopy
 # Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
 
-And we're a winner! (num = 8)
+It sucks to be us. (num = 4)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/untemplate_loopy_md.scala))
@@ -264,7 +260,7 @@ By default, this returned metadata will be `None`, but the template can provide 
 > are immutable.
 
 > :bulb: **Tip!** <br/>
-> You can specify a default argument along with your custom untemplate input type, in the usual scala
+> You can specify a default argument along with your custom untemplate input type, using the usual scala
 > syntax of `( myVar : MyType = DefaultVal )`
 
 <a href="#table-of-contents">Back to top &#x21ba;</a>
@@ -379,8 +375,9 @@ Here is the output...
 # Loopy
 # Loopy
 # Loopy
+# Loopy
 
-And we're a winner! (num = 7)
+And we're a winner! (num = 8)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/untemplate_loopy2_md.scala))
@@ -442,7 +439,7 @@ Which generates...
 
 Happy Birthday to me!
 
-_I was published on Tue, 3 Jan 2023 03:24:00 -0500._
+_I was published on Tue, 3 Jan 2023 03:46:21 -0500._
 
 
 ```
@@ -495,18 +492,26 @@ these can be made automatically available to all templates.
 ### Reflection
 
 Within an untemplate, you have access to variables containing metainformation about the generated function.
+
+It may be useful to use `UntemplateFunction` as a Map key, in order to decorate it with metadata.
+Beyond that, if this will be useful at all, it will probably be for debugging.
+
 For the [untemplate you are reading](src/main/untemplate/untemplatedoc/README_functional_templates.md.untemplate):
 
 ```
-UntemplateFunction:           `<function1>`
-UntemplateName:               `README_functional_templates_md`.
-UntemplateInputType:          `Int`
-UntemplateOutputMetadataType: `Subsection`
+UntemplateFunction:             `<function1>`
+UntemplateName:                 `README_functional_templates_md`.
+UntemplateInputType:            `Int`
+UntemplateInputDefaultArgument: `None`
+UntemplateOutputMetadataType:   `Subsection`
 ```
 
-The types are just `String`s, and names _may not be fully qualified_.
-
 `UntemplateFunction` is a reference to the `Function1` object that implements your untemplate.
+
+The type values are just `String`s, and names _may not be fully qualified_.
+
+`UntemplateInputDefaultArgument` is an `Option[String]`, the default value as declared, if declared.
+It is not the actual value of the default argument!
 
 <a href="#table-of-contents">Back to top &#x21ba;</a>
 

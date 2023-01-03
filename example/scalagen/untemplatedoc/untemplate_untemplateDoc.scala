@@ -8,11 +8,12 @@ import java.time.format.DateTimeFormatter
 
 
 val Function_untemplateDoc = new Function1[Instant,untemplate.Result[Nothing]]:
-  val UntemplateFunction           = this
-  val UntemplateName               = "untemplateDoc"
-  val UntemplateInputName          = "pubDate"
-  val UntemplateInputType          = "Instant"
-  val UntemplateOutputMetadataType = "Nothing"
+  val UntemplateFunction             = this
+  val UntemplateName                 = "untemplateDoc"
+  val UntemplateInputName            = "pubDate"
+  val UntemplateInputType            = "Instant"
+  val UntemplateInputDefaultArgument = (None : Option[String])
+  val UntemplateOutputMetadataType   = "Nothing"
 
   def apply(pubDate : Instant) : untemplate.Result[Nothing] =
     val writer     : StringWriter = new StringWriter(880)
