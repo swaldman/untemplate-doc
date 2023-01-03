@@ -136,7 +136,7 @@ function.
 Now, the [generated scala](example/scalagen/untemplatedoc/untemplate_ceci_nest_pas2_md.scala) _would_ transform the markdown, like this:
 
 ```markdown
-# Ceci n'est pas... 0.5494322370247396
+# Ceci n'est pas... 0.320337396716069
 
 Well, this is _almost_ just a regular markdown file, with no
 special untemplate constructs. But if we wish, we can treat
@@ -153,6 +153,8 @@ The delimeter `<( expression )>` causes the `expression` to be evaluated into th
 > So how did I slip that delimiter in? Any
 > of the untemplate delimeters &mdash; there are only four! &mdash; can be escaped with a `\` character
 > just prior to them. The `\` will be stripped, then the delimeter included in the text unmodified.
+> 
+> 
 
 <a href="#table-of-contents">Back to top &#x21ba;</a>
 
@@ -189,25 +191,16 @@ Let's get a look at what it produces:
 # Loopy
 # Loopy
 # Loopy
-# Loopy
 
-And we're a winner! (num = 7)
+And we're a winner! (num = 6)
 
 ```
 
 And again!
 ```markdown
 # Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
 
-And we're a winner! (num = 9)
+It sucks to be us. (num = 1)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/untemplate_loopy_md.scala))
@@ -374,8 +367,13 @@ Here is the output...
 
 ```markdown
 # Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
 
-It sucks to be us. (num = 1)
+And we're a winner! (num = 6)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/untemplate_loopy2_md.scala))
@@ -392,11 +390,11 @@ function](example/scalagen/untemplatedoc/untemplate_README_md.scala) like...
 ```scala
 def README_md( input: immutable.Map[String,Any] ) : untemplate.Result[Nothing] = ???
 ```
-
 > **Note** <br/>
 > Return type `untemplate.Result[Nothing]` looks intimidating, but it's just a
 > fancy wrapper for a `String`, as a field called `text`.
 > The `[Nothing]` part just means there cannot be metadata attached to this result.
+> 
 
 You can override the generated function name in
 the same way block function names are defined. Header `()[]~(untemplateDoc)>` would generate
@@ -437,21 +435,21 @@ Which generates...
 
 Happy Birthday to me!
 
-_I was published on Tue, 3 Jan 2023 12:18:38 -0500._
+_I was published on Tue, 3 Jan 2023 12:54:04 -0500._
 
 
 ```
-
 > :question: **Question** <br/>
 > What if you want to override the name of the top level function _and_ use
 > the first text block as a function? You can!
->
+> 
 > The header `()[]~(mamaFunction.startText)>`
 > would override the outer function name with `mamaFunction`, and turn the first text block into
 > a function `startText()`.
->
+> 
 > The header `()[]~(.startText)>` would turn the first text block into a function
 > called `startText()`, but leave the top-level function name alone.
+> 
 
 <a href="#table-of-contents">Back to top &#x21ba;</a>
 
