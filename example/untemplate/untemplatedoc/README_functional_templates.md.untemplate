@@ -51,15 +51,24 @@ template as `sourceMarkdown`.
 The function will return whatever text it generates, along with an `Option[immutable.Map[String,String]]`.
 
 By default, this returned metadata will be `None`, but the template can provide `Some(metadata)` by overwriting the `var` called `mbMetadata`.
-
-> :blush: **It's okay!** <br/>
-> Ick, it's a `var`! It's okay. `mbMetadata` is a strictly local variable, in the single-threaded context of a function
-> call. Your function will remain very functional as long as the input type and output metadata types that you specify
-> are immutable.
-
-> :bulb: **Tip!** <br/>
-> You can specify a default argument along with your custom untemplate input type, using the usual scala
-> syntax of `( myVar : MyType = DefaultVal )`
+<()
+(varIsOkay)>
+Ick, it's a `var`! It's okay. `mbMetadata` is a strictly local variable, in the single-threaded context of a function
+call. Your function will remain very functional as long as the input type and output metadata types that you specify
+are immutable.
+<()
+(defaultArgIsOkay)>
+You can specify a default argument along with your custom untemplate input type, using the usual scala
+syntax of `( myVar : MyType = DefaultVal )`
+<()
+writer.writeln {
+  box(Some(":blush:"), Some("It's okay!"))( varIsOkay() )	       
+}
+writer.writeln()
+writer.writeln {
+  box(Some(":bulb:"), Some("Tip!"))( defaultArgIsOkay() )
+}
+()>
 
 <( BackToToc )>
 

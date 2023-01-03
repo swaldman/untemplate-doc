@@ -136,7 +136,7 @@ function.
 Now, the [generated scala](example/scalagen/untemplatedoc/untemplate_ceci_nest_pas2_md.scala) _would_ transform the markdown, like this:
 
 ```markdown
-# Ceci n'est pas... 0.14919379493594642
+# Ceci n'est pas... 0.5494322370247396
 
 Well, this is _almost_ just a regular markdown file, with no
 special untemplate constructs. But if we wish, we can treat
@@ -188,8 +188,10 @@ Let's get a look at what it produces:
 # Loopy
 # Loopy
 # Loopy
+# Loopy
+# Loopy
 
-And we're a winner! (num = 5)
+And we're a winner! (num = 7)
 
 ```
 
@@ -203,8 +205,9 @@ And again!
 # Loopy
 # Loopy
 # Loopy
+# Loopy
 
-And we're a winner! (num = 8)
+And we're a winner! (num = 9)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/untemplate_loopy_md.scala))
@@ -254,15 +257,16 @@ template as `sourceMarkdown`.
 The function will return whatever text it generates, along with an `Option[immutable.Map[String,String]]`.
 
 By default, this returned metadata will be `None`, but the template can provide `Some(metadata)` by overwriting the `var` called `mbMetadata`.
-
 > :blush: **It's okay!** <br/>
 > Ick, it's a `var`! It's okay. `mbMetadata` is a strictly local variable, in the single-threaded context of a function
 > call. Your function will remain very functional as long as the input type and output metadata types that you specify
 > are immutable.
+> 
 
 > :bulb: **Tip!** <br/>
 > You can specify a default argument along with your custom untemplate input type, using the usual scala
 > syntax of `( myVar : MyType = DefaultVal )`
+> 
 
 <a href="#table-of-contents">Back to top &#x21ba;</a>
 
@@ -370,12 +374,8 @@ Here is the output...
 
 ```markdown
 # Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
 
-And we're a winner! (num = 5)
+It sucks to be us. (num = 1)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/untemplate_loopy2_md.scala))
@@ -437,7 +437,7 @@ Which generates...
 
 Happy Birthday to me!
 
-_I was published on Tue, 3 Jan 2023 10:44:35 -0500._
+_I was published on Tue, 3 Jan 2023 12:18:38 -0500._
 
 
 ```
