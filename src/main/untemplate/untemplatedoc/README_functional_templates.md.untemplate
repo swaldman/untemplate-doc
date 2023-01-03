@@ -236,11 +236,11 @@ Beyond that, if this will be useful at all, it will probably be for debugging.
 For the [untemplate you are reading](<( readmeFunctionalTemplatesSrc )>):
 
 ```
-UntemplateFunction:             `<(UntemplateFunction)>`
-UntemplateName:                 `<(UntemplateName)>`.
-UntemplateInputType:            `<(UntemplateInputType)>`
-UntemplateInputDefaultArgument: `<(UntemplateInputDefaultArgument)>`
-UntemplateOutputMetadataType:   `<(UntemplateOutputMetadataType)>`
+UntemplateFunction:             <(UntemplateFunction)>
+UntemplateName:                 "<(UntemplateName)>"
+UntemplateInputType:            "<(UntemplateInputType)>"
+UntemplateInputDefaultArgument: <(UntemplateInputDefaultArgument)>
+UntemplateOutputMetadataType:   "<(UntemplateOutputMetadataType)>"
 ```
 
 `UntemplateFunction` is a reference to the `Function1` object that implements your untemplate.

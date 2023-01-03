@@ -136,7 +136,7 @@ function.
 Now, the [generated scala](example/scalagen/untemplatedoc/untemplate_ceci_nest_pas2_md.scala) _would_ transform the markdown, like this:
 
 ```markdown
-# Ceci n'est pas... 0.7568733675074344
+# Ceci n'est pas... 0.6431977940929524
 
 Well, this is _almost_ just a regular markdown file, with no
 special untemplate constructs. But if we wish, we can treat
@@ -187,12 +187,8 @@ Let's get a look at what it produces:
 # Loopy
 # Loopy
 # Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
 
-And we're a winner! (num = 8)
+It sucks to be us. (num = 4)
 
 ```
 
@@ -202,8 +198,13 @@ And again!
 # Loopy
 # Loopy
 # Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
 
-It sucks to be us. (num = 4)
+And we're a winner! (num = 9)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/untemplate_loopy_md.scala))
@@ -376,8 +377,9 @@ Here is the output...
 # Loopy
 # Loopy
 # Loopy
+# Loopy
 
-And we're a winner! (num = 8)
+And we're a winner! (num = 9)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/untemplate_loopy2_md.scala))
@@ -439,7 +441,7 @@ Which generates...
 
 Happy Birthday to me!
 
-_I was published on Tue, 3 Jan 2023 03:46:21 -0500._
+_I was published on Tue, 3 Jan 2023 03:48:26 -0500._
 
 
 ```
@@ -499,11 +501,11 @@ Beyond that, if this will be useful at all, it will probably be for debugging.
 For the [untemplate you are reading](src/main/untemplate/untemplatedoc/README_functional_templates.md.untemplate):
 
 ```
-UntemplateFunction:             `<function1>`
-UntemplateName:                 `README_functional_templates_md`.
-UntemplateInputType:            `Int`
-UntemplateInputDefaultArgument: `None`
-UntemplateOutputMetadataType:   `Subsection`
+UntemplateFunction:             <function1>
+UntemplateName:                 "README_functional_templates_md"
+UntemplateInputType:            "Int"
+UntemplateInputDefaultArgument: None
+UntemplateOutputMetadataType:   "Subsection"
 ```
 
 `UntemplateFunction` is a reference to the `Function1` object that implements your untemplate.
