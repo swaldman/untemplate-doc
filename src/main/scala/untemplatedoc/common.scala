@@ -23,7 +23,9 @@ def sgenFor( underscoredName : String ) : Path =
   sgenDir.resolve( s"untemplatedoc/untemplate_${underscoredName}.scala" )
 end sgenFor
 
-case class Subsection(title : String, subsections : List[Subsection] = Nil)
+object SubsectionMeta:
+  val Unknown = SubsectionMeta(5, "(title unknown)")
+case class SubsectionMeta(level : Int, title : String, subsections : List[SubsectionMeta] = Nil)
 
 def hashHeader(level : Int) =
   require( level >= 1, "Markdown doc section headers contain at least one #")
@@ -35,12 +37,12 @@ val isWordChar = Character.isJavaIdentifierPart
 def toAnchor( title : String ) =
   "#" + title.toLowerCase.filter( c => isWordChar(c) || ToDashChar(c) ).map( c => if ToDashChar(c) then '-' else c )
 
-def tocLines( indentLevel : Int, subsection : Subsection ) : List[String] =
+def tocLines( indentLevel : Int, subsection : SubsectionMeta ) : List[String] =
   val indent = " " * (indentLevel * 2)
   s"""${indent}* <a href="${toAnchor(subsection.title)}">${subsection.title}</a>""" ::
     subsection.subsections.flatMap(ss => tocLines(indentLevel+1, ss))
 
-def toc( subsection : Subsection ) = tocLines(0, subsection).mkString(LineSep)
+def toc( subsection : SubsectionMeta ) = tocLines(0, subsection).mkString(LineSep)
 
 val TableOfContentsTitle  = "Table of contents"
 val TableOfContentsAnchor = toAnchor(TableOfContentsTitle)
@@ -54,4 +56,30 @@ def box( emoji : Option[String], label : Option[String] )( block : String ) =
   prependEachLine("> ")( emojiPart + labelPart + newLinePart + block)
 
 
+/*
+object Subsection:
+  final case class Rendered(title : String, text : String, subsections : List[Subsection])
 
+  object Content:
+    final case class Spec(level : Int, title : String)
+    type Renderer = Function1[untemplate.Result[Subsection.Content.Spec],untemplate.Result[Nothing]]
+    val DefaultRenderer : Renderer = untemplatedoc.readme.defaultRenderer
+  type Content = Function1[Int,untemplate.Result[Subsection.Content.Spec]]
+
+  type Renderer = Function[Spec, untemplate.Result[String]]
+
+  def renderer( content: Content ) : Renderer = level => Content.DefaultRenderer(content)
+  def apply( r : Renderer ) : Subsection = 
+
+  val Introduction = Subsection( renderer(...) )
+type Subsection = Function1[Int,Subsection.Rendered]
+*/
+
+// complete: (title, rawText, finalText, [complete,complete, complete])
+
+// content: i => (title, rawText, [content,content,...])
+// renderer (title, rawText) => finalText
+// (content, renderer): i => (title, rawText, finalText, [content,content,...]) 
+
+// final case class SubsectionFormatInfo( level : Int, title : String, text : String )
+// def formatSubsection( level : Int, title : String)( text : String ) = untemplatedoc.readme.contentRenderer( SubsectionFormatInfo(level, title, text) )

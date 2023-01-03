@@ -1,0 +1,38 @@
+import java.nio.file.Files
+import com.mchange.codegenutil.*
+
+import untemplatedoc.*
+
+val title = "Embedded expressions"
+
+mbMetadata = Some( SubsectionMeta( level, title ) )
+
+outputTransformer = readme.subsection_content_transformer_md
+
+(level : Int)[SubsectionMeta]~()>
+
+Often you'd like to do more than just embed a few very simple expressions in some text.
+So, you can break up your text into code blocks and text blocks. Let's do that, and repeat
+a block of text in a loop.
+
+```markdown
+<()
+writer.writeln(Files.readString(loopySrc).trim)
+()>
+```
+
+Let's get a look at what it produces:
+```markdown
+<()
+writer.writeln(untemplatedoc.loopy_md(immutable.Map.empty).text)
+()>
+```
+
+And again!
+```markdown
+<()
+writer.writeln(untemplatedoc.loopy_md(immutable.Map.empty).text)
+()>
+```
+([generated scala](<( sgenFor("loopy_md") )>))
+

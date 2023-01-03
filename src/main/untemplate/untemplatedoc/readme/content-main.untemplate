@@ -1,0 +1,49 @@
+import untemplatedoc.*
+
+val title = "Untemplate documentation"
+val tocTitle = "Table of contents"
+
+val level = 1
+val intro                    : untemplate.Result[SubsectionMeta] = introduction.content_main_md( level + 1 )
+val someSimpleUntemplates    : untemplate.Result[SubsectionMeta] = somesimpleuntemplates.content_main_md( level + 1 )
+// val functionalTemplates   : untemplate.Result[Subsection]     = README_functional_templates_md( level + 1 )
+// val acknowledgments       : untemplate.Result[Subsection]     = README_acknowledgments_md( level + 1 )
+
+val topSubsectionMeta =
+    SubsectionMeta(
+        level,
+        title,
+        SubsectionMeta(2, tocTitle) ::
+        intro.mbMetadata.toList :::
+        someSimpleUntemplates.mbMetadata.toList :::
+        // functionalTemplates.mbMetadata.toList :::
+        // acknowledgments.mbMetadata.toList :::
+        Nil
+    )
+end topSubsectionMeta
+
+()[]~()>
+
+# <( title )>
+
+_This project only documents the `untemplate` project. For the code, please see [swaldman/untemplate](https://github.com/swaldman/untemplate)._
+
+## <( tocTitle )>
+
+<( toc(topSubsectionMeta) )>
+
+<( intro )>
+
+<( someSimpleUntemplates )>
+
+\<( functionalTemplates )>
+
+\<( acknowledgments )>
+
+
+
+
+
+
+
+

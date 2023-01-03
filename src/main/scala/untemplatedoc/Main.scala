@@ -9,7 +9,7 @@ object Main:
   def main(args : Array[String]) : Unit =
     // println(s"""cwd: ${new java.io.File(".").getAbsolutePath}""")
     Files.createDirectories(IckyHardcoded.getParent())
-    Files.writeString(IckyHardcoded, untemplatedoc.README_md().text )
+    Files.writeString(IckyHardcoded, untemplatedoc.readme.content_main().text )
 
 
 

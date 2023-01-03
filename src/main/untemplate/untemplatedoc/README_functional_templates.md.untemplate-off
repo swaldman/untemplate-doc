@@ -36,7 +36,7 @@ More specifically, each template returns a
 ```scala
 package untemplate
 
-case class Result[+A]( mbMetadata : Option[A], text : String)`.
+case class Result[+A]( mbMetadata : Option[A], text : String)
 ```
 
 Untemplate authors may (optionally!) specify the input name and type of the untemplate function, and output metadata type,
