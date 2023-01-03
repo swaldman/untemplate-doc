@@ -47,4 +47,7 @@ val TableOfContentsAnchor = toAnchor(TableOfContentsTitle)
 
 val BackToToc = s"""<a href="${TableOfContentsAnchor}">Back to top &#x21ba;</a>"""
 
+def box( emoji : String, label : String )( block : String ) =
+  prependEachLine("> ")(emoji + " **" + label + "** <br/>" + LineSep + block)
+
 
