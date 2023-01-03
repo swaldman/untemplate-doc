@@ -26,7 +26,7 @@ But templates are a step along the slippery path to DSLs with clever, powerful f
 that become the idiosyncracies and quirks I'm trying to escape. As much as possible, I
 want my specification language to be straightforward Scala.
 
-_Untemplate_ is my attempt to create the thinnest possible template veneer over vanilla Scala.
+_Untemplate_ is my attempt to create the thinnest possible template veneer over vanilla Scala 3.
 An untemplate is just a text file that optionally includes any of precisely four special delimeters:
 
 | Delimeter | Description |

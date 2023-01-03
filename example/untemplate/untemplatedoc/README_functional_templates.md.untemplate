@@ -24,7 +24,7 @@ Every untemplate defines a Scala function. By default, from a file called `aweso
 function would look like...
 
 ```scala
-def awesomeness_md( input : immutable.Map[String,Any] ) : untemplate.Result[Nothing]
+def awesomeness_md( input : immutable.Map[String,Any] = immutable.Map.empty ) : untemplate.Result[Nothing]
 ```
 
 The top-level function accepts a single, author-specifiable input. (`immutable.Map[String,Any]` is just a default.)
@@ -56,6 +56,10 @@ By default, this returned metadata will be `None`, but the template can provide 
 > Ick, it's a `var`! It's okay. `mbMetadata` is a strictly local variable, in the single-threaded context of a function
 > call. Your function will remain very functional as long as the input type and output metadata types that you specify
 > are immutable.
+
+> :bulb: **Tip!** <br/>
+> You can specify a default argument along with your custom untemplate input type, in the usual scala
+> syntax of `( myVar : MyType = DefaultVal )`
 
 <( BackToToc )>
 

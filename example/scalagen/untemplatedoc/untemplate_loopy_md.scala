@@ -10,7 +10,7 @@ val Function_loopy_md = new Function1[immutable.Map[String,Any],untemplate.Resul
   val UntemplateInputType          = "immutable.Map[String,Any]"
   val UntemplateOutputMetadataType = "Nothing"
 
-  def apply(input : immutable.Map[String,Any]) : untemplate.Result[Nothing] =
+  def apply(input : immutable.Map[String,Any] = immutable.Map.empty) : untemplate.Result[Nothing] =
     val writer     : StringWriter = new StringWriter(380)
     var mbMetadata : Option[Nothing] = None
 
@@ -42,4 +42,4 @@ val Function_loopy_md = new Function1[immutable.Map[String,Any],untemplate.Resul
   end apply
 end Function_loopy_md
 
-def loopy_md(input : immutable.Map[String,Any]) : untemplate.Result[Nothing] = Function_loopy_md( input )
+def loopy_md(input : immutable.Map[String,Any] = immutable.Map.empty) : untemplate.Result[Nothing] = Function_loopy_md( input )

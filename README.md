@@ -42,7 +42,7 @@ But templates are a step along the slippery path to DSLs with clever, powerful f
 that become the idiosyncracies and quirks I'm trying to escape. As much as possible, I
 want my specification language to be straightforward Scala.
 
-_Untemplate_ is my attempt to create the thinnest possible template veneer over vanilla Scala.
+_Untemplate_ is my attempt to create the thinnest possible template veneer over vanilla Scala 3.
 An untemplate is just a text file that optionally includes any of precisely four special delimeters:
 
 | Delimeter | Description |
@@ -100,7 +100,7 @@ val Function_ceci_nest_pas_md = new Function1[immutable.Map[String,Any],untempla
   val UntemplateInputType          = "immutable.Map[String,Any]"
   val UntemplateOutputMetadataType = "Nothing"
 
-  def apply(input : immutable.Map[String,Any]) : untemplate.Result[Nothing] =
+  def apply(input : immutable.Map[String,Any] = immutable.Map.empty) : untemplate.Result[Nothing] =
     val writer     : StringWriter = new StringWriter(406)
     var mbMetadata : Option[Nothing] = None
 
@@ -114,7 +114,7 @@ val Function_ceci_nest_pas_md = new Function1[immutable.Map[String,Any],untempla
   end apply
 end Function_ceci_nest_pas_md
 
-def ceci_nest_pas_md(input : immutable.Map[String,Any]) : untemplate.Result[Nothing] = Function_ceci_nest_pas_md( input )
+def ceci_nest_pas_md(input : immutable.Map[String,Any] = immutable.Map.empty) : untemplate.Result[Nothing] = Function_ceci_nest_pas_md( input )
 ```
 <a href="#table-of-contents">Back to top &#x21ba;</a>
 
@@ -135,7 +135,7 @@ function.
 Now, the [generated scala](example/scalagen/untemplatedoc/untemplate_ceci_nest_pas2_md.scala) _would_ transform the markdown, like this:
 
 ```markdown
-# Ceci n'est pas... 0.08149666290667112
+# Ceci n'est pas... 0.20533873154880333
 
 Well, this is _almost_ just a regular markdown file, with no
 special untemplate constructs. But if we wish, we can treat
@@ -183,16 +183,31 @@ It sucks to be us. (num = <(num)>)
 Let's get a look at what it produces:
 ```markdown
 # Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
 
-It sucks to be us. (num = 1)
+And we're a winner! (num = 9)
 
 ```
 
 And again!
 ```markdown
 # Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
 
-It sucks to be us. (num = 1)
+And we're a winner! (num = 8)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/untemplate_loopy_md.scala))
@@ -215,7 +230,7 @@ Every untemplate defines a Scala function. By default, from a file called `aweso
 function would look like...
 
 ```scala
-def awesomeness_md( input : immutable.Map[String,Any] ) : untemplate.Result[Nothing]
+def awesomeness_md( input : immutable.Map[String,Any] = immutable.Map.empty ) : untemplate.Result[Nothing]
 ```
 
 The top-level function accepts a single, author-specifiable input. (`immutable.Map[String,Any]` is just a default.)
@@ -247,6 +262,10 @@ By default, this returned metadata will be `None`, but the template can provide 
 > Ick, it's a `var`! It's okay. `mbMetadata` is a strictly local variable, in the single-threaded context of a function
 > call. Your function will remain very functional as long as the input type and output metadata types that you specify
 > are immutable.
+
+> :bulb: **Tip!** <br/>
+> You can specify a default argument along with your custom untemplate input type, in the usual scala
+> syntax of `( myVar : MyType = DefaultVal )`
 
 <a href="#table-of-contents">Back to top &#x21ba;</a>
 
@@ -357,8 +376,11 @@ Here is the output...
 # Loopy
 # Loopy
 # Loopy
+# Loopy
+# Loopy
+# Loopy
 
-It sucks to be us. (num = 4)
+And we're a winner! (num = 7)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/untemplate_loopy2_md.scala))
@@ -420,7 +442,7 @@ Which generates...
 
 Happy Birthday to me!
 
-_I was published on Mon, 2 Jan 2023 18:59:16 -0500._
+_I was published on Tue, 3 Jan 2023 03:24:00 -0500._
 
 
 ```

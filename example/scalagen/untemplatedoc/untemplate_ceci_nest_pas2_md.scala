@@ -10,7 +10,7 @@ val Function_ceci_nest_pas2_md = new Function1[immutable.Map[String,Any],untempl
   val UntemplateInputType          = "immutable.Map[String,Any]"
   val UntemplateOutputMetadataType = "Nothing"
 
-  def apply(input : immutable.Map[String,Any]) : untemplate.Result[Nothing] =
+  def apply(input : immutable.Map[String,Any] = immutable.Map.empty) : untemplate.Result[Nothing] =
     val writer     : StringWriter = new StringWriter(456)
     var mbMetadata : Option[Nothing] = None
 
@@ -25,4 +25,4 @@ val Function_ceci_nest_pas2_md = new Function1[immutable.Map[String,Any],untempl
   end apply
 end Function_ceci_nest_pas2_md
 
-def ceci_nest_pas2_md(input : immutable.Map[String,Any]) : untemplate.Result[Nothing] = Function_ceci_nest_pas2_md( input )
+def ceci_nest_pas2_md(input : immutable.Map[String,Any] = immutable.Map.empty) : untemplate.Result[Nothing] = Function_ceci_nest_pas2_md( input )

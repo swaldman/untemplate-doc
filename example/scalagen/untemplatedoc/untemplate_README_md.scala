@@ -13,7 +13,7 @@ val Function_README_md = new Function1[immutable.Map[String,Any],untemplate.Resu
   val UntemplateInputType          = "immutable.Map[String,Any]"
   val UntemplateOutputMetadataType = "Nothing"
 
-  def apply(input : immutable.Map[String,Any]) : untemplate.Result[Nothing] =
+  def apply(input : immutable.Map[String,Any] = immutable.Map.empty) : untemplate.Result[Nothing] =
     val writer     : StringWriter = new StringWriter(2286)
     var mbMetadata : Option[Nothing] = None
 
@@ -56,4 +56,4 @@ val Function_README_md = new Function1[immutable.Map[String,Any],untemplate.Resu
   end apply
 end Function_README_md
 
-def README_md(input : immutable.Map[String,Any]) : untemplate.Result[Nothing] = Function_README_md( input )
+def README_md(input : immutable.Map[String,Any] = immutable.Map.empty) : untemplate.Result[Nothing] = Function_README_md( input )
