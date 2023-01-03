@@ -16,7 +16,7 @@ val Function_README_functional_templates_md = new Function1[Int,untemplate.Resul
   val UntemplateOutputMetadataType   = "Subsection"
 
   def apply(level : Int) : untemplate.Result[Subsection] =
-    val writer     : StringWriter = new StringWriter(20436)
+    val writer     : StringWriter = new StringWriter(20440)
     var mbMetadata : Option[Subsection] = None
 
 
@@ -87,10 +87,10 @@ val Function_README_functional_templates_md = new Function1[Int,untemplate.Resul
           "\n\n" +  hashHeader(level+1)  +
           " " +  subsections(4).title  +
           "\n\nWithin an untemplate, you have access to variables containing metainformation about the generated function.\n\nIt may be useful to use `UntemplateFunction` as a Map key, in order to decorate it with metadata.\nBeyond that, if this will be useful at all, it will probably be for debugging.\n\nFor the [untemplate you are reading](" +  readmeFunctionalTemplatesSrc  +
-          "):\n\n```\nUntemplateFunction:             " + UntemplateFunction +
+          "):\n\n```\nUntemplateFunction:              " + UntemplateFunction +
           "\nUntemplateName:                 \"" + UntemplateName +
           "\"\nUntemplateInputType:            \"" + UntemplateInputType +
-          "\"\nUntemplateInputDefaultArgument: " + UntemplateInputDefaultArgument +
+          "\"\nUntemplateInputDefaultArgument:  " + UntemplateInputDefaultArgument +
           "\nUntemplateOutputMetadataType:   \"" + UntemplateOutputMetadataType +
           "\"\n```\n\n`UntemplateFunction` is a reference to the `Function1` object that implements your untemplate.\n\nThe type values are just `String`s, and names _may not be fully qualified_.\n\n`UntemplateInputDefaultArgument` is an `Option[String]`, the default value as declared, if declared.\nIt is not the actual value of the default argument!\n\n" +  BackToToc  +
           "\n"
