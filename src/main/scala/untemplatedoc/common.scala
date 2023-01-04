@@ -5,7 +5,6 @@ import java.nio.file.{Path, Files}
 import com.mchange.codegenutil.*
 
 val usrcDir                      = Path.of("src/main/untemplate")
-val egenDir                      = Path.of("example/untemplate")
 val sgenDir                      = Path.of("example/scalagen")
 val ceciSrc                      = usrcDir.resolve("untemplatedoc/ceci-nest-pas.md.untemplate")
 val ceciScala                    = sgenDir.resolve("untemplatedoc/untemplate_ceci_nest_pas_md.scala")
@@ -14,9 +13,9 @@ val loopySrc                     = usrcDir.resolve("untemplatedoc/loopy.md.untem
 val loopy2badSrc                 = usrcDir.resolve("untemplatedoc/loopy2-bad.md.untemplate-off")
 val loopy2Src                    = usrcDir.resolve("untemplatedoc/loopy2.md.untemplate")
 val someOverridesSrc             = usrcDir.resolve("untemplatedoc/some_overrides.md.untemplate")
-val readmeTopSrc                 = usrcDir.resolve("untemplatedoc/README.md.untemplate")
-val readmeSomeSimpleTemplatesSrc = usrcDir.resolve("untemplatedoc/README_some_simple_untemplates.md.untemplate")
-val readmeFunctionalTemplatesSrc = usrcDir.resolve("untemplatedoc/README_functional_templates.md.untemplate")
+val readmeTopSrc                 = usrcDir.resolve("untemplatedoc/readme.content-main.untemplate")
+val readmeEmbeddedExpressionsSrc = usrcDir.resolve("untemplatedoc/readme.somesimpleuntemplates.content-embeddable-expresions.md.untemplate")
+val readmeMetainformationSrc     = usrcDir.resolve("untemplatedoc/readme.functionaltemplates.content-metainformation.md.untemplate")
 
 
 def sgenFor( underscoredName : String ) : Path =
