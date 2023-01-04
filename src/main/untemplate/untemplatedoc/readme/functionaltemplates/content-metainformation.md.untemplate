@@ -1,0 +1,35 @@
+import java.nio.file.Files
+import com.mchange.codegenutil.*
+
+import untemplatedoc.*
+
+val title = "Metainformation"
+
+mbMetadata = Some( SubsectionMeta( level, title ) )
+
+outputTransformer = readme.subsection_content_transformer_md
+
+(level : Int)[SubsectionMeta]~()>
+
+Within an untemplate, you have access to variables containing metainformation about the generated function.
+
+It may be useful to use `UntemplateFunction` as a Map key, in order to decorate it with metadata.
+Beyond that, if this will be useful at all, it will probably be for debugging.
+
+For the [untemplate you are reading](<( readmeMetainformationSrc )>):
+
+```
+UntemplateFunction:              <(UntemplateFunction)>
+UntemplateName:                 "<(UntemplateName)>"
+UntemplateInputType:            "<(UntemplateInputType)>"
+UntemplateInputDefaultArgument:  <(UntemplateInputDefaultArgument)>
+UntemplateOutputMetadataType:   "<(UntemplateOutputMetadataType)>"
+```
+
+`UntemplateFunction` is a reference to the `Function1` object that implements your untemplate.
+
+The type values are just `String`s, and names _may not be fully qualified_.
+
+`UntemplateInputDefaultArgument` is an `Option[String]`, the default value as declared, if declared.
+It is not the actual value of the default argument!
+

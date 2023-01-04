@@ -17,7 +17,7 @@ val Function_content_main_md = new Function1[Int,untemplate.Result[SubsectionMet
   val UntemplateOutputMetadataType   = "SubsectionMeta"
 
   def apply(level : Int) : untemplate.Result[SubsectionMeta] =
-    val writer             : StringWriter = new StringWriter(1352)
+    val writer             : StringWriter = new StringWriter(1458)
     var mbMetadata         : Option[SubsectionMeta] = None
     var outputTransformer  : Function1[untemplate.Result[SubsectionMeta],untemplate.Result[SubsectionMeta]] = identity
 
@@ -29,7 +29,8 @@ val Function_content_main_md = new Function1[Int,untemplate.Result[SubsectionMet
         content_untemplates_r_functions_md,
         content_text_blocks_as_functions_md,
         content_naming_the_top_level_md,
-        content_untemplates_packages_imports_md
+        content_untemplates_packages_imports_md,
+        content_metainformation_md
     )
 
     val subsectionResults = subsectionFunctions.map( fcn => fcn(level + 1) )
@@ -46,6 +47,7 @@ val Function_content_main_md = new Function1[Int,untemplate.Result[SubsectionMet
       
     subsectionResults.foreach { result =>
         writer.writeln( result.text )
+        writer.writeln()
     }
 
 
