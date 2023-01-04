@@ -140,7 +140,7 @@ function.
 Now, the [generated scala](example/scalagen/untemplatedoc/untemplate_ceci_nest_pas2_md.scala) _would_ transform the markdown, like this:
 
 ```markdown
-# Ceci n'est pas... 0.2693185197472737
+# Ceci n'est pas... 0.46376164805501796
 
 Well, this is _almost_ just a regular markdown file, with no
 special untemplate constructs. But if we wish, we can treat
@@ -209,8 +209,14 @@ And we're a winner! (num = 8)
 And again!
 ```markdown
 # Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
 
-It sucks to be us. (num = 1)
+And we're a winner! (num = 7)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/untemplate_loopy_md.scala))
@@ -231,7 +237,7 @@ It sucks to be us. (num = 1)
 
 
 
-## Untemplates are functions
+### Untemplates are functions
 
 
 Every untemplate defines a Scala function. By default, from a file called `awesomeness.md.untemplate`, this
@@ -280,7 +286,7 @@ By default, this returned metadata will be `None`, but the template can provide 
 <a href="#table-of-contents">Back to top &#x21ba;</a>
 
 
-## Text blocks can be nested functions
+### Text blocks can be nested functions
 
 
 Every text block within an untemplate can be a function.
@@ -385,8 +391,14 @@ Not the loveliest file. But educational.
 Here is the output...
 
 ```markdown
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
 
-It sucks to be us. (num = 0)
+And we're a winner! (num = 6)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/untemplate_loopy2_md.scala))
@@ -395,7 +407,7 @@ It sucks to be us. (num = 0)
 <a href="#table-of-contents">Back to top &#x21ba;</a>
 
 
-## Naming the top-level untemplate function
+### Naming the top-level untemplate function
 
 
 The `untemplate` app and file-system based tooling in the library will derive a default name for the
@@ -451,7 +463,7 @@ Which generates...
 
 Happy Birthday to me!
 
-_I was published on Tue, 3 Jan 2023 19:09:10 -0500._
+_I was published on Tue, 3 Jan 2023 19:11:14 -0500._
 
 
 ```
@@ -471,7 +483,7 @@ _I was published on Tue, 3 Jan 2023 19:09:10 -0500._
 <a href="#table-of-contents">Back to top &#x21ba;</a>
 
 
-## Untemplates, packages, and imports
+### Untemplates, packages, and imports
 
 
 Top-level untemplates are top-level functions, declared directly in a Scala package.

@@ -12,7 +12,7 @@ val subsectionFunctions = List (
     content_untemplates_packages_imports_md
 )
 
-val subsectionResults = subsectionFunctions.map( fcn => fcn(level) )
+val subsectionResults = subsectionFunctions.map( fcn => fcn(level + 1) )
 
 mbMetadata = Some( SubsectionMeta( level, title, subsectionResults.flatMap( _.mbMetadata.toList ) ) )
 
