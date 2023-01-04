@@ -28,7 +28,7 @@ UntemplateOutputMetadataType:   "<(UntemplateOutputMetadataType)>"
 
 `UntemplateFunction` is a reference to the `Function1` object that implements your untemplate.
 
-The type values are just `String`s, and names _may not be fully qualified_.
+The type values are just `String`, and names _may not be fully qualified_.
 
 `UntemplateInputDefaultArgument` is an `Option[String]`, the default value as declared, if declared.
 It is not the actual value of the default argument!

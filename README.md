@@ -141,7 +141,7 @@ function.
 Now, the [generated scala](example/scalagen/untemplatedoc/untemplate_ceci_nest_pas2_md.scala) _would_ transform the markdown, like this:
 
 ```markdown
-# Ceci n'est pas... 0.8466053092786805
+# Ceci n'est pas... 0.6178265012347668
 
 Well, this is _almost_ just a regular markdown file, with no
 special untemplate constructs. But if we wish, we can treat
@@ -194,21 +194,24 @@ It sucks to be us. (num = <(num)>)
 
 Let's get a look at what it produces:
 ```markdown
-# Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
 
-And we're a winner! (num = 5)
+It sucks to be us. (num = 0)
 
 ```
 
 And again!
 ```markdown
 # Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
 
-It sucks to be us. (num = 1)
+And we're a winner! (num = 9)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/untemplate_loopy_md.scala))
@@ -264,7 +267,7 @@ The function will return whatever text it generates, along with an `Option[immut
 
 By default, this returned metadata will be `None`, but the template can provide `Some(metadata)` by overwriting the `var` called `mbMetadata`.
 > :blush: **It's okay!** <br/>
-> Ick, it's a `var`! It's okay. `mbMetadata` is a strictly local variable, in the single-threaded context of a function
+> Ick, it's a `var`. It's okay! `mbMetadata` is a strictly local variable, in the single-threaded context of a function
 > call. Your function will remain very functional as long as the input type and output metadata types that you specify
 > are immutable.
 > 
@@ -387,11 +390,8 @@ Here is the output...
 # Loopy
 # Loopy
 # Loopy
-# Loopy
-# Loopy
-# Loopy
 
-And we're a winner! (num = 6)
+It sucks to be us. (num = 3)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/untemplate_loopy2_md.scala))
@@ -457,7 +457,7 @@ Which generates...
 
 Happy Birthday to me!
 
-_I was published on Tue, 3 Jan 2023 19:55:54 -0500._
+_I was published on Wed, 4 Jan 2023 01:47:56 -0500._
 
 
 ```
@@ -482,7 +482,7 @@ _I was published on Tue, 3 Jan 2023 19:55:54 -0500._
 
 
 Top-level untemplates are top-level functions, declared directly in a Scala package.
-They are paired with implementations in the form of `Function0` objects, which are defined
+They are paired with implementations in the form of `Function1` objects, which are defined
 as `Function_` prepended to the untemplate function name.
 
 Untemplates are usually generated from a source directory, and the default behavior
@@ -534,7 +534,7 @@ UntemplateOutputMetadataType:   "SubsectionMeta"
 
 `UntemplateFunction` is a reference to the `Function1` object that implements your untemplate.
 
-The type values are just `String`s, and names _may not be fully qualified_.
+The type values are just `String`, and names _may not be fully qualified_.
 
 `UntemplateInputDefaultArgument` is an `Option[String]`, the default value as declared, if declared.
 It is not the actual value of the default argument!

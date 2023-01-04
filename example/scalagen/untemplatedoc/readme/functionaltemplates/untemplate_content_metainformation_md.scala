@@ -17,7 +17,7 @@ val Function_content_metainformation_md = new Function1[Int,untemplate.Result[Su
   val UntemplateOutputMetadataType   = "SubsectionMeta"
 
   def apply(level : Int) : untemplate.Result[SubsectionMeta] =
-    val writer             : StringWriter = new StringWriter(2524)
+    val writer             : StringWriter = new StringWriter(2522)
     var mbMetadata         : Option[SubsectionMeta] = None
     var outputTransformer  : Function1[untemplate.Result[SubsectionMeta],untemplate.Result[SubsectionMeta]] = identity
 
@@ -38,7 +38,7 @@ val Function_content_metainformation_md = new Function1[Int,untemplate.Result[Su
           "\"\nUntemplateInputType:            \"" + (UntemplateInputType) +
           "\"\nUntemplateInputDefaultArgument:  " + (UntemplateInputDefaultArgument) +
           "\nUntemplateOutputMetadataType:   \"" + (UntemplateOutputMetadataType) +
-          "\"\n```\n\n`UntemplateFunction` is a reference to the `Function1` object that implements your untemplate.\n\nThe type values are just `String`s, and names _may not be fully qualified_.\n\n`UntemplateInputDefaultArgument` is an `Option[String]`, the default value as declared, if declared.\nIt is not the actual value of the default argument!\n\n"
+          "\"\n```\n\n`UntemplateFunction` is a reference to the `Function1` object that implements your untemplate.\n\nThe type values are just `String`, and names _may not be fully qualified_.\n\n`UntemplateInputDefaultArgument` is an `Option[String]`, the default value as declared, if declared.\nIt is not the actual value of the default argument!\n\n"
       writer.write(block0())
       
     outputTransformer( untemplate.Result( mbMetadata, writer.toString ) )

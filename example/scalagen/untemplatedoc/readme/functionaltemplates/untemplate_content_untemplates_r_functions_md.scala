@@ -40,7 +40,7 @@ val Function_content_untemplates_r_functions_md = new Function1[Int,untemplate.R
 
     val block1 = new Function0[String]:
       def apply() : String =
-        "Ick, it's a `var`! It's okay. `mbMetadata` is a strictly local variable, in the single-threaded context of a function\ncall. Your function will remain very functional as long as the input type and output metadata types that you specify\nare immutable.\n"
+        "Ick, it's a `var`. It's okay! `mbMetadata` is a strictly local variable, in the single-threaded context of a function\ncall. Your function will remain very functional as long as the input type and output metadata types that you specify\nare immutable.\n"
     def varIsOkay() = block1()
 
     val block2 = new Function0[String]:

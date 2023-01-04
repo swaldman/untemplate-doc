@@ -12,7 +12,7 @@ outputTransformer = readme.subsection_content_transformer_md
 (level : Int)[SubsectionMeta]~()>
 
 Top-level untemplates are top-level functions, declared directly in a Scala package.
-They are paired with implementations in the form of `Function0` objects, which are defined
+They are paired with implementations in the form of `Function1` objects, which are defined
 as `Function_` prepended to the untemplate function name.
 
 Untemplates are usually generated from a source directory, and the default behavior
