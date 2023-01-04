@@ -27,8 +27,17 @@ More specifically, each template returns a
 ```scala
 package untemplate
 
-case class Result[+A]( mbMetadata : Option[A], text : String)
+trait Result[+A]:
+  def mbMetadata : Option[A]
+  def text       : String
+
+  lazy val asTuple : Tuple2[Option[A],String] = (mbMetadata, text)
+
+  override def toString() = text
 ```
+
+Note that the `toString()` method is overridden, so you can embed `Result` directly an untemplate expressions.
+The text will be printed, without metadata.
 
 Untemplate authors may (optionally!) specify the input name and type of the untemplate function, and output metadata type,
 in the header delimiter:

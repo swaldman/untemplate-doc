@@ -12,7 +12,7 @@ val Function_loopy_md = new Function1[immutable.Map[String,Any],untemplate.Resul
   val UntemplateOutputMetadataType   = "Nothing"
 
   def apply(input : immutable.Map[String,Any] = immutable.Map.empty) : untemplate.Result[Nothing] =
-    val writer             : StringWriter = new StringWriter(380)
+    val writer             : StringWriter = new StringWriter(1900)
     var mbMetadata         : Option[Nothing] = None
     var outputTransformer  : Function1[untemplate.Result[Nothing],untemplate.Result[Nothing]] = identity
 
@@ -39,7 +39,7 @@ val Function_loopy_md = new Function1[immutable.Map[String,Any],untemplate.Resul
           ")\n"
       writer.write(block2())
       
-    outputTransformer( untemplate.Result( mbMetadata, writer.toString ) )
+    outputTransformer( untemplate.Result.Simple( mbMetadata, writer.toString ) )
     
   end apply
 end Function_loopy_md

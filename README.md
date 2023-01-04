@@ -105,7 +105,7 @@ val Function_ceci_nest_pas_md = new Function1[immutable.Map[String,Any],untempla
   val UntemplateOutputMetadataType   = "Nothing"
 
   def apply(input : immutable.Map[String,Any] = immutable.Map.empty) : untemplate.Result[Nothing] =
-    val writer             : StringWriter = new StringWriter(406)
+    val writer             : StringWriter = new StringWriter(2030)
     var mbMetadata         : Option[Nothing] = None
     var outputTransformer  : Function1[untemplate.Result[Nothing],untemplate.Result[Nothing]] = identity
 
@@ -114,7 +114,7 @@ val Function_ceci_nest_pas_md = new Function1[immutable.Map[String,Any],untempla
           "# Ceci n'est pas...\n\nWell, this is just a regular markdown file, with no\nspecial untemplate constructs. But if we wish, we can treat\nit as an unemplate, and it will be immortalized as a scala\nfunction.\n\n"
       writer.write(block0())
       
-    outputTransformer( untemplate.Result( mbMetadata, writer.toString ) )
+    outputTransformer( untemplate.Result.Simple( mbMetadata, writer.toString ) )
     
   end apply
 end Function_ceci_nest_pas_md
@@ -141,7 +141,7 @@ function.
 Now, the [generated scala](example/scalagen/untemplatedoc/untemplate_ceci_nest_pas2_md.scala) _would_ transform the markdown, like this:
 
 ```markdown
-# Ceci n'est pas... 0.6178265012347668
+# Ceci n'est pas... 0.9862515238446636
 
 Well, this is _almost_ just a regular markdown file, with no
 special untemplate constructs. But if we wish, we can treat
@@ -194,8 +194,14 @@ It sucks to be us. (num = <(num)>)
 
 Let's get a look at what it produces:
 ```markdown
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
 
-It sucks to be us. (num = 0)
+And we're a winner! (num = 6)
 
 ```
 
@@ -251,8 +257,17 @@ More specifically, each template returns a
 ```scala
 package untemplate
 
-case class Result[+A]( mbMetadata : Option[A], text : String)
+trait Result[+A]:
+  def mbMetadata : Option[A]
+  def text       : String
+
+  lazy val asTuple : Tuple2[Option[A],String] = (mbMetadata, text)
+
+  override def toString() = text
 ```
+
+Note that the `toString()` method is overridden, so you can embed `Result` directly an untemplate expressions.
+The text will be printed, without metadata.
 
 Untemplate authors may (optionally!) specify the input name and type of the untemplate function, and output metadata type,
 in the header delimiter:
@@ -390,8 +405,11 @@ Here is the output...
 # Loopy
 # Loopy
 # Loopy
+# Loopy
+# Loopy
+# Loopy
 
-It sucks to be us. (num = 3)
+And we're a winner! (num = 6)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/untemplate_loopy2_md.scala))
@@ -457,7 +475,7 @@ Which generates...
 
 Happy Birthday to me!
 
-_I was published on Wed, 4 Jan 2023 01:47:56 -0500._
+_I was published on Wed, 4 Jan 2023 11:08:14 -0500._
 
 
 ```

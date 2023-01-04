@@ -15,7 +15,7 @@ val Function_subsection_content_transformer_md = new Function1[untemplate.Result
   val UntemplateOutputMetadataType   = "SubsectionMeta"
 
   def apply(result : untemplate.Result[SubsectionMeta]) : untemplate.Result[SubsectionMeta] =
-    val writer             : StringWriter = new StringWriter(622)
+    val writer             : StringWriter = new StringWriter(3110)
     var mbMetadata         : Option[SubsectionMeta] = None
     var outputTransformer  : Function1[untemplate.Result[SubsectionMeta],untemplate.Result[SubsectionMeta]] = identity
 
@@ -33,7 +33,7 @@ val Function_subsection_content_transformer_md = new Function1[untemplate.Result
           "\n"
       writer.write(block0())
       
-    outputTransformer( untemplate.Result( mbMetadata, writer.toString ) )
+    outputTransformer( untemplate.Result.Simple( mbMetadata, writer.toString ) )
     
   end apply
 end Function_subsection_content_transformer_md

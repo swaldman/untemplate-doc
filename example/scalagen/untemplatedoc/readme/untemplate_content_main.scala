@@ -15,7 +15,7 @@ val Function_content_main = new Function1[immutable.Map[String,Any],untemplate.R
   val UntemplateOutputMetadataType   = "Nothing"
 
   def apply(input : immutable.Map[String,Any] = immutable.Map.empty) : untemplate.Result[Nothing] =
-    val writer             : StringWriter = new StringWriter(2440)
+    val writer             : StringWriter = new StringWriter(12200)
     var mbMetadata         : Option[Nothing] = None
     var outputTransformer  : Function1[untemplate.Result[Nothing],untemplate.Result[Nothing]] = identity
 
@@ -55,7 +55,7 @@ val Function_content_main = new Function1[immutable.Map[String,Any],untemplate.R
           "\n\n\n\n\n\n\n\n\n"
       writer.write(block0())
       
-    outputTransformer( untemplate.Result( mbMetadata, writer.toString ) )
+    outputTransformer( untemplate.Result.Simple( mbMetadata, writer.toString ) )
     
   end apply
 end Function_content_main

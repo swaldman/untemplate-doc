@@ -16,7 +16,7 @@ val Function_untemplateDoc = new Function1[Instant,untemplate.Result[Nothing]]:
   val UntemplateOutputMetadataType   = "Nothing"
 
   def apply(pubDate : Instant) : untemplate.Result[Nothing] =
-    val writer             : StringWriter = new StringWriter(880)
+    val writer             : StringWriter = new StringWriter(4400)
     var mbMetadata         : Option[Nothing] = None
     var outputTransformer  : Function1[untemplate.Result[Nothing],untemplate.Result[Nothing]] = identity
 
@@ -33,7 +33,7 @@ val Function_untemplateDoc = new Function1[Instant,untemplate.Result[Nothing]]:
           "._\n\n"
       writer.write(block0())
       
-    outputTransformer( untemplate.Result( mbMetadata, writer.toString ) )
+    outputTransformer( untemplate.Result.Simple( mbMetadata, writer.toString ) )
     
   end apply
 end Function_untemplateDoc

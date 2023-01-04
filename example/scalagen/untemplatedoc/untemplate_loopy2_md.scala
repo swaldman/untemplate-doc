@@ -12,7 +12,7 @@ val Function_loopy2_md = new Function1[immutable.Map[String,Any],untemplate.Resu
   val UntemplateOutputMetadataType   = "Nothing"
 
   def apply(input : immutable.Map[String,Any] = immutable.Map.empty) : untemplate.Result[Nothing] =
-    val writer             : StringWriter = new StringWriter(1242)
+    val writer             : StringWriter = new StringWriter(6210)
     var mbMetadata         : Option[Nothing] = None
     var outputTransformer  : Function1[untemplate.Result[Nothing],untemplate.Result[Nothing]] = identity
 
@@ -47,7 +47,7 @@ val Function_loopy2_md = new Function1[immutable.Map[String,Any],untemplate.Resu
         writer.write(block2())
         
     reportCard()
-    outputTransformer( untemplate.Result( mbMetadata, writer.toString ) )
+    outputTransformer( untemplate.Result.Simple( mbMetadata, writer.toString ) )
     
   end apply
 end Function_loopy2_md

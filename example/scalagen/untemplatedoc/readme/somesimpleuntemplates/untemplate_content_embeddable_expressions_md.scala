@@ -17,7 +17,7 @@ val Function_content_embeddable_expressions_md = new Function1[Int,untemplate.Re
   val UntemplateOutputMetadataType   = "SubsectionMeta"
 
   def apply(level : Int) : untemplate.Result[SubsectionMeta] =
-    val writer             : StringWriter = new StringWriter(2534)
+    val writer             : StringWriter = new StringWriter(12670)
     var mbMetadata         : Option[SubsectionMeta] = None
     var outputTransformer  : Function1[untemplate.Result[SubsectionMeta],untemplate.Result[SubsectionMeta]] = identity
 
@@ -58,7 +58,7 @@ val Function_content_embeddable_expressions_md = new Function1[Int,untemplate.Re
     writer.writeln {
       box( None, Some("Note") )( escapingDelimeters() )
     }
-    outputTransformer( untemplate.Result( mbMetadata, writer.toString ) )
+    outputTransformer( untemplate.Result.Simple( mbMetadata, writer.toString ) )
     
   end apply
 end Function_content_embeddable_expressions_md

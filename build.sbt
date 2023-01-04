@@ -23,6 +23,7 @@ lazy val root = project
     resolvers += Resolver.mavenLocal,
     libraryDependencies += "com.mchange" %% "codegenutil" % "0.0.1-SNAPSHOT",
     libraryDependencies += "com.mchange" %% "untemplate" % "0.0.1-SNAPSHOT",
+    // untemplateExtraImports := Seq("com.mchange.codegenutil.*","java.nio.file.Files","untemplatedoc.*"),
     exampleDir := file(".") / "example",
     // exampleUntemplate := exampleDir.value / "untemplate",
     exampleScalagen := exampleDir.value / "scalagen",

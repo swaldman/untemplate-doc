@@ -17,7 +17,7 @@ val Function_content_naming_the_top_level_md = new Function1[Int,untemplate.Resu
   val UntemplateOutputMetadataType   = "SubsectionMeta"
 
   def apply(level : Int) : untemplate.Result[SubsectionMeta] =
-    val writer             : StringWriter = new StringWriter(4616)
+    val writer             : StringWriter = new StringWriter(23080)
     var mbMetadata         : Option[SubsectionMeta] = None
     var outputTransformer  : Function1[untemplate.Result[SubsectionMeta],untemplate.Result[SubsectionMeta]] = identity
 
@@ -73,7 +73,7 @@ val Function_content_naming_the_top_level_md = new Function1[Int,untemplate.Resu
     }
 
 
-    outputTransformer( untemplate.Result( mbMetadata, writer.toString ) )
+    outputTransformer( untemplate.Result.Simple( mbMetadata, writer.toString ) )
     
   end apply
 end Function_content_naming_the_top_level_md

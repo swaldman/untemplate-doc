@@ -17,7 +17,7 @@ val Function_content_main_md = new Function1[Int,untemplate.Result[SubsectionMet
   val UntemplateOutputMetadataType   = "SubsectionMeta"
 
   def apply(level : Int) : untemplate.Result[SubsectionMeta] =
-    val writer             : StringWriter = new StringWriter(1828)
+    val writer             : StringWriter = new StringWriter(8960)
     var mbMetadata         : Option[SubsectionMeta] = None
     var outputTransformer  : Function1[untemplate.Result[SubsectionMeta],untemplate.Result[SubsectionMeta]] = identity
 
@@ -25,8 +25,8 @@ val Function_content_main_md = new Function1[Int,untemplate.Result[SubsectionMet
 
     val title = "Some simple untemplates"
 
-    val untemplate.Result( eeMbMeta, eeText ) = content_embeddable_expressions_md( level + 1 )
-    val untemplate.Result( roMbMeta, roBlocks ) = content_repeatable_omittable_md( level + 1 )
+    val ( eeMbMeta, eeText ) = content_embeddable_expressions_md( level + 1 ).asTuple
+    val ( roMbMeta, roBlocks ) = content_repeatable_omittable_md( level + 1 ).asTuple
 
     mbMetadata = Some( SubsectionMeta( level, title, eeMbMeta.toList ::: roMbMeta.toList ::: Nil) )
 
@@ -52,7 +52,7 @@ val Function_content_main_md = new Function1[Int,untemplate.Result[SubsectionMet
           "\n\n\n"
       writer.write(block2())
       
-    outputTransformer( untemplate.Result( mbMetadata, writer.toString ) )
+    outputTransformer( untemplate.Result.Simple( mbMetadata, writer.toString ) )
     
   end apply
 end Function_content_main_md
