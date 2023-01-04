@@ -13,9 +13,9 @@ val loopySrc                     = usrcDir.resolve("untemplatedoc/loopy.md.untem
 val loopy2badSrc                 = usrcDir.resolve("untemplatedoc/loopy2-bad.md.untemplate-off")
 val loopy2Src                    = usrcDir.resolve("untemplatedoc/loopy2.md.untemplate")
 val someOverridesSrc             = usrcDir.resolve("untemplatedoc/some_overrides.md.untemplate")
-val readmeTopSrc                 = usrcDir.resolve("untemplatedoc/readme.content-main.untemplate")
-val readmeEmbeddedExpressionsSrc = usrcDir.resolve("untemplatedoc/readme.somesimpleuntemplates.content-embeddable-expresions.md.untemplate")
-val readmeMetainformationSrc     = usrcDir.resolve("untemplatedoc/readme.functionaltemplates.content-metainformation.md.untemplate")
+val readmeTopSrc                 = usrcDir.resolve("untemplatedoc/readme/content-main.untemplate")
+val readmeEmbeddedExpressionsSrc = usrcDir.resolve("untemplatedoc/readme/somesimpleuntemplates/content-embeddable-expresions.md.untemplate")
+val readmeMetainformationSrc     = usrcDir.resolve("untemplatedoc/readme/functionaltemplates/content-metainformation.md.untemplate")
 
 
 def sgenFor( underscoredName : String ) : Path =
