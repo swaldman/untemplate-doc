@@ -8,7 +8,7 @@ ThisBuild / version      := "0.0.1-SNAPSHOT"
 val TmpGenReadme = Path.of("/tmp/untemplate-doc/README.md") // hackish as F, but a way to cross the build / built boundary
 
 val exampleDir = settingKey[File]("The directory into which examples will be lifted")
-val exampleUntemplate = settingKey[File]("The directory into which untemplate examples will be lifted")
+// val exampleUntemplate = settingKey[File]("The directory into which untemplate examples will be lifted")
 val exampleScalagen = settingKey[File]("The directory into which generated scala will be lifted")
 val readmeMarkdown = settingKey[File]("The file that should be the generated README.md")
 
@@ -24,7 +24,7 @@ lazy val root = project
     libraryDependencies += "com.mchange" %% "codegenutil" % "0.0.1-SNAPSHOT",
     libraryDependencies += "com.mchange" %% "untemplate" % "0.0.1-SNAPSHOT",
     exampleDir := file(".") / "example",
-    exampleUntemplate := exampleDir.value / "untemplate",
+    // exampleUntemplate := exampleDir.value / "untemplate",
     exampleScalagen := exampleDir.value / "scalagen",
     readmeMarkdown := file(".") / "README.md",
     liftSources := {
@@ -32,12 +32,12 @@ lazy val root = project
       val ensure = (Compile / compile).value
       val untemplates = untemplateSource.value
       val scalagens = untemplateScala.value
-      val untemplateDest = exampleUntemplate.value
+      //val untemplateDest = exampleUntemplate.value
       val scalagenDest = exampleScalagen.value
       // log.info("Lifting sources...")
-      untemplateDest.mkdirs()
+      //untemplateDest.mkdirs()
       scalagenDest.mkdirs()
-      recursiveCopyBySuffix(untemplates,untemplateDest,".untemplate", log)
+      //recursiveCopyBySuffix(untemplates,untemplateDest,".untemplate", log)
       recursiveCopyBySuffix(scalagens,scalagenDest,".scala", log)
     },
     (Compile / run) := {
