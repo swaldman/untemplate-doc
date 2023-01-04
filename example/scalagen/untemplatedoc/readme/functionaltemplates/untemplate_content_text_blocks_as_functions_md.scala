@@ -54,7 +54,7 @@ val Function_content_text_blocks_as_functions_md = new Function1[Int,untemplate.
           "))\n"
       writer.write(block3())
       
-    outputTransformer( untemplate.Result.Simple( mbMetadata, writer.toString ) )
+    outputTransformer( untemplate.Result( mbMetadata, writer.toString ) )
     
   end apply
 end Function_content_text_blocks_as_functions_md

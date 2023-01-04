@@ -55,7 +55,7 @@ val Function_content_main = new Function1[immutable.Map[String,Any],untemplate.R
           "\n\n\n\n\n\n\n\n\n"
       writer.write(block0())
       
-    outputTransformer( untemplate.Result.Simple( mbMetadata, writer.toString ) )
+    outputTransformer( untemplate.Result( mbMetadata, writer.toString ) )
     
   end apply
 end Function_content_main

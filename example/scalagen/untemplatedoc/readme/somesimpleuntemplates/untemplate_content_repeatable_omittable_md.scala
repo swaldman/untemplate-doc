@@ -54,7 +54,7 @@ val Function_content_repeatable_omittable_md = new Function1[Int,untemplate.Resu
           "))\n\n"
       writer.write(block3())
       
-    outputTransformer( untemplate.Result.Simple( mbMetadata, writer.toString ) )
+    outputTransformer( untemplate.Result( mbMetadata, writer.toString ) )
     
   end apply
 end Function_content_repeatable_omittable_md

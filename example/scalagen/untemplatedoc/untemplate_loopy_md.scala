@@ -39,7 +39,7 @@ val Function_loopy_md = new Function1[immutable.Map[String,Any],untemplate.Resul
           ")\n"
       writer.write(block2())
       
-    outputTransformer( untemplate.Result.Simple( mbMetadata, writer.toString ) )
+    outputTransformer( untemplate.Result( mbMetadata, writer.toString ) )
     
   end apply
 end Function_loopy_md

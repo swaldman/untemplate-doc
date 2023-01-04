@@ -47,7 +47,7 @@ val Function_loopy2_md = new Function1[immutable.Map[String,Any],untemplate.Resu
         writer.write(block2())
         
     reportCard()
-    outputTransformer( untemplate.Result.Simple( mbMetadata, writer.toString ) )
+    outputTransformer( untemplate.Result( mbMetadata, writer.toString ) )
     
   end apply
 end Function_loopy2_md

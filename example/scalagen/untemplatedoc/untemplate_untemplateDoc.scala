@@ -33,7 +33,7 @@ val Function_untemplateDoc = new Function1[Instant,untemplate.Result[Nothing]]:
           "._\n\n"
       writer.write(block0())
       
-    outputTransformer( untemplate.Result.Simple( mbMetadata, writer.toString ) )
+    outputTransformer( untemplate.Result( mbMetadata, writer.toString ) )
     
   end apply
 end Function_untemplateDoc

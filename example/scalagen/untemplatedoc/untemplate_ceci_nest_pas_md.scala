@@ -21,7 +21,7 @@ val Function_ceci_nest_pas_md = new Function1[immutable.Map[String,Any],untempla
           "# Ceci n'est pas...\n\nWell, this is just a regular markdown file, with no\nspecial untemplate constructs. But if we wish, we can treat\nit as an unemplate, and it will be immortalized as a scala\nfunction.\n\n"
       writer.write(block0())
       
-    outputTransformer( untemplate.Result.Simple( mbMetadata, writer.toString ) )
+    outputTransformer( untemplate.Result( mbMetadata, writer.toString ) )
     
   end apply
 end Function_ceci_nest_pas_md

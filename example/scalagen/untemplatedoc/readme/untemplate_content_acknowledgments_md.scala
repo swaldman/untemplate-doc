@@ -35,7 +35,7 @@ val Function_content_acknowledgments_md = new Function1[Int,untemplate.Result[Su
           "\nThis project owes a debt to Java Server Pages (JSPs), and the special place they will always have in my heart.\n\nThe [mill](https://github.com/com-lihaoyi/mill) plugin I am currently working on owes a debt to\n[Twirl](https://github.com/playframework/twirl)'s [plugin](https://github.com/com-lihaoyi/mill/blob/8e2fef20886650882e49ba1aed0f719ddbf72365/contrib/playlib/src/mill/playlib/Twirl.scala),\nfrom which I am gently (and much less sophisticatedly) cribbing.\n"
       writer.write(block0())
       
-    outputTransformer( untemplate.Result.Simple( mbMetadata, writer.toString ) )
+    outputTransformer( untemplate.Result( mbMetadata, writer.toString ) )
     
   end apply
 end Function_content_acknowledgments_md

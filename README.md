@@ -19,7 +19,7 @@ _This project only documents the `untemplate` project. For the code, please see 
     * <a href="#metainformation">Metainformation</a>
   * <a href="#acknowledgments">Acknowledgments</a>
 
-
+Result(Some(SubsectionMeta(2,Introduction,List())),
 ## Introduction
 
 
@@ -71,9 +71,9 @@ top-level imports in the generated file.
 
 
 <a href="#table-of-contents">Back to top &#x21ba;</a>
+)
 
-
-
+Result(Some(SubsectionMeta(2,Some simple untemplates,List(SubsectionMeta(3,Embedded expressions,List()), SubsectionMeta(3,Repeatable, omittable, blocks,List())))),
 ## Some simple untemplates
 
 
@@ -114,7 +114,7 @@ val Function_ceci_nest_pas_md = new Function1[immutable.Map[String,Any],untempla
           "# Ceci n'est pas...\n\nWell, this is just a regular markdown file, with no\nspecial untemplate constructs. But if we wish, we can treat\nit as an unemplate, and it will be immortalized as a scala\nfunction.\n\n"
       writer.write(block0())
       
-    outputTransformer( untemplate.Result.Simple( mbMetadata, writer.toString ) )
+    outputTransformer( untemplate.Result( mbMetadata, writer.toString ) )
     
   end apply
 end Function_ceci_nest_pas_md
@@ -141,7 +141,7 @@ function.
 Now, the [generated scala](example/scalagen/untemplatedoc/untemplate_ceci_nest_pas2_md.scala) _would_ transform the markdown, like this:
 
 ```markdown
-# Ceci n'est pas... 0.6237315740260259
+# Ceci n'est pas... 0.6779931328607808
 
 Well, this is _almost_ just a regular markdown file, with no
 special untemplate constructs. But if we wish, we can treat
@@ -201,8 +201,10 @@ Let's get a look at what it produces:
 # Loopy
 # Loopy
 # Loopy
+# Loopy
+# Loopy
 
-And we're a winner! (num = 7)
+And we're a winner! (num = 9)
 
 ```
 
@@ -216,8 +218,9 @@ And again!
 # Loopy
 # Loopy
 # Loopy
+# Loopy
 
-And we're a winner! (num = 8)
+And we're a winner! (num = 9)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/untemplate_loopy_md.scala))
@@ -231,9 +234,9 @@ And we're a winner! (num = 8)
 
 
 
+)
 
-
-
+Result(Some(SubsectionMeta(2,Functional untemplates,List(SubsectionMeta(3,Untemplates are functions,List()), SubsectionMeta(3,Text blocks can be nested functions,List()), SubsectionMeta(3,Naming the top-level untemplate function,List()), SubsectionMeta(3,Untemplates, packages, and imports,List()), SubsectionMeta(3,Metainformation,List())))),
 ## Functional untemplates
 
 
@@ -405,8 +408,10 @@ Here is the output...
 # Loopy
 # Loopy
 # Loopy
+# Loopy
+# Loopy
 
-It sucks to be us. (num = 3)
+And we're a winner! (num = 5)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/untemplate_loopy2_md.scala))
@@ -472,7 +477,7 @@ Which generates...
 
 Happy Birthday to me!
 
-_I was published on Wed, 4 Jan 2023 13:04:29 -0500._
+_I was published on Wed, 4 Jan 2023 13:20:15 -0500._
 
 
 ```
@@ -562,9 +567,9 @@ It is not the actual value of the default argument!
 
 
 
+)
 
-
-
+Result(Some(SubsectionMeta(2,Acknowledgments,List())),
 ## Acknowledgments
 
 
@@ -576,7 +581,7 @@ from which I am gently (and much less sophisticatedly) cribbing.
 
 
 <a href="#table-of-contents">Back to top &#x21ba;</a>
-
+)
 
 
 

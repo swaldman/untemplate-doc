@@ -33,7 +33,7 @@ val Function_subsection_content_transformer_md = new Function1[untemplate.Result
           "\n"
       writer.write(block0())
       
-    outputTransformer( untemplate.Result.Simple( mbMetadata, writer.toString ) )
+    outputTransformer( untemplate.Result( mbMetadata, writer.toString ) )
     
   end apply
 end Function_subsection_content_transformer_md

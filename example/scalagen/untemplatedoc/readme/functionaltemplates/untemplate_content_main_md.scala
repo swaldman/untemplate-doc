@@ -53,7 +53,7 @@ val Function_content_main_md = new Function1[Int,untemplate.Result[SubsectionMet
 
 
 
-    outputTransformer( untemplate.Result.Simple( mbMetadata, writer.toString ) )
+    outputTransformer( untemplate.Result( mbMetadata, writer.toString ) )
     
   end apply
 end Function_content_main_md

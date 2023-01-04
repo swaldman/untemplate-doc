@@ -58,7 +58,7 @@ val Function_content_embeddable_expressions_md = new Function1[Int,untemplate.Re
     writer.writeln {
       box( None, Some("Note") )( escapingDelimeters() )
     }
-    outputTransformer( untemplate.Result.Simple( mbMetadata, writer.toString ) )
+    outputTransformer( untemplate.Result( mbMetadata, writer.toString ) )
     
   end apply
 end Function_content_embeddable_expressions_md
