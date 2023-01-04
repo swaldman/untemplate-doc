@@ -16,8 +16,9 @@ val Function_untemplateDoc = new Function1[Instant,untemplate.Result[Nothing]]:
   val UntemplateOutputMetadataType   = "Nothing"
 
   def apply(pubDate : Instant) : untemplate.Result[Nothing] =
-    val writer     : StringWriter = new StringWriter(880)
-    var mbMetadata : Option[Nothing] = None
+    val writer             : StringWriter = new StringWriter(880)
+    var mbMetadata         : Option[Nothing] = None
+    var outputTransformer  : Function1[untemplate.Result[Nothing],untemplate.Result[Nothing]] = identity
 
 
     // note that all non-import (and non-package) lines in the header get 
@@ -28,11 +29,11 @@ val Function_untemplateDoc = new Function1[Instant,untemplate.Result[Nothing]]:
 
       val block0 = new Function0[String]:
         def apply() : String =
-          "\n# Birthday Post\n\nHappy Birthday to me!\n\n_I was published on " + formatted +
+          "\n# Birthday Post\n\nHappy Birthday to me!\n\n_I was published on " + (formatted) +
           "._\n\n"
       writer.write(block0())
       
-    untemplate.Result( mbMetadata, writer.toString )
+    outputTransformer( untemplate.Result( mbMetadata, writer.toString ) )
     
   end apply
 end Function_untemplateDoc

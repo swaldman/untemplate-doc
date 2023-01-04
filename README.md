@@ -11,16 +11,16 @@ _This project only documents the `untemplate` project. For the code, please see 
   * <a href="#some-simple-untemplates">Some simple untemplates</a>
     * <a href="#embedded-expressions">Embedded expressions</a>
     * <a href="#repeatable-omittable-blocks">Repeatable, omittable, blocks</a>
-  * <a href="#functional-templates">Functional templates</a>
+  * <a href="#functional-untemplates">Functional untemplates</a>
     * <a href="#untemplates-are-functions">Untemplates are functions</a>
     * <a href="#text-blocks-can-be-nested-functions">Text blocks can be nested functions</a>
     * <a href="#naming-the-top-level-untemplate-function">Naming the top-level untemplate function</a>
     * <a href="#untemplates-packages-and-imports">Untemplates, packages, and imports</a>
-    * <a href="#reflection">Reflection</a>
   * <a href="#acknowledgments">Acknowledgments</a>
 
 
 ## Introduction
+
 
 Every once in a while, I find I need to build a little website for something.
 I've become a fan of static site generators for that. I've worked with [hugo](https://gohugo.io/) and
@@ -67,12 +67,14 @@ top-level imports in the generated file.
 > :bulb: **Mnemonic** <br/>
 > For every construct, whatever an "arrow", `<` or `>`, points at is a text region. Whatever a parenthesis is adjacent to is code.
 
+
+
 <a href="#table-of-contents">Back to top &#x21ba;</a>
 
 
 
-
 ## Some simple untemplates
+
 
 Let's look at an untemplate so simple it seems not to be an untemplate at all.
 
@@ -102,24 +104,26 @@ val Function_ceci_nest_pas_md = new Function1[immutable.Map[String,Any],untempla
   val UntemplateOutputMetadataType   = "Nothing"
 
   def apply(input : immutable.Map[String,Any] = immutable.Map.empty) : untemplate.Result[Nothing] =
-    val writer     : StringWriter = new StringWriter(406)
-    var mbMetadata : Option[Nothing] = None
+    val writer             : StringWriter = new StringWriter(406)
+    var mbMetadata         : Option[Nothing] = None
+    var outputTransformer  : Function1[untemplate.Result[Nothing],untemplate.Result[Nothing]] = identity
 
       val block0 = new Function0[String]:
         def apply() : String =
           "# Ceci n'est pas...\n\nWell, this is just a regular markdown file, with no\nspecial untemplate constructs. But if we wish, we can treat\nit as an unemplate, and it will be immortalized as a scala\nfunction.\n\n"
       writer.write(block0())
       
-    untemplate.Result( mbMetadata, writer.toString )
+    outputTransformer( untemplate.Result( mbMetadata, writer.toString ) )
     
   end apply
 end Function_ceci_nest_pas_md
 
 def ceci_nest_pas_md(input : immutable.Map[String,Any] = immutable.Map.empty) : untemplate.Result[Nothing] = Function_ceci_nest_pas_md( input )
 ```
-<a href="#table-of-contents">Back to top &#x21ba;</a>
+
 
 ### Embedded expressions
+
 
 We'd like, of course, for our (un)template library to do a bit more than just spit out unmodified
 text files though. Let's modify our example just a bit:
@@ -136,7 +140,7 @@ function.
 Now, the [generated scala](example/scalagen/untemplatedoc/untemplate_ceci_nest_pas2_md.scala) _would_ transform the markdown, like this:
 
 ```markdown
-# Ceci n'est pas... 0.320337396716069
+# Ceci n'est pas... 0.4897455856097347
 
 Well, this is _almost_ just a regular markdown file, with no
 special untemplate constructs. But if we wish, we can treat
@@ -156,9 +160,13 @@ The delimeter `<( expression )>` causes the `expression` to be evaluated into th
 > 
 > 
 
+
 <a href="#table-of-contents">Back to top &#x21ba;</a>
 
+
+
 ### Repeatable, omittable, blocks
+
 
 Often you'd like to do more than just embed a few very simple expressions in some text.
 So, you can break up your text into code blocks and text blocks. Let's do that, and repeat
@@ -187,12 +195,8 @@ Let's get a look at what it produces:
 ```markdown
 # Loopy
 # Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
 
-And we're a winner! (num = 6)
+It sucks to be us. (num = 2)
 
 ```
 
@@ -205,6 +209,8 @@ It sucks to be us. (num = 1)
 ```
 ([generated scala](example/scalagen/untemplatedoc/untemplate_loopy_md.scala))
 
+
+
 <a href="#table-of-contents">Back to top &#x21ba;</a>
 
 
@@ -215,9 +221,12 @@ It sucks to be us. (num = 1)
 
 
 
-## Functional templates
+## Functional untemplates
 
-### Untemplates are functions
+
+
+## Untemplates are functions
+
 
 Every untemplate defines a Scala function. By default, from a file called `awesomeness.md.untemplate`, this
 function would look like...
@@ -235,7 +244,7 @@ More specifically, each template returns a
 ```scala
 package untemplate
 
-case class Result[+A]( mbMetadata : Option[A], text : String)`.
+case class Result[+A]( mbMetadata : Option[A], text : String)
 ```
 
 Untemplate authors may (optionally!) specify the input name and type of the untemplate function, and output metadata type,
@@ -261,11 +270,15 @@ By default, this returned metadata will be `None`, but the template can provide 
 > syntax of `( myVar : MyType = DefaultVal )`
 > 
 
+
 <a href="#table-of-contents">Back to top &#x21ba;</a>
 
-### Text blocks can be nested functions
+
+## Text blocks can be nested functions
+
 
 Every text block within an untemplate can be a function.
+
 
 Ordinarily, text blocks just print themselves
 automatically into the generated `String`. However, if you embed a name in the `()>` delimeter that begins
@@ -371,16 +384,18 @@ Here is the output...
 # Loopy
 # Loopy
 # Loopy
-# Loopy
 
-And we're a winner! (num = 6)
+And we're a winner! (num = 5)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/untemplate_loopy2_md.scala))
 
+
 <a href="#table-of-contents">Back to top &#x21ba;</a>
 
-### Naming the top-level untemplate function
+
+## Naming the top-level untemplate function
+
 
 The `untemplate` app and file-system based tooling in the library will derive a default name for the
 top-level generated function by transforming its filename. Untemplate are expected to have the suffix
@@ -435,7 +450,7 @@ Which generates...
 
 Happy Birthday to me!
 
-_I was published on Tue, 3 Jan 2023 12:54:04 -0500._
+_I was published on Tue, 3 Jan 2023 18:59:16 -0500._
 
 
 ```
@@ -451,9 +466,12 @@ _I was published on Tue, 3 Jan 2023 12:54:04 -0500._
 > called `startText()`, but leave the top-level function name alone.
 > 
 
+
 <a href="#table-of-contents">Back to top &#x21ba;</a>
 
-### Untemplates, packages, and imports
+
+## Untemplates, packages, and imports
+
 
 Top-level untemplates are top-level functions, declared directly in a Scala package.
 They are paired with implementations in the form of `Function0` objects, which are defined
@@ -483,43 +501,24 @@ When generating untemplates, applications may specify a set of default imports t
 all generated untemplates. So, if a static site generator makes use of a common set of types and utilities,
 these can be made automatically available to all templates.
 
-<a href="#table-of-contents">Back to top &#x21ba;</a>
-
-### Reflection
-
-Within an untemplate, you have access to variables containing metainformation about the generated function.
-
-It may be useful to use `UntemplateFunction` as a Map key, in order to decorate it with metadata.
-Beyond that, if this will be useful at all, it will probably be for debugging.
-
-For the [untemplate you are reading](src/main/untemplate/untemplatedoc/README_functional_templates.md.untemplate):
-
-```
-UntemplateFunction:              <function1>
-UntemplateName:                 "README_functional_templates_md"
-UntemplateInputType:            "Int"
-UntemplateInputDefaultArgument:  None
-UntemplateOutputMetadataType:   "Subsection"
-```
-
-`UntemplateFunction` is a reference to the `Function1` object that implements your untemplate.
-
-The type values are just `String`s, and names _may not be fully qualified_.
-
-`UntemplateInputDefaultArgument` is an `Option[String]`, the default value as declared, if declared.
-It is not the actual value of the default argument!
 
 <a href="#table-of-contents">Back to top &#x21ba;</a>
+
+
+
+
 
 
 
 ## Acknowledgments
+
 
 This project owes a debt to Java Server Pages (JSPs), and the special place they will always have in my heart.
 
 The [mill](https://github.com/com-lihaoyi/mill) plugin I am currently working on owes a debt to
 [Twirl](https://github.com/playframework/twirl)'s [plugin](https://github.com/com-lihaoyi/mill/blob/8e2fef20886650882e49ba1aed0f719ddbf72365/contrib/playlib/src/mill/playlib/Twirl.scala),
 from which I am gently (and much less sophisticatedly) cribbing.
+
 
 <a href="#table-of-contents">Back to top &#x21ba;</a>
 

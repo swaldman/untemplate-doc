@@ -76,6 +76,7 @@ writer.writeln {
 
 Every text block within an untemplate can be a function.
 
+
 Ordinarily, text blocks just print themselves
 automatically into the generated `String`. However, if you embed a name in the `\()>` delimeter that begins
 the block, like `\(entry)>`, then nothing is automatically printed into the `String`. Instead you will have a function

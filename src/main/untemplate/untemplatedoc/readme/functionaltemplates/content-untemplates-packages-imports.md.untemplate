@@ -1,0 +1,40 @@
+import java.nio.file.Files
+import com.mchange.codegenutil.*
+
+import untemplatedoc.*
+
+val title = "Untemplates, packages, and imports"
+
+mbMetadata = Some( SubsectionMeta( level, title ) )
+
+outputTransformer = readme.subsection_content_transformer_md
+
+(level : Int)[SubsectionMeta]~()>
+
+Top-level untemplates are top-level functions, declared directly in a Scala package.
+They are paired with implementations in the form of `Function0` objects, which are defined
+as `Function_` prepended to the untemplate function name.
+
+Untemplates are usually generated from a source directory, and the default behavior
+is for packages to be inferred by the old-school Java convention. The directory hierarchy
+beneath specified source directory, to the untemplate source file, will be mapped to a package
+name (or dot-separated path of package names). Untemplate source
+files placed in the top directory belong to the unnamed "default" package.
+
+However, you can override this default by making an explicit package declaration in the header section of your
+untemplate (that is, the section before a [header delimeter](#introduction)). If you wish all untemplates
+to be generated into a single flat directory, regardless of where or how deeply they were found beneath the source
+directory, you can set the option `flatten` to `true`.
+
+Any package declarations or import statements in a header section go at the top-level, outside of
+the untemplate-generated function.
+
+All other code in the header section gets placed inside the generated function.
+
+**This means that whatever input your header accepts is already in scope in the header section,
+even though its name and type may be declared at the end of the header section, inside the header
+delimeter.**
+
+When generating untemplates, applications may specify a set of default imports that will be inserted into
+all generated untemplates. So, if a static site generator makes use of a common set of types and utilities,
+these can be made automatically available to all templates.

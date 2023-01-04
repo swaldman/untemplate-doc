@@ -1,0 +1,66 @@
+import java.nio.file.Files
+import com.mchange.codegenutil.*
+
+import untemplatedoc.*
+
+val title = "Untemplates are functions"
+
+mbMetadata = Some( SubsectionMeta( level, title ) )
+
+outputTransformer = readme.subsection_content_transformer_md
+
+(level : Int)[SubsectionMeta]~()>
+
+Every untemplate defines a Scala function. By default, from a file called `awesomeness.md.untemplate`, this
+function would look like...
+
+```scala
+def awesomeness_md( input : immutable.Map[String,Any] = immutable.Map.empty ) : untemplate.Result[Nothing]
+```
+
+The top-level function accepts a single, author-specifiable input. (`immutable.Map[String,Any]` is just a default.)
+
+It returns the template output as a simple `String`, along with any metadata that untemplate chooses to provide.
+
+More specifically, each template returns a
+
+```scala
+package untemplate
+
+case class Result[+A]( mbMetadata : Option[A], text : String)
+```
+
+Untemplate authors may (optionally!) specify the input name and type of the untemplate function, and output metadata type,
+in the header delimiter:
+
+```scala
+\(sourceMarkdown : String)[immutable.Map[String,String]]~()>
+```
+This header causes the generated untemplate function to require a `String` input, which the template author can work with in the
+template as `sourceMarkdown`.
+
+The function will return whatever text it generates, along with an `Option[immutable.Map[String,String]]`.
+
+By default, this returned metadata will be `None`, but the template can provide `Some(metadata)` by overwriting the `var` called `mbMetadata`.
+<()
+
+// let's write some boxes
+
+(varIsOkay)>
+Ick, it's a `var`! It's okay. `mbMetadata` is a strictly local variable, in the single-threaded context of a function
+call. Your function will remain very functional as long as the input type and output metadata types that you specify
+are immutable.
+<()
+
+(defaultArgIsOkay)>
+You can specify a default argument along with your custom untemplate input type, using the usual scala
+syntax of `( myVar : MyType = DefaultVal )`
+<()
+
+writer.writeln {
+  box(Some(":blush:"), Some("It's okay!"))( varIsOkay() )
+}
+writer.writeln()
+writer.writeln {
+  box(Some(":bulb:"), Some("Tip!"))( defaultArgIsOkay() )
+}

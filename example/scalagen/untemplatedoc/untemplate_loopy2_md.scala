@@ -12,8 +12,9 @@ val Function_loopy2_md = new Function1[immutable.Map[String,Any],untemplate.Resu
   val UntemplateOutputMetadataType   = "Nothing"
 
   def apply(input : immutable.Map[String,Any] = immutable.Map.empty) : untemplate.Result[Nothing] =
-    val writer     : StringWriter = new StringWriter(1242)
-    var mbMetadata : Option[Nothing] = None
+    val writer             : StringWriter = new StringWriter(1242)
+    var mbMetadata         : Option[Nothing] = None
+    var outputTransformer  : Function1[untemplate.Result[Nothing],untemplate.Result[Nothing]] = identity
 
     val num = math.round(math.random * 10).toInt
 
@@ -34,19 +35,19 @@ val Function_loopy2_md = new Function1[immutable.Map[String,Any],untemplate.Resu
       if (num >= 5)
         val block1 = new Function0[String]:
           def apply() : String =
-            "\nAnd we're a winner! (num = " + num +
+            "\nAnd we're a winner! (num = " + (num) +
             ")\n"
         writer.write(block1())
         
       else
         val block2 = new Function0[String]:
           def apply() : String =
-            "\nIt sucks to be us. (num = " + num +
+            "\nIt sucks to be us. (num = " + (num) +
             ")\n"
         writer.write(block2())
         
     reportCard()
-    untemplate.Result( mbMetadata, writer.toString )
+    outputTransformer( untemplate.Result( mbMetadata, writer.toString ) )
     
   end apply
 end Function_loopy2_md
