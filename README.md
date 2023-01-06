@@ -141,7 +141,7 @@ function.
 Now, the [generated scala](example/scalagen/untemplatedoc/untemplate_ceci_nest_pas2_md.scala) _would_ transform the markdown, like this:
 
 ```markdown
-# Ceci n'est pas... 0.6066762323042022
+# Ceci n'est pas... 0.3707984224569232
 
 Well, this is _almost_ just a regular markdown file, with no
 special untemplate constructs. But if we wish, we can treat
@@ -196,8 +196,10 @@ Let's get a look at what it produces:
 ```markdown
 # Loopy
 # Loopy
+# Loopy
+# Loopy
 
-It sucks to be us. (num = 2)
+It sucks to be us. (num = 4)
 
 ```
 
@@ -468,7 +470,7 @@ Which generates...
 
 Happy Birthday to me!
 
-_I was published on Thu, 5 Jan 2023 21:15:43 -0500._
+_I was published on Fri, 6 Jan 2023 01:48:59 -0500._
 
 
 ```
