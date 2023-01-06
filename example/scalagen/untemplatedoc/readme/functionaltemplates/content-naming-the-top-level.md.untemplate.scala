@@ -17,7 +17,7 @@ val Function_content_naming_the_top_level_md = new Function1[Int,untemplate.Resu
   val UntemplateOutputMetadataType   = "SubsectionMeta"
 
   def apply(level : Int) : untemplate.Result[SubsectionMeta] =
-    val writer             : StringWriter = new StringWriter(23080)
+    val writer             : StringWriter = new StringWriter(23720)
     var mbMetadata         : Option[SubsectionMeta] = None
     var outputTransformer  : Function1[untemplate.Result[SubsectionMeta],untemplate.Result[SubsectionMeta]] = identity
 
@@ -33,7 +33,7 @@ val Function_content_naming_the_top_level_md = new Function1[Int,untemplate.Resu
       val block0 = new Function0[String]:
         def apply() : String =
           "\nThe `untemplate` app and file-system based tooling in the library will derive a default name for the\ntop-level generated function by transforming its filename. Untemplate are expected to have the suffix\n`.untemplate`. The file you are reading is is [`README.md.untemplate`](" + (readmeTopSrc) +
-          "), and [generates a\nfunction](" + ( sgenFor("README_md") ) +
+          "), and [generates a\nfunction](" + ( sgenFor("untemplatedoc/readme/content-main.untemplate") ) +
           ") like...\n\n```scala\ndef README_md( input: immutable.Map[String,Any] ) : untemplate.Result[Nothing] = ???\n```\n"
       writer.write(block0())
       
@@ -47,7 +47,7 @@ val Function_content_naming_the_top_level_md = new Function1[Int,untemplate.Resu
     }
       val block2 = new Function0[String]:
         def apply() : String =
-          "\nYou can override the generated function name in\nthe same way block function names are defined. Header `()[]~(untemplateDoc)>` would generate\n\n```scala\ndef untemplateDoc( input: immutable.Map[String,Any] ) : untemplate.Result[Nothing] = ???\n```\nHeader `(pubDate: Instant)[]~(untemplateDoc)>` would generate\n\n```scala\ndef untemplateDoc( pubDate: Instant ) : untemplate.Result[Nothing] = ???\n```\n\nHere's an example. Check out the [generated Scala](" + ( sgenFor("untemplateDoc") ) +
+          "\nYou can override the generated function name in\nthe same way block function names are defined. Header `()[]~(untemplateDoc)>` would generate\n\n```scala\ndef untemplateDoc( input: immutable.Map[String,Any] ) : untemplate.Result[Nothing] = ???\n```\nHeader `(pubDate: Instant)[]~(untemplateDoc)>` would generate\n\n```scala\ndef untemplateDoc( pubDate: Instant ) : untemplate.Result[Nothing] = ???\n```\n\nHere's an example. Check out the [generated Scala](" + ( sgenFor("untemplatedoc/some_overrides.md.untemplate") ) +
           ") code.\n\n```scala\n"
       writer.write(block2())
       

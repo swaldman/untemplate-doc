@@ -17,7 +17,7 @@ val Function_content_repeatable_omittable_md = new Function1[Int,untemplate.Resu
   val UntemplateOutputMetadataType   = "SubsectionMeta"
 
   def apply(level : Int) : untemplate.Result[SubsectionMeta] =
-    val writer             : StringWriter = new StringWriter(8360)
+    val writer             : StringWriter = new StringWriter(8610)
     var mbMetadata         : Option[SubsectionMeta] = None
     var outputTransformer  : Function1[untemplate.Result[SubsectionMeta],untemplate.Result[SubsectionMeta]] = identity
 
@@ -50,7 +50,7 @@ val Function_content_repeatable_omittable_md = new Function1[Int,untemplate.Resu
     writer.writeln(untemplatedoc.loopy_md(immutable.Map.empty).text)
       val block3 = new Function0[String]:
         def apply() : String =
-          "```\n([generated scala](" + ( sgenFor("loopy_md") ) +
+          "```\n([generated scala](" + ( sgenFor("untemplatedoc/loopy.md.untemplate") ) +
           "))\n\n"
       writer.write(block3())
       

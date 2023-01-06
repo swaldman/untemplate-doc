@@ -14,7 +14,7 @@ outputTransformer = readme.subsection_content_transformer_md
 The `untemplate` app and file-system based tooling in the library will derive a default name for the
 top-level generated function by transforming its filename. Untemplate are expected to have the suffix
 `.untemplate`. The file you are reading is is [`README.md.untemplate`](<(readmeTopSrc)>), and [generates a
-function](<( sgenFor("README_md") )>) like...
+function](<( sgenFor("untemplatedoc/readme/content-main.untemplate") )>) like...
 
 ```scala
 def README_md( input: immutable.Map[String,Any] ) : untemplate.Result[Nothing] = ???
@@ -42,7 +42,7 @@ Header `\(pubDate: Instant)[]~(untemplateDoc)>` would generate
 def untemplateDoc( pubDate: Instant ) : untemplate.Result[Nothing] = ???
 ```
 
-Here's an example. Check out the [generated Scala](<( sgenFor("untemplateDoc") )>) code.
+Here's an example. Check out the [generated Scala](<( sgenFor("untemplatedoc/some_overrides.md.untemplate") )>) code.
 
 ```scala
 <()

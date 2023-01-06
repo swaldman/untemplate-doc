@@ -17,7 +17,7 @@ val Function_content_embeddable_expressions_md = new Function1[Int,untemplate.Re
   val UntemplateOutputMetadataType   = "SubsectionMeta"
 
   def apply(level : Int) : untemplate.Result[SubsectionMeta] =
-    val writer             : StringWriter = new StringWriter(12670)
+    val writer             : StringWriter = new StringWriter(12920)
     var mbMetadata         : Option[SubsectionMeta] = None
     var outputTransformer  : Function1[untemplate.Result[SubsectionMeta],untemplate.Result[SubsectionMeta]] = identity
 
@@ -38,7 +38,7 @@ val Function_content_embeddable_expressions_md = new Function1[Int,untemplate.Re
     writer.writeln(Files.readString(ceci2Src).trim)
       val block1 = new Function0[String]:
         def apply() : String =
-          "```\n\nNow, the [generated scala](" + ( sgenFor("ceci_nest_pas2_md") ) +
+          "```\n\nNow, the [generated scala](" + ( sgenFor("untemplatedoc/ceci-nest-pas2.md.untemplate") ) +
           ") _would_ transform the markdown, like this:\n\n```markdown\n"
       writer.write(block1())
       

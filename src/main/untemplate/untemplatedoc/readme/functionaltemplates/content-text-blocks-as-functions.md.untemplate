@@ -81,4 +81,4 @@ Here is the output...
 writer.writeln(untemplatedoc.loopy2_md(immutable.Map.empty).text)
 ()>
 ```
-([generated scala](<( sgenFor("loopy2_md") )>))
+([generated scala](<( sgenFor("untemplatedoc/loopy2.md.untemplate") )>))

@@ -34,5 +34,5 @@ And again!
 writer.writeln(untemplatedoc.loopy_md(immutable.Map.empty).text)
 ()>
 ```
-([generated scala](<( sgenFor("loopy_md") )>))
+([generated scala](<( sgenFor("untemplatedoc/loopy.md.untemplate") )>))
 

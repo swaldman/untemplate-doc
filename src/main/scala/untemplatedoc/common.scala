@@ -7,7 +7,7 @@ import com.mchange.codegenutil.*
 val usrcDir                      = Path.of("src/main/untemplate")
 val sgenDir                      = Path.of("example/scalagen")
 val ceciSrc                      = usrcDir.resolve("untemplatedoc/ceci-nest-pas.md.untemplate")
-val ceciScala                    = sgenDir.resolve("untemplatedoc/untemplate_ceci_nest_pas_md.scala")
+val ceciScala                    = sgenDir.resolve("untemplatedoc/ceci-nest-pas.md.untemplate.scala")
 val ceci2Src                     = usrcDir.resolve("untemplatedoc/ceci-nest-pas2.md.untemplate")
 val loopySrc                     = usrcDir.resolve("untemplatedoc/loopy.md.untemplate")
 val loopy2badSrc                 = usrcDir.resolve("untemplatedoc/loopy2-bad.md.untemplate-off")
@@ -18,8 +18,8 @@ val readmeEmbeddedExpressionsSrc = usrcDir.resolve("untemplatedoc/readme/somesim
 val readmeMetainformationSrc     = usrcDir.resolve("untemplatedoc/readme/functionaltemplates/content-metainformation.md.untemplate")
 
 
-def sgenFor( underscoredName : String ) : Path =
-  sgenDir.resolve( s"untemplatedoc/untemplate_${underscoredName}.scala" )
+def sgenFor( untemplateSrcPath : String ) : Path =
+  sgenDir.resolve( Path.of(s"${untemplateSrcPath}.scala") )
 end sgenFor
 
 object SubsectionMeta:

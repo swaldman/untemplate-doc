@@ -17,7 +17,7 @@ val Function_content_text_blocks_as_functions_md = new Function1[Int,untemplate.
   val UntemplateOutputMetadataType   = "SubsectionMeta"
 
   def apply(level : Int) : untemplate.Result[SubsectionMeta] =
-    val writer             : StringWriter = new StringWriter(33360)
+    val writer             : StringWriter = new StringWriter(33610)
     var mbMetadata         : Option[SubsectionMeta] = None
     var outputTransformer  : Function1[untemplate.Result[SubsectionMeta],untemplate.Result[SubsectionMeta]] = identity
 
@@ -50,7 +50,7 @@ val Function_content_text_blocks_as_functions_md = new Function1[Int,untemplate.
     writer.writeln(untemplatedoc.loopy2_md(immutable.Map.empty).text)
       val block3 = new Function0[String]:
         def apply() : String =
-          "```\n([generated scala](" + ( sgenFor("loopy2_md") ) +
+          "```\n([generated scala](" + ( sgenFor("untemplatedoc/loopy2.md.untemplate") ) +
           "))\n"
       writer.write(block3())
       

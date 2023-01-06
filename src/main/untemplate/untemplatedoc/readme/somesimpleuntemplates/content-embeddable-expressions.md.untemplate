@@ -20,7 +20,7 @@ writer.writeln(Files.readString(ceci2Src).trim)
 ()>
 ```
 
-Now, the [generated scala](<( sgenFor("ceci_nest_pas2_md") )>) _would_ transform the markdown, like this:
+Now, the [generated scala](<( sgenFor("untemplatedoc/ceci-nest-pas2.md.untemplate") )>) _would_ transform the markdown, like this:
 
 ```markdown
 <()

@@ -138,10 +138,10 @@ it as an unemplate, and it will be immortalized as a scala
 function.
 ```
 
-Now, the [generated scala](example/scalagen/untemplatedoc/untemplate_ceci_nest_pas2_md.scala) _would_ transform the markdown, like this:
+Now, the [generated scala](example/scalagen/untemplatedoc/ceci-nest-pas2.md.untemplate.scala) _would_ transform the markdown, like this:
 
 ```markdown
-# Ceci n'est pas... 0.3707984224569232
+# Ceci n'est pas... 0.45038390871443
 
 Well, this is _almost_ just a regular markdown file, with no
 special untemplate constructs. But if we wish, we can treat
@@ -195,11 +195,8 @@ It sucks to be us. (num = <(num)>)
 Let's get a look at what it produces:
 ```markdown
 # Loopy
-# Loopy
-# Loopy
-# Loopy
 
-It sucks to be us. (num = 4)
+It sucks to be us. (num = 1)
 
 ```
 
@@ -207,13 +204,11 @@ And again!
 ```markdown
 # Loopy
 # Loopy
-# Loopy
-# Loopy
 
-It sucks to be us. (num = 4)
+It sucks to be us. (num = 2)
 
 ```
-([generated scala](example/scalagen/untemplatedoc/untemplate_loopy_md.scala))
+([generated scala](example/scalagen/untemplatedoc/loopy.md.untemplate.scala))
 
 
 
@@ -398,16 +393,11 @@ Here is the output...
 # Loopy
 # Loopy
 # Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
 
-And we're a winner! (num = 8)
+It sucks to be us. (num = 3)
 
 ```
-([generated scala](example/scalagen/untemplatedoc/untemplate_loopy2_md.scala))
+([generated scala](example/scalagen/untemplatedoc/loopy2.md.untemplate.scala))
 
 
 <a href="#table-of-contents">Back to top &#x21ba;</a>
@@ -420,7 +410,7 @@ And we're a winner! (num = 8)
 The `untemplate` app and file-system based tooling in the library will derive a default name for the
 top-level generated function by transforming its filename. Untemplate are expected to have the suffix
 `.untemplate`. The file you are reading is is [`README.md.untemplate`](src/main/untemplate/untemplatedoc/readme/content-main.untemplate), and [generates a
-function](example/scalagen/untemplatedoc/untemplate_README_md.scala) like...
+function](example/scalagen/untemplatedoc/readme/content-main.untemplate.scala) like...
 
 ```scala
 def README_md( input: immutable.Map[String,Any] ) : untemplate.Result[Nothing] = ???
@@ -443,7 +433,7 @@ Header `(pubDate: Instant)[]~(untemplateDoc)>` would generate
 def untemplateDoc( pubDate: Instant ) : untemplate.Result[Nothing] = ???
 ```
 
-Here's an example. Check out the [generated Scala](example/scalagen/untemplatedoc/untemplate_untemplateDoc.scala) code.
+Here's an example. Check out the [generated Scala](example/scalagen/untemplatedoc/some_overrides.md.untemplate.scala) code.
 
 ```scala
 import java.time.{Instant, ZoneId}
@@ -470,7 +460,7 @@ Which generates...
 
 Happy Birthday to me!
 
-_I was published on Fri, 6 Jan 2023 01:48:59 -0500._
+_I was published on Fri, 6 Jan 2023 02:06:43 -0500._
 
 
 ```
