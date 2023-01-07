@@ -27,13 +27,8 @@ More specifically, each template returns a
 ```scala
 package untemplate
 
-trait Result[+A]:
-  def mbMetadata : Option[A]
-  def text       : String
-
-  lazy val asTuple : Tuple2[Option[A],String] = (mbMetadata, text)
-
-  override def toString() = text
+final case class Result[+A](mbMetadata : Option[A], text : String ):
+  override def toString() : String = text
 ```
 
 Note that the `toString()` method is overridden, so you can embed `Result` directly an untemplate expressions.

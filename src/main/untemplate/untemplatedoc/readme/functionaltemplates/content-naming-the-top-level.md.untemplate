@@ -42,7 +42,7 @@ Header `\(pubDate: Instant)[]~(untemplateDoc)>` would generate
 def untemplateDoc( pubDate: Instant ) : untemplate.Result[Nothing] = ???
 ```
 
-Here's an example. Check out the [generated Scala](<( sgenFor("untemplatedoc/some_overrides.md.untemplate") )>) code.
+Here's an example untemplate. Check out the [generated scala](<( sgenFor("untemplatedoc/some_overrides.md.untemplate") )>) code.
 
 ```scala
 <()

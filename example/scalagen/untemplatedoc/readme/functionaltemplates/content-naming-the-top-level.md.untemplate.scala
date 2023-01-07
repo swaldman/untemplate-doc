@@ -17,7 +17,7 @@ val Function_content_naming_the_top_level_md = new Function1[Int,untemplate.Resu
   val UntemplateOutputMetadataType   = "SubsectionMeta"
 
   def apply(level : Int) : untemplate.Result[SubsectionMeta] =
-    val writer             : StringWriter = new StringWriter(23720)
+    val writer             : StringWriter = new StringWriter(23830)
     var mbMetadata         : Option[SubsectionMeta] = None
     var outputTransformer  : Function1[untemplate.Result[SubsectionMeta],untemplate.Result[SubsectionMeta]] = identity
 
@@ -47,7 +47,7 @@ val Function_content_naming_the_top_level_md = new Function1[Int,untemplate.Resu
     }
       val block2 = new Function0[String]:
         def apply() : String =
-          "\nYou can override the generated function name in\nthe same way block function names are defined. Header `()[]~(untemplateDoc)>` would generate\n\n```scala\ndef untemplateDoc( input: immutable.Map[String,Any] ) : untemplate.Result[Nothing] = ???\n```\nHeader `(pubDate: Instant)[]~(untemplateDoc)>` would generate\n\n```scala\ndef untemplateDoc( pubDate: Instant ) : untemplate.Result[Nothing] = ???\n```\n\nHere's an example. Check out the [generated Scala](" + ( sgenFor("untemplatedoc/some_overrides.md.untemplate") ) +
+          "\nYou can override the generated function name in\nthe same way block function names are defined. Header `()[]~(untemplateDoc)>` would generate\n\n```scala\ndef untemplateDoc( input: immutable.Map[String,Any] ) : untemplate.Result[Nothing] = ???\n```\nHeader `(pubDate: Instant)[]~(untemplateDoc)>` would generate\n\n```scala\ndef untemplateDoc( pubDate: Instant ) : untemplate.Result[Nothing] = ???\n```\n\nHere's an example untemplate. Check out the [generated scala](" + ( sgenFor("untemplatedoc/some_overrides.md.untemplate") ) +
           ") code.\n\n```scala\n"
       writer.write(block2())
       
