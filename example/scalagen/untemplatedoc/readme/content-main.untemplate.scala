@@ -15,7 +15,7 @@ val Function_content_main = new Function1[immutable.Map[String,Any],untemplate.R
   val UntemplateOutputMetadataType   = "Nothing"
 
   def apply(input : immutable.Map[String,Any] = immutable.Map.empty) : untemplate.Result[Nothing] =
-    val writer             : StringWriter = new StringWriter(12350)
+    val writer             : StringWriter = new StringWriter(12200)
     var mbMetadata         : Option[Nothing] = None
     var outputTransformer  : Function1[untemplate.Result[Nothing],untemplate.Result[Nothing]] = identity
 
@@ -49,9 +49,9 @@ val Function_content_main = new Function1[immutable.Map[String,Any],untemplate.R
           "\n\n_This project only documents the `untemplate` project. For the code, please see [swaldman/untemplate](https://github.com/swaldman/untemplate)._\n\n## " + ( tocTitle ) +
           "\n\n" + ( toc(topSubsectionMeta) ) +
           "\n\n" + ( intro ) +
-          "\n\n" + ( someSimpleUntemplates.text ) +
-          "\n\n" + ( functionalTemplates.text ) +
-          "\n\n" + ( acknowledgments.text ) +
+          "\n\n" + ( someSimpleUntemplates ) +
+          "\n\n" + ( functionalTemplates ) +
+          "\n\n" + ( acknowledgments ) +
           "\n\n\n\n\n\n\n\n\n"
       writer.write(block0())
       
