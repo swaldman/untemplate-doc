@@ -34,11 +34,11 @@ _This project only documents the `untemplate` project. For the code, please see 
 
 <( intro )>
 
-<( someSimpleUntemplates )>
+<( someSimpleUntemplates.text )>
 
-<( functionalTemplates )>
+<( functionalTemplates.text )>
 
-<( acknowledgments )>
+<( acknowledgments.text )>
 
 
 
