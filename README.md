@@ -19,7 +19,7 @@ _This project only documents the `untemplate` project. For the code, please see 
     * <a href="#metainformation">Metainformation</a>
   * <a href="#acknowledgments">Acknowledgments</a>
 
-Result(Some(SubsectionMeta(2,Introduction,List())),
+
 ## Introduction
 
 
@@ -71,9 +71,9 @@ top-level imports in the generated file.
 
 
 <a href="#table-of-contents">Back to top &#x21ba;</a>
-)
 
-Result(Some(SubsectionMeta(2,Some simple untemplates,List(SubsectionMeta(3,Embedded expressions,List()), SubsectionMeta(3,Repeatable, omittable, blocks,List())))),
+
+
 ## Some simple untemplates
 
 
@@ -141,7 +141,7 @@ function.
 Now, the [generated scala](example/scalagen/untemplatedoc/ceci-nest-pas2.md.untemplate.scala) _would_ transform the markdown, like this:
 
 ```markdown
-# Ceci n'est pas... 0.7062030706788397
+# Ceci n'est pas... 0.28294587701729035
 
 Well, this is _almost_ just a regular markdown file, with no
 special untemplate constructs. But if we wish, we can treat
@@ -197,25 +197,21 @@ Let's get a look at what it produces:
 # Loopy
 # Loopy
 # Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
 
-It sucks to be us. (num = 3)
+And we're a winner! (num = 9)
 
 ```
 
 And again!
 ```markdown
-# Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
 
-And we're a winner! (num = 10)
+It sucks to be us. (num = 0)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/loopy.md.untemplate.scala))
@@ -229,9 +225,9 @@ And we're a winner! (num = 10)
 
 
 
-)
 
-Result(Some(SubsectionMeta(2,Functional untemplates,List(SubsectionMeta(3,Untemplates are functions,List()), SubsectionMeta(3,Text blocks can be nested functions,List()), SubsectionMeta(3,Naming the top-level untemplate function,List()), SubsectionMeta(3,Untemplates, packages, and imports,List()), SubsectionMeta(3,Metainformation,List())))),
+
+
 ## Functional untemplates
 
 
@@ -404,13 +400,8 @@ Here is the output...
 # Loopy
 # Loopy
 # Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
 
-And we're a winner! (num = 9)
+It sucks to be us. (num = 4)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/loopy2.md.untemplate.scala))
@@ -476,7 +467,7 @@ Which generates...
 
 Happy Birthday to me!
 
-_I was published on Sat, 7 Jan 2023 04:11:00 -0500._
+_I was published on Sat, 7 Jan 2023 04:13:04 -0500._
 
 
 ```
@@ -566,9 +557,9 @@ It is not the actual value of the default argument!
 
 
 
-)
 
-Result(Some(SubsectionMeta(2,Acknowledgments,List())),
+
+
 ## Acknowledgments
 
 
@@ -580,7 +571,7 @@ from which I am gently (and much less sophisticatedly) cribbing.
 
 
 <a href="#table-of-contents">Back to top &#x21ba;</a>
-)
+
 
 
 
