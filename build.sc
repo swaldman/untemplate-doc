@@ -5,16 +5,11 @@ import mill.define.Source
 import mill.modules.Jvm
 import mill.api.Result
 
+// huge thanks to @lolgab onn the Scala discord!
+import $file.buildCompilationSettings
+
 import $ivy.`com.mchange::untemplate-mill:0.0.1-SNAPSHOT`
 import untemplate.mill._
-
-/*
-interp.configureCompiler { c =>
-  val settings = c.settings
-  settings.YtastyReader.value = true
-  settings.Ylogcp.value = true
-}
-*/
 
 def veryclean() = T.command {
   // println( s"Very Clean! ${millSourcePath}")
