@@ -8,7 +8,7 @@ import com.mchange.codegenutil.*
 import untemplatedoc.*
 
 
-val Function_content_acknowledgments_md = new Function1[Int,untemplate.Result[SubsectionMeta]]:
+val Untemplate_content_acknowledgments_md = new untemplate.Untemplate[Int,SubsectionMeta]:
   val UntemplateFunction             = this
   val UntemplateName                 = "content_acknowledgments_md"
   val UntemplateInputName            = "level"
@@ -38,6 +38,6 @@ val Function_content_acknowledgments_md = new Function1[Int,untemplate.Result[Su
     outputTransformer( untemplate.Result( mbMetadata, writer.toString ) )
     
   end apply
-end Function_content_acknowledgments_md
+end Untemplate_content_acknowledgments_md
 
-def content_acknowledgments_md(level : Int) : untemplate.Result[SubsectionMeta] = Function_content_acknowledgments_md( level )
+def content_acknowledgments_md(level : Int) : untemplate.Result[SubsectionMeta] = Untemplate_content_acknowledgments_md( level )

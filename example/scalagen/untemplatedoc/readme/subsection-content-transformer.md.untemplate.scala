@@ -6,7 +6,7 @@ import scala.collection.*
 import untemplatedoc.*
 
 
-val Function_subsection_content_transformer_md = new Function1[untemplate.Result[SubsectionMeta],untemplate.Result[SubsectionMeta]]:
+val Untemplate_subsection_content_transformer_md = new untemplate.Untemplate[untemplate.Result[SubsectionMeta],SubsectionMeta]:
   val UntemplateFunction             = this
   val UntemplateName                 = "subsection_content_transformer_md"
   val UntemplateInputName            = "result"
@@ -36,6 +36,6 @@ val Function_subsection_content_transformer_md = new Function1[untemplate.Result
     outputTransformer( untemplate.Result( mbMetadata, writer.toString ) )
     
   end apply
-end Function_subsection_content_transformer_md
+end Untemplate_subsection_content_transformer_md
 
-def subsection_content_transformer_md(result : untemplate.Result[SubsectionMeta]) : untemplate.Result[SubsectionMeta] = Function_subsection_content_transformer_md( result )
+def subsection_content_transformer_md(result : untemplate.Result[SubsectionMeta]) : untemplate.Result[SubsectionMeta] = Untemplate_subsection_content_transformer_md( result )

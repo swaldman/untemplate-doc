@@ -6,7 +6,7 @@ import scala.collection.*
 import untemplatedoc.*
 
 
-val Function_content_main = new Function1[immutable.Map[String,Any],untemplate.Result[Nothing]]:
+val Untemplate_content_main = new untemplate.Untemplate[immutable.Map[String,Any],Nothing]:
   val UntemplateFunction             = this
   val UntemplateName                 = "content_main"
   val UntemplateInputName            = "input"
@@ -58,6 +58,6 @@ val Function_content_main = new Function1[immutable.Map[String,Any],untemplate.R
     outputTransformer( untemplate.Result( mbMetadata, writer.toString ) )
     
   end apply
-end Function_content_main
+end Untemplate_content_main
 
-def content_main(input : immutable.Map[String,Any] = immutable.Map.empty) : untemplate.Result[Nothing] = Function_content_main( input )
+def content_main(input : immutable.Map[String,Any] = immutable.Map.empty) : untemplate.Result[Nothing] = Untemplate_content_main( input )

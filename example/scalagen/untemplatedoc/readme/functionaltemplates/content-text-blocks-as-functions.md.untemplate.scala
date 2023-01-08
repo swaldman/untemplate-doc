@@ -8,7 +8,7 @@ import com.mchange.codegenutil.*
 import untemplatedoc.*
 
 
-val Function_content_text_blocks_as_functions_md = new Function1[Int,untemplate.Result[SubsectionMeta]]:
+val Untemplate_content_text_blocks_as_functions_md = new untemplate.Untemplate[Int,SubsectionMeta]:
   val UntemplateFunction             = this
   val UntemplateName                 = "content_text_blocks_as_functions_md"
   val UntemplateInputName            = "level"
@@ -57,6 +57,6 @@ val Function_content_text_blocks_as_functions_md = new Function1[Int,untemplate.
     outputTransformer( untemplate.Result( mbMetadata, writer.toString ) )
     
   end apply
-end Function_content_text_blocks_as_functions_md
+end Untemplate_content_text_blocks_as_functions_md
 
-def content_text_blocks_as_functions_md(level : Int) : untemplate.Result[SubsectionMeta] = Function_content_text_blocks_as_functions_md( level )
+def content_text_blocks_as_functions_md(level : Int) : untemplate.Result[SubsectionMeta] = Untemplate_content_text_blocks_as_functions_md( level )

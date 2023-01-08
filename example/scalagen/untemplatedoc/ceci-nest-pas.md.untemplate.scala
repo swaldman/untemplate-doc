@@ -3,7 +3,7 @@ package untemplatedoc
 import java.io.{Writer,StringWriter}
 import scala.collection.*
 
-val Function_ceci_nest_pas_md = new Function1[immutable.Map[String,Any],untemplate.Result[Nothing]]:
+val Untemplate_ceci_nest_pas_md = new untemplate.Untemplate[immutable.Map[String,Any],Nothing]:
   val UntemplateFunction             = this
   val UntemplateName                 = "ceci_nest_pas_md"
   val UntemplateInputName            = "input"
@@ -24,6 +24,6 @@ val Function_ceci_nest_pas_md = new Function1[immutable.Map[String,Any],untempla
     outputTransformer( untemplate.Result( mbMetadata, writer.toString ) )
     
   end apply
-end Function_ceci_nest_pas_md
+end Untemplate_ceci_nest_pas_md
 
-def ceci_nest_pas_md(input : immutable.Map[String,Any] = immutable.Map.empty) : untemplate.Result[Nothing] = Function_ceci_nest_pas_md( input )
+def ceci_nest_pas_md(input : immutable.Map[String,Any] = immutable.Map.empty) : untemplate.Result[Nothing] = Untemplate_ceci_nest_pas_md( input )

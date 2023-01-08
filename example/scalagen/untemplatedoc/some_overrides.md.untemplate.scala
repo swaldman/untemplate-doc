@@ -7,7 +7,7 @@ import java.time.{Instant, ZoneId}
 import java.time.format.DateTimeFormatter
 
 
-val Function_untemplateDoc = new Function1[Instant,untemplate.Result[Nothing]]:
+val Untemplate_untemplateDoc = new untemplate.Untemplate[Instant,Nothing]:
   val UntemplateFunction             = this
   val UntemplateName                 = "untemplateDoc"
   val UntemplateInputName            = "pubDate"
@@ -36,6 +36,6 @@ val Function_untemplateDoc = new Function1[Instant,untemplate.Result[Nothing]]:
     outputTransformer( untemplate.Result( mbMetadata, writer.toString ) )
     
   end apply
-end Function_untemplateDoc
+end Untemplate_untemplateDoc
 
-def untemplateDoc(pubDate : Instant) : untemplate.Result[Nothing] = Function_untemplateDoc( pubDate )
+def untemplateDoc(pubDate : Instant) : untemplate.Result[Nothing] = Untemplate_untemplateDoc( pubDate )

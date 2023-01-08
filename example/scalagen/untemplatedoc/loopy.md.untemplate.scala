@@ -3,7 +3,7 @@ package untemplatedoc
 import java.io.{Writer,StringWriter}
 import scala.collection.*
 
-val Function_loopy_md = new Function1[immutable.Map[String,Any],untemplate.Result[Nothing]]:
+val Untemplate_loopy_md = new untemplate.Untemplate[immutable.Map[String,Any],Nothing]:
   val UntemplateFunction             = this
   val UntemplateName                 = "loopy_md"
   val UntemplateInputName            = "input"
@@ -42,6 +42,6 @@ val Function_loopy_md = new Function1[immutable.Map[String,Any],untemplate.Resul
     outputTransformer( untemplate.Result( mbMetadata, writer.toString ) )
     
   end apply
-end Function_loopy_md
+end Untemplate_loopy_md
 
-def loopy_md(input : immutable.Map[String,Any] = immutable.Map.empty) : untemplate.Result[Nothing] = Function_loopy_md( input )
+def loopy_md(input : immutable.Map[String,Any] = immutable.Map.empty) : untemplate.Result[Nothing] = Untemplate_loopy_md( input )

@@ -96,7 +96,7 @@ package untemplatedoc
 import java.io.{Writer,StringWriter}
 import scala.collection.*
 
-val Function_ceci_nest_pas_md = new Function1[immutable.Map[String,Any],untemplate.Result[Nothing]]:
+val Untemplate_ceci_nest_pas_md = new untemplate.Untemplate[immutable.Map[String,Any],Nothing]:
   val UntemplateFunction             = this
   val UntemplateName                 = "ceci_nest_pas_md"
   val UntemplateInputName            = "input"
@@ -117,9 +117,9 @@ val Function_ceci_nest_pas_md = new Function1[immutable.Map[String,Any],untempla
     outputTransformer( untemplate.Result( mbMetadata, writer.toString ) )
     
   end apply
-end Function_ceci_nest_pas_md
+end Untemplate_ceci_nest_pas_md
 
-def ceci_nest_pas_md(input : immutable.Map[String,Any] = immutable.Map.empty) : untemplate.Result[Nothing] = Function_ceci_nest_pas_md( input )
+def ceci_nest_pas_md(input : immutable.Map[String,Any] = immutable.Map.empty) : untemplate.Result[Nothing] = Untemplate_ceci_nest_pas_md( input )
 ```
 
 
@@ -141,7 +141,7 @@ function.
 Now, the [generated scala](example/scalagen/untemplatedoc/ceci-nest-pas2.md.untemplate.scala) _would_ transform the markdown, like this:
 
 ```markdown
-# Ceci n'est pas... 0.40962420090840834
+# Ceci n'est pas... 0.3678877621304514
 
 Well, this is _almost_ just a regular markdown file, with no
 special untemplate constructs. But if we wish, we can treat
@@ -194,8 +194,16 @@ It sucks to be us. (num = <(num)>)
 
 Let's get a look at what it produces:
 ```markdown
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
 
-It sucks to be us. (num = 0)
+And we're a winner! (num = 8)
 
 ```
 
@@ -390,8 +398,13 @@ Here is the output...
 # Loopy
 # Loopy
 # Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
 
-It sucks to be us. (num = 3)
+And we're a winner! (num = 8)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/loopy2.md.untemplate.scala))
@@ -457,7 +470,7 @@ Which generates...
 
 Happy Birthday to me!
 
-_I was published on Sat, 7 Jan 2023 14:33:57 -0500._
+_I was published on Sun, 8 Jan 2023 00:35:00 -0500._
 
 
 ```

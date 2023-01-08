@@ -8,7 +8,7 @@ import com.mchange.codegenutil.*
 import untemplatedoc.*
 
 
-val Function_content_naming_the_top_level_md = new Function1[Int,untemplate.Result[SubsectionMeta]]:
+val Untemplate_content_naming_the_top_level_md = new untemplate.Untemplate[Int,SubsectionMeta]:
   val UntemplateFunction             = this
   val UntemplateName                 = "content_naming_the_top_level_md"
   val UntemplateInputName            = "level"
@@ -76,6 +76,6 @@ val Function_content_naming_the_top_level_md = new Function1[Int,untemplate.Resu
     outputTransformer( untemplate.Result( mbMetadata, writer.toString ) )
     
   end apply
-end Function_content_naming_the_top_level_md
+end Untemplate_content_naming_the_top_level_md
 
-def content_naming_the_top_level_md(level : Int) : untemplate.Result[SubsectionMeta] = Function_content_naming_the_top_level_md( level )
+def content_naming_the_top_level_md(level : Int) : untemplate.Result[SubsectionMeta] = Untemplate_content_naming_the_top_level_md( level )
