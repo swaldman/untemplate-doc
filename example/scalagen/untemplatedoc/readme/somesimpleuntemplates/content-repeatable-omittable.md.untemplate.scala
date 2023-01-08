@@ -3,6 +3,10 @@ package untemplatedoc.readme.somesimpleuntemplates
 import java.io.{Writer,StringWriter}
 import scala.collection.*
 
+import untemplatedoc.*
+import java.nio.file.Files
+import com.mchange.codegenutil.*
+
 import java.nio.file.Files
 import com.mchange.codegenutil.*
 import untemplatedoc.*
@@ -19,7 +23,7 @@ val Untemplate_content_repeatable_omittable_md = new untemplate.Untemplate[Int,S
   def apply(level : Int) : untemplate.Result[SubsectionMeta] =
     val writer             : StringWriter = new StringWriter(8610)
     var mbMetadata         : Option[SubsectionMeta] = None
-    var outputTransformer  : Function1[untemplate.Result[SubsectionMeta],untemplate.Result[SubsectionMeta]] = identity
+    var outputTransformer  : Function1[untemplate.Result[SubsectionMeta],untemplate.Result[SubsectionMeta]] = readme.subsection_content_transformer_md
 
 
 

@@ -1,4 +1,5 @@
 #!/bin/bash
-./mill veryclean
+# ./mill veryclean
 rm -rf out
-echo "Okay now we've done that, directory out should be gone."
+touch build.sc
+# echo "Okay now we've done that, directory out should be gone."

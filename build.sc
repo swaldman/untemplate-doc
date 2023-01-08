@@ -8,6 +8,14 @@ import mill.api.Result
 import $ivy.`com.mchange::untemplate-mill:0.0.1-SNAPSHOT`
 import untemplate.mill._
 
+/*
+interp.configureCompiler { c =>
+  val settings = c.settings
+  settings.YtastyReader.value = true
+  settings.Ylogcp.value = true
+}
+*/
+
 def veryclean() = T.command {
   // println( s"Very Clean! ${millSourcePath}")
   os.remove(millSourcePath / "README.md")
@@ -23,6 +31,20 @@ def veryclean() = T.command {
 
 object untemplatedocs extends UntemplateModule {
   override def scalaVersion = "3.2.1"
+
+  def untemplateSelectCustomizer: untemplate.Customizer.Selector = { key =>
+    var out = untemplate.Customizer.empty
+    if (key.inferredPackage.startsWith("untemplatedoc.readme")) {
+      key.inferredFunctionName match {
+        case s"content_${whatever}" =>
+          out = out.copy(extraImports = Seq("untemplatedoc.*", "java.nio.file.Files", "com.mchange.codegenutil.*"))
+          if (whatever.endsWith("_md"))
+            out = out.copy(mbDefaultOutputTransformer = Some("readme.subsection_content_transformer_md"))
+        case _ => /* ignore */
+      }
+    }
+    out
+  }
 
   override def untemplateSource: Source = T.source {
     millSourcePath / "src" / "main" / "untemplate"
