@@ -1,13 +1,6 @@
-import java.nio.file.Files
-import com.mchange.codegenutil.*
-
-import untemplatedoc.*
 
 val title = "Embedded expressions"
-
 mbMetadata = Some( SubsectionMeta( level, title ) )
-
-outputTransformer = readme.subsection_content_transformer_md
 
 (level : Int)[SubsectionMeta]~()>
 

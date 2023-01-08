@@ -1,11 +1,6 @@
-import untemplatedoc.*
-
 val title = "Introduction"
 val meta  =  SubsectionMeta( level, title )
-
 mbMetadata = Some( SubsectionMeta( level, title ) )
-
-outputTransformer = readme.subsection_content_transformer_md
 
 (level : Int)[SubsectionMeta]~()>
 

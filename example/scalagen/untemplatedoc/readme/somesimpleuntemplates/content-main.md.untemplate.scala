@@ -7,9 +7,7 @@ import untemplatedoc.*
 import java.nio.file.Files
 import com.mchange.codegenutil.*
 
-import java.nio.file.Files
-import com.mchange.codegenutil.*
-import untemplatedoc.*
+
 
 
 val Untemplate_content_main_md = new untemplate.Untemplate[Int,SubsectionMeta]:
@@ -21,11 +19,9 @@ val Untemplate_content_main_md = new untemplate.Untemplate[Int,SubsectionMeta]:
   val UntemplateOutputMetadataType   = "SubsectionMeta"
 
   def apply(level : Int) : untemplate.Result[SubsectionMeta] =
-    val writer             : StringWriter = new StringWriter(9140)
+    val writer             : StringWriter = new StringWriter(7670)
     var mbMetadata         : Option[SubsectionMeta] = None
     var outputTransformer  : Function1[untemplate.Result[SubsectionMeta],untemplate.Result[SubsectionMeta]] = readme.subsection_content_transformer_md
-
-
 
     val title = "Some simple untemplates"
 
@@ -33,8 +29,6 @@ val Untemplate_content_main_md = new untemplate.Untemplate[Int,SubsectionMeta]:
     val untemplate.Result( roMbMeta, roBlocks ) = content_repeatable_omittable_md( level + 1 )
 
     mbMetadata = Some( SubsectionMeta( level, title, eeMbMeta.toList ::: roMbMeta.toList ::: Nil) )
-
-    outputTransformer = readme.subsection_content_transformer_md
 
 
       val block0 = new Function0[String]:

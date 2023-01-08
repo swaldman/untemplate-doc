@@ -7,7 +7,7 @@ import untemplatedoc.*
 import java.nio.file.Files
 import com.mchange.codegenutil.*
 
-import untemplatedoc.*
+
 
 
 val Untemplate_content_main_md = new untemplate.Untemplate[Int,SubsectionMeta]:
@@ -19,17 +19,13 @@ val Untemplate_content_main_md = new untemplate.Untemplate[Int,SubsectionMeta]:
   val UntemplateOutputMetadataType   = "SubsectionMeta"
 
   def apply(level : Int) : untemplate.Result[SubsectionMeta] =
-    val writer             : StringWriter = new StringWriter(26700)
+    val writer             : StringWriter = new StringWriter(25830)
     var mbMetadata         : Option[SubsectionMeta] = None
     var outputTransformer  : Function1[untemplate.Result[SubsectionMeta],untemplate.Result[SubsectionMeta]] = readme.subsection_content_transformer_md
 
-
     val title = "Introduction"
     val meta  =  SubsectionMeta( level, title )
-
     mbMetadata = Some( SubsectionMeta( level, title ) )
-
-    outputTransformer = readme.subsection_content_transformer_md
 
 
       val block0 = new Function0[String]:

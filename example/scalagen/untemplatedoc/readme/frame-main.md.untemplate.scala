@@ -4,15 +4,11 @@ import java.io.{Writer,StringWriter}
 import scala.collection.*
 
 import untemplatedoc.*
-import java.nio.file.Files
-import com.mchange.codegenutil.*
-
-import untemplatedoc.*
 
 
-val Untemplate_content_main = new untemplate.Untemplate[immutable.Map[String,Any],Nothing]:
+val Untemplate_frame_main_md = new untemplate.Untemplate[immutable.Map[String,Any],Nothing]:
   val UntemplateFunction             = this
-  val UntemplateName                 = "content_main"
+  val UntemplateName                 = "frame_main_md"
   val UntemplateInputName            = "input"
   val UntemplateInputType            = "immutable.Map[String,Any]"
   val UntemplateInputDefaultArgument = Some("immutable.Map.empty")
@@ -62,6 +58,6 @@ val Untemplate_content_main = new untemplate.Untemplate[immutable.Map[String,Any
     outputTransformer( untemplate.Result( mbMetadata, writer.toString ) )
     
   end apply
-end Untemplate_content_main
+end Untemplate_frame_main_md
 
-def content_main(input : immutable.Map[String,Any] = immutable.Map.empty) : untemplate.Result[Nothing] = Untemplate_content_main( input )
+def frame_main_md(input : immutable.Map[String,Any] = immutable.Map.empty) : untemplate.Result[Nothing] = Untemplate_frame_main_md( input )

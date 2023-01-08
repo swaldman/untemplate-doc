@@ -1,8 +1,3 @@
-import java.nio.file.Files
-import com.mchange.codegenutil.*
-
-import untemplatedoc.*
-
 val title = "Functional untemplates"
 
 val subsectionFunctions = List (
@@ -12,12 +7,9 @@ val subsectionFunctions = List (
     content_untemplates_packages_imports_md,
     content_metainformation_md
 )
-
 val subsectionResults = subsectionFunctions.map( fcn => fcn(level + 1) )
 
 mbMetadata = Some( SubsectionMeta( level, title, subsectionResults.flatMap( _.mbMetadata.toList ) ) )
-
-outputTransformer = readme.subsection_content_transformer_md
 
 (level : Int)[SubsectionMeta]~()>
 <()

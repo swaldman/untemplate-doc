@@ -1,16 +1,9 @@
-import java.nio.file.Files
-import com.mchange.codegenutil.*
-
-import untemplatedoc.*
-
 val title = "Some simple untemplates"
 
 val untemplate.Result( eeMbMeta, eeText ) = content_embeddable_expressions_md( level + 1 )
 val untemplate.Result( roMbMeta, roBlocks ) = content_repeatable_omittable_md( level + 1 )
 
 mbMetadata = Some( SubsectionMeta( level, title, eeMbMeta.toList ::: roMbMeta.toList ::: Nil) )
-
-outputTransformer = readme.subsection_content_transformer_md
 
 (level : Int)[SubsectionMeta]~()>
 

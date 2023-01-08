@@ -7,9 +7,7 @@ import untemplatedoc.*
 import java.nio.file.Files
 import com.mchange.codegenutil.*
 
-import java.nio.file.Files
-import com.mchange.codegenutil.*
-import untemplatedoc.*
+
 
 
 val Untemplate_content_embeddable_expressions_md = new untemplate.Untemplate[Int,SubsectionMeta]:
@@ -21,17 +19,13 @@ val Untemplate_content_embeddable_expressions_md = new untemplate.Untemplate[Int
   val UntemplateOutputMetadataType   = "SubsectionMeta"
 
   def apply(level : Int) : untemplate.Result[SubsectionMeta] =
-    val writer             : StringWriter = new StringWriter(12920)
+    val writer             : StringWriter = new StringWriter(11450)
     var mbMetadata         : Option[SubsectionMeta] = None
     var outputTransformer  : Function1[untemplate.Result[SubsectionMeta],untemplate.Result[SubsectionMeta]] = readme.subsection_content_transformer_md
 
 
-
     val title = "Embedded expressions"
-
     mbMetadata = Some( SubsectionMeta( level, title ) )
-
-    outputTransformer = readme.subsection_content_transformer_md
 
 
       val block0 = new Function0[String]:

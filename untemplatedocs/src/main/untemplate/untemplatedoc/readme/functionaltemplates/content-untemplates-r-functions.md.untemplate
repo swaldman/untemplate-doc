@@ -1,13 +1,5 @@
-import java.nio.file.Files
-import com.mchange.codegenutil.*
-
-import untemplatedoc.*
-
 val title = "Untemplates are functions"
-
 mbMetadata = Some( SubsectionMeta( level, title ) )
-
-outputTransformer = readme.subsection_content_transformer_md
 
 (level : Int)[SubsectionMeta]~()>
 
