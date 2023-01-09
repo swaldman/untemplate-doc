@@ -15,7 +15,7 @@ val Untemplate_untemplateDoc = new untemplate.Untemplate[Instant,Nothing]:
   val UntemplateInputTypeCanonical          : Option[String] = untemplate.Macro.nonEmptyStringOption( untemplate.Macro.recursiveCanonicalName[Instant] )
   val UntemplateInputDefaultArgument        : Option[Instant] = (None : Option[Instant])
   val UntemplateOutputMetadataTypeDeclared  : String = "Nothing"
-  val UntemplateOutputMetadataTypeCanonical : Option[String] = untemplate.Macro.nonEmptyStringOption( untemplate.Macro.recursiveCanonicalName[Instant] )
+  val UntemplateOutputMetadataTypeCanonical : Option[String] = untemplate.Macro.nonEmptyStringOption( untemplate.Macro.recursiveCanonicalName[Nothing] )
 
   def apply(pubDate : Instant) : untemplate.Result[Nothing] =
     val writer             : StringWriter = new StringWriter(4400)

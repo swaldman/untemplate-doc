@@ -18,7 +18,7 @@ val Untemplate_content_untemplates_packages_imports_md = new untemplate.Untempla
   val UntemplateInputTypeCanonical          : Option[String] = untemplate.Macro.nonEmptyStringOption( untemplate.Macro.recursiveCanonicalName[Int] )
   val UntemplateInputDefaultArgument        : Option[Int] = (None : Option[Int])
   val UntemplateOutputMetadataTypeDeclared  : String = "SubsectionMeta"
-  val UntemplateOutputMetadataTypeCanonical : Option[String] = untemplate.Macro.nonEmptyStringOption( untemplate.Macro.recursiveCanonicalName[Int] )
+  val UntemplateOutputMetadataTypeCanonical : Option[String] = untemplate.Macro.nonEmptyStringOption( untemplate.Macro.recursiveCanonicalName[SubsectionMeta] )
 
   def apply(level : Int) : untemplate.Result[SubsectionMeta] =
     val writer             : StringWriter = new StringWriter(18670)
