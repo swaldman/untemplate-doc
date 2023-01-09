@@ -11,17 +11,22 @@ Beyond that, if this will be useful at all, it will probably be for debugging.
 For the [untemplate you are reading](<( readmeMetainformationSrc )>):
 
 ```
-UntemplateFunction:              <(UntemplateFunction)>
-UntemplateName:                 "<(UntemplateName)>"
-UntemplateInputType:            "<(UntemplateInputType)>"
-UntemplateInputDefaultArgument:  <(UntemplateInputDefaultArgument)>
-UntemplateOutputMetadataType:   "<(UntemplateOutputMetadataType)>"
+UntemplateFunction:                      <(UntemplateFunction)>
+UntemplateName:                         "<(UntemplateName)>"
+UntemplateInputTypeDeclared:            "<(UntemplateInputTypeDeclared)>"
+UntemplateInputTypeCanonical:            <(UntemplateInputTypeCanonical)>
+UntemplateInputDefaultArgument:          <(UntemplateInputDefaultArgument)>
+UntemplateOutputMetadataTypeDeclared:   "<(UntemplateOutputMetadataTypeDeclared)>"
+UntemplateOutputMetadataTypeCanonical:   <(UntemplateOutputMetadataTypeCanonical)>
+
 ```
 
-`UntemplateFunction` is a reference to the `Function1` object that implements your untemplate.
+`UntemplateFunction` is a reference to the `Untemplate` (which is a subtype of `Function1`) that implements your untemplate.
 
-The type values are just `String`, and names _may not be fully qualified_.
+"Declared" type values are just `String`, and names _may not be fully qualified_.
 
-`UntemplateInputDefaultArgument` is an `Option[String]`, the default value as declared, if declared.
-It is not the actual value of the default argument!
+"Canonical" types are, if possible, resolved to fully qualified type names that look through (non-opaque) aliases.
+However, for some types such resolution may not be possible, so these are `Option[String]`
+
+`UntemplateInputDefaultArgument` is the value and type of the default argument.
 

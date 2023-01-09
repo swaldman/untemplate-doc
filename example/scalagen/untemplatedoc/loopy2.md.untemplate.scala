@@ -4,12 +4,14 @@ import java.io.{Writer,StringWriter}
 import scala.collection.*
 
 val Untemplate_loopy2_md = new untemplate.Untemplate[immutable.Map[String,Any],Nothing]:
-  val UntemplateFunction             = this
-  val UntemplateName                 = "loopy2_md"
-  val UntemplateInputName            = "input"
-  val UntemplateInputType            = "immutable.Map[String,Any]"
-  val UntemplateInputDefaultArgument = Some("immutable.Map.empty")
-  val UntemplateOutputMetadataType   = "Nothing"
+  val UntemplateFunction                    : untemplate.Untemplate[immutable.Map[String,Any],Nothing] = this
+  val UntemplateName                        : String = "loopy2_md"
+  val UntemplateInputName                   : String = "input"
+  val UntemplateInputTypeDeclared           : String = "immutable.Map[String,Any]"
+  val UntemplateInputTypeCanonical          : Option[String] = untemplate.recursiveCanonicalName[immutable.Map[String,Any]]
+  val UntemplateInputDefaultArgument        : Option[immutable.Map[String,Any]] = Some(immutable.Map.empty)
+  val UntemplateOutputMetadataTypeDeclared  : String = "Nothing"
+  val UntemplateOutputMetadataTypeCanonical : Option[String] = untemplate.recursiveCanonicalName[immutable.Map[String,Any]]
 
   def apply(input : immutable.Map[String,Any] = immutable.Map.empty) : untemplate.Result[Nothing] =
     val writer             : StringWriter = new StringWriter(6210)

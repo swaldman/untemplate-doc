@@ -7,12 +7,14 @@ import untemplatedoc.*
 
 
 val Untemplate_frame_main_md = new untemplate.Untemplate[immutable.Map[String,Any],Nothing]:
-  val UntemplateFunction             = this
-  val UntemplateName                 = "frame_main_md"
-  val UntemplateInputName            = "input"
-  val UntemplateInputType            = "immutable.Map[String,Any]"
-  val UntemplateInputDefaultArgument = Some("immutable.Map.empty")
-  val UntemplateOutputMetadataType   = "Nothing"
+  val UntemplateFunction                    : untemplate.Untemplate[immutable.Map[String,Any],Nothing] = this
+  val UntemplateName                        : String = "frame_main_md"
+  val UntemplateInputName                   : String = "input"
+  val UntemplateInputTypeDeclared           : String = "immutable.Map[String,Any]"
+  val UntemplateInputTypeCanonical          : Option[String] = untemplate.recursiveCanonicalName[immutable.Map[String,Any]]
+  val UntemplateInputDefaultArgument        : Option[immutable.Map[String,Any]] = Some(immutable.Map.empty)
+  val UntemplateOutputMetadataTypeDeclared  : String = "Nothing"
+  val UntemplateOutputMetadataTypeCanonical : Option[String] = untemplate.recursiveCanonicalName[immutable.Map[String,Any]]
 
   def apply(input : immutable.Map[String,Any] = immutable.Map.empty) : untemplate.Result[Nothing] =
     val writer             : StringWriter = new StringWriter(12200)

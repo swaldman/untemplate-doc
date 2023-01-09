@@ -97,12 +97,14 @@ import java.io.{Writer,StringWriter}
 import scala.collection.*
 
 val Untemplate_ceci_nest_pas_md = new untemplate.Untemplate[immutable.Map[String,Any],Nothing]:
-  val UntemplateFunction             = this
-  val UntemplateName                 = "ceci_nest_pas_md"
-  val UntemplateInputName            = "input"
-  val UntemplateInputType            = "immutable.Map[String,Any]"
-  val UntemplateInputDefaultArgument = Some("immutable.Map.empty")
-  val UntemplateOutputMetadataType   = "Nothing"
+  val UntemplateFunction                    : untemplate.Untemplate[immutable.Map[String,Any],Nothing] = this
+  val UntemplateName                        : String = "ceci_nest_pas_md"
+  val UntemplateInputName                   : String = "input"
+  val UntemplateInputTypeDeclared           : String = "immutable.Map[String,Any]"
+  val UntemplateInputTypeCanonical          : Option[String] = untemplate.recursiveCanonicalName[immutable.Map[String,Any]]
+  val UntemplateInputDefaultArgument        : Option[immutable.Map[String,Any]] = Some(immutable.Map.empty)
+  val UntemplateOutputMetadataTypeDeclared  : String = "Nothing"
+  val UntemplateOutputMetadataTypeCanonical : Option[String] = untemplate.recursiveCanonicalName[immutable.Map[String,Any]]
 
   def apply(input : immutable.Map[String,Any] = immutable.Map.empty) : untemplate.Result[Nothing] =
     val writer             : StringWriter = new StringWriter(2030)
@@ -141,7 +143,7 @@ function.
 Now, the [generated scala](example/scalagen/untemplatedoc/ceci-nest-pas2.md.untemplate.scala) _would_ transform the markdown, like this:
 
 ```markdown
-# Ceci n'est pas... 0.9889465588169507
+# Ceci n'est pas... 0.7277391042852387
 
 Well, this is _almost_ just a regular markdown file, with no
 special untemplate constructs. But if we wish, we can treat
@@ -199,8 +201,10 @@ Let's get a look at what it produces:
 # Loopy
 # Loopy
 # Loopy
+# Loopy
+# Loopy
 
-And we're a winner! (num = 5)
+And we're a winner! (num = 7)
 
 ```
 
@@ -210,13 +214,8 @@ And again!
 # Loopy
 # Loopy
 # Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
 
-And we're a winner! (num = 9)
+It sucks to be us. (num = 4)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/loopy.md.untemplate.scala))
@@ -397,14 +396,8 @@ Here is the output...
 
 ```markdown
 # Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
 
-And we're a winner! (num = 7)
+It sucks to be us. (num = 1)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/loopy2.md.untemplate.scala))
@@ -470,7 +463,7 @@ Which generates...
 
 Happy Birthday to me!
 
-_I was published on Sun, 8 Jan 2023 17:11:19 -0500._
+_I was published on Sun, 8 Jan 2023 20:45:53 -0500._
 
 
 ```
@@ -538,19 +531,24 @@ Beyond that, if this will be useful at all, it will probably be for debugging.
 For the [untemplate you are reading](untemplatedocs/src/main/untemplate/untemplatedoc/readme/functionaltemplates/content-metainformation.md.untemplate):
 
 ```
-UntemplateFunction:              <function1>
-UntemplateName:                 "content_metainformation_md"
-UntemplateInputType:            "Int"
-UntemplateInputDefaultArgument:  None
-UntemplateOutputMetadataType:   "SubsectionMeta"
+UntemplateFunction:                      <function1>
+UntemplateName:                         "content_metainformation_md"
+UntemplateInputTypeDeclared:            "Int"
+UntemplateInputTypeCanonical:            Some(T)
+UntemplateInputDefaultArgument:          None
+UntemplateOutputMetadataTypeDeclared:   "SubsectionMeta"
+UntemplateOutputMetadataTypeCanonical:   Some(T)
+
 ```
 
-`UntemplateFunction` is a reference to the `Function1` object that implements your untemplate.
+`UntemplateFunction` is a reference to the `Untemplate` (which is a subtype of `Function1`) that implements your untemplate.
 
-The type values are just `String`, and names _may not be fully qualified_.
+"Declared" type values are just `String`, and names _may not be fully qualified_.
 
-`UntemplateInputDefaultArgument` is an `Option[String]`, the default value as declared, if declared.
-It is not the actual value of the default argument!
+"Canonical" types are, if possible, resolved to fully qualified type names that look through (non-opaque) aliases.
+However, for some types such resolution may not be possible, so these are `Option[String]`
+
+`UntemplateInputDefaultArgument` is the value and type of the default argument.
 
 
 

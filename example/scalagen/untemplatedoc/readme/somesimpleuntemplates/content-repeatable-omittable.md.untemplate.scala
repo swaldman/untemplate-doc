@@ -11,12 +11,14 @@ import com.mchange.codegenutil.*
 
 
 val Untemplate_content_repeatable_omittable_md = new untemplate.Untemplate[Int,SubsectionMeta]:
-  val UntemplateFunction             = this
-  val UntemplateName                 = "content_repeatable_omittable_md"
-  val UntemplateInputName            = "level"
-  val UntemplateInputType            = "Int"
-  val UntemplateInputDefaultArgument = (None : Option[String])
-  val UntemplateOutputMetadataType   = "SubsectionMeta"
+  val UntemplateFunction                    : untemplate.Untemplate[Int,SubsectionMeta] = this
+  val UntemplateName                        : String = "content_repeatable_omittable_md"
+  val UntemplateInputName                   : String = "level"
+  val UntemplateInputTypeDeclared           : String = "Int"
+  val UntemplateInputTypeCanonical          : Option[String] = untemplate.recursiveCanonicalName[Int]
+  val UntemplateInputDefaultArgument        : Option[Int] = (None : Option[Int])
+  val UntemplateOutputMetadataTypeDeclared  : String = "SubsectionMeta"
+  val UntemplateOutputMetadataTypeCanonical : Option[String] = untemplate.recursiveCanonicalName[Int]
 
   def apply(level : Int) : untemplate.Result[SubsectionMeta] =
     val writer             : StringWriter = new StringWriter(7130)

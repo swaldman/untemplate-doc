@@ -11,15 +11,17 @@ import com.mchange.codegenutil.*
 
 
 val Untemplate_content_metainformation_md = new untemplate.Untemplate[Int,SubsectionMeta]:
-  val UntemplateFunction             = this
-  val UntemplateName                 = "content_metainformation_md"
-  val UntemplateInputName            = "level"
-  val UntemplateInputType            = "Int"
-  val UntemplateInputDefaultArgument = (None : Option[String])
-  val UntemplateOutputMetadataType   = "SubsectionMeta"
+  val UntemplateFunction                    : untemplate.Untemplate[Int,SubsectionMeta] = this
+  val UntemplateName                        : String = "content_metainformation_md"
+  val UntemplateInputName                   : String = "level"
+  val UntemplateInputTypeDeclared           : String = "Int"
+  val UntemplateInputTypeCanonical          : Option[String] = untemplate.recursiveCanonicalName[Int]
+  val UntemplateInputDefaultArgument        : Option[Int] = (None : Option[Int])
+  val UntemplateOutputMetadataTypeDeclared  : String = "SubsectionMeta"
+  val UntemplateOutputMetadataTypeCanonical : Option[String] = untemplate.recursiveCanonicalName[Int]
 
   def apply(level : Int) : untemplate.Result[SubsectionMeta] =
-    val writer             : StringWriter = new StringWriter(11130)
+    val writer             : StringWriter = new StringWriter(14980)
     var mbMetadata         : Option[SubsectionMeta] = None
     var outputTransformer  : Function1[untemplate.Result[SubsectionMeta],untemplate.Result[SubsectionMeta]] = readme.subsection_content_transformer_md
 
@@ -30,12 +32,14 @@ val Untemplate_content_metainformation_md = new untemplate.Untemplate[Int,Subsec
       val block0 = new Function0[String]:
         def apply() : String =
           "\nWithin an untemplate, you have access to variables containing metainformation about the generated function.\n\nIt may be useful to use `UntemplateFunction` as a Map key, in order to decorate it with metadata.\nBeyond that, if this will be useful at all, it will probably be for debugging.\n\nFor the [untemplate you are reading](" + ( readmeMetainformationSrc ) +
-          "):\n\n```\nUntemplateFunction:              " + (UntemplateFunction) +
-          "\nUntemplateName:                 \"" + (UntemplateName) +
-          "\"\nUntemplateInputType:            \"" + (UntemplateInputType) +
-          "\"\nUntemplateInputDefaultArgument:  " + (UntemplateInputDefaultArgument) +
-          "\nUntemplateOutputMetadataType:   \"" + (UntemplateOutputMetadataType) +
-          "\"\n```\n\n`UntemplateFunction` is a reference to the `Function1` object that implements your untemplate.\n\nThe type values are just `String`, and names _may not be fully qualified_.\n\n`UntemplateInputDefaultArgument` is an `Option[String]`, the default value as declared, if declared.\nIt is not the actual value of the default argument!\n\n"
+          "):\n\n```\nUntemplateFunction:                      " + (UntemplateFunction) +
+          "\nUntemplateName:                         \"" + (UntemplateName) +
+          "\"\nUntemplateInputTypeDeclared:            \"" + (UntemplateInputTypeDeclared) +
+          "\"\nUntemplateInputTypeCanonical:            " + (UntemplateInputTypeCanonical) +
+          "\nUntemplateInputDefaultArgument:          " + (UntemplateInputDefaultArgument) +
+          "\nUntemplateOutputMetadataTypeDeclared:   \"" + (UntemplateOutputMetadataTypeDeclared) +
+          "\"\nUntemplateOutputMetadataTypeCanonical:   " + (UntemplateOutputMetadataTypeCanonical) +
+          "\n\n```\n\n`UntemplateFunction` is a reference to the `Untemplate` (which is a subtype of `Function1`) that implements your untemplate.\n\n\"Declared\" type values are just `String`, and names _may not be fully qualified_.\n\n\"Canonical\" types are, if possible, resolved to fully qualified type names that look through (non-opaque) aliases.\nHowever, for some types such resolution may not be possible, so these are `Option[String]`\n\n`UntemplateInputDefaultArgument` is the value and type of the default argument.\n\n"
       writer.write(block0())
       
     outputTransformer( untemplate.Result( mbMetadata, writer.toString ) )
