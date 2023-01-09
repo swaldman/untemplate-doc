@@ -44,7 +44,7 @@ that become the idiosyncracies and quirks I'm trying to escape. As much as possi
 want my specification language to be straightforward Scala.
 
 _Untemplate_ is my attempt to create the thinnest possible template veneer over vanilla Scala 3.
-An untemplate is just a text file that optionally includes any of precisely four special delimeters:
+An untemplate is just a text file that optionally includes any of four special delimeters:
 
 | Delimeter | Description |
 | --- | --- |
@@ -99,6 +99,7 @@ import scala.collection.*
 val Untemplate_ceci_nest_pas_md = new untemplate.Untemplate[immutable.Map[String,Any],Nothing]:
   val UntemplateFunction                    : untemplate.Untemplate[immutable.Map[String,Any],Nothing] = this
   val UntemplateName                        : String = "ceci_nest_pas_md"
+  val UntemplatePackage                     : String = "untemplatedoc"
   val UntemplateInputName                   : String = "input"
   val UntemplateInputTypeDeclared           : String = "immutable.Map[String,Any]"
   val UntemplateInputTypeCanonical          : Option[String] = untemplate.Macro.nonEmptyStringOption( untemplate.Macro.recursiveCanonicalName[immutable.Map[String,Any]] )
@@ -143,7 +144,7 @@ function.
 Now, the [generated scala](example/scalagen/untemplatedoc/ceci-nest-pas2.md.untemplate.scala) _would_ transform the markdown, like this:
 
 ```markdown
-# Ceci n'est pas... 0.5390791992004054
+# Ceci n'est pas... 0.2832594647498896
 
 Well, this is _almost_ just a regular markdown file, with no
 special untemplate constructs. But if we wish, we can treat
@@ -199,11 +200,8 @@ Let's get a look at what it produces:
 # Loopy
 # Loopy
 # Loopy
-# Loopy
-# Loopy
-# Loopy
 
-And we're a winner! (num = 6)
+It sucks to be us. (num = 3)
 
 ```
 
@@ -394,8 +392,16 @@ Here is the output...
 
 ```markdown
 # Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
 
-It sucks to be us. (num = 1)
+And we're a winner! (num = 9)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/loopy2.md.untemplate.scala))
@@ -461,7 +467,7 @@ Which generates...
 
 Happy Birthday to me!
 
-_I was published on Sun, 8 Jan 2023 22:26:40 -0500._
+_I was published on Sun, 8 Jan 2023 23:04:18 -0500._
 
 
 ```
@@ -531,6 +537,7 @@ For the [untemplate you are reading](untemplatedocs/src/main/untemplate/untempla
 ```
 UntemplateFunction:                      <function1>
 UntemplateName:                         "content_metainformation_md"
+UntemplatePackage:                      "untemplatedoc.readme.functionaltemplates"
 UntemplateInputTypeDeclared:            "Int"
 UntemplateInputTypeCanonical:            Some(scala.Int)
 UntemplateInputDefaultArgument:          None

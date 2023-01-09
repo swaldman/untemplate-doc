@@ -10,6 +10,7 @@ import java.time.format.DateTimeFormatter
 val Untemplate_untemplateDoc = new untemplate.Untemplate[Instant,Nothing]:
   val UntemplateFunction                    : untemplate.Untemplate[Instant,Nothing] = this
   val UntemplateName                        : String = "untemplateDoc"
+  val UntemplatePackage                     : String = "untemplatedoc"
   val UntemplateInputName                   : String = "pubDate"
   val UntemplateInputTypeDeclared           : String = "Instant"
   val UntemplateInputTypeCanonical          : Option[String] = untemplate.Macro.nonEmptyStringOption( untemplate.Macro.recursiveCanonicalName[Instant] )

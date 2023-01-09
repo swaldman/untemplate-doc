@@ -25,7 +25,7 @@ that become the idiosyncracies and quirks I'm trying to escape. As much as possi
 want my specification language to be straightforward Scala.
 
 _Untemplate_ is my attempt to create the thinnest possible template veneer over vanilla Scala 3.
-An untemplate is just a text file that optionally includes any of precisely four special delimeters:
+An untemplate is just a text file that optionally includes any of four special delimeters:
 
 | Delimeter | Description |
 | --- | --- |

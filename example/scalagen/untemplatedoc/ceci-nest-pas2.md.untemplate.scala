@@ -6,6 +6,7 @@ import scala.collection.*
 val Untemplate_ceci_nest_pas2_md = new untemplate.Untemplate[immutable.Map[String,Any],Nothing]:
   val UntemplateFunction                    : untemplate.Untemplate[immutable.Map[String,Any],Nothing] = this
   val UntemplateName                        : String = "ceci_nest_pas2_md"
+  val UntemplatePackage                     : String = "untemplatedoc"
   val UntemplateInputName                   : String = "input"
   val UntemplateInputTypeDeclared           : String = "immutable.Map[String,Any]"
   val UntemplateInputTypeCanonical          : Option[String] = untemplate.Macro.nonEmptyStringOption( untemplate.Macro.recursiveCanonicalName[immutable.Map[String,Any]] )

@@ -9,6 +9,7 @@ import untemplatedoc.*
 val Untemplate_subsection_content_transformer_md = new untemplate.Untemplate[untemplate.Result[SubsectionMeta],SubsectionMeta]:
   val UntemplateFunction                    : untemplate.Untemplate[untemplate.Result[SubsectionMeta],SubsectionMeta] = this
   val UntemplateName                        : String = "subsection_content_transformer_md"
+  val UntemplatePackage                     : String = "untemplatedoc.readme"
   val UntemplateInputName                   : String = "result"
   val UntemplateInputTypeDeclared           : String = "untemplate.Result[SubsectionMeta]"
   val UntemplateInputTypeCanonical          : Option[String] = untemplate.Macro.nonEmptyStringOption( untemplate.Macro.recursiveCanonicalName[untemplate.Result[SubsectionMeta]] )

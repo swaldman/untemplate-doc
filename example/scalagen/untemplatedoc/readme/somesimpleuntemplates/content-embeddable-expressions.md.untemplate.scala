@@ -13,6 +13,7 @@ import com.mchange.codegenutil.*
 val Untemplate_content_embeddable_expressions_md = new untemplate.Untemplate[Int,SubsectionMeta]:
   val UntemplateFunction                    : untemplate.Untemplate[Int,SubsectionMeta] = this
   val UntemplateName                        : String = "content_embeddable_expressions_md"
+  val UntemplatePackage                     : String = "untemplatedoc.readme.somesimpleuntemplates"
   val UntemplateInputName                   : String = "level"
   val UntemplateInputTypeDeclared           : String = "Int"
   val UntemplateInputTypeCanonical          : Option[String] = untemplate.Macro.nonEmptyStringOption( untemplate.Macro.recursiveCanonicalName[Int] )

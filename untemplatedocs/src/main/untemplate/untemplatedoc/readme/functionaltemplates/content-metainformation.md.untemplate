@@ -13,6 +13,7 @@ For the [untemplate you are reading](<( readmeMetainformationSrc )>) [[generated
 ```
 UntemplateFunction:                      <(UntemplateFunction)>
 UntemplateName:                         "<(UntemplateName)>"
+UntemplatePackage:                      "<(UntemplatePackage)>"
 UntemplateInputTypeDeclared:            "<(UntemplateInputTypeDeclared)>"
 UntemplateInputTypeCanonical:            <(UntemplateInputTypeCanonical)>
 UntemplateInputDefaultArgument:          <(UntemplateInputDefaultArgument)>

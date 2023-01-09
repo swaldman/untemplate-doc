@@ -13,6 +13,7 @@ import com.mchange.codegenutil.*
 val Untemplate_content_metainformation_md = new untemplate.Untemplate[Int,SubsectionMeta]:
   val UntemplateFunction                    : untemplate.Untemplate[Int,SubsectionMeta] = this
   val UntemplateName                        : String = "content_metainformation_md"
+  val UntemplatePackage                     : String = "untemplatedoc.readme.functionaltemplates"
   val UntemplateInputName                   : String = "level"
   val UntemplateInputTypeDeclared           : String = "Int"
   val UntemplateInputTypeCanonical          : Option[String] = untemplate.Macro.nonEmptyStringOption( untemplate.Macro.recursiveCanonicalName[Int] )
@@ -21,7 +22,7 @@ val Untemplate_content_metainformation_md = new untemplate.Untemplate[Int,Subsec
   val UntemplateOutputMetadataTypeCanonical : Option[String] = untemplate.Macro.nonEmptyStringOption( untemplate.Macro.recursiveCanonicalName[SubsectionMeta] )
 
   def apply(level : Int) : untemplate.Result[SubsectionMeta] =
-    val writer             : StringWriter = new StringWriter(16950)
+    val writer             : StringWriter = new StringWriter(17590)
     var mbMetadata         : Option[SubsectionMeta] = None
     var outputTransformer  : Function1[untemplate.Result[SubsectionMeta],untemplate.Result[SubsectionMeta]] = readme.subsection_content_transformer_md
 
@@ -35,6 +36,7 @@ val Untemplate_content_metainformation_md = new untemplate.Untemplate[Int,Subsec
           ") [[generated scala](" + ( sgenFor("untemplatedoc/readme/functionaltemplates/content-metainformation.md.untemplate") ) +
           ")]:\n\n```\nUntemplateFunction:                      " + (UntemplateFunction) +
           "\nUntemplateName:                         \"" + (UntemplateName) +
+          "\"\nUntemplatePackage:                      \"" + (UntemplatePackage) +
           "\"\nUntemplateInputTypeDeclared:            \"" + (UntemplateInputTypeDeclared) +
           "\"\nUntemplateInputTypeCanonical:            " + (UntemplateInputTypeCanonical) +
           "\nUntemplateInputDefaultArgument:          " + (UntemplateInputDefaultArgument) +
