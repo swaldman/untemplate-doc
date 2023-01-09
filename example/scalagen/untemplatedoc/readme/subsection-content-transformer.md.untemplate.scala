@@ -11,10 +11,10 @@ val Untemplate_subsection_content_transformer_md = new untemplate.Untemplate[unt
   val UntemplateName                        : String = "subsection_content_transformer_md"
   val UntemplateInputName                   : String = "result"
   val UntemplateInputTypeDeclared           : String = "untemplate.Result[SubsectionMeta]"
-  val UntemplateInputTypeCanonical          : Option[String] = untemplate.recursiveCanonicalName[untemplate.Result[SubsectionMeta]]
+  val UntemplateInputTypeCanonical          : Option[String] = untemplate.Macro.nonEmptyStringOption( untemplate.Macro.recursiveCanonicalName[untemplate.Result[SubsectionMeta]] )
   val UntemplateInputDefaultArgument        : Option[untemplate.Result[SubsectionMeta]] = (None : Option[untemplate.Result[SubsectionMeta]])
   val UntemplateOutputMetadataTypeDeclared  : String = "SubsectionMeta"
-  val UntemplateOutputMetadataTypeCanonical : Option[String] = untemplate.recursiveCanonicalName[untemplate.Result[SubsectionMeta]]
+  val UntemplateOutputMetadataTypeCanonical : Option[String] = untemplate.Macro.nonEmptyStringOption( untemplate.Macro.recursiveCanonicalName[untemplate.Result[SubsectionMeta]] )
 
   def apply(result : untemplate.Result[SubsectionMeta]) : untemplate.Result[SubsectionMeta] =
     val writer             : StringWriter = new StringWriter(3110)

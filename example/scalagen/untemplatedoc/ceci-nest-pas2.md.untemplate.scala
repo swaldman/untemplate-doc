@@ -8,10 +8,10 @@ val Untemplate_ceci_nest_pas2_md = new untemplate.Untemplate[immutable.Map[Strin
   val UntemplateName                        : String = "ceci_nest_pas2_md"
   val UntemplateInputName                   : String = "input"
   val UntemplateInputTypeDeclared           : String = "immutable.Map[String,Any]"
-  val UntemplateInputTypeCanonical          : Option[String] = untemplate.recursiveCanonicalName[immutable.Map[String,Any]]
+  val UntemplateInputTypeCanonical          : Option[String] = untemplate.Macro.nonEmptyStringOption( untemplate.Macro.recursiveCanonicalName[immutable.Map[String,Any]] )
   val UntemplateInputDefaultArgument        : Option[immutable.Map[String,Any]] = Some(immutable.Map.empty)
   val UntemplateOutputMetadataTypeDeclared  : String = "Nothing"
-  val UntemplateOutputMetadataTypeCanonical : Option[String] = untemplate.recursiveCanonicalName[immutable.Map[String,Any]]
+  val UntemplateOutputMetadataTypeCanonical : Option[String] = untemplate.Macro.nonEmptyStringOption( untemplate.Macro.recursiveCanonicalName[immutable.Map[String,Any]] )
 
   def apply(input : immutable.Map[String,Any] = immutable.Map.empty) : untemplate.Result[Nothing] =
     val writer             : StringWriter = new StringWriter(2280)

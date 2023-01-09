@@ -101,10 +101,10 @@ val Untemplate_ceci_nest_pas_md = new untemplate.Untemplate[immutable.Map[String
   val UntemplateName                        : String = "ceci_nest_pas_md"
   val UntemplateInputName                   : String = "input"
   val UntemplateInputTypeDeclared           : String = "immutable.Map[String,Any]"
-  val UntemplateInputTypeCanonical          : Option[String] = untemplate.recursiveCanonicalName[immutable.Map[String,Any]]
+  val UntemplateInputTypeCanonical          : Option[String] = untemplate.Macro.nonEmptyStringOption( untemplate.Macro.recursiveCanonicalName[immutable.Map[String,Any]] )
   val UntemplateInputDefaultArgument        : Option[immutable.Map[String,Any]] = Some(immutable.Map.empty)
   val UntemplateOutputMetadataTypeDeclared  : String = "Nothing"
-  val UntemplateOutputMetadataTypeCanonical : Option[String] = untemplate.recursiveCanonicalName[immutable.Map[String,Any]]
+  val UntemplateOutputMetadataTypeCanonical : Option[String] = untemplate.Macro.nonEmptyStringOption( untemplate.Macro.recursiveCanonicalName[immutable.Map[String,Any]] )
 
   def apply(input : immutable.Map[String,Any] = immutable.Map.empty) : untemplate.Result[Nothing] =
     val writer             : StringWriter = new StringWriter(2030)
@@ -143,7 +143,7 @@ function.
 Now, the [generated scala](example/scalagen/untemplatedoc/ceci-nest-pas2.md.untemplate.scala) _would_ transform the markdown, like this:
 
 ```markdown
-# Ceci n'est pas... 0.5786496658539612
+# Ceci n'est pas... 0.01359332987501738
 
 Well, this is _almost_ just a regular markdown file, with no
 special untemplate constructs. But if we wish, we can treat
@@ -196,8 +196,13 @@ It sucks to be us. (num = <(num)>)
 
 Let's get a look at what it produces:
 ```markdown
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
 
-It sucks to be us. (num = 0)
+And we're a winner! (num = 5)
 
 ```
 
@@ -206,8 +211,14 @@ And again!
 # Loopy
 # Loopy
 # Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
 
-It sucks to be us. (num = 3)
+And we're a winner! (num = 9)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/loopy.md.untemplate.scala))
@@ -390,13 +401,8 @@ Here is the output...
 # Loopy
 # Loopy
 # Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
 
-And we're a winner! (num = 8)
+It sucks to be us. (num = 3)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/loopy2.md.untemplate.scala))
@@ -462,7 +468,7 @@ Which generates...
 
 Happy Birthday to me!
 
-_I was published on Sun, 8 Jan 2023 21:02:41 -0500._
+_I was published on Sun, 8 Jan 2023 21:18:24 -0500._
 
 
 ```
@@ -533,10 +539,10 @@ For the [untemplate you are reading](untemplatedocs/src/main/untemplate/untempla
 UntemplateFunction:                      <function1>
 UntemplateName:                         "content_metainformation_md"
 UntemplateInputTypeDeclared:            "Int"
-UntemplateInputTypeCanonical:            Some(T)
+UntemplateInputTypeCanonical:            None
 UntemplateInputDefaultArgument:          None
 UntemplateOutputMetadataTypeDeclared:   "SubsectionMeta"
-UntemplateOutputMetadataTypeCanonical:   Some(T)
+UntemplateOutputMetadataTypeCanonical:   None
 
 ```
 

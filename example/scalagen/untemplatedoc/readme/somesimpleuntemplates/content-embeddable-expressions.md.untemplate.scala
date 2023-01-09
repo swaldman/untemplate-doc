@@ -15,10 +15,10 @@ val Untemplate_content_embeddable_expressions_md = new untemplate.Untemplate[Int
   val UntemplateName                        : String = "content_embeddable_expressions_md"
   val UntemplateInputName                   : String = "level"
   val UntemplateInputTypeDeclared           : String = "Int"
-  val UntemplateInputTypeCanonical          : Option[String] = untemplate.recursiveCanonicalName[Int]
+  val UntemplateInputTypeCanonical          : Option[String] = untemplate.Macro.nonEmptyStringOption( untemplate.Macro.recursiveCanonicalName[Int] )
   val UntemplateInputDefaultArgument        : Option[Int] = (None : Option[Int])
   val UntemplateOutputMetadataTypeDeclared  : String = "SubsectionMeta"
-  val UntemplateOutputMetadataTypeCanonical : Option[String] = untemplate.recursiveCanonicalName[Int]
+  val UntemplateOutputMetadataTypeCanonical : Option[String] = untemplate.Macro.nonEmptyStringOption( untemplate.Macro.recursiveCanonicalName[Int] )
 
   def apply(level : Int) : untemplate.Result[SubsectionMeta] =
     val writer             : StringWriter = new StringWriter(11450)
