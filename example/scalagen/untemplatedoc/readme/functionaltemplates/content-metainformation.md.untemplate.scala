@@ -21,7 +21,7 @@ val Untemplate_content_metainformation_md = new untemplate.Untemplate[Int,Subsec
   val UntemplateOutputMetadataTypeCanonical : Option[String] = untemplate.recursiveCanonicalName[Int]
 
   def apply(level : Int) : untemplate.Result[SubsectionMeta] =
-    val writer             : StringWriter = new StringWriter(15680)
+    val writer             : StringWriter = new StringWriter(16040)
     var mbMetadata         : Option[SubsectionMeta] = None
     var outputTransformer  : Function1[untemplate.Result[SubsectionMeta],untemplate.Result[SubsectionMeta]] = readme.subsection_content_transformer_md
 
@@ -32,7 +32,7 @@ val Untemplate_content_metainformation_md = new untemplate.Untemplate[Int,Subsec
       val block0 = new Function0[String]:
         def apply() : String =
           "\nWithin an untemplate, you have access to variables containing metainformation about the generated function.\n\nIt may be useful to use `UntemplateFunction` as a Map key, in order to decorate it with metadata.\nBeyond that, if this will be useful at all, it will probably be for debugging.\n\nFor the [untemplate you are reading](" + ( readmeMetainformationSrc ) +
-          ") [[generated scala](" + ( sgenFor(readmeMetainformationSrc.toString) ) +
+          ") [[generated scala](" + ("untemplatedoc/readme/functionaltemplates/content-metainformation.md.untemplate") +
           ")]:\n\n```\nUntemplateFunction:                      " + (UntemplateFunction) +
           "\nUntemplateName:                         \"" + (UntemplateName) +
           "\"\nUntemplateInputTypeDeclared:            \"" + (UntemplateInputTypeDeclared) +
