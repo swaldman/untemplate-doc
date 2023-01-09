@@ -143,7 +143,7 @@ function.
 Now, the [generated scala](example/scalagen/untemplatedoc/ceci-nest-pas2.md.untemplate.scala) _would_ transform the markdown, like this:
 
 ```markdown
-# Ceci n'est pas... 0.9303011493057373
+# Ceci n'est pas... 0.5786496658539612
 
 Well, this is _almost_ just a regular markdown file, with no
 special untemplate constructs. But if we wish, we can treat
@@ -196,15 +196,8 @@ It sucks to be us. (num = <(num)>)
 
 Let's get a look at what it produces:
 ```markdown
-# Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
 
-And we're a winner! (num = 7)
+It sucks to be us. (num = 0)
 
 ```
 
@@ -213,9 +206,8 @@ And again!
 # Loopy
 # Loopy
 # Loopy
-# Loopy
 
-It sucks to be us. (num = 4)
+It sucks to be us. (num = 3)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/loopy.md.untemplate.scala))
@@ -398,8 +390,13 @@ Here is the output...
 # Loopy
 # Loopy
 # Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
 
-It sucks to be us. (num = 3)
+And we're a winner! (num = 8)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/loopy2.md.untemplate.scala))
@@ -465,7 +462,7 @@ Which generates...
 
 Happy Birthday to me!
 
-_I was published on Sun, 8 Jan 2023 21:00:48 -0500._
+_I was published on Sun, 8 Jan 2023 21:02:41 -0500._
 
 
 ```
@@ -530,7 +527,7 @@ Within an untemplate, you have access to variables containing metainformation ab
 It may be useful to use `UntemplateFunction` as a Map key, in order to decorate it with metadata.
 Beyond that, if this will be useful at all, it will probably be for debugging.
 
-For the [untemplate you are reading](untemplatedocs/src/main/untemplate/untemplatedoc/readme/functionaltemplates/content-metainformation.md.untemplate) [[generated scala](untemplatedoc/readme/functionaltemplates/content-metainformation.md.untemplate)]:
+For the [untemplate you are reading](untemplatedocs/src/main/untemplate/untemplatedoc/readme/functionaltemplates/content-metainformation.md.untemplate) [[generated scala](example/scalagen/untemplatedoc/readme/functionaltemplates/content-metainformation.md.untemplate.scala)]:
 
 ```
 UntemplateFunction:                      <function1>
