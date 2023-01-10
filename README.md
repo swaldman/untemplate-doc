@@ -145,7 +145,7 @@ function.
 Now, the [generated scala](example/scalagen/untemplatedoc/ceci-nest-pas2.md.untemplate.scala) _would_ transform the markdown, like this:
 
 ```markdown
-# Ceci n'est pas... 0.291239709499866
+# Ceci n'est pas... 0.823684439673902
 
 Well, this is _almost_ just a regular markdown file, with no
 special untemplate constructs. But if we wish, we can treat
@@ -206,19 +206,17 @@ Let's get a look at what it produces:
 # Loopy
 # Loopy
 # Loopy
+# Loopy
 
-And we're a winner! (num = 8)
+And we're a winner! (num = 9)
 
 ```
 
 And again!
 ```markdown
 # Loopy
-# Loopy
-# Loopy
-# Loopy
 
-It sucks to be us. (num = 4)
+It sucks to be us. (num = 1)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/loopy.md.untemplate.scala))
@@ -399,8 +397,9 @@ Here is the output...
 
 ```markdown
 # Loopy
+# Loopy
 
-It sucks to be us. (num = 1)
+It sucks to be us. (num = 2)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/loopy2.md.untemplate.scala))
@@ -466,7 +465,7 @@ Which generates...
 
 Happy Birthday to me!
 
-_I was published on Tue, 10 Jan 2023 13:36:59 -0500._
+_I was published on Tue, 10 Jan 2023 13:38:44 -0500._
 
 
 ```
@@ -544,7 +543,7 @@ UntemplateInputTypeCanonical:            Some(scala.Int)
 UntemplateInputDefaultArgument:          None
 UntemplateOutputMetadataTypeDeclared:   "SubsectionMeta"
 UntemplateOutputMetadataTypeCanonical:   Some(untemplatedoc.SubsectionMeta)
-UntemplateHeaderNote;                   ""
+UntemplateHeaderNote:                   "This is a header note."
 ```
 
 `UntemplateFunction` is a reference to the `Untemplate` (which is a subtype of `Function1`) that implements your untemplate.

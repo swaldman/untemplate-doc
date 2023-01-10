@@ -1,7 +1,7 @@
 val title = "Metainformation"
 mbMetadata = Some( SubsectionMeta( level, title ) )
 
-(level : Int)[SubsectionMeta]~()>
+(level : Int)[SubsectionMeta]~()> This is a header note.                   # This is a comment
 
 Within an untemplate, you have access to variables containing metainformation about the generated function.
 
@@ -19,7 +19,7 @@ UntemplateInputTypeCanonical:            <(UntemplateInputTypeCanonical)>
 UntemplateInputDefaultArgument:          <(UntemplateInputDefaultArgument)>
 UntemplateOutputMetadataTypeDeclared:   "<(UntemplateOutputMetadataTypeDeclared)>"
 UntemplateOutputMetadataTypeCanonical:   <(UntemplateOutputMetadataTypeCanonical)>
-UntemplateHeaderNote;                   "<(UntemplateHeaderNote)>"
+UntemplateHeaderNote:                   "<(UntemplateHeaderNote)>"
 ```
 
 `UntemplateFunction` is a reference to the `Untemplate` (which is a subtype of `Function1`) that implements your untemplate.

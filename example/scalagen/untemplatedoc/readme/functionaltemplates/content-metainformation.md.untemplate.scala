@@ -20,10 +20,10 @@ val Untemplate_content_metainformation_md = new untemplate.Untemplate[Int,Subsec
   val UntemplateInputDefaultArgument        : Option[Int] = (None : Option[Int])
   val UntemplateOutputMetadataTypeDeclared  : String = "SubsectionMeta"
   val UntemplateOutputMetadataTypeCanonical : Option[String] = untemplate.Macro.nonEmptyStringOption( untemplate.Macro.recursiveCanonicalName[SubsectionMeta] )
-  val UntemplateHeaderNote                  : String = ""
+  val UntemplateHeaderNote                  : String = "This is a header note."
 
   def apply(level : Int) : untemplate.Result[SubsectionMeta] =
-    val writer             : StringWriter = new StringWriter(18250)
+    val writer             : StringWriter = new StringWriter(18860)
     var mbMetadata         : Option[SubsectionMeta] = None
     var outputTransformer  : Function1[untemplate.Result[SubsectionMeta],untemplate.Result[SubsectionMeta]] = readme.subsection_content_transformer_md
 
@@ -43,7 +43,7 @@ val Untemplate_content_metainformation_md = new untemplate.Untemplate[Int,Subsec
           "\nUntemplateInputDefaultArgument:          " + (UntemplateInputDefaultArgument) +
           "\nUntemplateOutputMetadataTypeDeclared:   \"" + (UntemplateOutputMetadataTypeDeclared) +
           "\"\nUntemplateOutputMetadataTypeCanonical:   " + (UntemplateOutputMetadataTypeCanonical) +
-          "\nUntemplateHeaderNote;                   \"" + (UntemplateHeaderNote) +
+          "\nUntemplateHeaderNote:                   \"" + (UntemplateHeaderNote) +
           "\"\n```\n\n`UntemplateFunction` is a reference to the `Untemplate` (which is a subtype of `Function1`) that implements your untemplate.\n\n\"Declared\" type values are just `String`, and names _may not be fully qualified_.\n\n\"Canonical\" types are, if possible, resolved to fully qualified type names that look through (non-opaque) aliases.\nHowever, for some types such resolution may not be possible, so these are `Option[String]`\n\n`UntemplateInputDefaultArgument` is an `Option[T]` where `T` is the input type and the value is `Some(defaultInputArg)`\nif one was defined or `None` otherwise.\n\n"
       writer.write(block0())
       
