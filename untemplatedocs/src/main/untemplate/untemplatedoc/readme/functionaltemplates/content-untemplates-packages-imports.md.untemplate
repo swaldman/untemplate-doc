@@ -14,7 +14,9 @@ name (or dot-separated path of package names). Untemplate source
 files placed in the top directory belong to the unnamed "default" package.
 
 However, you can override this default by making an explicit package declaration in the header section of your
-untemplate (that is, the section before a [header delimeter](#introduction)). If you wish all untemplates
+untemplate (that is, the section before a [header delimeter](#introduction)).
+
+If you wish all untemplates
 to be generated into a single flat directory, regardless of where or how deeply they were found beneath the source
 directory, you can set the option `flatten` to `true`.
 

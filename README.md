@@ -144,7 +144,7 @@ function.
 Now, the [generated scala](example/scalagen/untemplatedoc/ceci-nest-pas2.md.untemplate.scala) _would_ transform the markdown, like this:
 
 ```markdown
-# Ceci n'est pas... 0.7319358665849218
+# Ceci n'est pas... 0.3777174046425852
 
 Well, this is _almost_ just a regular markdown file, with no
 special untemplate constructs. But if we wish, we can treat
@@ -218,8 +218,12 @@ And again!
 # Loopy
 # Loopy
 # Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
 
-And we're a winner! (num = 5)
+And we're a winner! (num = 9)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/loopy.md.untemplate.scala))
@@ -400,8 +404,10 @@ Here is the output...
 
 ```markdown
 # Loopy
+# Loopy
+# Loopy
 
-It sucks to be us. (num = 1)
+It sucks to be us. (num = 3)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/loopy2.md.untemplate.scala))
@@ -467,7 +473,7 @@ Which generates...
 
 Happy Birthday to me!
 
-_I was published on Tue, 10 Jan 2023 12:21:14 -0500._
+_I was published on Tue, 10 Jan 2023 13:09:35 -0500._
 
 
 ```
@@ -502,7 +508,9 @@ name (or dot-separated path of package names). Untemplate source
 files placed in the top directory belong to the unnamed "default" package.
 
 However, you can override this default by making an explicit package declaration in the header section of your
-untemplate (that is, the section before a [header delimeter](#introduction)). If you wish all untemplates
+untemplate (that is, the section before a [header delimeter](#introduction)).
+
+If you wish all untemplates
 to be generated into a single flat directory, regardless of where or how deeply they were found beneath the source
 directory, you can set the option `flatten` to `true`.
 
