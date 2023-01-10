@@ -44,10 +44,6 @@ object untemplatedocs extends UntemplateModule {
     out
   }
 
-  override def untemplateSource: Source = T.source {
-    millSourcePath / "src" / "main" / "untemplate"
-  }
-
   def installDir  = millSourcePath / os.up
   def exampleDir  = installDir / "example"
   def scalagenDir = exampleDir / "scalagen"
