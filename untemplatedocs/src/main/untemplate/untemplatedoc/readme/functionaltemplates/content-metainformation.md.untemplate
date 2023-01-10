@@ -19,7 +19,7 @@ UntemplateInputTypeCanonical:            <(UntemplateInputTypeCanonical)>
 UntemplateInputDefaultArgument:          <(UntemplateInputDefaultArgument)>
 UntemplateOutputMetadataTypeDeclared:   "<(UntemplateOutputMetadataTypeDeclared)>"
 UntemplateOutputMetadataTypeCanonical:   <(UntemplateOutputMetadataTypeCanonical)>
-
+UntemplateHeaderNote;                   "<(UntemplateHeaderNote)>"
 ```
 
 `UntemplateFunction` is a reference to the `Untemplate` (which is a subtype of `Function1`) that implements your untemplate.

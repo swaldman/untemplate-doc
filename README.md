@@ -106,6 +106,7 @@ val Untemplate_ceci_nest_pas_md = new untemplate.Untemplate[immutable.Map[String
   val UntemplateInputDefaultArgument        : Option[immutable.Map[String,Any]] = Some(immutable.Map.empty)
   val UntemplateOutputMetadataTypeDeclared  : String = "Nothing"
   val UntemplateOutputMetadataTypeCanonical : Option[String] = untemplate.Macro.nonEmptyStringOption( untemplate.Macro.recursiveCanonicalName[Nothing] )
+  val UntemplateHeaderNote                  : String = ""
 
   def apply(input : immutable.Map[String,Any] = immutable.Map.empty) : untemplate.Result[Nothing] =
     val writer             : StringWriter = new StringWriter(2030)
@@ -144,7 +145,7 @@ function.
 Now, the [generated scala](example/scalagen/untemplatedoc/ceci-nest-pas2.md.untemplate.scala) _would_ transform the markdown, like this:
 
 ```markdown
-# Ceci n'est pas... 0.3777174046425852
+# Ceci n'est pas... 0.291239709499866
 
 Well, this is _almost_ just a regular markdown file, with no
 special untemplate constructs. But if we wish, we can treat
@@ -205,9 +206,8 @@ Let's get a look at what it produces:
 # Loopy
 # Loopy
 # Loopy
-# Loopy
 
-And we're a winner! (num = 9)
+And we're a winner! (num = 8)
 
 ```
 
@@ -217,13 +217,8 @@ And again!
 # Loopy
 # Loopy
 # Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
 
-And we're a winner! (num = 9)
+It sucks to be us. (num = 4)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/loopy.md.untemplate.scala))
@@ -404,10 +399,8 @@ Here is the output...
 
 ```markdown
 # Loopy
-# Loopy
-# Loopy
 
-It sucks to be us. (num = 3)
+It sucks to be us. (num = 1)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/loopy2.md.untemplate.scala))
@@ -473,7 +466,7 @@ Which generates...
 
 Happy Birthday to me!
 
-_I was published on Tue, 10 Jan 2023 13:09:35 -0500._
+_I was published on Tue, 10 Jan 2023 13:36:59 -0500._
 
 
 ```
@@ -543,7 +536,7 @@ Beyond that, if this will be useful at all, it will probably be for debugging.
 For the [untemplate you are reading](untemplatedocs/src/main/untemplate/untemplatedoc/readme/functionaltemplates/content-metainformation.md.untemplate) [[generated scala](example/scalagen/untemplatedoc/readme/functionaltemplates/content-metainformation.md.untemplate.scala)]:
 
 ```
-UntemplateFunction:                      <function1>
+UntemplateFunction:                      untemplate.Untemplate[Int,SubsectionMeta]
 UntemplateName:                         "content_metainformation_md"
 UntemplatePackage:                      "untemplatedoc.readme.functionaltemplates"
 UntemplateInputTypeDeclared:            "Int"
@@ -551,7 +544,7 @@ UntemplateInputTypeCanonical:            Some(scala.Int)
 UntemplateInputDefaultArgument:          None
 UntemplateOutputMetadataTypeDeclared:   "SubsectionMeta"
 UntemplateOutputMetadataTypeCanonical:   Some(untemplatedoc.SubsectionMeta)
-
+UntemplateHeaderNote;                   ""
 ```
 
 `UntemplateFunction` is a reference to the `Untemplate` (which is a subtype of `Function1`) that implements your untemplate.

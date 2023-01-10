@@ -13,6 +13,7 @@ val Untemplate_loopy_md = new untemplate.Untemplate[immutable.Map[String,Any],No
   val UntemplateInputDefaultArgument        : Option[immutable.Map[String,Any]] = Some(immutable.Map.empty)
   val UntemplateOutputMetadataTypeDeclared  : String = "Nothing"
   val UntemplateOutputMetadataTypeCanonical : Option[String] = untemplate.Macro.nonEmptyStringOption( untemplate.Macro.recursiveCanonicalName[Nothing] )
+  val UntemplateHeaderNote                  : String = ""
 
   def apply(input : immutable.Map[String,Any] = immutable.Map.empty) : untemplate.Result[Nothing] =
     val writer             : StringWriter = new StringWriter(1900)

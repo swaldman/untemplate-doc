@@ -20,6 +20,7 @@ val Untemplate_content_acknowledgments_md = new untemplate.Untemplate[Int,Subsec
   val UntemplateInputDefaultArgument        : Option[Int] = (None : Option[Int])
   val UntemplateOutputMetadataTypeDeclared  : String = "SubsectionMeta"
   val UntemplateOutputMetadataTypeCanonical : Option[String] = untemplate.Macro.nonEmptyStringOption( untemplate.Macro.recursiveCanonicalName[SubsectionMeta] )
+  val UntemplateHeaderNote                  : String = ""
 
   def apply(level : Int) : untemplate.Result[SubsectionMeta] =
     val writer             : StringWriter = new StringWriter(5800)

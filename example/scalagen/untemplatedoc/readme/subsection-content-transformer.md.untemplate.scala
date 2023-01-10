@@ -16,6 +16,7 @@ val Untemplate_subsection_content_transformer_md = new untemplate.Untemplate[unt
   val UntemplateInputDefaultArgument        : Option[untemplate.Result[SubsectionMeta]] = (None : Option[untemplate.Result[SubsectionMeta]])
   val UntemplateOutputMetadataTypeDeclared  : String = "SubsectionMeta"
   val UntemplateOutputMetadataTypeCanonical : Option[String] = untemplate.Macro.nonEmptyStringOption( untemplate.Macro.recursiveCanonicalName[SubsectionMeta] )
+  val UntemplateHeaderNote                  : String = ""
 
   def apply(result : untemplate.Result[SubsectionMeta]) : untemplate.Result[SubsectionMeta] =
     val writer             : StringWriter = new StringWriter(3110)

@@ -13,6 +13,7 @@ val Untemplate_ceci_nest_pas2_md = new untemplate.Untemplate[immutable.Map[Strin
   val UntemplateInputDefaultArgument        : Option[immutable.Map[String,Any]] = Some(immutable.Map.empty)
   val UntemplateOutputMetadataTypeDeclared  : String = "Nothing"
   val UntemplateOutputMetadataTypeCanonical : Option[String] = untemplate.Macro.nonEmptyStringOption( untemplate.Macro.recursiveCanonicalName[Nothing] )
+  val UntemplateHeaderNote                  : String = ""
 
   def apply(input : immutable.Map[String,Any] = immutable.Map.empty) : untemplate.Result[Nothing] =
     val writer             : StringWriter = new StringWriter(2280)
