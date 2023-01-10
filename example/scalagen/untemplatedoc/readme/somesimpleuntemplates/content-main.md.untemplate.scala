@@ -22,7 +22,7 @@ val Untemplate_content_main_md = new untemplate.Untemplate[Int,SubsectionMeta]:
   val UntemplateOutputMetadataTypeCanonical : Option[String] = untemplate.Macro.nonEmptyStringOption( untemplate.Macro.recursiveCanonicalName[SubsectionMeta] )
 
   def apply(level : Int) : untemplate.Result[SubsectionMeta] =
-    val writer             : StringWriter = new StringWriter(7670)
+    val writer             : StringWriter = new StringWriter(8420)
     var mbMetadata         : Option[SubsectionMeta] = None
     var outputTransformer  : Function1[untemplate.Result[SubsectionMeta],untemplate.Result[SubsectionMeta]] = readme.subsection_content_transformer_md
 
@@ -42,7 +42,7 @@ val Untemplate_content_main_md = new untemplate.Untemplate[Int,SubsectionMeta]:
     writer.writeln(Files.readString(ceciSrc).trim)
       val block1 = new Function0[String]:
         def apply() : String =
-          "```\nIt's just a markdown file! But if it's stored in an untemplate source directory as `ceci-nest-pas.md.untemplate`, it gets\ncompiled to a simple scala function.\n\n```scala\n"
+          "```\nIt's just a markdown file! But if it's stored in an untemplate source directory as `ceci-nest-pas.md.untemplate`, it gets\ncompiled to a simple scala function, `ceci_nest_pas_md()`. (It's the little `def` declaration at the very end.)\n\n```scala\n"
       writer.write(block1())
       
     writer.writeln(Files.readString(ceciScala).trim)

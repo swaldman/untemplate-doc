@@ -26,6 +26,9 @@ def veryclean() = T.command {
 
 object untemplatedocs extends UntemplateModule {
   override def scalaVersion = "3.2.1"
+  //override def scalaVersion = "3.2.0"
+
+  override def indexNameFullyQualified : Option[String] = Some("untemplatedoc.Untemplates")
 
   def untemplateSelectCustomizer: untemplate.Customizer.Selector = { key =>
     var out = untemplate.Customizer.empty
@@ -79,5 +82,9 @@ object untemplatedocs extends UntemplateModule {
     // super.run(Seq(installFile) :_*)
     // ()
   }
+
+  // abortive attempts to address terminal / mill untemplatedoc.console problems
+  // import $ivy.`org.fusesource.jansi:jansi:2.4.0`
+  // override def ivyDeps = T{ super.ivyDeps() ++ Agg(ivy"org.fusesource.jansi:jansi:2.4.0") }
 }
 

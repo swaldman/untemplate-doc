@@ -66,7 +66,7 @@ region above and a text region below. However, import statements in the code reg
 top-level imports in the generated file.
 
 > :bulb: **Mnemonic** <br/>
-> For every construct, whatever an "arrow", `<` or `>`, points at is a text region. Whatever a parenthesis is adjacent to is code.
+> For every construct, whatever an "arrow" &mdash; `<` or `>`&mdash points at is a text region. Whatever a parenthesis &mdash; `(` or `)` or `()` &mdash; is adjacent to is code.
 
 
 
@@ -88,7 +88,7 @@ it as an unemplate, and it will be immortalized as a scala
 function.
 ```
 It's just a markdown file! But if it's stored in an untemplate source directory as `ceci-nest-pas.md.untemplate`, it gets
-compiled to a simple scala function.
+compiled to a simple scala function, `ceci_nest_pas_md()`. (It's the little `def` declaration at the very end.)
 
 ```scala
 package untemplatedoc
@@ -144,7 +144,7 @@ function.
 Now, the [generated scala](example/scalagen/untemplatedoc/ceci-nest-pas2.md.untemplate.scala) _would_ transform the markdown, like this:
 
 ```markdown
-# Ceci n'est pas... 0.4066932578104532
+# Ceci n'est pas... 0.7319358665849218
 
 Well, this is _almost_ just a regular markdown file, with no
 special untemplate constructs. But if we wish, we can treat
@@ -400,15 +400,8 @@ Here is the output...
 
 ```markdown
 # Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
 
-And we're a winner! (num = 8)
+It sucks to be us. (num = 1)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/loopy2.md.untemplate.scala))
@@ -474,7 +467,7 @@ Which generates...
 
 Happy Birthday to me!
 
-_I was published on Sun, 8 Jan 2023 23:33:41 -0500._
+_I was published on Tue, 10 Jan 2023 12:21:14 -0500._
 
 
 ```

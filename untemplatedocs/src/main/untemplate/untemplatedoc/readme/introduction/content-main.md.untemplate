@@ -46,5 +46,5 @@ region beneath.
 region above and a text region below. However, import statements in the code region above become
 top-level imports in the generated file.
 
-<( box(Some(":bulb:"), Some("Mnemonic"))( """For every construct, whatever an "arrow", `<` or `>`, points at is a text region. Whatever a parenthesis is adjacent to is code.""" ) )>
+<( box(Some(":bulb:"), Some("Mnemonic"))( """For every construct, whatever an "arrow" &mdash; `<` or `>`&mdash points at is a text region. Whatever a parenthesis &mdash; `(` or `)` or `()` &mdash; is adjacent to is code.""" ) )>
 
