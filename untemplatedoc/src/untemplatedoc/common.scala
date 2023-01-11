@@ -4,6 +4,7 @@ import scala.collection.*
 import java.nio.file.{Path, Files}
 import com.mchange.codegenutil.*
 
+val libScalaDir                    = Path.of("untemplatdoc/src")
 val usrcDir                        = Path.of("untemplatedoc/untemplate")
 val sgenDir                        = Path.of("example/scalagen")
 val ceciSrc                        = usrcDir.resolve("untemplatedoc/ceci-nest-pas.md.untemplate")
@@ -20,6 +21,7 @@ val readmeOutputTransformersSrc    = usrcDir.resolve("untemplatedoc/readme/featu
 val readmeSubsectionTransformerSrc = usrcDir.resolve("untemplatedoc/readme/subsection-content-transformer.md.untemplate")
 val readmeCustomizersSrc           = usrcDir.resolve("untemplatedoc/readme/featurecreep/content-customizers.md.untemplate")
 
+val indexGen = sgenDir.resolve( "untemplatedoc/UntemplateIndex_Untemplates.scala" )
 
 def sgenFor( untemplateSrcPath : String ) : Path =
   sgenDir.resolve( Path.of(s"${untemplateSrcPath}.scala") )

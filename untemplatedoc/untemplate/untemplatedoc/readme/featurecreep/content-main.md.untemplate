@@ -3,7 +3,8 @@ val title = "Feature Creep"
 val subsectionFunctions = List (
     content_output_transformers_md,
     content_customizers_md,
-    content_long_delimiters_etc_md
+    content_long_delimiters_etc_md,
+    content_indexes_md
 )
 val subsectionResults = subsectionFunctions.map( fcn => fcn(level + 1) )
 

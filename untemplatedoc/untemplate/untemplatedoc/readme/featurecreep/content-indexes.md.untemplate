@@ -1,0 +1,16 @@
+val title = "Indexes"
+mbMetadata = Some( SubsectionMeta( level, title ) )
+
+(level : Int)[SubsectionMeta]~()>
+
+When you generate a collection (usually a directory hierarchy) of untemplates,
+you can request that the untemplate library generate an index of the untemplates
+produced that you can work with at runtime.
+
+Here is an example, indexing the unteplates generating this documentation:
+
+```scala
+<()
+writer.writeln( Files.readString( indexGen ) )
+()>
+```
