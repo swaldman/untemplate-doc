@@ -32,3 +32,14 @@ However, for some types such resolution may not be possible, so these are `Optio
 `UntemplateInputDefaultArgument` is an `Option[T]` where `T` is the input type and the value is `Some(defaultInputArg)`
 if one was defined or `None` otherwise.
 
+Untemplate metadata is available not only within your untemplates. Each untemplate
+becomes becomes an `untemplate.Untemplate` object, on which all the metadata
+fields are available as public vals. If you have an untemplate called
+`mypkg.hello_md`, there will be an `untemplate.Untemplate` object called
+`mypkg.Untemplate_hello_md`, so you can write, e.g.
+
+```scala
+val helloHeaderNote = mypkg.Untemplate_hello_md.UntemplateHeaderNote
+```
+
+This can be particularly useful in combination with [indexing](#indexing).

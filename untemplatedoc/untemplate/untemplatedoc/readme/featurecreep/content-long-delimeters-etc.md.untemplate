@@ -1,0 +1,83 @@
+val title = "Long delimeters, header notes, and comments"
+mbMetadata = Some( SubsectionMeta( level, title ) )
+
+(level : Int)[SubsectionMeta]~()>
+
+**Long headers**
+
+Recall from our [introduction](#introduction) the four untemplate delimeters:
+
+| Delimeter | Description |
+| --- | --- |
+| `\<(expression)>` | Text-embedded Scala expression |
+| `\()>` | Code / text boundary |
+| `\<()` | Text / code boundary |
+| `\()[]~()>` | Header delimeter |
+
+The three "line delimeters" &mdash; `\()>`, `\<()`, and `\()[]~()>` &mdash
+must be tucked against the left-hand margin. They are
+small and easy to miss while scanning a file, even though they
+dramatically switch the meaning of portions of the file from code to text.
+
+Sometimes you may wish these boundaries were more obvious. So they can be!
+The untemplate transpiler will let you expand `\()>` and `\<()` by placing
+arbitrary numbers of `-` characters, and also the delimeter appropriate
+`>` or `<` between the parentheses and the arrow. So all of the following
+are equivalent to the untemplate engine:
+
+* `\()>`
+* `\()>>>>>>>>>>>>>>>>>>>>>>>>>>>`
+* `\()-------------------------->`
+* `\()------>------>------>----->`
+
+Similarly, you can close your textblock, equivalently, with
+
+* `\<()`
+* `\<<<<<<<<<<<<<<<<<<<<<<<<<<<()`
+* `<---------------------------()`
+* `<----- -<-------<-------<---()`
+
+The styles don't have to match. The transpiler interprets all of the first list
+as `\()>`, and all of the second list as `\<()`, regardless of what style you
+choose.
+
+In any of its styles, you can enter a name in the parentheses of a start-text
+block to [convert the block following into a named function](#text-blocks-can-be-nested-functions).
+
+The headers can also be elongated, with the `~` character. So, the following are
+all equivalent:
+
+* `\()[]~()>`
+* `\()[]~~~()>`
+* `\()[]~~~~~~~~~~~~~~~~~~~~~~~~~~~~()>`
+
+Again, the meaning of the header, including your
+[ability to optionally include](#naming-the-top-level-untemplate-function) an input
+name, type, and default argument in the `()`, and an output metadata type in
+the `[]`, remain unchanged.
+
+**Delimeter comments and header notes**
+
+In general, nothing should be placed to the right of `()>` and `<()` delimeters (in their
+standard or long variants), but if you wish, you may place a comment beginning
+with a `#` character. So this is a fine text block:
+
+```
+\(regreet)>--->  # because we love to greet the user, a function we can reuse a lot
+       >>>>>>>>> Hello \<( name )>!!! <<<<<<<<<
+\<----------<()
+```
+However, for the header delimeter, untemplates support a "header note", at most
+one per untemplate:
+
+```
+\()[]~~~~()> This is a header note. # This is a comment
+```
+
+The header note becomes [metainformation](#metainformation), available
+within your untemplate and published externally. It is also included in
+`Customizer.Key`, so you can set-up defaults for whole groups of untemplates
+based on header notes if yu wish. See [Customizers](#customizers) above.
+
+
+

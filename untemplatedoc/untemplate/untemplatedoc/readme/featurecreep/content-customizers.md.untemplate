@@ -73,7 +73,7 @@ final case class Customizer(mbOverrideInferredFunctionName : Option[String]     
                             mbDefaultInputTypeDefaultArg   : Option[InputTypeDefaultArg] = None,
                             mbOverrideInferredPackage      : Option[String]              = None, // You can use empty String to override inferred package to the default package
                             mbDefaultMetadataType          : Option[String]              = None,
-                            mbDefaultMetadataValue         : Option[String]              = None, // Omit Some(...), we'll generate that
+                            mbDefaultMetadataValue         : Option[String]              = None,
                             mbDefaultOutputTransformer     : Option[String]              = None,
                             extraImports                   : Seq[String]                 = Nil)
 ```
