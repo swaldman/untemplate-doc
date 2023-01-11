@@ -15,7 +15,9 @@ writer.writeln(Files.readString(ceciSrc).trim)
 ()>
 ```
 It's just a markdown file! But if it's stored in an untemplate source directory as `ceci-nest-pas.md.untemplate`, it gets
-compiled to a simple scala function, `ceci_nest_pas_md()`. (It's the little `def` declaration at the very end.)
+compiled to a simple scala function, `ceci_nest_pas_md()`.
+
+(See the little `def` declaration at the very end.)
 
 ```scala
 <()

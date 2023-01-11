@@ -8,6 +8,7 @@ val intro                    : untemplate.Result[SubsectionMeta] = introduction.
 val someSimpleUntemplates    : untemplate.Result[SubsectionMeta] = somesimpleuntemplates.content_main_md( level + 1 )
 val functionalTemplates      : untemplate.Result[SubsectionMeta] = functionaltemplates.content_main_md( level + 1 )
 val featureCreep             : untemplate.Result[SubsectionMeta] = featurecreep.content_main_md( level + 1 )
+val cheatSheet               : untemplate.Result[SubsectionMeta] = content_cheat_sheet_md( level + 1 )
 val acknowledgments          : untemplate.Result[SubsectionMeta] = content_acknowledgments_md( level + 1 )
 
 val topSubsectionMeta =
@@ -41,6 +42,8 @@ _This project only documents the `untemplate` project. For the code, please see 
 <( functionalTemplates )>
 
 <( featureCreep )>
+
+<( cheatSheet )>
 
 <( acknowledgments )>
 

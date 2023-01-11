@@ -16,7 +16,7 @@ templates, etc.
 I found myself yearning for simplicity. Why can't I just specify my static sites in my language
 of choice? (For me, Scala.)
 
-Static (and dynamic) site generation is in practice largely about templates. No one enjoys
+Static&mdash;and dynamic&mdash;site generation is in practice largely about templates. No one enjoys
 embedding tons of HTML or Markdown or CSS in programming-language string literals, even
 in modern languages that support multiline literals and interpolated strings.
 

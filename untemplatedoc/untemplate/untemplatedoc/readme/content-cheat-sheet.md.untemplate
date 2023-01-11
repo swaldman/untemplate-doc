@@ -1,0 +1,103 @@
+val title = "Cheat sheet"
+mbMetadata = Some( SubsectionMeta( level, title ) )
+(level : Int)[SubsectionMeta]~()>
+```
+Untemplates
+
+Line Delimiters (start of line):
+  \()>       -- text start (code end)
+  \<()       -- text end   (code start)
+  \()[]~()>  -- header delimiter (at most one, begins first text block of file)
+
+Embedded expression:
+  \<( expression )>
+
+Function generated:
+  Given a file hello.md.untemplate with
+    no header or
+    default header \()[]~()> generates
+       def hello_md(input:immutable.Map[String,Any]=immutable.Map.empty): untemplate.Result[Nothing]
+    \(i:Int=0)[]~()> generates
+       def hello_md(i:Int=0): untemplate.Result[Nothing]
+    \()[Instant]~()> generates
+       def hello_md(input:immutable.Map[String,Any]=immutable.Map.empty): untemplate.Result[Instant]
+    \()[]~(hi)> generates
+       def hi(input:immutable.Map[String,Any]=immutable.Map.empty): untemplate.Result[Nothing]
+  Fill in any or all of the header fields. Mix or match.
+
+  Output type:
+    final case class Result[+A](mbMetadata : Option[A], text : String ):
+      override def toString() : String = text
+
+  Function object:
+    def hello_md(input : In) : untemplate.Result[Out] <==> val Untemplate_hello_md : untemplateUntemplate[In,Out] <: Function1[In,Out]
+
+Inside template:
+  val writer            <: java.io.Writer
+  var mbMetadata         : Option[Out] = None
+  var outputTransformer  : Function1[untemplate.Result[out],untemplate.Result[out]] = identity
+
+  Textblocks automatically write to writer, unless defined as block functions. (Below)
+  Code blocks write to writer, can set mbMetadata and/or outputTransformer
+
+Block functions:
+  Text blocks began as
+   \(myFunction)>
+     - are not automatically written into output
+     - take no arguments and return strings
+     - so, e.g.
+         for (i <- 0 until 3) writer.write(myFunction().toUpperCase)
+
+Metainformation:
+  Available within untemplates and as public vals from Untemplate function objects
+    val UntemplateFunction                    : untemplate.Untemplate[In,Out]
+    val UntemplateName                        : String
+    val UntemplatePackage                     : String
+    val UntemplateInputName                   : String
+    val UntemplateInputTypeDeclared           : String
+    val UntemplateInputTypeCanonical          : Option[String]
+    val UntemplateInputDefaultArgument        : Option[In]
+    val UntemplateOutputMetadataTypeDeclared  : String
+    val UntemplateOutputMetadataTypeCanonical : Option[String]
+    val UntemplateHeaderNote                  : String
+
+Customizers:
+  Bulk customization of templates to avoid having to write repetative headers or code
+  - You provide Customizer.Selector: (key : Customizer.Key) => Customizer
+  - For each untemplate, selector will be provided with key
+
+      final case class Key(inferredPackage      : String, // empty string is the default package
+                           resolvedPackage      : String, // empty string is the default package
+                           inferredFunctionName : String,
+                           resolvedFunctionName : String,
+                           outputMetadataType   : String,
+                           headerNote           : String,
+                           sourceIdentifier     : Option[String])
+
+    selector returns customizer
+
+      final case class Customizer(mbOverrideInferredFunctionName : Option[String]              = None,
+                                  mbDefaultInputName             : Option[String]              = None,
+                                  mbDefaultInputTypeDefaultArg   : Option[InputTypeDefaultArg] = None,
+                                  mbOverrideInferredPackage      : Option[String]              = None, // You can use empty String to override inferred package to the default package
+                                  mbDefaultMetadataType          : Option[String]              = None,
+                                  mbDefaultMetadataValue         : Option[String]              = None,
+                                  mbDefaultOutputTransformer     : Option[String]              = None,
+                                  extraImports                   : Seq[String]                 = Nil)
+
+    overriding defaults, ie whatever untemplate author does not explicitly specify
+
+Delimiter variations:
+  Long delimiters:
+  \()> equivalents
+     \()>>>>>>>>>>> # Comments beginning '#' are permissible
+     \()---------->
+     \()->-->>->--> # any combination of '>' and '-' between '()' and terminal '>'
+  \<() equivalents
+     \<<<<<<<<<<<<() # Comments beginning '#' are permissible
+     \<-----------()
+     \<<--<-<<<--<() # any combination of '<' and '-' between the first '<' and terminal '()'
+  \()[]~()> equivalents
+     \()[]~~~()> header note # Comments beginning '#' are permissible. Also "header notes"
+     \()[]~~~~~~~()>         # Any number at least one of `~` characters are permissible
+```
