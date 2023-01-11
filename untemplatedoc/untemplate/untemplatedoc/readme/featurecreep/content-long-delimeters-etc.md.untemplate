@@ -1,9 +1,9 @@
 val title = "Long delimeters, header notes, and comments"
 mbMetadata = Some( SubsectionMeta( level, title ) )
 
-(level : Int)[SubsectionMeta]~()>
+(level : Int)[SubsectionMeta]~~~~~~~~~~~~()>
 
-**Long headers**
+**Long delimeters**
 
 Recall from our [introduction](#introduction) the four untemplate delimeters:
 
@@ -33,9 +33,9 @@ are equivalent to the untemplate engine:
 Similarly, you can close your textblock, equivalently, with
 
 * `\<()`
-* `\<<<<<<<<<<<<<<<<<<<<<<<<<<<()`
-* `<---------------------------()`
-* `<----- -<-------<-------<---()`
+* `\<<<<<<<<<<<<<<<<<<<<<<<<<<<<()`
+* `\<---------------------------()`
+* `\<-------<-------<-------<---()`
 
 The styles don't have to match. The transpiler interprets all of the first list
 as `\()>`, and all of the second list as `\<()`, regardless of what style you
@@ -53,14 +53,14 @@ all equivalent:
 
 Again, the meaning of the header, including your
 [ability to optionally include](#naming-the-top-level-untemplate-function) an input
-name, type, and default argument in the `()`, and an output metadata type in
-the `[]`, remain unchanged.
+name, type, and default argument in the first `()`, an output metadata type in
+the `[]`, and a function name in the secon `()` remain unchanged.
 
 **Delimeter comments and header notes**
 
-In general, nothing should be placed to the right of `()>` and `<()` delimeters (in their
+In general, nothing should be placed to the right of `\()>` and `\<()` delimeters (in their
 standard or long variants), but if you wish, you may place a comment beginning
-with a `#` character. So this is a fine text block:
+with a `#` character. So this is a fine [text-bloc-as-function](#text-blocks-can-be-nested-functions):
 
 ```
 \(regreet)>--->  # because we love to greet the user, a function we can reuse a lot
