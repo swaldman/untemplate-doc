@@ -7,6 +7,7 @@ val level = 1
 val intro                    : untemplate.Result[SubsectionMeta] = introduction.content_main_md( level + 1 )
 val someSimpleUntemplates    : untemplate.Result[SubsectionMeta] = somesimpleuntemplates.content_main_md( level + 1 )
 val functionalTemplates      : untemplate.Result[SubsectionMeta] = functionaltemplates.content_main_md( level + 1 )
+val featureCreep             : untemplate.Result[SubsectionMeta] = featurecreep.content_main_md( level + 1 )
 val acknowledgments          : untemplate.Result[SubsectionMeta] = content_acknowledgments_md( level + 1 )
 
 val topSubsectionMeta =
@@ -17,6 +18,7 @@ val topSubsectionMeta =
         intro.mbMetadata.toList :::
         someSimpleUntemplates.mbMetadata.toList :::
         functionalTemplates.mbMetadata.toList :::
+        featureCreep.mbMetadata.toList :::
         acknowledgments.mbMetadata.toList :::
         Nil
     )

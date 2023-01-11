@@ -1,0 +1,19 @@
+val title = "Feature Creep"
+
+val subsectionFunctions = List (
+    content_output_transformers_md,
+)
+val subsectionResults = subsectionFunctions.map( fcn => fcn(level + 1) )
+
+mbMetadata = Some( SubsectionMeta( level, title, subsectionResults.flatMap( _.mbMetadata.toList ) ) )
+
+(level : Int)[SubsectionMeta]~()>
+<()
+subsectionResults.foreach { result =>
+    writer.writeln( result.text )
+    writer.writeln()
+}
+
+
+
+
