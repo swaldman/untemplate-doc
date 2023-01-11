@@ -25,21 +25,21 @@ that become the idiosyncracies and quirks I'm trying to escape. As much as possi
 want my specification language to be straightforward Scala.
 
 _Untemplate_ is my attempt to create the thinnest possible template veneer over vanilla Scala 3.
-An untemplate is just a text file that optionally includes any of four special delimeters:
+An untemplate is just a text file that optionally includes any of four special delimiters:
 
-| Delimeter | Description |
+| Delimiter | Description |
 | --- | --- |
 | `\<(expression)>` | Text-embedded Scala expression |
 | `\()>` | Code / text boundary |
 | `\<()` | Text / code boundary |
-| `\()[]~()>` | Header delimeter |
+| `\()[]~()>` | Header delimiter |
 
 These have the following effects:
 
 * `\<(expression)>` breaks out of plain text and inserts the result into the text
 * `\()>` alone, at the beginning of a line, divides the file into a Scala code region, and a
 text region. The region above is a Scala code region.
-*  `\<()` alone, at the beginning of a line, is the inverse of the prior delimeter. It divides the
+*  `\<()` alone, at the beginning of a line, is the inverse of the prior delimiter. It divides the
 file into a text region and a Scala code region, with text in the region above, and code in the
 region beneath.
 *  `\()[]~()>` is a special header delimiter. Like `\()>`, it divides the file into a Scala code

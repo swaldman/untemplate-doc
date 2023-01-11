@@ -14,7 +14,7 @@ name (or dot-separated path of package names). Untemplate source
 files placed in the top directory belong to the unnamed "default" package.
 
 However, you can override this default by making an explicit package declaration in the header section of your
-untemplate (that is, the section before a [header delimeter](#introduction)).
+untemplate (that is, the section before a [header delimiter](#introduction)).
 
 If you wish all untemplates
 to be generated into a single flat directory, regardless of where or how deeply they were found beneath the source
@@ -27,7 +27,7 @@ All other code in the header section gets placed inside the generated function.
 
 **This means that whatever input your header accepts is already in scope in the header section,
 even though its name and type may be declared at the end of the header section, inside the header
-delimeter.**
+delimiter.**
 
 When generating untemplates, applications may specify a set of default imports that will be inserted into
 all generated untemplates. So, if a static site generator makes use of a common set of types and utilities,

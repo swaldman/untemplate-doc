@@ -39,7 +39,7 @@ It is usually just the file name itself with the `.untemplate` suffix stripped o
 `-` and `.` characters converted to underscore `_`.
 * `resolvedFunctionName` may just be `inferredFunctionName`, but if a user has
 [explicitly defined a function name](#naming-the-top-level-untemplate-function)
-in the untemplate header delimeter, the explcitly defined name will be used
+in the untemplate header delimiter, the explcitly defined name will be used
 instead.
 * `outputMetadataType` is the output metadata type of the `untemplate`,
 `Nothing` by default but [often declared](#untemplates-are-functions)
@@ -91,7 +91,7 @@ default value, or the default output transformer.
 **Note that it is always "defaults" that you are overriding.**
 
 If an untemplate
-author, [in the untemplate header delimeter](#untemplates-are-functions), explicitly specifies the
+author, [in the untemplate header delimiter](#untemplates-are-functions), explicitly specifies the
 input name, type, or input default argument, the function name or output metadata type,
 if she sets the output metadata value or the output transformer, the author's action will
 override the customizer provided defaults. The customizer customizes how
