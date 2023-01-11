@@ -29,7 +29,7 @@ But you can set your own, more interesting, transformer.
 
 You can set output transfers as above, "by hand", or you can use an [`untemplate.Customizer`](#customizers)
 to transform a whole class of untemplates. For example, you could have all untemplates
-generated from a file like `<something>.md.untemplate` pass through an output transformer that
+generated from a file like `something.md.untemplate` pass through an output transformer that
 converts Markdown to HTML.
 
 The untemplate [you are now reading](<( readmeOutputTransformersSrc )>) is passed through
