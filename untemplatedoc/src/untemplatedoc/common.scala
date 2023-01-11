@@ -4,18 +4,21 @@ import scala.collection.*
 import java.nio.file.{Path, Files}
 import com.mchange.codegenutil.*
 
-val usrcDir                      = Path.of("untemplatedoc/untemplate")
-val sgenDir                      = Path.of("example/scalagen")
-val ceciSrc                      = usrcDir.resolve("untemplatedoc/ceci-nest-pas.md.untemplate")
-val ceciScala                    = sgenDir.resolve("untemplatedoc/ceci-nest-pas.md.untemplate.scala")
-val ceci2Src                     = usrcDir.resolve("untemplatedoc/ceci-nest-pas2.md.untemplate")
-val loopySrc                     = usrcDir.resolve("untemplatedoc/loopy.md.untemplate")
-val loopy2badSrc                 = usrcDir.resolve("untemplatedoc/loopy2-bad.md.untemplate-off")
-val loopy2Src                    = usrcDir.resolve("untemplatedoc/loopy2.md.untemplate")
-val someOverridesSrc             = usrcDir.resolve("untemplatedoc/some_overrides.md.untemplate")
-val readmeTopSrc                 = usrcDir.resolve("untemplatedoc/readme/frame-main.untemplate")
-val readmeEmbeddedExpressionsSrc = usrcDir.resolve("untemplatedoc/readme/somesimpleuntemplates/content-embeddable-expressions.md.untemplate")
-val readmeMetainformationSrc     = usrcDir.resolve("untemplatedoc/readme/functionaltemplates/content-metainformation.md.untemplate")
+val usrcDir                        = Path.of("untemplatedoc/untemplate")
+val sgenDir                        = Path.of("example/scalagen")
+val ceciSrc                        = usrcDir.resolve("untemplatedoc/ceci-nest-pas.md.untemplate")
+val ceciScala                      = sgenDir.resolve("untemplatedoc/ceci-nest-pas.md.untemplate.scala")
+val ceci2Src                       = usrcDir.resolve("untemplatedoc/ceci-nest-pas2.md.untemplate")
+val loopySrc                       = usrcDir.resolve("untemplatedoc/loopy.md.untemplate")
+val loopy2badSrc                   = usrcDir.resolve("untemplatedoc/loopy2-bad.md.untemplate-off")
+val loopy2Src                      = usrcDir.resolve("untemplatedoc/loopy2.md.untemplate")
+val someOverridesSrc               = usrcDir.resolve("untemplatedoc/some_overrides.md.untemplate")
+val readmeTopSrc                   = usrcDir.resolve("untemplatedoc/readme/frame-main.untemplate")
+val readmeEmbeddedExpressionsSrc   = usrcDir.resolve("untemplatedoc/readme/somesimpleuntemplates/content-embeddable-expressions.md.untemplate")
+val readmeMetainformationSrc       = usrcDir.resolve("untemplatedoc/readme/functionaltemplates/content-metainformation.md.untemplate")
+val readmeOutputTransformersSrc    = usrcDir.resolve("untemplatedoc/readme/featurecreep/content-output-transformers.md.untemplate")
+val readmeSubsectionTransformerSrc = usrcDir.resolve("untemplatedoc/readme/subsection-content-transformer.md.untemplate")
+val readmeCustomizersSrc           = usrcDir.resolve("untemplatedoc/readme/featurecreep/content-customizers.md.untemplate")
 
 
 def sgenFor( untemplateSrcPath : String ) : Path =

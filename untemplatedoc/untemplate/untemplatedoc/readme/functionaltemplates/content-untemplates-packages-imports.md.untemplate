@@ -5,7 +5,7 @@ mbMetadata = Some( SubsectionMeta( level, title ) )
 
 Top-level untemplates are top-level functions, declared directly in a Scala package.
 They are paired with implementations in the form of `Function1` objects, which are defined
-as `Function_` prepended to the untemplate function name.
+as `Untemplate_` prepended to the untemplate function name.
 
 Untemplates are usually generated from a source directory, and the default behavior
 is for packages to be inferred by the old-school Java convention. The directory hierarchy

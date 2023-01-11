@@ -7,7 +7,7 @@ In the header or any code section of an untemplate, you can define an `OutputTra
 like this:
 
 ```scala
-outputTransformer = myOutputTranformer
+outputTransformer = myOutputTransformer
 ```
 
 As the name suggests, an output transformer will simply transform
@@ -19,12 +19,42 @@ then it must be a `Function1` that maps `untemplate.Result[Nothing] => `untempla
 If you have defined an output metadata type, say `HttpMetadata`, then it must be
 a function `untemplate.Result[HttpMetadata] => `untemplate.Result[HttpMetadata]`.
 
-By default, every untemplate output travels through the output transformer `identity`.
-But you can set your own.
+By default, every untemplate output travels through the identity transformer `identity`.
+It's as if you had set:
+
+```scala
+outputTransformer = myOutputTranformer
+```
+But you can set your own, more interesting, transformer.
 
 You can set output transfers as above, "by hand", or you can use an [`untemplate.Customizer`](#customizers)
 to transform a whole class of untemplates. For example, you could have all untemplates
 generated from a file like `<something>.md.untemplate` pass through an output transformer that
 converts Markdown to HTML.
 
-See more on customizers below.
+The untemplate [you are now reading](<( readmeOutputTransformersSrc )>) is passed through
+an output transformer, which embeds the text in a markdown subsection,
+rendering at the appropriate level something like
+
+```markdown
+### Section Title
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+sed do eiusmod tempor incididunt ut labore et dolore magna
+aliqua.
+```
+
+That output transformer is itself defined by an untemplate,
+[untemplatedoc.readme.subsection_content_transformer_md](<( readmeSubsectionTransformerSrc )>).
+
+Most output transformers will not be untemplates! But an untemplate is just a
+way to define a function that returns an `untemplate.Result`, and
+an output transformer is just that kind of function.
+
+It is as the untemplate for this section includes the line
+
+```scala
+outputTransformer = untemplatedoc.readme.subsection_content_transformer_md
+```
+and in earlier drafts, it did precisely that! But that got repetitive
+to include for every subsection, so we turn to [customizers](#customizers).

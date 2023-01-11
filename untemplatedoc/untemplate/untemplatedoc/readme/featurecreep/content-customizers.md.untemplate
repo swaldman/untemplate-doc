@@ -1,0 +1,101 @@
+val title = "Customizers"
+mbMetadata = Some( SubsectionMeta( level, title ) )
+
+(level : Int)[SubsectionMeta]~()>
+
+In generating, for example, a website, one might find oneself repeating the same
+boilerplate over and over again. Perhaps every `*.md` file should be piped into
+a Markdown renderer, and every `*.adoc` file Asciidoctor. Perhaps many of
+your untemplates make use of the same suite Scala or Java libraries, for which
+you would have to repetitively declare import statements.
+
+Customizers to the rescue!
+
+When you generate a collection of untemplates, you can specify a `Customizer.Selector`,
+which is just a function `Customizer.Key => Customizer`.
+
+During the "transpilation" to Scala of each untemplate, a `Customizer.Key`
+is generated, like
+
+```scala
+  final case class Key(inferredPackage      : String, // empty string is the default package
+                       resolvedPackage      : String, // empty string is the default package
+                       inferredFunctionName : String,
+                       resolvedFunctionName : String,
+                       outputMetadataType   : String,
+                       headerNote           : String,
+                       sourceIdentifier     : Option[String])
+```
+* `inferredPackage` is the package that would be inferred for the customizer
+based on its place in the directory hierarchy being transpiled. It may be
+overridden by explicit package declarations in the header (but it usually isn't).
+* `resolvedPackage` is usually the same as `inferredPackage`, unless
+the untemplate author has
+[overridden that with explicit package declarations](#untemplates-packages-and-imports),
+in which case `resolvedPackage` will be derived from those.
+* `inferredFunctionName` is the function name automatically inferred from
+the untemplate file name (or equivalent, for nonfile sources of untemplates).
+It is usually just the file name itself with the `.untemplate` suffix stripped off, and both
+`-` and `.` characters converted to underscore `_`.
+* `resolvedFunctionName` may just be `inferredFunctionName`, but if a user has
+[explicitly defined a function name](#naming-the-top-level-untemplate-function)
+in the untemplate header delimeter, the explcitly defined name will be used
+instead.
+* `outputMetadataType` is the output metadata type of the `untemplate`,
+`Nothing` by default but (often declared)[#untemplates-are-functions]
+to become something more interesting.
+* `headerNote` will usually be an empty string, but untemplate authors can
+[provide a small note](#) next to the untemplate header definition, and
+this note will be provided in the `Customizer.Key`.
+* Finally, there may be a `sourceIdentifier`, which in file-system-based
+implementations (i.e. the current implementation) will be the original
+untemplate file name (without '.' or '-' converted to underscores).
+
+For the [subsection you are reading]( readmeCustomizersSrc ),
+the key would have been:
+
+```scala
+   Key(inferredPackage      = "untemplatedoc.readme.featurecreep",
+       resolvedPackage      = "untemplatedoc.readme.featurecreep",
+       inferredFunctionName = "content_customizers_md",
+       resolvedFunctionName = "content_customizers_md",
+       outputMetadataType   = "SubsectionMeta",
+       headerNote           = "",
+       sourceIdentifier     = Some("content-customizers.md.untemplate"))
+```
+
+From the key that your selector is provided, you produce an `untemplate.Customizer`.
+Ordinarily you begin with `Customizer.empty`, which looks like this:
+
+```scala
+final case class Customizer(mbOverrideInferredFunctionName : Option[String]              = None,
+                            mbDefaultInputName             : Option[String]              = None,
+                            mbDefaultInputTypeDefaultArg   : Option[InputTypeDefaultArg] = None,
+                            mbOverrideInferredPackage      : Option[String]              = None, // You can use empty String to override inferred package to the default package
+                            mbDefaultMetadataType          : Option[String]              = None,
+                            mbDefaultMetadataValue         : Option[String]              = None, // Omit Some(...), we'll generate that
+                            mbDefaultOutputTransformer     : Option[String]              = None,
+                            extraImports                   : Seq[String]                 = Nil)
+```
+
+This customizer does nothing at all. Note that all of its fields are options
+or collections, which can be (and so far are) empty.
+
+However, you can use case class `copy=` to selectively fill some of these
+values. You can override the default input type for a whole range of
+untemplates from its usual `immutable.Map[String,Any]` to, well, anything.
+Similarly you can override the input name, the function name,
+the default input argument, the inferred package, the metadata type and its
+default value, or the default output transformer.
+
+**Note that it is always "defaults" that you are overriding.**
+
+If an untemplate
+author, [in the untemplate header delimeter](#untemplates-are-functions), explicitly specifies the
+input name, type, or input default argument, the function name or output metadata type,
+if she sets the output metadata value or the output transformer, the author's action will
+override the customizer provided defaults. The customizer customizes how
+untemplates are generate what authors do not explicitly specify.
+
+An exception to this rule is `extraImports`, which will always be provided
+in addition to any imports the author provides.
