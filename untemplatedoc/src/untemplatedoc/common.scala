@@ -4,7 +4,7 @@ import scala.collection.*
 import java.nio.file.{Path, Files}
 import com.mchange.codegenutil.*
 
-val usrcDir                      = Path.of("untemplatedocs/src/main/untemplate")
+val usrcDir                      = Path.of("untemplatedoc/untemplate")
 val sgenDir                      = Path.of("example/scalagen")
 val ceciSrc                      = usrcDir.resolve("untemplatedoc/ceci-nest-pas.md.untemplate")
 val ceciScala                    = sgenDir.resolve("untemplatedoc/ceci-nest-pas.md.untemplate.scala")

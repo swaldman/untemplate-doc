@@ -24,7 +24,7 @@ def veryclean() = T.command {
   ()
 }
 
-object untemplatedocs extends UntemplateModule {
+object untemplatedoc extends UntemplateModule {
   override def scalaVersion = "3.2.1"
   //override def scalaVersion = "3.2.0"
 
