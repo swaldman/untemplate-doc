@@ -28,6 +28,9 @@ object untemplatedoc extends UntemplateModule {
   override def scalaVersion = "3.2.1"
   //override def scalaVersion = "3.2.0"
 
+  // supports Scala 3.2.1
+  override def ammoniteVersion = "2.5.6"
+
   override def indexNameFullyQualified : Option[String] = Some("untemplatedoc.Untemplates")
 
   def untemplateSelectCustomizer: untemplate.Customizer.Selector = { key =>

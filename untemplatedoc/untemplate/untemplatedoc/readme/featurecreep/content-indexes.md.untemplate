@@ -7,10 +7,41 @@ When you generate a collection (usually a directory hierarchy) of untemplates,
 you can request that the untemplate library generate an index of the untemplates
 produced that you can work with at runtime.
 
-Here is an example, indexing the unteplates generating this documentation:
+Here is an example, where I have specified `Some("untemplatedoc.Untemplates")` as
+my index, which indexes the untemplates generating this documentation:
 
 ```scala
 <()
 writer.writeln( Files.readString( indexGen ) )
 ()>
 ```
+
+You'll note that, a bit uselessly, the untemplates in indexes are typed very generically
+as accepting `Nothing` for their input and generating an `Option[Any]` as
+their metadata. In order to call the indexed untemplate functions, you must
+cast them first to `untemplate.Untemplate[<InputType>,<OutputMetadataType>]`
+or more generically `Function1[<InputType>,<OutputMetadataType>]`.
+
+Usually you will know, by conventions you've adopted, what kinds of functions
+untemplates are likely to be. Perhaps all the functions under a package called
+`posts` accept a `PageInfo` type and return `EntryMetadata`. You might then
+try something like
+
+```scala
+  val blogPosts =
+    Untemplates // my generated index
+      .filter( _(0).indexOf(".posts.") >= 0 )
+      .map( tup => (tup(0), tup(1).asInstanceOf[untemplate.Untemplate[PageInfo,EntryMetadata]]) )
+      .to(immutable.SortedMap)
+```
+
+Now you have an index of functions you can call, like
+
+```scala
+val my result : unteplate.Result[EntryMetadata] = blogPosts("poopyblog.posts.firstPost_md")( myPageInfo )
+```
+
+If you do not know the types of your untemplates, even the generic, uncallably
+typed untemplates held by the default index can be queried for [all their metainformation](#metainformation),
+including input and output metadata types.
+
