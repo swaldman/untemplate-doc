@@ -42,7 +42,7 @@ It is usually just the file name itself with the `.untemplate` suffix stripped o
 in the untemplate header delimeter, the explcitly defined name will be used
 instead.
 * `outputMetadataType` is the output metadata type of the `untemplate`,
-`Nothing` by default but (often declared)[#untemplates-are-functions]
+`Nothing` by default but [often declared](#untemplates-are-functions)
 to become something more interesting.
 * `headerNote` will usually be an empty string, but untemplate authors can
 [provide a small note](#) next to the untemplate header definition, and
@@ -51,7 +51,7 @@ this note will be provided in the `Customizer.Key`.
 implementations (i.e. the current implementation) will be the original
 untemplate file name (without '.' or '-' converted to underscores).
 
-For the [subsection you are reading]( readmeCustomizersSrc ),
+For the [subsection you are reading]( <( readmeCustomizersSrc )> ),
 the key would have been:
 
 ```scala
