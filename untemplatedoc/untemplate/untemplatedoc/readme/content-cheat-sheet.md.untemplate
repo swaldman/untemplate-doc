@@ -2,7 +2,7 @@ val title = "Cheat sheet"
 mbMetadata = Some( SubsectionMeta( level, title ) )
 (level : Int)[SubsectionMeta]~()>
 ```
-Untemplates
+Untemplate Cheat Sheet
 
 Line Delimiters (start of line):
   \()>       -- text start (code end)
