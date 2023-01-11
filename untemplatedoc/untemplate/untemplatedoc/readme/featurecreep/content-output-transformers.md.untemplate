@@ -14,10 +14,10 @@ As the name suggests, an output transformer will simply transform
 the function output.
 
 If you haven't defied a custom output metadata type,
-then it must be a `Function1` that maps `untemplate.Result[Nothing] => `untemplate.Result[Nothing]`.
+then it must be a `Function1` that maps `untemplate.Result[Nothing] => untemplate.Result[Nothing]`.
 
 If you have defined an output metadata type, say `HttpMetadata`, then it must be
-a function `untemplate.Result[HttpMetadata] => `untemplate.Result[HttpMetadata]`.
+a function `untemplate.Result[HttpMetadata] => untemplate.Result[HttpMetadata]`.
 
 By default, every untemplate output travels through the identity transformer `identity`.
 It's as if you had set:
