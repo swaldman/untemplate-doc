@@ -20,6 +20,7 @@ val topSubsectionMeta =
         someSimpleUntemplates.mbMetadata.toList :::
         functionalTemplates.mbMetadata.toList :::
         featureCreep.mbMetadata.toList :::
+        cheatSheet.mbMetadata.toList :::
         acknowledgments.mbMetadata.toList :::
         Nil
     )
