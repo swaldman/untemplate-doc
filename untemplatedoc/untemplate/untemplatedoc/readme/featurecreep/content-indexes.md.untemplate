@@ -28,9 +28,17 @@ untemplates are likely to be. Perhaps all the functions under a package called
 try something like
 
 ```scala
-  val blogPosts =
+  def hasHappyTag( ut : Untemplate ) : Boolean =
+    val mbTags = ut.UntemplateAttributes.get("tags")
+    mbTags match
+      case Some(tags) if tags.isInstanceOf[Set[String]] =>
+        tags.asInstanceOf[Set[String]].contains("happy")
+      case _ => false
+
+  val happyBlogPosts =
     Untemplates // my generated index
       .filter( _(0).indexOf(".posts.") >= 0 )
+      .filter( tup => hasHappyTag(tup(1)) )
       .map( tup => (tup(0), tup(1).asInstanceOf[untemplate.Untemplate[PageInfo,EntryMetadata]]) )
       .to(immutable.SortedMap)
 ```
@@ -38,7 +46,7 @@ try something like
 Now you have an index of functions you can call, like
 
 ```scala
-val my result : unteplate.Result[EntryMetadata] = blogPosts("poopyblog.posts.firstPost_md")( myPageInfo )
+val myResult : unteplate.Result[EntryMetadata] = blogPosts("poopyblog.posts.firstPost_md")( myPageInfo )
 ```
 
 If you do not know the types of your untemplates, even the generic, uncallably

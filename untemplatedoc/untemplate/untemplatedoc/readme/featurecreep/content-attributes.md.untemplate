@@ -1,0 +1,49 @@
+>
+> val UntemplateAttributes = immutable.Map (
+>   "FavoriteColor" -> "Blue",
+>   "FavoriteDay"   -> "Tuesday",
+> )
+>
+
+val title = "Untemplate attributes"
+mbMetadata = Some( SubsectionMeta( level, title ) )
+
+(level : Int)[SubsectionMeta]~()>
+
+When you write an untemplate, you can associate attributes with it
+that are accessible within the untemplate, but also published by the
+`Untemplate` subclass of `Function1`.
+
+In combination with [indexes](#indexes), this lets you filter for
+untemplates you may be interested in in pretty arbitrary ways.
+
+In the header section of an untemplate, if you define code lines that
+begin with '>', those lines will be generated into the body or constructor
+of the `Untemplate` subclass rather than within the function body.
+To define attributes, you just construct an `immutable.Map` as
+constructor text.
+
+For example, [this untemplate's](readmeCustomizersSrc) header includes
+the following in its header section:
+
+```scala
+>
+> val UntemplateAttributes = immutable.Map (
+>   "FavoriteColor" -> "Blue",
+>   "FavoriteDay"   -> "Tuesday",
+> )
+>
+```
+
+Find where that appears in the [generated scala](<( readmeAttributesScala )>).
+
+Now if I write the expression `\<( attrs("FavoriteColor") )>`, it
+generates: <( attrs("FavoriteColor") )>
+
+If I write the expression `\<( attrs("FavoriteDay") )>`, it
+generates: <( attrs("FavoriteDay") )>
+
+Suppose we included a "tags" key in untemplate attributes, whose value might
+bet `Seq[String]`. It would be easy to filter through our [index](#indexes)
+to find untemplates tagged with some value.
+

@@ -20,6 +20,8 @@ val readmeMetainformationSrc       = usrcDir.resolve("untemplatedoc/readme/funct
 val readmeOutputTransformersSrc    = usrcDir.resolve("untemplatedoc/readme/featurecreep/content-output-transformers.md.untemplate")
 val readmeSubsectionTransformerSrc = usrcDir.resolve("untemplatedoc/readme/subsection-content-transformer.md.untemplate")
 val readmeCustomizersSrc           = usrcDir.resolve("untemplatedoc/readme/featurecreep/content-customizers.md.untemplate")
+val readmeAttributesSrc            = usrcDir.resolve("untemplatedoc/readme/featurecreep/content-attributes.md.untemplate")
+val readmeAttributesScala          = sgenDir.resolve("untemplatedoc/readme/featurecreep/content-attributes.md.untemplate.scala")
 
 val indexGen = sgenDir.resolve( "untemplatedoc/UntemplateIndex_Untemplates.scala" )
 
