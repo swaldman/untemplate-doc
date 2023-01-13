@@ -37,7 +37,7 @@ For more on header notes, see [below](#long-delimiters-header-notes-and-comments
 
 Untemplates can define custom [attributes](#attributes) for themselves as an `immutable.Map[String,Any]`.
 
-<( box(None, Some("Note"))( """All untemplates import `scala.collection.*`, so `immutable.Map[String,Any] is a name in scope.""" ) )>
+<( box(None, Some("Note"))( """All untemplates import `scala.collection.*`, so `immutable.Map[String,Any]` is a name in scope.""" ) )>
 
 Untemplate metadata is available not only within your untemplates. Each untemplate
 becomes becomes an `untemplate.Untemplate` object, on which all the metadata

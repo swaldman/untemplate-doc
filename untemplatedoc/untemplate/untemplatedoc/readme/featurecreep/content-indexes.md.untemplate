@@ -46,8 +46,10 @@ try something like
 Now you have an index of functions you can call, like
 
 ```scala
-val myResult : unteplate.Result[EntryMetadata] = blogPosts("poopyblog.posts.firstPost_md")( myPageInfo )
+val myResult = blogPosts("poopyblog.posts.firstPost_md")( myPageInfo )
 ```
+
+Your result will be typed as an `untemplate.Result[EntryMetadata]`.
 
 If you do not know the types of your untemplates, even the generic, uncallably
 typed untemplates held by the default index can be queried for [all their metainformation](#metainformation),

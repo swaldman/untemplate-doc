@@ -11,11 +11,11 @@ mbMetadata = Some( SubsectionMeta( level, title ) )
 (level : Int)[SubsectionMeta]~()>
 
 When you write an untemplate, you can associate attributes with it
-that are accessible within the untemplate, but also published by the
+that are accessible within the untemplate as `attrs`, but also published by your
 `Untemplate` subclass of `Function1`.
 
-In combination with [indexes](#indexes), this lets you filter for
-untemplates you may be interested in in pretty arbitrary ways.
+In combination with [indexes](#indexes), this lets you filter
+in pretty arbitrary ways for untemplates that may be of interest.
 
 In the header section of an untemplate, if you define code lines that
 begin with '>', those lines will be generated into the body or constructor
@@ -23,7 +23,7 @@ of the `Untemplate` subclass rather than within the function body.
 To define attributes, you just construct an `immutable.Map` as
 constructor text.
 
-For example, [this untemplate's](readmeCustomizersSrc) header includes
+For example, [this untemplate's](<( readmeCustomizersSrc )>) header includes
 the following in its header section:
 
 ```scala
