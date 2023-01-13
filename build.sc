@@ -31,9 +31,9 @@ object untemplatedoc extends UntemplateModule {
   // supports Scala 3.2.1
   override def ammoniteVersion = "2.5.6"
 
-  override def indexNameFullyQualified : Option[String] = Some("untemplatedoc.Untemplates")
+  override def untemplateIndexNameFullyQualified : Option[String] = Some("untemplatedoc.Untemplates")
 
-  def untemplateSelectCustomizer: untemplate.Customizer.Selector = { key =>
+  override def untemplateSelectCustomizer: untemplate.Customizer.Selector = { key =>
     var out = untemplate.Customizer.empty
     if (key.inferredPackage.startsWith("untemplatedoc.readme")) {
       key.inferredFunctionName match {
