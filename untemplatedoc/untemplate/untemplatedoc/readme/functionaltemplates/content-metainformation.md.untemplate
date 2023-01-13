@@ -1,3 +1,7 @@
+> val UntemplateAttributes = immutable.Map (
+>   "tags" -> immutable.Set("boring", "useful")
+> )
+
 val title = "Metainformation"
 mbMetadata = Some( SubsectionMeta( level, title ) )
 
