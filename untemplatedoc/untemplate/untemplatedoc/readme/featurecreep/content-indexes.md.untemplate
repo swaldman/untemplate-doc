@@ -28,7 +28,7 @@ untemplates are likely to be. Perhaps all the functions under a package called
 try something like
 
 ```scala
-  def hasHappyTag( ut : Untemplate ) : Boolean =
+  def hasHappyTag( ut : Untemplate[Nothing,Any] ) : Boolean =
     val mbTags = ut.UntemplateAttributes.get("tags")
     mbTags match
       case Some(tags) if tags.isInstanceOf[Set[String]] =>
