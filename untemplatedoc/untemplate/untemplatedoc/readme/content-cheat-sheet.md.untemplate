@@ -34,6 +34,7 @@ Function generated:
 
 Inside template:
   val writer            <: java.io.Writer
+  val attrs              : immutable.Map[String,Any]
   var mbMetadata         : Option[Out] = None
   var outputTransformer  : Function1[untemplate.Result[out],untemplate.Result[out]] = identity
 
