@@ -5,7 +5,7 @@ mbMetadata = Some( SubsectionMeta( level, title ) )
 
 The `untemplate` app and file-system based tooling in the library will derive a default name for the
 top-level generated function by transforming its filename. Untemplate are expected to have the suffix
-`.untemplate`. The top-level file you are reading is is [`untemplatedoc.readme.frame-main.md.untemplate`](<(readmeTopSrc)>), and [generates a
+`.untemplate`. The top-level file you are reading is [`frame-main.md.untemplate`](<(readmeTopSrc)>), and [generates a
 function](<( sgenFor("untemplatedoc/readme/frame-main.md.untemplate") )>) like...
 
 ```scala
