@@ -12,7 +12,7 @@ mbMetadata = Some( SubsectionMeta( level, title ) )
 
 When you write an untemplate, you can associate attributes with it
 that are accessible within the untemplate as `attrs`, but also published by your
-`Untemplate` subclass of `Function1`.
+`Untemplate` as [metainformation](#metainformation).
 
 In combination with [indexes](#indexes), this lets you filter
 in pretty arbitrary ways for untemplates that may be of interest.
@@ -44,6 +44,6 @@ If I write the expression `\<( attrs("FavoriteDay") )>`, it
 generates: <( attrs("FavoriteDay") )>
 
 Suppose we included a "tags" key in untemplate attributes, whose value might
-bet `Seq[String]`. It would be easy to filter through our [index](#indexes)
+bet `Set[String]`. It would be easy to filter through our [index](#indexes)
 to find untemplates tagged with some value.
 
