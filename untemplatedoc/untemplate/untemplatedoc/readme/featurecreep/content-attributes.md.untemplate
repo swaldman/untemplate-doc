@@ -5,10 +5,10 @@
 > )
 >
 
-val title = "Untemplate attributes"
+val title = "Attributes"
 mbMetadata = Some( SubsectionMeta( level, title ) )
 
-(level : Int)[SubsectionMeta]~()>
+(level : Int)[SubsectionMeta]~~~~~~~~~~~~~~~~~~~~~~~~~~~~~()>
 
 When you write an untemplate, you can associate attributes with it
 that are accessible within the untemplate as `attrs`, but also published by your
@@ -23,7 +23,7 @@ of the `Untemplate` subclass rather than within the function body.
 To define attributes, you just construct an `immutable.Map` as
 constructor text.
 
-For example, [this untemplate's](<( readmeCustomizersSrc )>) header includes
+For example, [this untemplate's](<( readmeAttributesSrc )>) header includes
 the following in its header section:
 
 ```scala
