@@ -1,0 +1,127 @@
+val title = "Quickstart"
+mbMetadata = Some( SubsectionMeta( level, title ) )
+(level : Int)[SubsectionMeta]~()>
+
+** Prerequisite **
+
+You'll need something that can extract a [giter8](https://github.com/foundweekends/giter8) template
+from github to get started. We'll use `sbt new`, but `mill init` or `g8` should
+also be fine.
+
+** Let's do it! **
+
+In a place where you are happy to have a new project directory created, run:
+```zsh
+% sbt new swaldman/untemplate-seed.g8
+[info] welcome to sbt 1.8.2 (Oracle Corporation Java 17.0.5)
+[info] loading settings for project global-plugins from dependency-graph.sbt,gpg.sbt,metals.sbt ...
+[info] loading global plugins from /Users/swaldman/.sbt/1.0/plugins
+[info] set current project to new (in build file:/private/var/folders/by/35mx6ty94jng67n4kh2ps9tc0000gn/T/sbt_16d4daf/new/)
+```
+
+You'll be prompted to "fill in the blanks" of the `giter8` template. You can do
+want you want, but the defaults will be fine for now. Just hit return a bunch
+of times.
+
+```
+name [untemplateplay]:
+module [untemplateplay]:
+package [example]:
+untemplate_version [<( untemplateVersion )>]:
+mill_version [0.10.10]:
+
+Template applied in /Users/swaldman/tmp/./untemplateplay
+```
+
+Cool. Now go into your new directory, and run `./mill untemplateplay`:
+
+```zsh
+% cd untemplateplay
+% ./mill untemplateplay
+Compiling /Users/swaldman/tmp/untemplateplay/build.sc
+[38/51] untemplateplay.compile
+[info] compiling 3 Scala sources to /Users/swaldman/tmp/untemplateplay/out/untemplateplay/compile.dest/classes ...
+[info] done compiling
+[51/51] untemplateplay.run
+```
+
+Following this (but no spoilers here!), you should see the output of your
+first untemplate! Hooray!
+
+Check out the file `untemplateplay/src/example/core.scala`:
+```scala
+package example
+
+@main def hello() = println( hello_txt() )
+```
+
+Pretty simple! This is just an ordinary Scala 3 file. `hello_text()` is
+a function defined by an untemplate, which you can check out in
+`untemplateplay/untemplate/example/hello.txt.untemplate`.
+
+<()
+
+(exercise1)>
+The function `hello_text` actually accepts `name : String` as input.
+We are just using a default argument.
+Try modifying `untemplateplay/src/example/core.scala` so the function call
+is like `hello_txt( "<your name>"" )`, then rerun `./mill untemplateplay`
+<()
+
+writer.write(box(None,Some("Exercise 1: Supply untemplate input"))( exercise1() ))
+
+()>
+
+Shocking, right?
+
+Building your untemplate has caused two Scala source files to be generated
+into the directory `out/untemplateplay/untemplateGenerateScala.dest/example/`.
+Check those out!
+
+<()
+
+(exercise2)>
+Using the information and examples in the documentation above, write your
+own untemplate! Modify the `@main` method to invoke it instead of (or
+in addition to) `hello_txt()`.
+
+As long as you drop your untemplate in the package directory `example`
+under `untemplateplay/untemplate`, your untemplate can call any scala code
+you add to `core.scala`, or any other source file in `example`. (Of course,
+you can also create Scala code in new packages, and access it from your untemplate
+with import statements.) Your untemplates have seamless access to your Scala
+code. To your Scala code, each untemplates is just ordinary functions.
+<()
+
+writer.write(box(None,Some("Exercise 2: Write your own!"))( exercise2() ))
+
+()>
+
+Before we go, check out the `build.sc` file that was generated for you.
+In particular, note this section:
+
+```scala
+  override def untemplateSelectCustomizer: untemplate.Customizer.Selector = { key =>
+    var out = untemplate.Customizer.empty
+
+    // to customize, examine key and modify the customer
+    // with out = out.copy=...
+    //
+    // e.g. out = out.copy(extraImports=Seq("untemplateplay.*"))
+
+    out
+  }
+```
+
+When you have a large body of untemplates integrating with an application,
+often collections of them will share common imports, input and output
+types, etc. It's tedious to repetitively specify all of this within each
+untemplate. Here is where you might use [customizers](#customizers) to override
+defaults that are not explicitly specified for subsets of your untemplates
+that you select. Right now, for all untemplates, we are returning
+`Customizer.empty`, meaning no customizations, we are using untemplate library
+defaults. But here you can selectively override these!
+
+And that, for now, will suffice for our quick start!
+
+

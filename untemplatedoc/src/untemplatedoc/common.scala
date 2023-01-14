@@ -61,31 +61,4 @@ def box( emoji : Option[String], label : Option[String] )( block : String ) =
   val newLinePart = if (emoji orElse label).nonEmpty then " <br/>" + LineSep else ""
   prependEachLine("> ")( emojiPart + labelPart + newLinePart + block)
 
-
-/*
-object Subsection:
-  final case class Rendered(title : String, text : String, subsections : List[Subsection])
-
-  object Content:
-    final case class Spec(level : Int, title : String)
-    type Renderer = Function1[untemplate.Result[Subsection.Content.Spec],untemplate.Result[Nothing]]
-    val DefaultRenderer : Renderer = untemplatedoc.readme.defaultRenderer
-  type Content = Function1[Int,untemplate.Result[Subsection.Content.Spec]]
-
-  type Renderer = Function[Spec, untemplate.Result[String]]
-
-  def renderer( content: Content ) : Renderer = level => Content.DefaultRenderer(content)
-  def apply( r : Renderer ) : Subsection = 
-
-  val Introduction = Subsection( renderer(...) )
-type Subsection = Function1[Int,Subsection.Rendered]
-*/
-
-// complete: (title, rawText, finalText, [complete,complete, complete])
-
-// content: i => (title, rawText, [content,content,...])
-// renderer (title, rawText) => finalText
-// (content, renderer): i => (title, rawText, finalText, [content,content,...]) 
-
-// final case class SubsectionFormatInfo( level : Int, title : String, text : String )
-// def formatSubsection( level : Int, title : String)( text : String ) = untemplatedoc.readme.contentRenderer( SubsectionFormatInfo(level, title, text) )
+val untemplateVersion = "0.0.1-SNAPSHOT"

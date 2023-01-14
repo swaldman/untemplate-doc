@@ -8,6 +8,7 @@ val intro                    : untemplate.Result[SubsectionMeta] = introduction.
 val someSimpleUntemplates    : untemplate.Result[SubsectionMeta] = somesimpleuntemplates.content_main_md( level + 1 )
 val functionalTemplates      : untemplate.Result[SubsectionMeta] = functionaltemplates.content_main_md( level + 1 )
 val featureCreep             : untemplate.Result[SubsectionMeta] = featurecreep.content_main_md( level + 1 )
+val quickstart               : untemplate.Result[SubsectionMeta] = content_quickstart_md( level + 1 )
 val cheatSheet               : untemplate.Result[SubsectionMeta] = content_cheat_sheet_md( level + 1 )
 val acknowledgments          : untemplate.Result[SubsectionMeta] = content_acknowledgments_md( level + 1 )
 
@@ -20,6 +21,7 @@ val topSubsectionMeta =
         someSimpleUntemplates.mbMetadata.toList :::
         functionalTemplates.mbMetadata.toList :::
         featureCreep.mbMetadata.toList :::
+        quickstart.mbMetadata.toList :::
         cheatSheet.mbMetadata.toList :::
         acknowledgments.mbMetadata.toList :::
         Nil
@@ -30,7 +32,12 @@ end topSubsectionMeta
 
 # <( title )>
 
+**Version <( untemplateVersion )>**
+
 _This project documents the `untemplate` project. For its code, please see [swaldman/untemplate](https://github.com/swaldman/untemplate)._
+
+**This documentation is, well, long. You may wish to [jump to Quickstart](#quickstart),
+so you can play around with untemplates as you go.**
 
 ## <( tocTitle )>
 
@@ -43,6 +50,8 @@ _This project documents the `untemplate` project. For its code, please see [swal
 <( functionalTemplates )>
 
 <( featureCreep )>
+
+<( quickstart )>
 
 <( cheatSheet )>
 
