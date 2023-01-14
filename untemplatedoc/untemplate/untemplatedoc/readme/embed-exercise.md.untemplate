@@ -1,0 +1,7 @@
+val (num, title, body) = spec
+(spec : Tuple3[Int,String,String])[]~()>
+---
+**Exercise <(num)>: <( title )>**
+
+<(body)>
+---

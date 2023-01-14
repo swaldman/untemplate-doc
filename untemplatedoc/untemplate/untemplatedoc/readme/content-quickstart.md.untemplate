@@ -2,13 +2,13 @@ val title = "Quickstart"
 mbMetadata = Some( SubsectionMeta( level, title ) )
 (level : Int)[SubsectionMeta]~()>
 
-** Prerequisite **
+**Prerequisite**
 
 You'll need something that can extract a [giter8](https://github.com/foundweekends/giter8) template
 from github to get started. We'll use `sbt new`, but `mill init` or `g8` should
 also be fine.
 
-** Let's do it! **
+**Let's do it!**
 
 In a place where you are happy to have a new project directory created, run:
 ```zsh
@@ -68,7 +68,8 @@ Try modifying `untemplateplay/src/example/core.scala` so the function call
 is like `hello_txt( "<your name>"" )`, then rerun `./mill untemplateplay`
 <()
 
-writer.write(box(None,Some("Exercise 1: Supply untemplate input"))( exercise1() ))
+val spec1 = (1, "Supply untemplate input", exercise1())
+writer.write(embed_exercise_md(spec1).text)
 
 ()>
 
@@ -93,7 +94,8 @@ with import statements.) Your untemplates have seamless access to your Scala
 code. To your Scala code, each untemplates is just ordinary functions.
 <()
 
-writer.write(box(None,Some("Exercise 2: Write your own!"))( exercise2() ))
+val spec2 = (2, "Write your own!", exercise2())
+writer.write(embed_exercise_md(spec2).text)
 
 ()>
 
