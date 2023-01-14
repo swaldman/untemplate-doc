@@ -89,8 +89,10 @@ in addition to) `hello_txt()`.
 As long as you drop your untemplate in the package directory `example`
 under `untemplateplay/untemplate`, your untemplate can call any scala code
 you add to `core.scala`, or any other source file in `example`. (Of course,
-you can also create Scala code in new packages, and access it from your untemplate
-with import statements.) Your untemplates have seamless access to your Scala
+you can also create Scala code in other packages, and access it from your untemplate
+with import statements.)
+
+Your untemplates have seamless access to your Scala
 code. To your Scala code, each untemplates is just ordinary functions.
 <()
 
