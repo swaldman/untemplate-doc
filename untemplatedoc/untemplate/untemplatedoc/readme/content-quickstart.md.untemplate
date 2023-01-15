@@ -65,7 +65,7 @@ a function defined by an untemplate, which you can check out in
 The function `hello_text` actually accepts `name : String` as input.
 We are just using a default argument.
 Try modifying `untemplateplay/src/example/core.scala` so the function call
-is like `hello_txt( "<your name>"" )`, then rerun `./mill untemplateplay`
+is like `hello_txt( "<your name>" )`, then rerun `./mill untemplateplay`
 <()
 
 val spec1 = (1, "Supply untemplate input", exercise1())
@@ -93,7 +93,7 @@ you can also create Scala code in other packages, and access it from your untemp
 with import statements.)
 
 Your untemplates have seamless access to your Scala
-code. To your Scala code, each untemplates is just ordinary functions.
+code. To your Scala code, each untemplates is just an ordinary function.
 <()
 
 val spec2 = (2, "Write your own!", exercise2())

@@ -61,6 +61,7 @@ Metainformation:
     val UntemplateOutputMetadataTypeDeclared  : String
     val UntemplateOutputMetadataTypeCanonical : Option[String]
     val UntemplateHeaderNote                  : String
+    val UntemplateAttributes                  : immutable.Map[String,Any]
 
 Customizers:
   Bulk customization of templates to avoid having to write repetative headers or code
@@ -101,4 +102,17 @@ Delimiter variations:
   \()[]~()> equivalents
      \()[]~~~()> header note # Comments beginning '#' are permissible. Also "header notes"
      \()[]~~~~~~~()>         # Any number at least one of `~` characters are permissible
+
+Attributes:
+  You can associate an immutable.Map[String,Any] which can be queried from
+  inside or outside of your untemplate function. You can thus "tag" untemplates
+  in ways that may be useful to applications that will autogenerate text.
+
+Indexes:
+  All the untemplates your project generates can be collected into an index
+  of type immutable.Map[String,Untemplate[Nothing,Any]]. Either by convention
+  or by examining type metainformation (see above), you'll have to downcast
+  these to more specific types before you can call them. But if you will
+  be autogenerating text, you can filter through this index based on name
+  and/or metainformation to organize what gets generated where.
 ```
