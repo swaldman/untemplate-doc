@@ -34,7 +34,7 @@ end topSubsectionMeta
 
 **Version <( untemplateVersion )>**
 
-_This project documents the `untemplate` project. For its code, please see [swaldman/untemplate](https://github.com/swaldman/untemplate)._
+This project documents the `untemplate` project. For its code, please see [swaldman/untemplate](https://github.com/swaldman/untemplate).
 
 **This documentation is, well, long. You may wish to [jump to Quickstart](#quickstart),
 so you can play around with untemplates as you go.**
