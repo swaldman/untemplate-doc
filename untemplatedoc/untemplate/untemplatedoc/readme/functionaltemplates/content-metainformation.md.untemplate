@@ -44,6 +44,8 @@ For more on header notes, see [below](#long-delimiters-header-notes-and-comments
 
 Untemplates can define custom [attributes](#attributes) for themselves as an `immutable.Map[String,Any]`.
 
+<( box(None, Some("Note"))( """All untemplates import `scala.collection.*`, so `immutable.Map[String,Any]` is a name in scope.""" ) )>
+
 Because it's often convenient to resolve attributes in a case-independent way, untemplates also
 offer an `immutable.Map[LowerCased,Any]`, where `LowerCased` is an opaque type representing
 a lowercased `String`. For example,
@@ -54,8 +56,6 @@ import untemplate.LowerCased
 val pubDateKey = LowerCased("PubDate")
 val mbPubDate = myUntemplate.UntemplateAttributesLowerCased.get(pubDateKey)
 ```
-
-<( box(None, Some("Note"))( """All untemplates import `scala.collection.*`, so `immutable.Map[String,Any]` is a name in scope.""" ) )>
 
 Untemplate metadata is available not only within your untemplates. Each untemplate
 becomes becomes an `untemplate.Untemplate` object, on which all the metadata
