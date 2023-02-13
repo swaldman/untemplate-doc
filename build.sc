@@ -8,7 +8,7 @@ import mill.api.Result
 // huge thanks to @lolgab onn the Scala discord!
 import $file.buildCompilationSettings
 
-import $ivy.`com.mchange::untemplate-mill:0.0.3`
+import $ivy.`com.mchange::untemplate-mill:0.0.4`
 import untemplate.mill._
 
 def veryclean() = T.command {

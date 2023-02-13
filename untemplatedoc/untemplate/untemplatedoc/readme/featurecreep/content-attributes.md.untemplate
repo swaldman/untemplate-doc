@@ -44,6 +44,18 @@ If I write the expression `\<( attrs("FavoriteDay") )>`, it
 generates: <( attrs("FavoriteDay") )>
 
 Suppose we included a "tags" key in untemplate attributes, whose value might
-bet `Set[String]`. It would be easy to filter through our [index](#indexes)
+be a `Set[String]`. It would be easy to filter through our [index](#indexes)
 to find untemplates tagged with some value.
+
+Because it's often convenient to resolve attributes in a case-independent way, untemplates also
+offer an `immutable.Map[LowerCased,Any]`, where `LowerCased` is an opaque type representing
+a lowercased `String`. For example,
+
+```scala
+import untemplate.LowerCased
+
+val pubDateKey = LowerCased("PubDate")
+val mbPubDate = myUntemplate.UntemplateAttributesLowerCased.get(pubDateKey)
+```
+
 

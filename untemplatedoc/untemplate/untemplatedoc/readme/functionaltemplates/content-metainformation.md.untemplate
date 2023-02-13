@@ -1,5 +1,6 @@
 > val UntemplateAttributes = immutable.Map (
->   "tags" -> immutable.Set("boring", "useful")
+>   "Tags"    -> immutable.Set("Boring", "Useful"),
+>   "PubDate" -> "2023-02-12"
 > )
 
 val title = "Metainformation"
@@ -26,6 +27,7 @@ UntemplateOutputMetadataTypeDeclared:   "<(UntemplateOutputMetadataTypeDeclared)
 UntemplateOutputMetadataTypeCanonical:   <(UntemplateOutputMetadataTypeCanonical)>
 UntemplateHeaderNote:                   "<(UntemplateHeaderNote)>"
 UntemplateAttributes:                    <(UntemplateAttributes)>
+UntemplateAttributesLowerCased:          <(UntemplateAttributesLowerCased)>
 ```
 
 `UntemplateFunction` is a reference to the `Untemplate` (which is a subtype of `Function1`) that implements your untemplate.
@@ -41,6 +43,17 @@ if one was defined or `None` otherwise.
 For more on header notes, see [below](#long-delimiters-header-notes-and-comments).
 
 Untemplates can define custom [attributes](#attributes) for themselves as an `immutable.Map[String,Any]`.
+
+Because it's often convenient to resolve attributes in a case-independent way, untemplates also
+offer an `immutable.Map[LowerCased,Any]`, where `LowerCased` is an opaque type representing
+a lowercased `String`. For example,
+
+```scala
+import untemplate.LowerCased
+
+val pubDateKey = LowerCased("PubDate")
+val mbPubDate = myUntemplate.UntemplateAttributesLowerCased.get(pubDateKey)
+```
 
 <( box(None, Some("Note"))( """All untemplates import `scala.collection.*`, so `immutable.Map[String,Any]` is a name in scope.""" ) )>
 
