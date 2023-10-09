@@ -26,6 +26,7 @@ val readmeAttributesScala          = sgenDir.resolve("untemplatedoc/readme/featu
 val indexGen = sgenDir.resolve( "untemplatedoc/UntemplateIndex_Untemplates.scala" )
 
 def sgenFor( untemplateSrcPath : String ) : Path =
+  val dedottified = untemplateSrcPath.map(c => if c == '.' then '-' else 'c')
   sgenDir.resolve( Path.of(s"${untemplateSrcPath}.scala") )
 end sgenFor
 
