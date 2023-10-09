@@ -161,7 +161,7 @@ it as an unemplate, and it will be immortalized as a scala
 function.
 ```
 
-Now, the [generated scala](example/scalagen/untemplatedoc/ceci-nest-pas2.md.untemplate.scala) _would_ transform the markdown, like this:
+Now, the [generated scala](example/scalagen/untemplatedoc/ceci-nest-pas2-md-untemplate.scala) _would_ transform the markdown, like this:
 
 ```markdown
 # Ceci n'est pas... 0.8962242356915744
@@ -246,7 +246,7 @@ And again!
 And we're a winner! (num = 10)
 
 ```
-([generated scala](example/scalagen/untemplatedoc/loopy.md.untemplate.scala))
+([generated scala](example/scalagen/untemplatedoc/loopy-md-untemplate.scala))
 
 
 
@@ -436,7 +436,7 @@ Here is the output...
 And we're a winner! (num = 9)
 
 ```
-([generated scala](example/scalagen/untemplatedoc/loopy2.md.untemplate.scala))
+([generated scala](example/scalagen/untemplatedoc/loopy2-md-untemplate.scala))
 
 
 <a href="#table-of-contents">Back to top &#x21ba;</a>
@@ -474,7 +474,7 @@ Header `(pubDate: Instant)[]~(untemplateDoc)>` would generate
 def untemplateDoc( pubDate: Instant ) : untemplate.Result[Nothing] = ???
 ```
 
-Here's an example untemplate. Check out the [generated scala](example/scalagen/untemplatedoc/some_overrides.md.untemplate.scala) code.
+Here's an example untemplate. Check out the [generated scala](example/scalagen/untemplatedoc/some_overrides-md-untemplate.scala) code.
 
 ```scala
 import java.time.{Instant, ZoneId}
@@ -568,7 +568,7 @@ Within an untemplate, you have access to variables containing metainformation ab
 It may be useful to use `UntemplateFunction` as a Map key, in order to decorate it with metadata.
 Beyond that, if this will be useful at all, it will probably be for debugging.
 
-For the [untemplate you are reading](untemplatedoc/untemplate/untemplatedoc/readme/functionaltemplates/content-metainformation.md.untemplate) [[generated scala](example/scalagen/untemplatedoc/readme/functionaltemplates/content-metainformation.md.untemplate.scala)]:
+For the [untemplate you are reading](untemplatedoc/untemplate/untemplatedoc/readme/functionaltemplates/content-metainformation.md.untemplate) [[generated scala](example/scalagen/untemplatedoc/readme/functionaltemplates/content-metainformation-md-untemplate.scala)]:
 
 ```
 UntemplateFunction:                      untemplate.Untemplate[Int,SubsectionMeta]@untemplatedoc.readme.functionaltemplates.content_metainformation_md
