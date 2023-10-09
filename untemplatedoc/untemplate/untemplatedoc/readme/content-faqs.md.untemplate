@@ -2,16 +2,16 @@ val title = "FAQs"
 mbMetadata = Some( SubsectionMeta( level, title ) )
 (level : Int)[SubsectionMeta]~()>
 
-## How does the untemplate library transform untemplate source file names?
+### How does the untemplate library transform untemplate source file names?
 
-### Transforming untemplate source file to Scala function names
+#### Transforming untemplate source file to Scala function names
 
 Untemplate function names by default derive from the name of their encloding source file.
 Untemplate source files end with the suffix `.untemplate`. That suffix is stripped, and then
 any special characters that wouldn't be legal in a scala function name, including any `-` or `.`
 characters, are replaced with underscore (`_`).
 
-### Transforming untemplate source file to Scala source file names
+#### Transforming untemplate source file to Scala source file names
 
 Although usually you are not interested in the Scala source code files generated from untemplates, but occasionally
 you may want tools to see or inspect them, or documentation to expose them. Generated source
