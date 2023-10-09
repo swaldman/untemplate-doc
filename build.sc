@@ -1,35 +1,25 @@
+import $meta._
+
 import mill._
-import mill.define._
+//import mill.define._
 import mill.scalalib._
 import mill.define.Source
 import mill.modules.Jvm
 import mill.api.Result
 
-// huge thanks to @lolgab onn the Scala discord!
-import $file.buildCompilationSettings
-
-import $ivy.`com.mchange::untemplate-mill:0.0.4`
+import $ivy.`com.mchange::untemplate-mill:0.1.2-SNAPSHOT`
 import untemplate.mill._
 
-def veryclean() = T.command {
-  // println( s"Very Clean! ${millSourcePath}")
-  os.remove(millSourcePath / "README.md")
-  os.remove.all(millSourcePath / "example")
-
-  // we're writing to out during this, weird things happen
-  // os.remove.all(millSourcePath / "out")
-  println("Consider removing the out directory, this command can't cleanly do that.")
-
-  os.mtime.set( millSourcePath / "build.sc", System.currentTimeMillis()) // synthesizing touch
-  ()
-}
+// NOTE: Documentation-visible untemplate version is defined in common.scala (package untemplatedoc)!
 
 object untemplatedoc extends UntemplateModule {
+
   override def scalaVersion = "3.2.1"
+
   //override def scalaVersion = "3.2.0"
 
   // supports Scala 3.2.1
-  override def ammoniteVersion = "2.5.6"
+  //override def ammoniteVersion = "2.5.6"
 
   override def untemplateIndexNameFullyQualified : Option[String] = Some("untemplatedoc.Untemplates")
 
@@ -51,10 +41,14 @@ object untemplatedoc extends UntemplateModule {
   def exampleDir  = installDir / "example"
   def scalagenDir = exampleDir / "scalagen"
 
-  override def run(args: String*) = T.command {
-    val scalagenSrc = untemplateGenerateScala().path
-    if (args.nonEmpty)
-      throw new Exception("Command line arguments not supported. Please edit the task installDir to set the output. Unwanted args: " + args.mkString(", "))
+  def regenerate = T {
+    val scalagenSrc = {
+      val paths = untemplateGenerateScala().map( _.path )
+      val toplen = paths.map( _.toString.length ).min
+      val tops = paths.filter( p => p.toString.length == toplen && os.isDir(p) )
+      assert( tops.length == 1, "Could not find generated scala dir! Multiple or no candidates! " + tops.mkString("[",",","]") )
+      tops.head
+    }
     val installFile = (installDir / "README.md").toString
     println(s">>>> installFile: ${installFile}")
     os.makeDir.all(scalagenDir)

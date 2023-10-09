@@ -8,7 +8,7 @@ val libScalaDir                    = Path.of("untemplatdoc/src")
 val usrcDir                        = Path.of("untemplatedoc/untemplate")
 val sgenDir                        = Path.of("example/scalagen")
 val ceciSrc                        = usrcDir.resolve("untemplatedoc/ceci-nest-pas.md.untemplate")
-val ceciScala                      = sgenDir.resolve("untemplatedoc/ceci-nest-pas.md.untemplate.scala")
+val ceciScala                      = sgenDir.resolve("untemplatedoc/ceci-nest-pas-md-untemplate.scala")
 val ceci2Src                       = usrcDir.resolve("untemplatedoc/ceci-nest-pas2.md.untemplate")
 val loopySrc                       = usrcDir.resolve("untemplatedoc/loopy.md.untemplate")
 val loopy2badSrc                   = usrcDir.resolve("untemplatedoc/loopy2-bad.md.untemplate-off")
@@ -21,7 +21,7 @@ val readmeOutputTransformersSrc    = usrcDir.resolve("untemplatedoc/readme/featu
 val readmeSubsectionTransformerSrc = usrcDir.resolve("untemplatedoc/readme/subsection-content-transformer.md.untemplate")
 val readmeCustomizersSrc           = usrcDir.resolve("untemplatedoc/readme/featurecreep/content-customizers.md.untemplate")
 val readmeAttributesSrc            = usrcDir.resolve("untemplatedoc/readme/featurecreep/content-attributes.md.untemplate")
-val readmeAttributesScala          = sgenDir.resolve("untemplatedoc/readme/featurecreep/content-attributes.md.untemplate.scala")
+val readmeAttributesScala          = sgenDir.resolve("untemplatedoc/readme/featurecreep/content-attributes-md-untemplate.scala")
 
 val indexGen = sgenDir.resolve( "untemplatedoc/UntemplateIndex_Untemplates.scala" )
 
@@ -61,4 +61,4 @@ def box( emoji : Option[String], label : Option[String] )( block : String ) =
   val newLinePart = if (emoji orElse label).nonEmpty then " <br/>" + LineSep else ""
   prependEachLine("> ")( emojiPart + labelPart + newLinePart + block)
 
-val untemplateVersion = "0.0.4"
+val untemplateVersion = "0.2.1-SNAPSHOT"
