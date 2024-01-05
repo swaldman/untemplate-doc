@@ -14,9 +14,7 @@ import untemplate.mill._
 
 object untemplatedoc extends UntemplateModule {
 
-  override def scalaVersion = "3.2.1"
-
-  //override def scalaVersion = "3.2.0"
+  override def scalaVersion = "3.2.2"
 
   // supports Scala 3.2.1
   //override def ammoniteVersion = "2.5.6"
@@ -42,13 +40,7 @@ object untemplatedoc extends UntemplateModule {
   def scalagenDir = exampleDir / "scalagen"
 
   def regenerate = T {
-    val scalagenSrc = {
-      val paths = untemplateGenerateScala().map( _.path )
-      val toplen = paths.map( _.toString.length ).min
-      val tops = paths.filter( p => p.toString.length == toplen && os.isDir(p) )
-      assert( tops.length == 1, "Could not find generated scala dir! Multiple or no candidates! " + tops.mkString("[",",","]") )
-      tops.head
-    }
+    val scalagenSrc = untemplateGenerateScala().path
     val installFile = (installDir / "README.md").toString
     println(s">>>> installFile: ${installFile}")
     os.makeDir.all(scalagenDir)

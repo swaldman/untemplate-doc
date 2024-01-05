@@ -5,7 +5,8 @@ val subsectionFunctions = List (
     content_customizers_md,
     content_long_delimiters_etc_md,
     content_attributes_md,
-    content_indexes_md
+    content_indexes_md,
+    content_side_scala_md
 )
 val subsectionResults = subsectionFunctions.map( fcn => fcn(level + 1) )
 

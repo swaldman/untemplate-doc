@@ -1,0 +1,31 @@
+val title = "Side Scala"
+mbMetadata = Some( SubsectionMeta( level, title ) )
+
+(level : Int)[SubsectionMeta]~()>
+
+Generated directory hierarchies of untemplates usually map to parallel
+package locations.
+
+Often untemplates will want to share some ordinary Scala utility functions.
+
+You can define these utilities in your main, non-untemplate Scala source code,
+building a parallel package hierarchy there, or adding imports to your untemplates
+(directly or via a [Customizer](#customizers)) to access the utilities wherever you've defined them.
+
+However, for small utilities to be used only by untemplates within a particular
+package, it's natural to just write a `whatever.scala` file next to your untemplates,
+and just access your utilities directly. This is supported (as of v0.1.2).
+
+These "side scala" files will be placed in the same package as untemplates you defined in the same
+directory. Your untemplates will be able to access your utilities without imports
+or fully-qualified names.
+
+
+<()
+writer.writeln {
+  box( None, Some("Note") ){
+"""All of this assumes that you've placed no explicit package declarations in your untemplate or
+side scala files, and that you haven't overridden the default package location with a [Customizer](#customizers))"""
+  }
+}
+

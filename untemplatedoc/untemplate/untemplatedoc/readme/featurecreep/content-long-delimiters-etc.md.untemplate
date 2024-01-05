@@ -14,7 +14,9 @@ Recall from our [introduction](#introduction) the four untemplate delimiters:
 | `\<()` | Text / code boundary |
 | `\()[]~()>` | Header delimiter |
 
-The three "line delimiters" &mdash; `\()>`, `\<()`, and `\()[]~()>` &mdash
+The three "line delimiters" &mdash; `\()>`,
+`\<()`, and
+`\()[]~()>` &mdash
 must be tucked against the left-hand margin. They are
 small and easy to miss while scanning a file, even though they
 dramatically switch the meaning of portions of the file from code to text.
