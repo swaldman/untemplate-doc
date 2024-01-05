@@ -1,4 +1,4 @@
-val title = "Side Scala"
+val title = "Side Scala Files"
 mbMetadata = Some( SubsectionMeta( level, title ) )
 
 (level : Int)[SubsectionMeta]~()>
@@ -14,7 +14,9 @@ building a parallel package hierarchy there, or adding imports to your untemplat
 
 However, for small utilities to be used only by untemplates within a particular
 package, it's natural to just write a `whatever.scala` file next to your untemplates,
-and just access your utilities directly. This is supported (as of v0.1.2).
+and just access your utilities directly.
+
+This is now supported (as of v0.1.2).
 
 These "side scala" files will be placed in the same package as untemplates you defined in the same
 directory. Your untemplates will be able to access your utilities without imports
