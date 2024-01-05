@@ -14,7 +14,7 @@ building a parallel package hierarchy there, or adding imports to your untemplat
 
 However, for small utilities to be used only by untemplates within a particular
 package, it's natural to just write a `whatever.scala` file next to your untemplates,
-and just access your utilities directly.
+and then access your utilities directly.
 
 This is now supported (as of v0.1.2).
 
