@@ -4,10 +4,10 @@ import mill._
 //import mill.define._
 import mill.scalalib._
 import mill.define.Source
-import mill.modules.Jvm
+import mill.util.Jvm
 import mill.api.Result
 
-import $ivy.`com.mchange::untemplate-mill:0.1.2-SNAPSHOT`
+import $ivy.`com.mchange::untemplate-mill:0.1.2`
 import untemplate.mill._
 
 // NOTE: Documentation-visible untemplate version is defined in common.scala (package untemplatedoc)!

@@ -62,4 +62,4 @@ def box( emoji : Option[String], label : Option[String] )( block : String ) =
   val newLinePart = if (emoji orElse label).nonEmpty then " <br/>" + LineSep else ""
   prependEachLine("> ")( emojiPart + labelPart + newLinePart + block)
 
-val untemplateVersion = "0.2.1-SNAPSHOT"
+val untemplateVersion = "0.1.2"
