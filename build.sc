@@ -7,17 +7,14 @@ import mill.define.Source
 import mill.util.Jvm
 import mill.api.Result
 
-import $ivy.`com.mchange::untemplate-mill:0.1.2`
+import $ivy.`com.mchange::untemplate-mill:0.1.4-SNAPSHOT`
 import untemplate.mill._
 
 // NOTE: Documentation-visible untemplate version is defined in common.scala (package untemplatedoc)!
 
 object untemplatedoc extends UntemplateModule {
 
-  override def scalaVersion = "3.2.2"
-
-  // supports Scala 3.2.1
-  //override def ammoniteVersion = "2.5.6"
+  override def scalaVersion = "3.3.3"
 
   override def untemplateIndexNameFullyQualified : Option[String] = Some("untemplatedoc.Untemplates")
 
