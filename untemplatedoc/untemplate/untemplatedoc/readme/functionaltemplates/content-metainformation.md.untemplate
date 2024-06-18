@@ -26,7 +26,7 @@ UntemplateInputDefaultArgument:          <(UntemplateInputDefaultArgument)>
 UntemplateOutputMetadataTypeDeclared:   "<(UntemplateOutputMetadataTypeDeclared)>"
 UntemplateOutputMetadataTypeCanonical:   <(UntemplateOutputMetadataTypeCanonical)>
 UntemplateHeaderNote:                   "<(UntemplateHeaderNote)>"
-UntemplateLastModified:                  <(UntemplateLastModified)>
+UntemplateLastModified:                  <(UntemplateLastModified)> // milliseconds into UNIX epoch
 UntemplateSynthetic:                     <(UntemplateSynthetic)> // set to true if you implement by hand the trait untemplate. an untemplate transpiled in the usual way from the source documented here is NOT synthetic.
 UntemplateAttributes:                    <(UntemplateAttributes)>
 UntemplateAttributesLowerCased:          <(UntemplateAttributesLowerCased)>
