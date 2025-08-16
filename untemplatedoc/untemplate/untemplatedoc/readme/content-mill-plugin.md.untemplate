@@ -5,9 +5,9 @@ mbMetadata = Some( SubsectionMeta( level, title ) )
 The easiest way to incorporate untemplates into your project is to build your project with
 [mill](https://mill-build.org/mill/index.html), and to use the untemplate mill plugin.
 
-Here's a very simple `build.mill. file:
+Here's a simple `build.mill`. file:
 
-```plaintext
+```scala
 //| mill-version: 1.0.3
 //| mill-jvm-version: 17
 //| mvnDeps: ["com.mchange::untemplate-mill:<( untemplateVersion )>"]
@@ -38,13 +38,20 @@ which your generated untemplate functions will be named. (You can [override this
 
 We've also [generated an index](indexes) of all generated untemplates, which you can access as `mypkg.IndexedUntemplates`.
 
-The `mill` plugin is very full-featured:
+** All the features **
 
 * You can [provide a `Customizer.Selector`](#customizers) to provide fine-grained customizations of your generated untemplates.
   Add to your `build.mill` file
   ```scala
   override def untemplateSelectCustomizer : untemplate.Customizer.Selector = ...
   ```
+  By default, this returns `untemplate.Customizer.NeverCustomize`, meaning there are no customizations
+
+* As we've seen, you can privide an index using
+  ```scala
+  override def untemplateIndexNameFullyQualified : Option[String] = ...
+  ```
+  This defaults to `None`, meaning no index will be generated.
 
 * You can replace the default location for untemplate source code via
   ```scala
@@ -52,11 +59,12 @@ The `mill` plugin is very full-featured:
   ```
   Note that these paths will be defined relative to your mill build's module directory.
 
-  or, much more commonly, preserve the default untemplate directory while
+  Much more commonly, you'll want to preserve the default untemplate directory while
   adding additional source locations:
   ```scala
   override def untemplateSourcesFolders = super.untemplateSourcesFolders :+ "notes"
   ```
+  The default `untemplateSourcesFolders` function returns `Seq("untemplate")`.
 
 * You can add _prefix packages_ in a source-directory-specific way, to avoid having
   to define your untemplates deep in a directory hierarchy:
@@ -69,11 +77,14 @@ The `mill` plugin is very full-featured:
   Again, strings given as keys represent paths relative to your build's module directory.
   Packages are supplied in the usual '.'-delimited format
 
+  The default `untemplateSourcesPrefixPackagesFromModuleDir` returns an empty `Map`.
+
 * Less commonly, you can insist that your untemplates be generated to a single directory, rather than into
   a full hierarchy matching package names. That would be
   ```scala
   override def untemplateFlatten = Task(true) // rare
   ```
+  The default `untemplateFlatten` task returns `false`
 
 
 
