@@ -1,7 +1,7 @@
 
 # Untemplate documentation
 
-**Version 0.1.4-SNAPSHOT**
+**Version 0.3.0-SNAPSHOT**
 
 This project documents the `untemplate` project. For its code, please see [swaldman/untemplate](https://github.com/swaldman/untemplate).
 
@@ -168,7 +168,7 @@ function.
 Now, the [generated scala](example/scalagen/untemplatedoc/ceci-nest-pas2-md-untemplate.scala) _would_ transform the markdown, like this:
 
 ```markdown
-# Ceci n'est pas... 0.014777109102756869
+# Ceci n'est pas... 0.6640073802495992
 
 Well, this is _almost_ just a regular markdown file, with no
 special untemplate constructs. But if we wish, we can treat
@@ -221,11 +221,8 @@ It sucks to be us. (num = <(num)>)
 
 Let's get a look at what it produces:
 ```markdown
-# Loopy
-# Loopy
-# Loopy
 
-It sucks to be us. (num = 3)
+It sucks to be us. (num = 0)
 
 ```
 
@@ -233,13 +230,8 @@ And again!
 ```markdown
 # Loopy
 # Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
-# Loopy
 
-And we're a winner! (num = 7)
+It sucks to be us. (num = 2)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/loopy-md-untemplate.scala))
@@ -420,8 +412,16 @@ Here is the output...
 
 ```markdown
 # Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
+# Loopy
 
-It sucks to be us. (num = 1)
+And we're a winner! (num = 9)
 
 ```
 ([generated scala](example/scalagen/untemplatedoc/loopy2-md-untemplate.scala))
@@ -489,7 +489,7 @@ Which generates...
 
 Happy Birthday to me!
 
-_I was published on Tue, 18 Jun 2024 00:04:28 -0400._
+_I was published on Sat, 16 Aug 2025 17:32:03 -0400._
 
 
 ```
@@ -569,7 +569,7 @@ UntemplateInputDefaultArgument:          None
 UntemplateOutputMetadataTypeDeclared:   "SubsectionMeta"
 UntemplateOutputMetadataTypeCanonical:   Some(untemplatedoc.SubsectionMeta)
 UntemplateHeaderNote:                   "This is a header note."
-UntemplateLastModified:                  Some(1718683459518) // milliseconds into UNIX epoch
+UntemplateLastModified:                  Some(1718683460518) // milliseconds into UNIX epoch
 UntemplateSynthetic:                     false // set to true if you implement by hand the trait untemplate. an untemplate transpiled in the usual way from the source documented here is NOT synthetic.
 UntemplateAttributes:                    Map(Tags -> Set(Boring, Useful), PubDate -> 2023-02-12)
 UntemplateAttributesLowerCased:          Map(tags -> Set(Boring, Useful), pubdate -> 2023-02-12)
@@ -1094,7 +1094,7 @@ of times.
 name [untemplateplay]:
 module [untemplateplay]:
 package [example]:
-untemplate_version [0.1.4-SNAPSHOT]:
+untemplate_version [0.3.0-SNAPSHOT]:
 mill_version [0.10.10]:
 
 Template applied in /Users/swaldman/tmp/./untemplateplay
