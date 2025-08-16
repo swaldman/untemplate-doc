@@ -8,6 +8,7 @@ val intro                    : untemplate.Result[SubsectionMeta] = introduction.
 val someSimpleUntemplates    : untemplate.Result[SubsectionMeta] = somesimpleuntemplates.content_main_md( level + 1 )
 val functionalTemplates      : untemplate.Result[SubsectionMeta] = functionaltemplates.content_main_md( level + 1 )
 val featureCreep             : untemplate.Result[SubsectionMeta] = featurecreep.content_main_md( level + 1 )
+val millPlugin               : untemplate.Result[SubsectionMeta] = content_mill_plugin_md( level + 1 )
 val quickstart               : untemplate.Result[SubsectionMeta] = content_quickstart_md( level + 1 )
 val cheatSheet               : untemplate.Result[SubsectionMeta] = content_cheat_sheet_md( level + 1 )
 val faqs                     : untemplate.Result[SubsectionMeta] = content_faqs_md( level + 1 )
@@ -22,6 +23,7 @@ val topSubsectionMeta =
         someSimpleUntemplates.mbMetadata.toList :::
         functionalTemplates.mbMetadata.toList :::
         featureCreep.mbMetadata.toList :::
+        millPlugin.mbMetadata.toList :::
         quickstart.mbMetadata.toList :::
         cheatSheet.mbMetadata.toList :::
         faqs.mbMetadata.toList :::
@@ -52,6 +54,8 @@ so you can play around with untemplates as you go.**
 <( functionalTemplates )>
 
 <( featureCreep )>
+
+<( millPlugin )>
 
 <( quickstart )>
 
