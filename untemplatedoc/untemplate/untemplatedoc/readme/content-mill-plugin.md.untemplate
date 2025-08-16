@@ -38,7 +38,7 @@ which your generated untemplate functions will be named. (You can [override this
 
 We've also [generated an index](indexes) of all generated untemplates, which you can access as `mypkg.IndexedUntemplates`.
 
-** All the features **
+**All the features**
 
 * You can [provide a `Customizer.Selector`](#customizers) to provide fine-grained customizations of your generated untemplates.
   Add to your `build.mill` file
