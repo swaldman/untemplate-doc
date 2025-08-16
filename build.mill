@@ -1,19 +1,24 @@
 //| mill-version: 1.0.3
 //| mill-jvm-version: 17
-//| mvnDeps: ["com.mchange::untemplate-mill:0.3.0-SNAPSHOT"]
 //+---------------------------------------------------------
+
+// Note we do not use
+//   mvnDeps: ["com.mchange::untemplate-mill:0.3.0-SNAPSHOT"]
+// in the YAML above, because we use a meta build (mill-build/build.mill)
+// to ensure the actual untemplate version is in sync with what gets
+// generated into the docs
 
 package build
 
 import mill.*, api.*
 
-import mill.api.Args.given
+import mill.contrib.buildinfo.BuildInfo
 
 import untemplate.mill.*
 
 // NOTE: Documentation-visible untemplate version is defined in common.scala (package untemplatedoc)!
 
-object untemplatedoc extends UntemplateModule:
+object untemplatedoc extends UntemplateModule with BuildInfo:
 
   override def scalaVersion = "3.3.6"
 
@@ -45,4 +50,7 @@ object untemplatedoc extends UntemplateModule:
       os.makeDir.all(scalagenDir)
       os.copy.over(scalagenSrc, scalagenDir)
       run(installFileAsArgs)()
+
+  def buildInfoMembers = Seq(BuildInfo.Value("untemplateVersion", millbuild.DepVersions.untemplateVersion))
+  def buildInfoPackageName = "untemplatedoc"
 

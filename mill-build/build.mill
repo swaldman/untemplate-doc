@@ -1,0 +1,24 @@
+package build
+
+import mill.*, scalalib.*
+import mill.meta.MillBuildRootModule
+
+// modified from https://mill-build.org/mill/extending/meta-build.html
+
+object `package` extends MillBuildRootModule {
+  val untemplateVersion = "0.3.0-SNAPSHOT"
+  def mvnDeps = Seq(mvn"com.mchange::untemplate-mill:${untemplateVersion}",mvn"com.lihaoyi::mill-contrib-buildinfo:1.0.3") // we'd like 1.0.3 to always be MILL_VERSION
+
+  def generatedSources = Task {
+    os.write(
+      Task.dest / "DepVersions.scala",
+      s"""
+         |package millbuild
+         |object DepVersions{
+         |  def untemplateVersion = "$untemplateVersion"
+         |}
+      """.stripMargin
+    )
+    super.generatedSources() ++ Seq(PathRef(Task.dest))
+  }
+}
