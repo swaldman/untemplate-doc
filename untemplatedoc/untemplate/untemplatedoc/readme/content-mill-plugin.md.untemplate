@@ -16,6 +16,8 @@ package build
 
 import mill.*, scalalib.*
 
+import untemplate.mill.UntemplateModule
+
 object `package` extends UntemplateModule:
   override def scalaVersion = "3.3.6"
 
@@ -43,7 +45,15 @@ We've also [generated an index](indexes) of all generated untemplates, which you
 * You can [provide a `Customizer.Selector`](#customizers) to provide fine-grained customizations of your generated untemplates.
   Add to your `build.mill` file
   ```scala
-  override def untemplateSelectCustomizer : untemplate.Customizer.Selector = ...
+  override def untemplateSelectCustomizer: untemplate.Customizer.Selector = key =>
+    var out = untemplate.Customizer.empty
+
+    // to customize, examine key and modify the Customizer
+    // with out = out.copy=...
+    //
+    // e.g. out = out.copy(extraImports=Seq("draft.*"))
+
+    out
   ```
   By default, this returns `untemplate.Customizer.NeverCustomize`, meaning there are no customizations
 
@@ -64,6 +74,10 @@ We've also [generated an index](indexes) of all generated untemplates, which you
   ```scala
   override def untemplateSourcesFolders = super.untemplateSourcesFolders :+ "notes"
   ```
+  If there is a conflict, if an untemplate file of the same name exists in the same package
+  below tow directories, the untemplate from the later directory in the list overrides and shadows
+  the untemplate from the earlier directory.
+  
   The default `untemplateSourcesFolders` function returns `Seq("untemplate")`.
 
 * You can add _prefix packages_ in a source-directory-specific way, to avoid having
