@@ -2,7 +2,7 @@ val title = "Quickstart"
 mbMetadata = Some( SubsectionMeta( level, title ) )
 (level : Int)[SubsectionMeta]~()>
 
-OK. First let's get a mill project setup:
+OK. First let's get a `mill` project set-up:
 
 ```plaintext
 % mkdir myproject
@@ -17,7 +17,8 @@ We'll go ahead and define `src` and `untemplate` directories.
 % mkdir src untemplate
 ```
 
-Now let's setup a minimalist `build.mill` file, however you like to do that:
+Now let's setup a minimalist `build.mill` file. However you like to create a text file,
+create `build.mill` in the current directory (not in `src` or `untemplate`), with the following contents:
 
 ```scala
 //| mill-version: 1.0.3
@@ -34,13 +35,13 @@ object `package` extends UntemplateModule:
   override def scalaVersion = "3.3.6"
 ```
 
-Great. Let's work in the `mypkg` package. Let's create a director under `untemplate`.
+Great. Let's work in a `mypkg` package. Let's create a directory under `untemplate`.
 
 ```plaintext
 % mkdir untemplate/mypkg
 ```
 
-OK! Let's drop our first untemplate into there. We'll name the following file `hello.txt.untemplate`:
+OK! Let's drop our first untemplate into there. Inside `untemplate/mypkg` create a file called `hello.txt.untemplate` with the following contents:
 
 ```plaintext
 import java.time.ZonedDateTime
@@ -88,6 +89,8 @@ Now it's just...
 
 Congratulations! You've just created and used your first untemplate!
 
+---
+
 Some exercises to try out:
 
 1. Our untemplate actually accepts a `String` name for its argument.
@@ -102,14 +105,15 @@ Some exercises to try out:
    Be careful about Scala 3 indentation! This line needs to be inside your object `package`.
 
    Now run `mill -i console`, and see if you can't list all the indexed untemplates.
-   (For now there's just one!) The index will be Scala `Map`, with the fully qualified names
+   (For now there's just one!) The index will be Scala `Map` called `mypkg.Untemplates` (the name we gave it!),
+   with the fully qualified names
    of the untemplates as keys and the untemplate functions as values.
 
-   _**Hint:** The `toString` method of the untemplate functions include their type parameterizations,
-   but the compiler only knows them as `untemplate.Untemplate[Nothing,Any]`. Try
+   **Hint:** _The `toString` method of the untemplate functions include their type parameterizations,
+   but the compiler only knows them as `untemplate.Untemplate[Nothing,Any]`. Try_
    ```scala
    mypkg.Untemplates.head(1).asInstanceOf[untemplate.Untemplate[String,Nothing]]("my friend")
    ```
-   You'll need to use `asInstanceOf` on untemplates retrieved via the index, and you'll generally
+   _You'll need to use `asInstanceOf` on untemplates retrieved via the index, and you'll generally
    want to deploy conventions so you know their argument and return metadata types from
-   their package or name.
+   their package or name._
