@@ -72,14 +72,14 @@ Generated for \<( name )> on \<( RFC_1123_DATE_TIME.format( now ) )>
 Love! :P
 ```
 
-Let's put a simple program, under `src/hello.scala`:
+Let's write a simple program, and put it `src/hello.scala`:
 
 ```scala
 @main
 def hello() : Unit = println(mypkg.hello_txt())
 ```
 
-(Note how we dropped the `.untemplate` suffix, and the '.' in the name became an underscore. '-' characters also become underscore.)
+(Note how, in order to call the function, we took the untemplate file name, but dropped the `.untemplate` suffix, and the '.' in the name became an underscore. '-' characters would also become underscore.)
 
 Now it's just...
 
@@ -95,7 +95,7 @@ Some exercises to try out:
 
 1. Our untemplate actually accepts a `String` name for its argument.
    Modify your program so you supply a name to the untemplate function.
-   (You can hardcode your name, or let it be a command-line argument.)
+   (You can hardcode the name, or let it be a command-line argument.)
 
 2. Most real applications will want an index of untemplates. Add to your
    `build.mill` file the following line:
