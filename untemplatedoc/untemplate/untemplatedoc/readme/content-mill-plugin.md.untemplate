@@ -75,7 +75,7 @@ We've also [generated an index](indexes) of all generated untemplates, which you
   override def untemplateSourcesFolders = super.untemplateSourcesFolders :+ "notes"
   ```
   If there is a conflict, if an untemplate file of the same name exists in the same package
-  below tow directories, the untemplate from the later directory in the list overrides and shadows
+  below two directories, the untemplate from the later directory in the list overrides and shadows
   the untemplate from the earlier directory.
   
   The default `untemplateSourcesFolders` function returns `Seq("untemplate")`.
